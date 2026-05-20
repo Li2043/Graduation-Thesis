@@ -1,5 +1,31 @@
 # Prototype Log
 
+## v0.3 — DQN Training with Rawlsian Reward Shaping
+
+Date: 2026-05-20
+
+### Purpose
+
+To move from random-policy evaluation to trained-policy evaluation, so that Rawlsian reward shaping can affect the learned policy.
+
+### Added
+
+- Baseline DQN training.
+- Rawlsian DQN training.
+- Trained policy evaluation using shared fairness metrics.
+- Model saving.
+- Trained comparison plots and summary CSV.
+
+### Interpretation
+
+This is the first learning-based prototype. Results should be interpreted cautiously because training timesteps are limited and the current vehicle experience function is simplified.
+
+### Next step
+
+Prototype v0.4 should improve the vehicle experience definition by adding more meaningful traffic fairness variables, such as waiting time, merge delay, time-to-collision, headway, or risk exposure.
+
+---
+
 ## v0.2 — Fairness Metrics Evaluation
 
 Date: 2026-05-20

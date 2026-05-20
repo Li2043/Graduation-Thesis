@@ -18,7 +18,7 @@ build/
 .DS_Store
 Thumbs.db
 
-# Optional: large generated outputs (keep structure via .gitkeep)
-# Uncomment to exclude experiment outputs from git:
-# results/*.csv
-# results/*.png
+# Trained models and tensorboard logs (v0.3)
+models/*.zip
+logs/**/*
+!logs/.gitkeep
