@@ -1,8 +1,8 @@
 """
 Shared fairness and safety metrics for baseline and Rawlsian runs.
-
 Centralizes vehicle experience, Gini coefficient, and collision counting
 so baseline and RawlsianRewardWrapper use identical definitions.
+让baseline和rawlsian都使用相同的定义
 """
 
 from __future__ import annotations
@@ -11,11 +11,12 @@ from typing import Any
 
 import gymnasium as gym
 
+# define a small number to avoid division by zero
 EPSILON = 1e-9
 
 
 def get_vehicles(env: gym.Env) -> list[Any]:
-    """Safely read vehicles from unwrapped highway-env (works through wrappers)."""
+    """Safely read vehicles from unwrapped highway-env."""
     try:
         unwrapped = env.unwrapped
         road = getattr(unwrapped, "road", None)
@@ -29,8 +30,10 @@ def get_vehicles(env: gym.Env) -> list[Any]:
         return []
 
 
+
+# experience_i = normalized_speed_i - collision_penalty_i.
+# if collide, -1
 def vehicle_experience(vehicle: Any, speed_normalizer: float = 30.0) -> float:
-    """experience_i = normalized_speed_i - collision_penalty_i."""
     speed = float(getattr(vehicle, "speed", 0.0))
     normalized_speed = speed / speed_normalizer
     collision_penalty = 1.0 if bool(getattr(vehicle, "crashed", False)) else 0.0
