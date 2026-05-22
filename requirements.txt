@@ -1,0 +1,6 @@
+highway-env
+gymnasium
+numpy
+pandas
+matplotlib
+stable-baselines3
