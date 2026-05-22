@@ -1,4 +1,4 @@
-"""Random policy on merge-v0; log reward and shared fairness metrics."""
+"""Random policy on merge-v0; log global and ego-neighbourhood fairness metrics."""
 
 from pathlib import Path
 
@@ -6,11 +6,24 @@ import gymnasium as gym
 import highway_env  # noqa: F401
 import pandas as pd
 
-from config import BASE_SEED, ENV_ID, MAX_STEPS, N_EPISODES, SPEED_NORMALIZER
-from metrics import collect_step_metrics
+from config import (
+    BASE_SEED,
+    EGO_NEIGHBOURHOOD_RADIUS,
+    ENV_ID,
+    MAX_STEPS,
+    N_EPISODES,
+    RANDOM_BASELINE_CSV,
+    SPEED_NORMALIZER,
+)
+from metrics import (
+    accumulate_least_advantaged_step,
+    collect_step_metrics,
+    finalize_least_advantaged_episode,
+    new_least_advantaged_counters,
+)
 
-RESULTS_DIR = Path(__file__).resolve().parent / "results"
-OUTPUT_CSV = RESULTS_DIR / "random_baseline.csv"
+RESULTS_DIR = Path(RANDOM_BASELINE_CSV).resolve().parent
+OUTPUT_CSV = Path(RANDOM_BASELINE_CSV)
 
 
 def run_episode(env: gym.Env, episode_id: int) -> dict:
@@ -27,6 +40,14 @@ def run_episode(env: gym.Env, episode_id: int) -> dict:
     final_min_exp = 0.0
     final_gini = 0.0
     final_collision_count = 0
+
+    sum_nb_min_exp = 0.0
+    final_nb_min_exp = 0.0
+    sum_nb_gini = 0.0
+    sum_nb_vehicle_count = 0.0
+
+    la_counters = new_least_advantaged_counters()
+    nb_la_counters = new_least_advantaged_counters()
     steps = 0
     terminated = False
     truncated = False
@@ -34,24 +55,41 @@ def run_episode(env: gym.Env, episode_id: int) -> dict:
     for _ in range(MAX_STEPS):
         action = env.action_space.sample()
         obs, reward, terminated, truncated, info = env.step(action)
-        step_metrics = collect_step_metrics(env, SPEED_NORMALIZER)
+
+        global_metrics = collect_step_metrics(env, SPEED_NORMALIZER, scope="global")
+        neighbourhood_metrics = collect_step_metrics(
+            env,
+            SPEED_NORMALIZER,
+            scope="ego_neighbourhood",
+            radius=EGO_NEIGHBOURHOOD_RADIUS,
+        )
 
         total_reward += float(reward)
-        sum_min_exp += step_metrics["min_experience"]
-        sum_mean_vehicle_exp += step_metrics["mean_experience"]
-        sum_gini += step_metrics["gini_experience"]
-        sum_n_vehicles += step_metrics["n_vehicles"]
-        total_collision_count += step_metrics["collision_count"]
+        sum_min_exp += global_metrics["min_experience"]
+        sum_mean_vehicle_exp += global_metrics["mean_experience"]
+        sum_gini += global_metrics["gini_experience"]
+        sum_n_vehicles += global_metrics["n_vehicles"]
+        total_collision_count += global_metrics["collision_count"]
+        accumulate_least_advantaged_step(global_metrics, la_counters)
 
-        final_min_exp = step_metrics["min_experience"]
-        final_gini = step_metrics["gini_experience"]
-        final_collision_count = step_metrics["collision_count"]
+        sum_nb_min_exp += neighbourhood_metrics["min_experience"]
+        sum_nb_gini += neighbourhood_metrics["gini_experience"]
+        sum_nb_vehicle_count += neighbourhood_metrics["scoped_vehicle_count"]
+        accumulate_least_advantaged_step(neighbourhood_metrics, nb_la_counters)
+
+        final_min_exp = global_metrics["min_experience"]
+        final_gini = global_metrics["gini_experience"]
+        final_collision_count = global_metrics["collision_count"]
+        final_nb_min_exp = neighbourhood_metrics["min_experience"]
         steps += 1
 
         if terminated or truncated:
             break
 
     denom = steps if steps > 0 else 1
+    la_episode = finalize_least_advantaged_episode(la_counters, steps)
+    nb_la_episode = finalize_least_advantaged_episode(nb_la_counters, steps)
+
     return {
         "episode": episode_id,
         "total_reward": total_reward,
@@ -64,6 +102,14 @@ def run_episode(env: gym.Env, episode_id: int) -> dict:
         "total_collision_count": total_collision_count,
         "final_collision_count": final_collision_count,
         "mean_n_vehicles": sum_n_vehicles / denom,
+        **la_episode,
+        "mean_neighbourhood_min_experience": sum_nb_min_exp / denom,
+        "final_neighbourhood_min_experience": final_nb_min_exp,
+        "mean_neighbourhood_gini_experience": sum_nb_gini / denom,
+        "mean_neighbourhood_vehicle_count": sum_nb_vehicle_count / denom,
+        "neighbourhood_least_advantaged_ego_ratio": nb_la_episode[
+            "least_advantaged_ego_ratio"
+        ],
         "steps": steps,
         "terminated": terminated,
         "truncated": truncated,

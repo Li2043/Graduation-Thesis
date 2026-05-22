@@ -1,5 +1,78 @@
 # Prototype Log
 
+## v0.4 — Ego-neighbourhood Rawlsian Reward
+
+Date: 2026-05-20
+
+### Purpose
+
+To address the v0.3 finding that global minimum experience was dominated by non-ego background vehicles.
+
+### Added
+
+- Configurable Rawlsian scope (`global`, `ego_neighbourhood`, `controlled`).
+- Ego-neighbourhood vehicle selection by radius.
+- Scoped fairness metrics (`metric_scope`, `scoped_vehicle_count`).
+- `diagnose_neighbourhood_scope.py`.
+- Trained evaluation using ego-neighbourhood metrics by default.
+
+### Interpretation
+
+This version tests whether Rawlsian reward shaping becomes more learnable when the fairness target is restricted to vehicles interacting with the ego vehicle.
+
+### Next step
+
+If v0.4 improves learnability, v0.5 should improve the experience function by adding waiting time, merge delay, TTC, headway, or risk exposure.
+
+---
+
+## Diagnostic — Least Advantaged Vehicle Identity
+
+Date: 2026-05-20
+
+### Purpose
+
+To understand whether the Rawlsian minimum-experience signal is controlled by the ego vehicle or dominated by background vehicles.
+
+### Added
+
+- Least advantaged vehicle identity metrics.
+- Ego/non-ego ratio per episode.
+- `diagnose_least_advantaged.py` diagnostic script.
+- Additional random and trained summary fields and plots.
+
+### Interpretation
+
+If the least advantaged vehicle is rarely ego, then Rawlsian reward based on all vehicles may be difficult for a single-agent DQN to optimise. This would motivate v0.4 changes such as ego-centred experience, controlled-agent-only experience, or improved multi-agent setup.
+
+---
+
+## v0.3 — DQN Training with Rawlsian Reward Shaping
+
+Date: 2026-05-20
+
+### Purpose
+
+To move from random-policy evaluation to trained-policy evaluation, so that Rawlsian reward shaping can affect the learned policy.
+
+### Added
+
+- Baseline DQN training.
+- Rawlsian DQN training.
+- Trained policy evaluation using shared fairness metrics.
+- Model saving.
+- Trained comparison plots and summary CSV.
+
+### Interpretation
+
+This is the first learning-based prototype. Results should be interpreted cautiously because training timesteps are limited and the current vehicle experience function is simplified.
+
+### Next step
+
+Prototype v0.4 should improve the vehicle experience definition by adding more meaningful traffic fairness variables, such as waiting time, merge delay, time-to-collision, headway, or risk exposure.
+
+---
+
 ## v0.2 — Fairness Metrics Evaluation
 
 Date: 2026-05-20
