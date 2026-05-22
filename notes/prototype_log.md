@@ -1,5 +1,33 @@
 # Prototype Log
 
+## v0.5 — Safety-Mobility Experience Function
+
+Date: 2026-05-22
+
+### Purpose
+
+To replace the simple speed-minus-collision experience function with a richer safety-mobility proxy and explain why a vehicle is identified as least advantaged.
+
+### Added
+
+- safety-mobility experience mode
+- mobility score
+- collision penalty
+- low-speed penalty
+- proximity risk penalty
+- least advantaged reason diagnostics
+- experience component diagnostics script
+
+### Interpretation
+
+This version tests whether Rawlsian reward becomes more meaningful when least advantaged vehicles are identified by safety-mobility disadvantage rather than speed alone.
+
+### Next step
+
+If v0.5 produces more interpretable least-advantaged reasons and stable improvements, the next stage can test stronger training, multiple seeds, sensitivity to radius/weights, or a controlled-vehicles/multi-agent setup.
+
+---
+
 ## v0.4 — Ego-neighbourhood Rawlsian Reward
 
 Date: 2026-05-20

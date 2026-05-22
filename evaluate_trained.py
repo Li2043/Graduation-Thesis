@@ -13,14 +13,22 @@ from config import (
     EGO_NEIGHBOURHOOD_RADIUS,
     EVAL_EPISODES,
     ENV_ID,
+    EXPERIENCE_MODE,
+    LOW_SPEED_THRESHOLD,
     MAX_STEPS,
     RAWLSIAN_MODEL_PATH,
     RAWLSIAN_SCOPE,
     RAWLSIAN_XI,
+    RISK_DISTANCE_NORMALIZER,
     SPEED_NORMALIZER,
+    TARGET_SPEED,
     TRAINED_BASELINE_CSV,
     TRAINED_RAWLSIAN_CSV,
     TRAINED_SUMMARY_CSV,
+    W_COLLISION,
+    W_LOW_SPEED,
+    W_MOBILITY,
+    W_RISK,
 )
 from rawlsian_wrapper import RawlsianRewardWrapper
 from trained_policy_utils import (
@@ -31,6 +39,17 @@ from trained_policy_utils import (
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 RESULTS_DIR = Path(TRAINED_SUMMARY_CSV).resolve().parent
+
+EXPERIENCE_KWARGS = {
+    "experience_mode": EXPERIENCE_MODE,
+    "target_speed": TARGET_SPEED,
+    "low_speed_threshold": LOW_SPEED_THRESHOLD,
+    "w_mobility": W_MOBILITY,
+    "w_collision": W_COLLISION,
+    "w_low_speed": W_LOW_SPEED,
+    "w_risk": W_RISK,
+    "risk_distance_normalizer": RISK_DISTANCE_NORMALIZER,
+}
 
 PLOT_CONFIG = [
     ("total_reward", "trained_comparison_total_reward.png", "Average total reward"),
@@ -47,6 +66,31 @@ PLOT_CONFIG = [
         "mean_scoped_vehicle_count",
         "trained_comparison_scoped_vehicle_count.png",
         "Average scoped vehicle count",
+    ),
+    (
+        "mean_mobility_score",
+        "trained_comparison_mean_mobility_score.png",
+        "Average mean mobility score",
+    ),
+    (
+        "mean_risk_penalty",
+        "trained_comparison_mean_risk_penalty.png",
+        "Average mean risk penalty",
+    ),
+    (
+        "reason_risk_steps",
+        "trained_comparison_reason_risk_steps.png",
+        "Average reason_risk steps",
+    ),
+    (
+        "reason_low_mobility_steps",
+        "trained_comparison_reason_low_mobility_steps.png",
+        "Average reason_low_mobility steps",
+    ),
+    (
+        "reason_collision_steps",
+        "trained_comparison_reason_collision_steps.png",
+        "Average reason_collision steps",
     ),
 ]
 
@@ -75,7 +119,10 @@ def main() -> None:
         sys.exit(1)
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Evaluating trained policies with metric_scope={RAWLSIAN_SCOPE}")
+    print(
+        f"Evaluating trained policies with metric_scope={RAWLSIAN_SCOPE} "
+        f"experience_mode={EXPERIENCE_MODE}"
+    )
 
     baseline_env = gym.make(ENV_ID)
     rawlsian_base_env = gym.make(ENV_ID)
@@ -85,6 +132,14 @@ def main() -> None:
         speed_normalizer=SPEED_NORMALIZER,
         scope=RAWLSIAN_SCOPE,
         radius=EGO_NEIGHBOURHOOD_RADIUS,
+        mode=EXPERIENCE_MODE,
+        target_speed=TARGET_SPEED,
+        low_speed_threshold=LOW_SPEED_THRESHOLD,
+        w_mobility=W_MOBILITY,
+        w_collision=W_COLLISION,
+        w_low_speed=W_LOW_SPEED,
+        w_risk=W_RISK,
+        risk_distance_normalizer=RISK_DISTANCE_NORMALIZER,
     )
 
     baseline_model = DQN.load(
@@ -96,28 +151,28 @@ def main() -> None:
         env=rawlsian_env,
     )
 
+    eval_kwargs = {
+        "n_episodes": EVAL_EPISODES,
+        "max_steps": MAX_STEPS,
+        "speed_normalizer": SPEED_NORMALIZER,
+        "base_seed": BASE_SEED,
+        "metric_scope": RAWLSIAN_SCOPE,
+        "radius": EGO_NEIGHBOURHOOD_RADIUS,
+        **EXPERIENCE_KWARGS,
+    }
+
     baseline_df = evaluate_model_on_env(
         baseline_model,
         baseline_env,
-        n_episodes=EVAL_EPISODES,
-        max_steps=MAX_STEPS,
-        speed_normalizer=SPEED_NORMALIZER,
-        base_seed=BASE_SEED,
         is_rawlsian=False,
-        metric_scope=RAWLSIAN_SCOPE,
-        radius=EGO_NEIGHBOURHOOD_RADIUS,
+        **eval_kwargs,
     )
 
     rawlsian_df = evaluate_model_on_env(
         rawlsian_model,
         rawlsian_env,
-        n_episodes=EVAL_EPISODES,
-        max_steps=MAX_STEPS,
-        speed_normalizer=SPEED_NORMALIZER,
-        base_seed=BASE_SEED,
         is_rawlsian=True,
-        metric_scope=RAWLSIAN_SCOPE,
-        radius=EGO_NEIGHBOURHOOD_RADIUS,
+        **eval_kwargs,
     )
 
     baseline_csv = PROJECT_ROOT / TRAINED_BASELINE_CSV

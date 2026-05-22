@@ -35,6 +35,16 @@ COMMON_METRICS = [
     "mean_neighbourhood_vehicle_count",
     "neighbourhood_least_advantaged_ego_ratio",
     "mean_scoped_vehicle_count",
+    "mean_mobility_score",
+    "mean_risk_penalty",
+    "mean_low_speed_penalty",
+    "mean_collision_penalty",
+    "reason_collision_steps",
+    "reason_low_mobility_steps",
+    "reason_low_speed_steps",
+    "reason_risk_steps",
+    "reason_none_steps",
+    "reason_combined_steps",
 ]
 
 RAWLSIAN_EXTRA_METRICS = [
@@ -67,6 +77,31 @@ PLOT_CONFIG = [
         "neighbourhood_least_advantaged_ego_ratio",
         "random_comparison_neighbourhood_least_advantaged_ego_ratio.png",
         "neighbourhood least advantaged vehicle is ego ratio",
+    ),
+    (
+        "mean_mobility_score",
+        "random_comparison_mean_mobility_score.png",
+        "Average mean mobility score",
+    ),
+    (
+        "mean_risk_penalty",
+        "random_comparison_mean_risk_penalty.png",
+        "Average mean risk penalty",
+    ),
+    (
+        "reason_risk_steps",
+        "random_comparison_reason_risk_steps.png",
+        "Average reason_risk steps",
+    ),
+    (
+        "reason_low_mobility_steps",
+        "random_comparison_reason_low_mobility_steps.png",
+        "Average reason_low_mobility steps",
+    ),
+    (
+        "reason_collision_steps",
+        "random_comparison_reason_collision_steps.png",
+        "Average reason_collision steps",
     ),
 ]
 

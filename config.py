@@ -35,19 +35,41 @@ RESULTS_V04_RANDOM_DIR = "results/v0.4/random"
 RESULTS_V04_TRAINED_DIR = "results/v0.4/trained"
 RESULTS_V04_DIAGNOSTIC_DIR = "results/v0.4/diagnostic"
 
-RANDOM_BASELINE_CSV = "results/v0.4/random/random_baseline.csv"
-RANDOM_RAWLSIAN_CSV = "results/v0.4/random/random_rawlsian.csv"
-RANDOM_SUMMARY_CSV = "results/v0.4/random/random_summary.csv"
+RESULTS_V05_DIR = "results/v0.5"
+RESULTS_V05_RANDOM_DIR = "results/v0.5/random"
+RESULTS_V05_TRAINED_DIR = "results/v0.5/trained"
+RESULTS_V05_DIAGNOSTIC_DIR = "results/v0.5/diagnostic"
 
-TRAINED_BASELINE_CSV = "results/v0.4/trained/trained_baseline_eval.csv"
-TRAINED_RAWLSIAN_CSV = "results/v0.4/trained/trained_rawlsian_eval.csv"
-TRAINED_SUMMARY_CSV = "results/v0.4/trained/trained_summary.csv"
+RANDOM_BASELINE_CSV = "results/v0.5/random/random_baseline.csv"
+RANDOM_RAWLSIAN_CSV = "results/v0.5/random/random_rawlsian.csv"
+RANDOM_SUMMARY_CSV = "results/v0.5/random/random_summary.csv"
+
+TRAINED_BASELINE_CSV = "results/v0.5/trained/trained_baseline_eval.csv"
+TRAINED_RAWLSIAN_CSV = "results/v0.5/trained/trained_rawlsian_eval.csv"
+TRAINED_SUMMARY_CSV = "results/v0.5/trained/trained_summary.csv"
 
 LEAST_ADVANTAGED_DIAGNOSTIC_CSV = "results/v0.4/diagnostic/least_advantaged_diagnostics.csv"
 NEIGHBOURHOOD_SCOPE_DIAGNOSTIC_CSV = "results/v0.4/diagnostic/neighbourhood_scope_diagnostics.csv"
+EXPERIENCE_COMPONENTS_DIAGNOSTIC_CSV = (
+    "results/v0.5/diagnostic/experience_components_diagnostics.csv"
+)
 
 # --- v0.4: scoped Rawlsian fairness ---
 # Default ego_neighbourhood because v0.3 diagnostics showed global min experience
 # was usually dominated by non-ego background vehicles.
 RAWLSIAN_SCOPE = "ego_neighbourhood"
 EGO_NEIGHBOURHOOD_RADIUS = 50.0
+
+# --- v0.5: safety-mobility experience function ---
+EXPERIENCE_MODE = "safety_mobility"
+
+TARGET_SPEED = 30.0
+LOW_SPEED_THRESHOLD = 2.0
+
+W_MOBILITY = 1.0
+W_COLLISION = 2.0
+W_LOW_SPEED = 0.3
+W_RISK = 0.5
+
+RISK_DISTANCE_NORMALIZER = 50.0
+MIN_DISTANCE_EPSILON = 1e-6

@@ -9,9 +9,12 @@ import pandas as pd
 
 from metrics import (
     accumulate_least_advantaged_step,
+    accumulate_reason_step,
     collect_step_metrics,
     finalize_least_advantaged_episode,
+    finalize_reason_episode,
     new_least_advantaged_counters,
+    new_reason_counters,
 )
 
 COMMON_METRICS = [
@@ -32,6 +35,16 @@ COMMON_METRICS = [
     "least_advantaged_ego_ratio",
     "mean_least_advantaged_speed",
     "least_advantaged_crash_steps",
+    "mean_mobility_score",
+    "mean_risk_penalty",
+    "mean_low_speed_penalty",
+    "mean_collision_penalty",
+    "reason_collision_steps",
+    "reason_low_mobility_steps",
+    "reason_low_speed_steps",
+    "reason_risk_steps",
+    "reason_none_steps",
+    "reason_combined_steps",
 ]
 
 RAWLSIAN_EXTRA_METRICS = [
@@ -51,13 +64,27 @@ def evaluate_model_on_env(
     is_rawlsian: bool = False,
     metric_scope: str = "global",
     radius: float = 50.0,
+    experience_mode: str = "speed_collision",
+    target_speed: float = 30.0,
+    low_speed_threshold: float = 2.0,
+    w_mobility: float = 1.0,
+    w_collision: float = 2.0,
+    w_low_speed: float = 0.3,
+    w_risk: float = 0.5,
+    risk_distance_normalizer: float = 50.0,
 ) -> pd.DataFrame:
-    """
-    Run deterministic policy evaluation and return per-episode metrics.
-
-    Fairness metrics (min/mean/gini/least_advantaged) use metric_scope.
-    """
+    """Run deterministic policy evaluation and return per-episode metrics."""
     rows = []
+    metric_kwargs = {
+        "mode": experience_mode,
+        "target_speed": target_speed,
+        "low_speed_threshold": low_speed_threshold,
+        "w_mobility": w_mobility,
+        "w_collision": w_collision,
+        "w_low_speed": w_low_speed,
+        "w_risk": w_risk,
+        "risk_distance_normalizer": risk_distance_normalizer,
+    }
 
     for episode_id in range(n_episodes):
         episode_seed = base_seed + episode_id
@@ -73,11 +100,16 @@ def evaluate_model_on_env(
         sum_gini = 0.0
         sum_n_vehicles = 0.0
         sum_scoped_vehicle_count = 0.0
+        sum_mobility = 0.0
+        sum_risk = 0.0
+        sum_low_speed = 0.0
+        sum_collision_penalty = 0.0
         total_collision_count = 0
         final_min_exp = 0.0
         final_gini = 0.0
         final_collision_count = 0
         la_counters = new_least_advantaged_counters()
+        reason_counters = new_reason_counters()
         steps = 0
         terminated = False
         truncated = False
@@ -90,6 +122,7 @@ def evaluate_model_on_env(
                 speed_normalizer,
                 scope=metric_scope,
                 radius=radius,
+                **metric_kwargs,
             )
 
             total_reward += float(reward)
@@ -98,8 +131,13 @@ def evaluate_model_on_env(
             sum_gini += step_metrics["gini_experience"]
             sum_n_vehicles += step_metrics["n_vehicles"]
             sum_scoped_vehicle_count += step_metrics["scoped_vehicle_count"]
+            sum_mobility += step_metrics["mean_mobility_score"]
+            sum_risk += step_metrics["mean_risk_penalty"]
+            sum_low_speed += step_metrics["mean_low_speed_penalty"]
+            sum_collision_penalty += step_metrics["mean_collision_penalty"]
             total_collision_count += step_metrics["collision_count"]
             accumulate_least_advantaged_step(step_metrics, la_counters)
+            accumulate_reason_step(step_metrics, reason_counters)
 
             if is_rawlsian:
                 sum_original += float(info.get("original_reward", 0.0))
@@ -117,11 +155,13 @@ def evaluate_model_on_env(
 
         denom = steps if steps > 0 else 1
         la_episode = finalize_least_advantaged_episode(la_counters, steps)
+        reason_episode = finalize_reason_episode(reason_counters)
         row = {
             "episode": episode_id,
             "total_reward": total_reward,
             "mean_reward": total_reward / denom,
             "metric_scope": metric_scope,
+            "experience_mode": experience_mode,
             "ego_neighbourhood_radius": radius,
             "mean_scoped_vehicle_count": sum_scoped_vehicle_count / denom,
             "mean_min_experience": sum_min_exp / denom,
@@ -132,7 +172,12 @@ def evaluate_model_on_env(
             "total_collision_count": total_collision_count,
             "final_collision_count": final_collision_count,
             "mean_n_vehicles": sum_n_vehicles / denom,
+            "mean_mobility_score": sum_mobility / denom,
+            "mean_risk_penalty": sum_risk / denom,
+            "mean_low_speed_penalty": sum_low_speed / denom,
+            "mean_collision_penalty": sum_collision_penalty / denom,
             **la_episode,
+            **reason_episode,
             "steps": steps,
             "terminated": terminated,
             "truncated": truncated,

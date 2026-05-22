@@ -7,7 +7,7 @@ Compare standard highway-env rewards with a **Rawlsian Maximin** reward wrapper 
 ## Current stage
 
 - Environment: **highway-env** `merge-v0` only
-- Policies: **random** (v0.1–v0.2), **trained DQN** (v0.3), **ego-neighbourhood Rawlsian** (v0.4)
+- Policies: **random** (v0.1–v0.2), **trained DQN** (v0.3), **ego-neighbourhood Rawlsian** (v0.4), **safety-mobility experience** (v0.5)
 - Comparison: baseline vs. Rawlsian on **reward and fairness metrics**
 
 ---
@@ -80,6 +80,68 @@ results/trained_comparison_steps.png
 git add .
 git commit -m "Prototype v0.3: add DQN training and trained policy evaluation"
 ```
+
+---
+
+## Prototype v0.5 — Safety-Mobility Experience Function
+
+### Motivation
+
+v0.4 showed that ego-neighbourhood scope improved Rawlsian learning signals, but the least advantaged vehicle was still usually a non-ego vehicle. The previous experience function was too simple because it only used speed and collision.
+
+### Change
+
+v0.5 introduces a safety-mobility experience function:
+
+```text
+mobility_score = clip(speed / target_speed, 0, 1)
+
+experience =
+    W_MOBILITY * mobility_score
+  - W_COLLISION * collision_penalty
+  - W_LOW_SPEED * low_speed_penalty
+  - W_RISK * risk_penalty
+```
+
+### Least advantaged reason
+
+v0.5 also records why a vehicle is least advantaged:
+
+- `collision`
+- `low_mobility`
+- `low_speed`
+- `risk`
+- `none`
+- `combined`
+
+### How to run diagnostics
+
+```bash
+python diagnose_experience_components.py
+```
+
+### How to train and evaluate
+
+```bash
+python train_dqn_baseline.py
+python train_dqn_rawlsian.py
+python evaluate_trained.py
+```
+
+**Important:** Retrain both DQN agents after switching to v0.5 experience mode.
+
+### Key outputs
+
+- `results/v0.5/diagnostic/experience_components_diagnostics.csv`
+- `results/v0.5/trained/trained_summary.csv`
+- trained comparison plots for min experience, risk penalty, mobility score, and reason counts
+
+### Limitations
+
+- Still single-agent DQN.
+- Still not full MARL.
+- Risk is approximated using nearest vehicle distance.
+- Mobility is still approximated using speed, not full travel delay or merge success.
 
 ---
 
@@ -225,6 +287,11 @@ pip install -r requirements.txt
 | `BASE_SEED` | `42` | |
 | `DQN_TOTAL_TIMESTEPS` | `20000` | v0.3 prototype training |
 | `EVAL_EPISODES` | `50` | v0.3 trained evaluation |
+| `RAWLSIAN_SCOPE` | `ego_neighbourhood` | v0.4+ Rawlsian vehicle scope |
+| `EGO_NEIGHBOURHOOD_RADIUS` | `50.0` | v0.4+ neighbourhood radius |
+| `EXPERIENCE_MODE` | `safety_mobility` | v0.5 experience function |
+| `TARGET_SPEED` | `30.0` | v0.5 mobility normalizer |
+| `W_MOBILITY` / `W_COLLISION` / `W_LOW_SPEED` / `W_RISK` | `1.0` / `2.0` / `0.3` / `0.5` | v0.5 experience weights |
 
 ## Planned extensions (not in this repo yet)
 
