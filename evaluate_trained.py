@@ -1,20 +1,21 @@
-"""Evaluate trained baseline and Rawlsian DQN policies on shared fairness metrics."""
+"""Evaluate trained baseline and Rawlsian DQN policies on scoped fairness metrics."""
 
 import sys
 from pathlib import Path
 
 import gymnasium as gym
 import highway_env  # noqa: F401
-import pandas as pd
 from stable_baselines3 import DQN
 
 from config import (
     BASE_SEED,
     BASELINE_MODEL_PATH,
+    EGO_NEIGHBOURHOOD_RADIUS,
     EVAL_EPISODES,
     ENV_ID,
     MAX_STEPS,
     RAWLSIAN_MODEL_PATH,
+    RAWLSIAN_SCOPE,
     RAWLSIAN_XI,
     SPEED_NORMALIZER,
     TRAINED_BASELINE_CSV,
@@ -29,7 +30,7 @@ from trained_policy_utils import (
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-RESULTS_DIR = PROJECT_ROOT / "results"
+RESULTS_DIR = Path(TRAINED_SUMMARY_CSV).resolve().parent
 
 PLOT_CONFIG = [
     ("total_reward", "trained_comparison_total_reward.png", "Average total reward"),
@@ -41,6 +42,11 @@ PLOT_CONFIG = [
         "least_advantaged_ego_ratio",
         "trained_comparison_least_advantaged_ego_ratio.png",
         "least advantaged vehicle is ego ratio",
+    ),
+    (
+        "mean_scoped_vehicle_count",
+        "trained_comparison_scoped_vehicle_count.png",
+        "Average scoped vehicle count",
     ),
 ]
 
@@ -69,6 +75,7 @@ def main() -> None:
         sys.exit(1)
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"Evaluating trained policies with metric_scope={RAWLSIAN_SCOPE}")
 
     baseline_env = gym.make(ENV_ID)
     rawlsian_base_env = gym.make(ENV_ID)
@@ -76,6 +83,8 @@ def main() -> None:
         rawlsian_base_env,
         xi=RAWLSIAN_XI,
         speed_normalizer=SPEED_NORMALIZER,
+        scope=RAWLSIAN_SCOPE,
+        radius=EGO_NEIGHBOURHOOD_RADIUS,
     )
 
     baseline_model = DQN.load(
@@ -95,6 +104,8 @@ def main() -> None:
         speed_normalizer=SPEED_NORMALIZER,
         base_seed=BASE_SEED,
         is_rawlsian=False,
+        metric_scope=RAWLSIAN_SCOPE,
+        radius=EGO_NEIGHBOURHOOD_RADIUS,
     )
 
     rawlsian_df = evaluate_model_on_env(
@@ -105,6 +116,8 @@ def main() -> None:
         speed_normalizer=SPEED_NORMALIZER,
         base_seed=BASE_SEED,
         is_rawlsian=True,
+        metric_scope=RAWLSIAN_SCOPE,
+        radius=EGO_NEIGHBOURHOOD_RADIUS,
     )
 
     baseline_csv = PROJECT_ROOT / TRAINED_BASELINE_CSV

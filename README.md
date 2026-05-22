@@ -7,7 +7,7 @@ Compare standard highway-env rewards with a **Rawlsian Maximin** reward wrapper 
 ## Current stage
 
 - Environment: **highway-env** `merge-v0` only
-- Policies: **random** (v0.1–v0.2) and **trained DQN** (v0.3)
+- Policies: **random** (v0.1–v0.2), **trained DQN** (v0.3), **ego-neighbourhood Rawlsian** (v0.4)
 - Comparison: baseline vs. Rawlsian on **reward and fairness metrics**
 
 ---
@@ -80,6 +80,64 @@ results/trained_comparison_steps.png
 git add .
 git commit -m "Prototype v0.3: add DQN training and trained policy evaluation"
 ```
+
+---
+
+## Prototype v0.4 — Ego-neighbourhood Rawlsian Reward
+
+### Motivation
+
+v0.3 diagnostics showed that the global least advantaged vehicle was usually a non-ego background vehicle. This made the Rawlsian reward weakly connected to the controlled DQN agent.
+
+### Change
+
+v0.4 introduces a configurable Rawlsian scope:
+
+- `global`: all road vehicles
+- `ego_neighbourhood`: ego vehicle plus nearby vehicles within a radius
+- `controlled`: controlled vehicles only
+
+Default in `config.py`:
+
+```python
+RAWLSIAN_SCOPE = "ego_neighbourhood"
+EGO_NEIGHBOURHOOD_RADIUS = 50.0
+```
+
+### Interpretation
+
+The ego-neighbourhood scope keeps the Rawlsian maximin idea but restricts it to vehicles whose experience is more likely to be affected by the ego vehicle’s actions.
+
+### How to run diagnostics
+
+```bash
+python diagnose_neighbourhood_scope.py
+```
+
+### How to train and evaluate
+
+```bash
+python train_dqn_baseline.py
+python train_dqn_rawlsian.py
+python evaluate_trained.py
+```
+
+**Important:** Retrain Rawlsian DQN after switching to v0.4 scope (old models used global Rawlsian shaping).
+
+### Key outputs
+
+- `results/neighbourhood_scope_diagnostics.csv`
+- `results/trained_summary.csv`
+- `results/trained_comparison_min_experience.png`
+- `results/trained_comparison_least_advantaged_ego_ratio.png`
+- `results/trained_comparison_scoped_vehicle_count.png`
+
+### Limitations
+
+- Still single-agent DQN, not full MARL.
+- Ego-neighbourhood is an approximation of interaction fairness.
+- Radius is a hyperparameter.
+- Experience is still simplified; v0.5 should add waiting time, merge delay, TTC, headway, or risk exposure.
 
 ---
 

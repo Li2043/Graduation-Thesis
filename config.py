@@ -27,6 +27,27 @@ LOG_DIR = "logs"
 BASELINE_MODEL_PATH = "models/dqn_baseline.zip"
 RAWLSIAN_MODEL_PATH = "models/dqn_rawlsian.zip"
 
-TRAINED_BASELINE_CSV = "results/trained_baseline_eval.csv"
-TRAINED_RAWLSIAN_CSV = "results/trained_rawlsian_eval.csv"
-TRAINED_SUMMARY_CSV = "results/trained_summary.csv"
+# --- Results layout (by prototype version) ---
+RESULTS_V02_DIR = "results/v0.2"
+RESULTS_V03_DIR = "results/v0.3"
+RESULTS_V04_DIR = "results/v0.4"
+RESULTS_V04_RANDOM_DIR = "results/v0.4/random"
+RESULTS_V04_TRAINED_DIR = "results/v0.4/trained"
+RESULTS_V04_DIAGNOSTIC_DIR = "results/v0.4/diagnostic"
+
+RANDOM_BASELINE_CSV = "results/v0.4/random/random_baseline.csv"
+RANDOM_RAWLSIAN_CSV = "results/v0.4/random/random_rawlsian.csv"
+RANDOM_SUMMARY_CSV = "results/v0.4/random/random_summary.csv"
+
+TRAINED_BASELINE_CSV = "results/v0.4/trained/trained_baseline_eval.csv"
+TRAINED_RAWLSIAN_CSV = "results/v0.4/trained/trained_rawlsian_eval.csv"
+TRAINED_SUMMARY_CSV = "results/v0.4/trained/trained_summary.csv"
+
+LEAST_ADVANTAGED_DIAGNOSTIC_CSV = "results/v0.4/diagnostic/least_advantaged_diagnostics.csv"
+NEIGHBOURHOOD_SCOPE_DIAGNOSTIC_CSV = "results/v0.4/diagnostic/neighbourhood_scope_diagnostics.csv"
+
+# --- v0.4: scoped Rawlsian fairness ---
+# Default ego_neighbourhood because v0.3 diagnostics showed global min experience
+# was usually dominated by non-ego background vehicles.
+RAWLSIAN_SCOPE = "ego_neighbourhood"
+EGO_NEIGHBOURHOOD_RADIUS = 50.0

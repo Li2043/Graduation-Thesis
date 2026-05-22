@@ -6,19 +6,23 @@ import gymnasium as gym
 import highway_env  # noqa: F401
 import pandas as pd
 
-from config import BASE_SEED, ENV_ID, SPEED_NORMALIZER
+from config import (
+    BASE_SEED,
+    ENV_ID,
+    EGO_NEIGHBOURHOOD_RADIUS,
+    LEAST_ADVANTAGED_DIAGNOSTIC_CSV,
+    SPEED_NORMALIZER,
+)
+from metrics import collect_step_metrics
 
-RESULTS_DIR = Path(__file__).resolve().parent / "results"
-OUTPUT_CSV = RESULTS_DIR / "least_advantaged_diagnostics.csv"
+OUTPUT_CSV = Path(LEAST_ADVANTAGED_DIAGNOSTIC_CSV)
 
 N_EPISODES = 5
 MAX_STEPS = 50
 
 
 def main() -> None:
-    from metrics import collect_step_metrics
-
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
     env = gym.make(ENV_ID)
     rows = []
 

@@ -1,5 +1,31 @@
 # Prototype Log
 
+## v0.4 — Ego-neighbourhood Rawlsian Reward
+
+Date: 2026-05-20
+
+### Purpose
+
+To address the v0.3 finding that global minimum experience was dominated by non-ego background vehicles.
+
+### Added
+
+- Configurable Rawlsian scope (`global`, `ego_neighbourhood`, `controlled`).
+- Ego-neighbourhood vehicle selection by radius.
+- Scoped fairness metrics (`metric_scope`, `scoped_vehicle_count`).
+- `diagnose_neighbourhood_scope.py`.
+- Trained evaluation using ego-neighbourhood metrics by default.
+
+### Interpretation
+
+This version tests whether Rawlsian reward shaping becomes more learnable when the fairness target is restricted to vehicles interacting with the ego vehicle.
+
+### Next step
+
+If v0.4 improves learnability, v0.5 should improve the experience function by adding waiting time, merge delay, TTC, headway, or risk exposure.
+
+---
+
 ## Diagnostic — Least Advantaged Vehicle Identity
 
 Date: 2026-05-20

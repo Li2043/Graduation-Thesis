@@ -5,10 +5,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-RESULTS_DIR = Path(__file__).resolve().parent / "results"
-BASELINE_CSV = RESULTS_DIR / "random_baseline.csv"
-RAWLSIAN_CSV = RESULTS_DIR / "random_rawlsian.csv"
-SUMMARY_CSV = RESULTS_DIR / "random_summary.csv"
+from config import RANDOM_BASELINE_CSV, RANDOM_RAWLSIAN_CSV, RANDOM_SUMMARY_CSV
+
+RESULTS_DIR = Path(RANDOM_SUMMARY_CSV).resolve().parent
+BASELINE_CSV = Path(RANDOM_BASELINE_CSV)
+RAWLSIAN_CSV = Path(RANDOM_RAWLSIAN_CSV)
+SUMMARY_CSV = Path(RANDOM_SUMMARY_CSV)
 
 COMMON_METRICS = [
     "total_reward",
@@ -27,6 +29,12 @@ COMMON_METRICS = [
     "least_advantaged_ego_ratio",
     "mean_least_advantaged_speed",
     "least_advantaged_crash_steps",
+    "mean_neighbourhood_min_experience",
+    "final_neighbourhood_min_experience",
+    "mean_neighbourhood_gini_experience",
+    "mean_neighbourhood_vehicle_count",
+    "neighbourhood_least_advantaged_ego_ratio",
+    "mean_scoped_vehicle_count",
 ]
 
 RAWLSIAN_EXTRA_METRICS = [
@@ -44,6 +52,21 @@ PLOT_CONFIG = [
         "least_advantaged_ego_ratio",
         "random_comparison_least_advantaged_ego_ratio.png",
         "least advantaged vehicle is ego ratio",
+    ),
+    (
+        "mean_neighbourhood_min_experience",
+        "random_comparison_neighbourhood_min_experience.png",
+        "Average neighbourhood mean min experience",
+    ),
+    (
+        "mean_neighbourhood_gini_experience",
+        "random_comparison_neighbourhood_gini.png",
+        "Average neighbourhood mean Gini (experience)",
+    ),
+    (
+        "neighbourhood_least_advantaged_ego_ratio",
+        "random_comparison_neighbourhood_least_advantaged_ego_ratio.png",
+        "neighbourhood least advantaged vehicle is ego ratio",
     ),
 ]
 
@@ -68,12 +91,21 @@ def save_bar_plot(metric: str, title: str, baseline_mean: float, rawlsian_mean: 
 def build_summary_table(baseline: pd.DataFrame, rawlsian: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for metric in COMMON_METRICS:
-        if metric not in baseline.columns or metric not in rawlsian.columns:
+        baseline_col = metric
+        rawlsian_col = metric
+        if metric == "mean_neighbourhood_min_experience":
+            rawlsian_col = "mean_min_experience"
+        elif metric == "mean_neighbourhood_gini_experience":
+            rawlsian_col = "mean_gini_experience"
+        elif metric == "neighbourhood_least_advantaged_ego_ratio":
+            rawlsian_col = "least_advantaged_ego_ratio"
+
+        if baseline_col not in baseline.columns or rawlsian_col not in rawlsian.columns:
             continue
-        b_mean = baseline[metric].mean()
-        b_std = baseline[metric].std()
-        r_mean = rawlsian[metric].mean()
-        r_std = rawlsian[metric].std()
+        b_mean = baseline[baseline_col].mean()
+        b_std = baseline[baseline_col].std()
+        r_mean = rawlsian[rawlsian_col].mean()
+        r_std = rawlsian[rawlsian_col].std()
         rows.append(
             {
                 "metric": metric,
@@ -101,14 +133,26 @@ def main() -> None:
     print(summary_df.to_string(index=False))
 
     for metric, filename, title in PLOT_CONFIG:
-        if metric not in baseline.columns or metric not in rawlsian.columns:
+        baseline_col = metric
+        rawlsian_col = metric
+        if metric == "mean_neighbourhood_min_experience":
+            rawlsian_col = "mean_min_experience"
+        elif metric == "mean_neighbourhood_gini_experience":
+            rawlsian_col = "mean_gini_experience"
+        elif metric == "neighbourhood_least_advantaged_ego_ratio":
+            rawlsian_col = "least_advantaged_ego_ratio"
+
+        if baseline_col not in baseline.columns:
             continue
+        if rawlsian_col not in rawlsian.columns:
+            continue
+
         out_path = RESULTS_DIR / filename
         save_bar_plot(
             metric,
             title,
-            baseline[metric].mean(),
-            rawlsian[metric].mean(),
+            baseline[baseline_col].mean(),
+            rawlsian[rawlsian_col].mean(),
             out_path,
         )
         print(f"Saved {out_path}")

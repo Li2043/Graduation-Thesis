@@ -25,6 +25,7 @@ COMMON_METRICS = [
     "total_collision_count",
     "final_collision_count",
     "mean_n_vehicles",
+    "mean_scoped_vehicle_count",
     "steps",
     "least_advantaged_ego_steps",
     "least_advantaged_non_ego_steps",
@@ -48,11 +49,13 @@ def evaluate_model_on_env(
     speed_normalizer: float,
     base_seed: int,
     is_rawlsian: bool = False,
+    metric_scope: str = "global",
+    radius: float = 50.0,
 ) -> pd.DataFrame:
     """
     Run deterministic policy evaluation and return per-episode metrics.
 
-    Does not save CSV or train the model.
+    Fairness metrics (min/mean/gini/least_advantaged) use metric_scope.
     """
     rows = []
 
@@ -69,6 +72,7 @@ def evaluate_model_on_env(
         sum_mean_vehicle_exp = 0.0
         sum_gini = 0.0
         sum_n_vehicles = 0.0
+        sum_scoped_vehicle_count = 0.0
         total_collision_count = 0
         final_min_exp = 0.0
         final_gini = 0.0
@@ -81,13 +85,19 @@ def evaluate_model_on_env(
         for _ in range(max_steps):
             action, _states = model.predict(obs, deterministic=True)
             obs, reward, terminated, truncated, info = env.step(action)
-            step_metrics = collect_step_metrics(env, speed_normalizer)
+            step_metrics = collect_step_metrics(
+                env,
+                speed_normalizer,
+                scope=metric_scope,
+                radius=radius,
+            )
 
             total_reward += float(reward)
             sum_min_exp += step_metrics["min_experience"]
             sum_mean_vehicle_exp += step_metrics["mean_experience"]
             sum_gini += step_metrics["gini_experience"]
             sum_n_vehicles += step_metrics["n_vehicles"]
+            sum_scoped_vehicle_count += step_metrics["scoped_vehicle_count"]
             total_collision_count += step_metrics["collision_count"]
             accumulate_least_advantaged_step(step_metrics, la_counters)
 
@@ -111,6 +121,9 @@ def evaluate_model_on_env(
             "episode": episode_id,
             "total_reward": total_reward,
             "mean_reward": total_reward / denom,
+            "metric_scope": metric_scope,
+            "ego_neighbourhood_radius": radius,
+            "mean_scoped_vehicle_count": sum_scoped_vehicle_count / denom,
             "mean_min_experience": sum_min_exp / denom,
             "final_min_experience": final_min_exp,
             "mean_vehicle_experience": sum_mean_vehicle_exp / denom,
@@ -154,7 +167,6 @@ def make_trained_summary(baseline_df: pd.DataFrame, rawlsian_df: pd.DataFrame) -
             }
         )
 
-    # Rawlsian-only diagnostics: baseline columns set to 0.0 (not applicable to baseline env).
     for metric in RAWLSIAN_EXTRA_METRICS:
         if metric not in rawlsian_df.columns:
             continue
