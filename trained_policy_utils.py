@@ -7,7 +7,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from metrics import collect_step_metrics
+from metrics import (
+    accumulate_least_advantaged_step,
+    collect_step_metrics,
+    finalize_least_advantaged_episode,
+    new_least_advantaged_counters,
+)
 
 COMMON_METRICS = [
     "total_reward",
@@ -21,6 +26,11 @@ COMMON_METRICS = [
     "final_collision_count",
     "mean_n_vehicles",
     "steps",
+    "least_advantaged_ego_steps",
+    "least_advantaged_non_ego_steps",
+    "least_advantaged_ego_ratio",
+    "mean_least_advantaged_speed",
+    "least_advantaged_crash_steps",
 ]
 
 RAWLSIAN_EXTRA_METRICS = [
@@ -63,6 +73,7 @@ def evaluate_model_on_env(
         final_min_exp = 0.0
         final_gini = 0.0
         final_collision_count = 0
+        la_counters = new_least_advantaged_counters()
         steps = 0
         terminated = False
         truncated = False
@@ -78,6 +89,7 @@ def evaluate_model_on_env(
             sum_gini += step_metrics["gini_experience"]
             sum_n_vehicles += step_metrics["n_vehicles"]
             total_collision_count += step_metrics["collision_count"]
+            accumulate_least_advantaged_step(step_metrics, la_counters)
 
             if is_rawlsian:
                 sum_original += float(info.get("original_reward", 0.0))
@@ -94,6 +106,7 @@ def evaluate_model_on_env(
                 break
 
         denom = steps if steps > 0 else 1
+        la_episode = finalize_least_advantaged_episode(la_counters, steps)
         row = {
             "episode": episode_id,
             "total_reward": total_reward,
@@ -106,6 +119,7 @@ def evaluate_model_on_env(
             "total_collision_count": total_collision_count,
             "final_collision_count": final_collision_count,
             "mean_n_vehicles": sum_n_vehicles / denom,
+            **la_episode,
             "steps": steps,
             "terminated": terminated,
             "truncated": truncated,

@@ -1,5 +1,26 @@
 # Prototype Log
 
+## Diagnostic — Least Advantaged Vehicle Identity
+
+Date: 2026-05-20
+
+### Purpose
+
+To understand whether the Rawlsian minimum-experience signal is controlled by the ego vehicle or dominated by background vehicles.
+
+### Added
+
+- Least advantaged vehicle identity metrics.
+- Ego/non-ego ratio per episode.
+- `diagnose_least_advantaged.py` diagnostic script.
+- Additional random and trained summary fields and plots.
+
+### Interpretation
+
+If the least advantaged vehicle is rarely ego, then Rawlsian reward based on all vehicles may be difficult for a single-agent DQN to optimise. This would motivate v0.4 changes such as ego-centred experience, controlled-agent-only experience, or improved multi-agent setup.
+
+---
+
 ## v0.3 — DQN Training with Rawlsian Reward Shaping
 
 Date: 2026-05-20

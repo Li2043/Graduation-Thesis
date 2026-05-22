@@ -22,6 +22,11 @@ COMMON_METRICS = [
     "final_collision_count",
     "mean_n_vehicles",
     "steps",
+    "least_advantaged_ego_steps",
+    "least_advantaged_non_ego_steps",
+    "least_advantaged_ego_ratio",
+    "mean_least_advantaged_speed",
+    "least_advantaged_crash_steps",
 ]
 
 RAWLSIAN_EXTRA_METRICS = [
@@ -35,6 +40,11 @@ PLOT_CONFIG = [
     ("mean_min_experience", "random_comparison_min_experience.png", "Average mean min experience"),
     ("mean_gini_experience", "random_comparison_gini.png", "Average mean Gini (experience)"),
     ("total_collision_count", "random_comparison_collision.png", "Average total collision count"),
+    (
+        "least_advantaged_ego_ratio",
+        "random_comparison_least_advantaged_ego_ratio.png",
+        "least advantaged vehicle is ego ratio",
+    ),
 ]
 
 

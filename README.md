@@ -83,6 +83,47 @@ git commit -m "Prototype v0.3: add DQN training and trained policy evaluation"
 
 ---
 
+## Diagnostic: Least Advantaged Vehicle Identity
+
+### Why
+
+- Current Rawlsian reward is based on the **minimum vehicle experience** across all vehicles.
+- If the least advantaged vehicle is usually a **background vehicle** rather than the controllable **ego vehicle**, the DQN agent may have limited ability to improve this metric.
+- This diagnostic records whether the least advantaged vehicle is ego or non-ego at each step.
+
+### How to run
+
+```bash
+python diagnose_least_advantaged.py
+```
+
+To refresh random/trained summaries with the new fields, re-run:
+
+```bash
+python run_random_baseline.py
+python run_random_rawlsian.py
+python evaluate_random.py
+python evaluate_trained.py
+```
+
+### Output
+
+```text
+results/least_advantaged_diagnostics.csv
+```
+
+### How to interpret `least_advantaged_ego_ratio`
+
+| Value | Meaning |
+|-------|---------|
+| Close to **1.0** | Min experience usually refers to **ego** — DQN can plausibly influence it |
+| Close to **0.0** | Min experience usually determined by **non-ego** background vehicles |
+| Near **0.5** | Both ego and non-ego can be least advantaged |
+
+Also check `results/trained_summary.csv` and `results/random_summary.csv` for aggregated `least_advantaged_ego_ratio`.
+
+---
+
 ## Prototype v0.2 — Fairness Metrics Evaluation
 
 ### Added / changed in v0.2

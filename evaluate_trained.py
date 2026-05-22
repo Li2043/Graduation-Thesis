@@ -37,6 +37,11 @@ PLOT_CONFIG = [
     ("mean_gini_experience", "trained_comparison_gini.png", "Average mean Gini (experience)"),
     ("total_collision_count", "trained_comparison_collision.png", "Average total collision count"),
     ("steps", "trained_comparison_steps.png", "Average steps per episode"),
+    (
+        "least_advantaged_ego_ratio",
+        "trained_comparison_least_advantaged_ego_ratio.png",
+        "least advantaged vehicle is ego ratio",
+    ),
 ]
 
 
