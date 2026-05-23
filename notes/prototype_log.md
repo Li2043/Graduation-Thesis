@@ -1,5 +1,35 @@
 # Prototype Log
 
+## v0.6.1 — Multi-seed Robustness Test
+
+Date: 2026-05-22
+
+### Purpose
+
+To test whether the v0.5 Rawlsian DQN improvements are stable across different random seeds.
+
+### Seeds
+
+0, 1, 2, 3, 4
+
+### Added
+
+- multi-seed baseline training
+- multi-seed Rawlsian training
+- aggregate summary across seeds
+- robustness plots with mean and standard deviation
+- better seed-count diagnostics
+
+### Interpretation
+
+If Rawlsian improvements hold across most seeds, v0.5 findings are less likely to be a single-seed artefact.
+
+### Next step
+
+If v0.6.1 is stable, proceed to v0.6.2 ablation study. If unstable, inspect which seeds fail and whether training steps, reward weights, or experience definition need adjustment.
+
+---
+
 ## v0.5 — Safety-Mobility Experience Function
 
 Date: 2026-05-22

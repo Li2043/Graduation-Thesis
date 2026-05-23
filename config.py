@@ -73,3 +73,13 @@ W_RISK = 0.5
 
 RISK_DISTANCE_NORMALIZER = 50.0
 MIN_DISTANCE_EPSILON = 1e-6
+
+# --- v0.6.1: multi-seed robustness ---
+SEEDS = [0, 1, 2, 3, 4]
+
+MULTISEED_MODEL_DIR = "models/v0.6.1"
+MULTISEED_LOG_DIR = "logs/v0.6.1"
+MULTISEED_RESULTS_DIR = "results/v0.6.1"
+
+MULTISEED_TRAINED_EPISODE_CSV = "results/v0.6.1/multiseed_episode_results.csv"
+MULTISEED_AGGREGATE_CSV = "results/v0.6.1/multiseed_aggregate_summary.csv"

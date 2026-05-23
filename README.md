@@ -7,7 +7,7 @@ Compare standard highway-env rewards with a **Rawlsian Maximin** reward wrapper 
 ## Current stage
 
 - Environment: **highway-env** `merge-v0` only
-- Policies: **random** (v0.1–v0.2), **trained DQN** (v0.3), **ego-neighbourhood Rawlsian** (v0.4), **safety-mobility experience** (v0.5)
+- Policies: **random** (v0.1–v0.2), **trained DQN** (v0.3), **ego-neighbourhood Rawlsian** (v0.4), **safety-mobility experience** (v0.5), **multi-seed robustness** (v0.6.1)
 - Comparison: baseline vs. Rawlsian on **reward and fairness metrics**
 
 ---
@@ -80,6 +80,66 @@ results/trained_comparison_steps.png
 git add .
 git commit -m "Prototype v0.3: add DQN training and trained policy evaluation"
 ```
+
+---
+
+## Prototype v0.6.1 — Multi-seed Robustness Test
+
+### Motivation
+
+v0.5 showed promising improvements for Rawlsian DQN, but the result was based on a single seed. v0.6.1 tests whether the improvement is robust across multiple random seeds.
+
+### Seeds
+
+```python
+SEEDS = [0, 1, 2, 3, 4]
+```
+
+- Seed controls randomness in environment initialisation, exploration, replay sampling, and neural network initialisation.
+- Baseline and Rawlsian are trained and evaluated using the same seeds.
+
+### What v0.6.1 does
+
+- Train baseline DQN for each seed.
+- Train Rawlsian DQN for each seed.
+- Evaluate each trained model using shared safety-mobility fairness metrics.
+- Aggregate results across seeds.
+
+### How to run
+
+```bash
+python train_multiseed.py
+python evaluate_multiseed.py
+```
+
+Training runs 10 models (5 seeds × 2 conditions) at `DQN_TOTAL_TIMESTEPS` each; expect roughly 1–2 hours total depending on hardware.
+
+### Outputs
+
+```text
+models/v0.6.1/baseline_seed_0.zip
+models/v0.6.1/rawlsian_seed_0.zip
+...
+results/v0.6.1/multiseed_episode_results.csv
+results/v0.6.1/multiseed_aggregate_summary.csv
+results/v0.6.1/multiseed_mean_min_experience.png
+results/v0.6.1/multiseed_collision_count.png
+results/v0.6.1/multiseed_least_advantaged_ego_ratio.png
+```
+
+### Interpretation
+
+- If Rawlsian improves `mean_min_experience` across most seeds, the fairness improvement is more robust.
+- If `total_collision_count` is lower across most seeds, the safety improvement is more robust.
+- Check `rawlsian_better_seed_count` in the aggregate CSV: values near 5/5 suggest consistent Rawlsian advantage; values near 0 suggest instability.
+- If results vary strongly by seed, the method is not yet stable and requires further tuning.
+
+### Limitations
+
+- Still single-agent DQN.
+- Still merge-v0 only.
+- Still no SVO, HITL, ILP, or full MARL.
+- Five seeds are enough for prototype robustness, not final statistical validation.
 
 ---
 
@@ -292,6 +352,7 @@ pip install -r requirements.txt
 | `EXPERIENCE_MODE` | `safety_mobility` | v0.5 experience function |
 | `TARGET_SPEED` | `30.0` | v0.5 mobility normalizer |
 | `W_MOBILITY` / `W_COLLISION` / `W_LOW_SPEED` / `W_RISK` | `1.0` / `2.0` / `0.3` / `0.5` | v0.5 experience weights |
+| `SEEDS` | `[0, 1, 2, 3, 4]` | v0.6.1 multi-seed robustness |
 
 ## Planned extensions (not in this repo yet)
 
