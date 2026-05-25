@@ -1,362 +1,345 @@
-# Rawlsian MARL Project
+# Rawlsian Reward Shaping for Fair Driving Behaviour in HighwayEnv
 
-## Project goal
 
-Compare standard highway-env rewards with a **Rawlsian Maximin** reward wrapper in the `merge-v0` scenario, to study whether fairness-oriented shaping improves the worst-off vehicle’s safety–mobility experience.
 
-## Current stage
+## 1. Research Goal
 
-- Environment: **highway-env** `merge-v0` only
-- Policies: **random** (v0.1–v0.2), **trained DQN** (v0.3), **ego-neighbourhood Rawlsian** (v0.4), **safety-mobility experience** (v0.5), **multi-seed robustness** (v0.6.1)
-- Comparison: baseline vs. Rawlsian on **reward and fairness metrics**
+This project explores whether **Rawlsian maximin fairness** can be operationalised as a reward-shaping mechanism for autonomous driving agents.
+
+The current test environment is `highway-env` `merge-v0`. The main comparison is between:
+
+- **Baseline DQN**: trained with the original `highway-env` reward.
+- **Rawlsian DQN**: trained with the original reward plus a Rawlsian fairness reward.
+
+
+**Note:**
+The current version is still a **single-agent DQN prototype**, not a full multi-agent reinforcement learning system. 
+
+The controlled agent is the ego vehicle; other vehicles are background vehicles controlled by the environment.
 
 ---
 
-## Prototype v0.3 — DQN Training with Rawlsian Reward Shaping
+## 2. Core Idea
 
-### Purpose
+### (1) Rawlsian maximin ethics
 
-v0.3 introduces the first learning-based prototype. Unlike v0.1 and v0.2, which used random policies, v0.3 trains DQN agents so that the reward signal can influence policy learning.
+**RAWL·E** motivates the use of Rawlsian maximin ethics in reinforcement learning. The key idea is to reward actions that improve the minimum experience among agents and penalise actions that worsen it.
 
-### Added
+### (2) **SYMPLEX**
 
-- `train_dqn_baseline.py`
-- `train_dqn_rawlsian.py`
-- `trained_policy_utils.py`
-- `evaluate_trained.py`
-- `models/`
-- `logs/`
-- Trained evaluation CSV outputs and plots
+ **SYMPLEX** motivates the long-term goal of learning interpretable social norms through exploration, expert imitation, and human feedback. 
+ 
+ This has not yet been implemented in the current code.
 
-### Experimental conditions
+### (3) Agent-directed Runtime Norm Synthesis
 
-- **Baseline DQN**: trained on original highway-env reward.
-- **Rawlsian DQN**: trained on original reward plus Rawlsian maximin shaping reward.
-- **Environment**: `merge-v0`.
-- **Evaluation**: deterministic policy evaluation using shared fairness metrics.
+**Agent-directed Runtime Norm Synthesis** motivates a future extension where norms can be revised during system operation when existing norms produce undesirable outcomes.
 
-### How to run v0.3
+The current prototype implements only the first part: **Rawlsian reward shaping**.
 
-```bash
-python train_dqn_baseline.py
-python train_dqn_rawlsian.py
-python evaluate_trained.py
-```
+---
 
-Training may take several minutes per agent (`DQN_TOTAL_TIMESTEPS = 20000`).
+## 3. Current Implementation
 
-### Expected outputs
+### (1) Environment
+
+- `highway-env` environment: `merge-v0`
+- Current learning algorithm: DQN from Stable-Baselines3
+- Current setup: single controlled ego vehicle + background vehicles
+
+### (2) Rawlsian reward
+
+The Rawlsian reward is based on the minimum vehicle experience:
 
 ```text
-models/dqn_baseline.zip
-models/dqn_rawlsian.zip
-results/trained_baseline_eval.csv
-results/trained_rawlsian_eval.csv
-results/trained_summary.csv
-results/trained_comparison_total_reward.png
-results/trained_comparison_min_experience.png
-results/trained_comparison_gini.png
-results/trained_comparison_collision.png
-results/trained_comparison_steps.png
+if minimum experience improves:   +xi
+if minimum experience worsens:    -xi
+if unchanged:                      0
 ```
 
-### Interpretation
+The shaped reward is:
 
-- v0.3 tests whether Rawlsian reward shaping can influence **learned** policy.
-- The key metric is **`mean_min_experience`**, not only total reward.
-- If Rawlsian DQN improves minimum experience while maintaining acceptable collision count and reward, this is a promising preliminary result.
-- If results are inconclusive, the likely next step is to improve the vehicle experience function.
-
-### Limitations
-
-- Still uses single controlled ego-agent setup in highway-env, not full MARL.
-- Training timesteps are small and intended for prototype validation.
-- Experience is still simplified as speed minus collision penalty.
-- No SVO, no human-in-the-loop, no symbolic norm synthesis yet.
-
-### Git (after verifying results)
-
-```bash
-git add .
-git commit -m "Prototype v0.3: add DQN training and trained policy evaluation"
+```text
+total_reward = original_highway_reward + rawlsian_reward
 ```
+
+### (3) Current experience function
+
+The current version uses a safety-mobility experience function:
+
+```text
+mobility_score = speed / target_speed
+
+experience = W_MOBILITY  * mobility_score
+  - W_COLLISION * collision_penalty
+  - W_LOW_SPEED * low_speed_penalty
+  - W_RISK      * risk_penalty
+```
+
+The least advantaged vehicle is the vehicle with the lowest experience within the ego-neighbourhood.
 
 ---
 
-## Prototype v0.6.1 — Multi-seed Robustness Test
+## 4. Prototype Progress
 
-### Motivation
+### v0.1 — Set up environment and Rawlsian Wrapper 
 
-v0.5 showed promising improvements for Rawlsian DQN, but the result was based on a single seed. v0.6.1 tests whether the improvement is robust across multiple random seeds.
+The first version tested whether `merge-v0` could run locally and whether a Rawlsian reward wrapper could be added without modifying `highway-env` source code.
 
-### Seeds
+Outcome:
+- `merge-v0` ran successfully.
+- Rawlsian Reward wrapper worked.
+
+---
+### v0.2 — Fairness Metrics Evaluation
+
+v0.2 added shared fairness and safety metrics for both baseline and Rawlsian scenario.
+
+
+Added metrics included:
+  
+| Metric            | Meaning                                                                  |
+| ----------------- | ------------------------------------------------------------------------ |
+| `min_experience`  | Experience of the worst-off vehicle; the main Rawlsian fairness metric.  |
+| `mean_experience` | Average vehicle experience across the current scene.                     |
+| `gini_experience` | Inequality of vehicle experience; lower values mean more equal outcomes. |
+| `collision_count` | Number of crashed vehicles; used as a safety metric.                     |
+| `n_vehicles`      | Number of vehicles in the environment at the current step.               |
+
+#### Outcome:
+
+v0.2 showed that the evaluation pipeline worked, but the Rawlsian wrapper did not improve fairness under a random policy. 
+  
+| Metric                  | Baseline | Rawlsian | Difference |
+| ----------------------- | -------: | -------: | ---------: |
+| `total_reward`          |    7.469 |    5.996 |     -1.474 |
+| `mean_reward`           |    0.838 |    0.742 |     -0.097 |
+| `mean_min_experience`   |    0.440 |    0.434 |     -0.006 |
+| `final_min_experience`  |   -0.457 |   -0.515 |     -0.058 |
+| `mean_gini_experience`  |    0.111 |    0.113 |     +0.002 |
+| `total_collision_count` |    1.670 |    1.820 |     +0.150 |
+| `steps`                 |    8.890 |    7.940 |     -0.950 |
+
+---
+
+### v0.3 — DQN Training with Rawlsian Reward Shaping
+
+v0.3 introduced DQN training, so the reward signal could influence policy learning. 
+
+#### Outcome:
+
+However, the first trained comparison still showed **no difference** in fairness-related metrics between the baseline and Rawlsian DQN.  
+  
+| Metric                    | Baseline DQN | Rawlsian DQN | Difference |
+| ------------------------- | -----------: | -----------: | ---------: |
+| `total_reward`            |       10.094 |        9.234 |     -0.860 |
+| `mean_reward`             |        0.866 |        0.775 |     -0.092 |
+| `mean_min_experience`     |        0.458 |        0.458 |      0.000 |
+| `final_min_experience`    |       -0.047 |       -0.047 |      0.000 |
+| `mean_vehicle_experience` |        0.648 |        0.648 |      0.000 |
+| `mean_gini_experience`    |        0.087 |        0.087 |      0.000 |
+| `total_collision_count`   |        0.880 |        0.880 |      0.000 |
+| `steps`                   |       11.580 |       11.580 |      0.000 |
+
+The Rawlsian DQN had a lower total reward. However, all fairness and safety metrics were identical to the baseline. This suggested that the original global Rawlsian reward was not producing a useful behavioural difference.  
+
+---
+
+### v0.4 — Ego-Neighbourhood Rawlsian Reward
+
+v0.4 changed the Rawlsian scope from all road vehicles to the ego-neighbourhood:
+
+```text
+Rawlsian set = ego vehicle + nearby vehicles within a radius
+```
+
+#### Outcome: 
+
+| Metric | Baseline | Rawlsian | Difference |
+|---|---:|---:|---:|
+| `mean_min_experience` | 0.489 | 0.520 | +0.031 |
+| `final_min_experience` | 0.060 | 0.578 | +0.518 |
+| `least_advantaged_ego_ratio` | 0.020 | 0.053 | +0.033 |
+| `total_collision_count` | 0.88 | 0.04 | -0.84 |
+
+- Rawlsian DQN improved local minimum experience.
+- Collision count dropped substantially.
+- However, the least advantaged vehicle was still usually a nearby background vehicle, not the ego vehicle.
+
+#### Conclusion:
+
+- Ego-neighbourhood scope improved the signal but did not fully solve the controllability issue.
+
+---
+
+### v0.5 — Safety-Mobility Experience Function
+
+v0.5 replaced the earlier speed-collision experience proxy with a safety-mobility experience function.
+
+```
+mobility_score = speed / target_speed
+  
+experience =  
+W_MOBILITY * mobility_score  
+- W_COLLISION * collision_penalty  
+- W_LOW_SPEED * low_speed_penalty  
+- W_RISK * risk_penalty
+```
+
+It also added `least_advantaged_reason` to records why a vehicle is least advantaged:
+
+| Reason         | Meaning                                              |
+| -------------- | ---------------------------------------------------- |
+| `collision`    | The vehicle has crashed.                             |
+| `low_mobility` | The vehicle is far below the target mobility level.  |
+| `low_speed`    | The vehicle is nearly stopped or moving very slowly. |
+| `risk`         | The vehicle is too close to another vehicle.         |
+| `none`         | No clear reason is detected.                         |
+| `combined`     | More than one reason contributes.                    |
+
+#### Outcomes: 
+
+| Metric                       | Baseline | Rawlsian | Difference |
+| ---------------------------- | -------: | -------: | ---------: |
+| `mean_min_experience`        |    0.069 |    0.157 |     +0.088 |
+| `final_min_experience`       |    -0.78 |    -0.36 |      +0.42 |
+| `mean_vehicle_experience`    |     0.30 |     0.35 |      +0.04 |
+| `mean_gini_experience`       |    0.169 |    0.147 |     -0.023 |
+| `total_collision_count`      |     0.88 |     0.56 |      -0.32 |
+| `least_advantaged_ego_ratio` |    0.009 |    0.089 |     +0.080 |
+| `mean_risk_penalty`          |    0.647 |    0.539 |     -0.108 |
+| `mean_mobility_score`        |    0.688 |    0.643 |     -0.045 |
+| `steps`                      |     11.6 |     16.1 |       +4.5 |
+
+Interpretation:
+
+- Rawlsian DQN improved the minimum safety-mobility experience.
+- Collision and risk decreased.
+- The least advantaged vehicle was more often the ego vehicle than before.
+- Mobility decreased slightly, suggesting a safety/fairness versus speed trade-off.
+- The model became more interpretable because the reason for disadvantage could be diagnosed.
+
+Conclusion:
+
+- v0.5 provides the strongest single-seed evidence so far that Rawlsian reward shaping can influence learned driving behaviour.
+
+---
+
+### v0.6.1 — Multi-Seed Robustness Test
+
+v0.6.1 repeated training and evaluation over five seeds:
 
 ```python
 SEEDS = [0, 1, 2, 3, 4]
 ```
 
-- Seed controls randomness in environment initialisation, exploration, replay sampling, and neural network initialisation.
-- Baseline and Rawlsian are trained and evaluated using the same seeds.
+The purpose is to test whether the v0.5 results were stable or only caused by a favourable random seed.
 
-### What v0.6.1 does
+#### Multi-seed results
 
-- Train baseline DQN for each seed.
-- Train Rawlsian DQN for each seed.
-- Evaluate each trained model using shared safety-mobility fairness metrics.
-- Aggregate results across seeds.
+| Metric                       | Baseline | Rawlsian | Difference | Rawlsian better seeds |
+| ---------------------------- | -------- | -------- | ---------- | --------------------- |
+| `mean_min_experience`        | 0.119    | 0.171    | +0.053     | 3 out of  5           |
+| `final_min_experience`       | -0.373   | -0.076   | +0.297     | 2 out of  5           |
+| `mean_vehicle_experience`    | 0.329    | 0.359    | +0.030     | 3 / 5                 |
+| `mean_gini_experience`       | 0.157    | 0.153    | -0.005     | 2 / 5                 |
+| `total_collision_count`      | 0.544    | 0.296    | -0.248     | 2 / 5                 |
+| `least_advantaged_ego_ratio` | 0.047    | 0.081    | +0.034     | 3 / 5                 |
+| `mean_risk_penalty`          | 0.592    | 0.524    | -0.068     | 3 / 5                 |
+| `mean_mobility_score`        | 0.668    | 0.642    | -0.026     | 0 / 5                 |
+| `mean_collision_penalty`     | 0.020    | 0.008    | -0.012     | 3 / 5                 |
+| `reason_risk_steps`          | 4.680    | 3.620    | -1.060     | 3 / 5                 |
+| `steps`                      | 13.656   | 15.812   | +2.156     | 3 / 5                 |
 
-### How to run
+- Rawlsian DQN still shows improvements on average, especially in local minimum experience, collision reduction, risk reduction, and least-advantaged ego ratio.
+- However, the improvement is not consistent across all seeds.
 
-```bash
-python train_multiseed.py
-python evaluate_multiseed.py
-```
+Conclusion:
 
-Training runs 10 models (5 seeds × 2 conditions) at `DQN_TOTAL_TIMESTEPS` each; expect roughly 1–2 hours total depending on hardware.
-
-### Outputs
-
-```text
-models/v0.6.1/baseline_seed_0.zip
-models/v0.6.1/rawlsian_seed_0.zip
-...
-results/v0.6.1/multiseed_episode_results.csv
-results/v0.6.1/multiseed_aggregate_summary.csv
-results/v0.6.1/multiseed_mean_min_experience.png
-results/v0.6.1/multiseed_collision_count.png
-results/v0.6.1/multiseed_least_advantaged_ego_ratio.png
-```
-
-### Interpretation
-
-- If Rawlsian improves `mean_min_experience` across most seeds, the fairness improvement is more robust.
-- If `total_collision_count` is lower across most seeds, the safety improvement is more robust.
-- Check `rawlsian_better_seed_count` in the aggregate CSV: values near 5/5 suggest consistent Rawlsian advantage; values near 0 suggest instability.
-- If results vary strongly by seed, the method is not yet stable and requires further tuning.
-
-### Limitations
-
-- Still single-agent DQN.
-- Still merge-v0 only.
-- Still no SVO, HITL, ILP, or full MARL.
-- Five seeds are enough for prototype robustness, not final statistical validation.
+- More validation is needed.
 
 ---
 
-## Prototype v0.5 — Safety-Mobility Experience Function
+## 6. Current Problems
 
-### Motivation
+The project currently has several limitations.
 
-v0.4 showed that ego-neighbourhood scope improved Rawlsian learning signals, but the least advantaged vehicle was still usually a non-ego vehicle. The previous experience function was too simple because it only used speed and collision.
+### Single-agent
 
-### Change
+The current system trains only one ego vehicle. Other vehicles are background vehicles. This is not yet a full multi-agent reinforcement learning system.
 
-v0.5 introduces a safety-mobility experience function:
+### Controllability
 
-```text
-mobility_score = clip(speed / target_speed, 0, 1)
+Even with ego-neighbourhood scope, the least advantaged vehicle is often a background vehicle. This means the DQN agent can only affect it indirectly.
 
-experience =
-    W_MOBILITY * mobility_score
-  - W_COLLISION * collision_penalty
-  - W_LOW_SPEED * low_speed_penalty
-  - W_RISK * risk_penalty
-```
+### Experience function design
 
-### Least advantaged reason
+The safety-mobility experience function is still a proxy.
+It may include:
+- waiting time
+- merge delay
+- time-to-collision
+- headway
+- successful merge rate
+- travel-time delay
 
-v0.5 also records why a vehicle is least advantaged:
+### Robustness issue
 
-- `collision`
-- `low_mobility`
-- `low_speed`
-- `risk`
-- `none`
-- `combined`
+v0.6.1 shows that results vary across seeds. The current findings are promising but preliminary.
 
-### How to run diagnostics
+### No human-in-the-loop component yet
 
-```bash
-python diagnose_experience_components.py
-```
+The current code does not yet implement:
 
-### How to train and evaluate
-
-```bash
-python train_dqn_baseline.py
-python train_dqn_rawlsian.py
-python evaluate_trained.py
-```
-
-**Important:** Retrain both DQN agents after switching to v0.5 experience mode.
-
-### Key outputs
-
-- `results/v0.5/diagnostic/experience_components_diagnostics.csv`
-- `results/v0.5/trained/trained_summary.csv`
-- trained comparison plots for min experience, risk penalty, mobility score, and reason counts
-
-### Limitations
-
-- Still single-agent DQN.
-- Still not full MARL.
-- Risk is approximated using nearest vehicle distance.
-- Mobility is still approximated using speed, not full travel delay or merge success.
+- expert feedback
+- human-in-the-loop refinement
+- runtime norm synthesis
 
 ---
 
-## Prototype v0.4 — Ego-neighbourhood Rawlsian Reward
+## 7. Next Steps
 
-### Motivation
+### (1)  multi-agent extension
 
-v0.3 diagnostics showed that the global least advantaged vehicle was usually a non-ego background vehicle. This made the Rawlsian reward weakly connected to the controlled DQN agent.
+The current prototype is single-agent. A natural next step is to increase the number of controlled vehicles so that multiple agents participate in the fairness calculation.
 
-### Change
+This would make the Rawlsian maximin principle more consistent with the original multi-agent research goal.
 
-v0.4 introduces a configurable Rawlsian scope:
+### (2) Better fairness metrics
 
-- `global`: all road vehicles
-- `ego_neighbourhood`: ego vehicle plus nearby vehicles within a radius
-- `controlled`: controlled vehicles only
+The vehicle experience function should be improved with more traffic-specific variables:
 
-Default in `config.py`:
+- waiting time
+- merge delay
+- time-to-collision
+- headway
+- distance progress
+- successful merge rate
+- risk exposure over time
 
-```python
-RAWLSIAN_SCOPE = "ego_neighbourhood"
-EGO_NEIGHBOURHOOD_RADIUS = 50.0
-```
+### (3) Human-in-the-loop and symbolic norm learning
 
-### Interpretation
 
-The ego-neighbourhood scope keeps the Rawlsian maximin idea but restricts it to vehicles whose experience is more likely to be affected by the ego vehicle’s actions.
+1. **Human-in-the-loop feedback**  
+   Human participants could be recruited to provide feedback on traffic scenarios. Participants could judge whether a vehicle’s behaviour is fair, safe, too aggressive, or too conservative. These judgements could be used to adjust Rawlsian fairness weights.
 
-### How to run diagnostics
+2. **SYMPLEX-style symbolic norm learning**  
+   Learned behaviours could be represented as interpretable rules using Logic Programming.
 
-```bash
-python diagnose_neighbourhood_scope.py
-```
 
-### How to train and evaluate
-
-```bash
-python train_dqn_baseline.py
-python train_dqn_rawlsian.py
-python evaluate_trained.py
-```
-
-**Important:** Retrain Rawlsian DQN after switching to v0.4 scope (old models used global Rawlsian shaping).
-
-### Key outputs
-
-- `results/neighbourhood_scope_diagnostics.csv`
-- `results/trained_summary.csv`
-- `results/trained_comparison_min_experience.png`
-- `results/trained_comparison_least_advantaged_ego_ratio.png`
-- `results/trained_comparison_scoped_vehicle_count.png`
-
-### Limitations
-
-- Still single-agent DQN, not full MARL.
-- Ego-neighbourhood is an approximation of interaction fairness.
-- Radius is a hyperparameter.
-- Experience is still simplified; v0.5 should add waiting time, merge delay, TTC, headway, or risk exposure.
 
 ---
 
-## Diagnostic: Least Advantaged Vehicle Identity
+## 8. References
 
-### Why
+1. Woodgate, J., Marshall, P., & Ajmeri, N. (2025). *Operationalising Rawlsian Ethics for Fairness in Norm-Learning Agents*. Proceedings of the AAAI Conference on Artificial Intelligence.
 
-- Current Rawlsian reward is based on the **minimum vehicle experience** across all vehicles.
-- If the least advantaged vehicle is usually a **background vehicle** rather than the controllable **ego vehicle**, the DQN agent may have limited ability to improve this metric.
-- This diagnostic records whether the least advantaged vehicle is ego or non-ego at each step.
+2. Deane, O., & Ray, O. (2025). *SYMPLEX: A Human-in-the-Loop Approach to Learning Social Norms and Behavioural Policies*. World Conference on Explainable Artificial Intelligence.
 
-### How to run
+3. Deane, O., & Ray, O. (2025). *Symplex: Learning Social Norm Hierarchies by Combining Autonomous Exploration and Expert Imitation*. AAMAS.
 
-```bash
-python diagnose_least_advantaged.py
-```
+4. Morris-Martin, A., De Vos, M., Padget, J., & Ray, O. (2023). *Agent-directed Runtime Norm Synthesis*. AAMAS.
 
-To refresh random/trained summaries with the new fields, re-run:
+5. Leurent, E. (2018). *An Environment for Autonomous Driving Decision-Making*. highway-env.
 
-```bash
-python run_random_baseline.py
-python run_random_rawlsian.py
-python evaluate_random.py
-python evaluate_trained.py
-```
-
-### Output
-
-```text
-results/least_advantaged_diagnostics.csv
-```
-
-### How to interpret `least_advantaged_ego_ratio`
-
-| Value | Meaning |
-|-------|---------|
-| Close to **1.0** | Min experience usually refers to **ego** — DQN can plausibly influence it |
-| Close to **0.0** | Min experience usually determined by **non-ego** background vehicles |
-| Near **0.5** | Both ego and non-ego can be least advantaged |
-
-Also check `results/trained_summary.csv` and `results/random_summary.csv` for aggregated `least_advantaged_ego_ratio`.
-
----
-
-## Prototype v0.2 — Fairness Metrics Evaluation
-
-### Added / changed in v0.2
-
-- Added `metrics.py` to compute shared fairness and safety metrics.
-- Baseline now records the same fairness metrics as Rawlsian runs.
-- Rawlsian wrapper now reuses shared metrics functions.
-- Evaluation compares total reward, minimum experience, Gini coefficient, and collision count.
-- Fixed seeds; 100 random-policy episodes.
-
-### How to run v0.2 (random policy)
-
-```bash
-python env_test.py
-python run_random_baseline.py
-python run_random_rawlsian.py
-python evaluate_random.py
-```
-
----
-
-## Quick start
-
-Use **Python 3.10–3.12**.
-
-```powershell
-cd C:\Users\HP\Desktop\thesis\rawlsian_project
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-## Configuration (`config.py`)
-
-| Parameter | Value | Notes |
-|-----------|-------|-------|
-| `ENV_ID` | `merge-v0` | |
-| `N_EPISODES` | `100` | Random-policy runs (v0.2) |
-| `MAX_STEPS` | `200` | |
-| `RAWLSIAN_XI` | `0.2` | |
-| `SPEED_NORMALIZER` | `30.0` | |
-| `BASE_SEED` | `42` | |
-| `DQN_TOTAL_TIMESTEPS` | `20000` | v0.3 prototype training |
-| `EVAL_EPISODES` | `50` | v0.3 trained evaluation |
-| `RAWLSIAN_SCOPE` | `ego_neighbourhood` | v0.4+ Rawlsian vehicle scope |
-| `EGO_NEIGHBOURHOOD_RADIUS` | `50.0` | v0.4+ neighbourhood radius |
-| `EXPERIENCE_MODE` | `safety_mobility` | v0.5 experience function |
-| `TARGET_SPEED` | `30.0` | v0.5 mobility normalizer |
-| `W_MOBILITY` / `W_COLLISION` / `W_LOW_SPEED` / `W_RISK` | `1.0` / `2.0` / `0.3` / `0.5` | v0.5 experience weights |
-| `SEEDS` | `[0, 1, 2, 3, 4]` | v0.6.1 multi-seed robustness |
-
-## Planned extensions (not in this repo yet)
-
-- Social Value Orientation (SVO) rewards
-- Human-in-the-loop feedback
-- ILP / symbolic norm synthesis
-- Richer vehicle experience (waiting time, TTC, merge delay)
+6. Mnih, V., Kavukcuoglu, K., Silver, D., et al. (2015). *Human-level control through deep reinforcement learning*. Nature.
