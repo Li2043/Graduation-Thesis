@@ -83,3 +83,20 @@ MULTISEED_RESULTS_DIR = "results/v0.6.1"
 
 MULTISEED_TRAINED_EPISODE_CSV = "results/v0.6.1/multiseed_episode_results.csv"
 MULTISEED_AGGREGATE_CSV = "results/v0.6.1/multiseed_aggregate_summary.csv"
+
+# --- v0.6.3: one-factor-at-a-time sensitivity analysis ---
+SENSITIVITY_RESULTS_DIR = "results/v0.6.3_sensitivity"
+SENSITIVITY_MODEL_DIR = "models/sensitivity"
+SENSITIVITY_LOG_DIR = "logs/v0.6.3_sensitivity"
+SENSITIVITY_RAW_CSV = "results/v0.6.3_sensitivity/sensitivity_raw_results.csv"
+SENSITIVITY_SUMMARY_CSV = "results/v0.6.3_sensitivity/sensitivity_summary.csv"
+SENSITIVITY_VS_DEFAULT_CSV = "results/v0.6.3_sensitivity/sensitivity_vs_default.csv"
+SENSITIVITY_PLOTS_DIR = "results/v0.6.3_sensitivity/plots"
+
+# Quick/debug runs (--quick on run_sensitivity.py)
+SENSITIVITY_QUICK_TIMESTEPS = 2000
+SENSITIVITY_QUICK_EVAL_EPISODES = 5
+
+SENSITIVITY_XI_VALUES = [0.05, 0.10, 0.20]
+SENSITIVITY_RADIUS_VALUES = [30.0, 50.0, 70.0]
+SENSITIVITY_W_RISK_VALUES = [0.0, 0.5, 1.0]
