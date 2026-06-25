@@ -47,6 +47,7 @@ from v1.policies.egoistic_dqn import EgoisticDQN  # noqa: E402
 from v1.policies.rawlsian_dqn import RawlsianDQN  # noqa: E402
 from v1.rewards.base_reward import RewardFunction  # noqa: E402
 from v1.rewards.egoistic_reward import EgoisticReward  # noqa: E402
+from v1.rewards.merge_task_reward import MergeTaskConfig  # noqa: E402
 from v1.rewards.rawlsian_reward import RawlsianReward  # noqa: E402
 
 EXPERIMENTS_DIR = ROOT / "experiments"
@@ -80,6 +81,8 @@ class RunConfig:
     w_mobility: float = 1.0
     w_safety: float = 1.0
     w_waiting: float = 1.0
+    merge_success_bonus: float = 1.0
+    non_merge_failure_penalty: float = 1.0
     eval_seeds: list = field(default_factory=lambda: list(EVAL_SEEDS))
 
 
@@ -142,10 +145,17 @@ def build_reward_function(
     ego_agent: Any,
     experience_function: ExperienceFunction,
 ) -> RewardFunction:
+    # Same shared merge-task term for both conditions (single-factor comparison).
+    merge_cfg = MergeTaskConfig(
+        merge_success_bonus=config.merge_success_bonus,
+        non_merge_failure_penalty=config.non_merge_failure_penalty,
+    )
     if config.mode == "egoistic":
-        return EgoisticReward(agent_id=ego_agent)
+        return EgoisticReward(agent_id=ego_agent, merge_task_config=merge_cfg)
     if config.mode == "rawlsian":
-        return RawlsianReward(experience_function=experience_function)
+        return RawlsianReward(
+            experience_function=experience_function, merge_task_config=merge_cfg
+        )
     raise ValueError(f"Unknown mode '{config.mode}'. Use 'egoistic' or 'rawlsian'.")
 
 
@@ -166,7 +176,14 @@ def run_episode(
     max_steps: int,
     learn: bool,
 ) -> dict:
-    """Run one episode and return its aggregated metrics."""
+    """Run one episode and return its aggregated metrics.
+
+    The per-step reward is ``reward_fn.compute(...)`` plus the shared terminal
+    merge-task adjustment (``reward_fn.terminal_adjustment(...)``), identical for
+    both conditions. Outcome metrics record the *actual* merge step; failure and
+    time-to-merge are kept separate and ``max_steps`` is never used as a failure
+    substitute.
+    """
     obs, env_state = env.reset(seed=seed)
 
     episode_reward = 0.0
@@ -174,6 +191,10 @@ def run_episode(
     sum_mean_exp = 0.0
     near_collision_steps = 0
     collision = False
+    merge_completed = False
+    merge_step: Optional[int] = None
+    merge_bonus_applied = 0
+    non_merge_penalty_applied = 0
     steps = 0
 
     for _ in range(max_steps):
@@ -181,8 +202,17 @@ def run_episode(
         next_obs, terminated, truncated, info, next_env_state = env.step(action)
         done = bool(terminated or truncated)
 
-        reward = reward_fn.compute(obs, next_obs, next_env_state, env_state)
-        episode_reward += float(reward)
+        base_reward = reward_fn.compute(obs, next_obs, next_env_state, env_state)
+        ego_state = next_env_state[env.ego_agent]
+        adjustment = reward_fn.terminal_adjustment(
+            ego_state, terminated, truncated, merged=info.get("merged")
+        )
+        reward = float(base_reward) + float(adjustment)
+        if adjustment > 0:
+            merge_bonus_applied = 1
+        elif adjustment < 0:
+            non_merge_penalty_applied = 1
+        episode_reward += reward
 
         if learn:
             policy.remember(obs, action, reward, next_obs, done)
@@ -199,6 +229,9 @@ def run_episode(
                 near_collision_steps += 1
                 break
 
+        if info.get("merged") and not merge_completed:
+            merge_completed = True
+            merge_step = steps + 1
         if info.get("collision"):
             collision = True
 
@@ -211,16 +244,34 @@ def run_episode(
     final_experiences = compute_all_experiences(env_state, None, metrics_exp_fn)
     final_values = list(final_experiences.values())
 
+    # Failure = episode ended unmerged and without a collision (ran out of steps).
+    merge_failed = bool(not merge_completed and not collision)
+    if merge_completed:
+        termination_reason = "merge_completed"
+    elif collision:
+        termination_reason = "collision"
+    elif merge_failed:
+        termination_reason = "max_steps_unmerged"
+    else:
+        termination_reason = "unknown"
+
     return {
         "episode_reward": episode_reward,
-        "steps": steps,
+        "episode_length": steps,
+        "merge_completed": int(merge_completed),
+        "merge_failed": int(merge_failed),
         "collision": int(collision),
+        "truncated": int(merge_failed),
+        # Actual merge step; blank when the merge never completes (never max_steps).
+        "time_to_merge": merge_step if merge_step is not None else "",
+        "termination_reason": termination_reason,
         "mean_experience": sum_mean_exp / denom,
         "min_experience": sum_min_exp / denom,
         "final_min_experience": min(final_values),
         "final_gini_experience": _gini(final_values),
         "near_collision_steps": near_collision_steps,
-        "time_to_merge": steps if not collision else max_steps,
+        "merge_bonus_applied": merge_bonus_applied,
+        "non_merge_penalty_applied": non_merge_penalty_applied,
     }
 
 
@@ -249,17 +300,29 @@ def evaluate(
     def _mean(key: str) -> float:
         return float(np.mean([m[key] for m in per_seed]))
 
+    # Success-only mean time-to-merge; blank when no episode merged. We never use
+    # max_steps as a failure substitute (see docs/V1_TRAINING_DIAGNOSTIC_REPORT.md).
+    success_times = [
+        float(m["time_to_merge"])
+        for m in per_seed
+        if m["merge_completed"] and m["time_to_merge"] != ""
+    ]
+    mean_ttm_success = float(np.mean(success_times)) if success_times else ""
+
     return {
+        # Task outcomes (explicit success/failure for paper figures)
+        "eval_merge_success_rate": _mean("merge_completed"),
+        "eval_collision_rate": _mean("collision"),
+        "eval_non_merge_failure_rate": _mean("merge_failed"),
+        "eval_mean_time_to_merge_success_only": mean_ttm_success,
+        "eval_episode_length_mean": _mean("episode_length"),
         # Fairness
         "eval_min_experience": _mean("min_experience"),
         "eval_final_min_experience": _mean("final_min_experience"),
         "eval_gini_experience": _mean("final_gini_experience"),
-        # Safety
-        "eval_collision_rate": _mean("collision"),
+        # Safety / efficiency
         "eval_near_collision_steps": _mean("near_collision_steps"),
-        # Efficiency
         "eval_mean_experience": _mean("mean_experience"),
-        "eval_time_to_merge": _mean("time_to_merge"),
         "eval_episode_reward": _mean("episode_reward"),
         "n_eval_seeds": len(per_seed),
     }
@@ -289,9 +352,24 @@ def _write_episode_log(run_id: str, rows: list[dict]) -> None:
 
 def _append_results(run_id: str, config: RunConfig, eval_metrics: dict) -> None:
     row = {"run_id": run_id, "mode": config.mode, "seed": config.seed, **eval_metrics}
-    write_header = not RESULTS_CSV.exists()
+    fieldnames = list(row.keys())
+    expected_header = ",".join(fieldnames)
+
+    write_header = True
+    if RESULTS_CSV.exists():
+        with RESULTS_CSV.open("r", encoding="utf-8") as handle:
+            existing_header = handle.readline().strip()
+        if existing_header == expected_header:
+            write_header = False
+        else:
+            # Schema changed (new outcome metrics). Preserve the old pilot file
+            # instead of corrupting it by appending mismatched columns.
+            legacy = RESULTS_CSV.with_name(f"results_legacy_{int(time.time())}.csv")
+            RESULTS_CSV.rename(legacy)
+            print(f"Note: results schema changed; archived previous results to {legacy.name}")
+
     with RESULTS_CSV.open("a", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(row.keys()))
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
         if write_header:
             writer.writeheader()
         writer.writerow(row)
@@ -330,7 +408,9 @@ def run_experiment(config: RunConfig) -> dict:
             f"[{config.mode}] ep {episode:03d} "
             f"reward={metrics['episode_reward']:.3f} "
             f"min_exp={metrics['min_experience']:.3f} "
-            f"collision={metrics['collision']} steps={metrics['steps']}"
+            f"merged={metrics['merge_completed']} "
+            f"collision={metrics['collision']} "
+            f"len={metrics['episode_length']} ttm={metrics['time_to_merge']}"
         )
 
     _write_episode_log(run_id, episode_rows)

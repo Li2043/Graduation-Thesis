@@ -1,0 +1,60 @@
+{
+  "part_a_random": {
+    "episodes": 50,
+    "merge_success_rate": 0.88,
+    "merge_completion_rate": 0.88,
+    "non_merge_failure_rate": 0.0,
+    "collision_rate": 0.16,
+    "reached_merge_zone_rate": 1.0,
+    "entered_main_lane_rate": 1.0,
+    "action_3_frequency": 0.2539,
+    "successful_lane_changes_total": 50,
+    "terminal_bonus_count": 44,
+    "terminal_penalty_count": 0,
+    "avg_time_to_merge_when_success": 19.3
+  },
+  "part_b_scripted": {
+    "episodes": 20,
+    "merge_success_rate": 0.05,
+    "merge_completion_rate": 0.05,
+    "non_merge_failure_rate": 0.0,
+    "collision_rate": 1.0,
+    "reached_merge_zone_rate": 1.0,
+    "entered_main_lane_rate": 1.0,
+    "action_3_frequency": 0.1869,
+    "successful_lane_changes_total": 20,
+    "terminal_bonus_count": 1,
+    "terminal_penalty_count": 0,
+    "avg_time_to_merge_when_success": 8.0,
+    "blocked_by_main_examples": 20
+  },
+  "part_c_trained": {
+    "episodes": 10,
+    "merge_success_rate": 0.0,
+    "merge_completion_rate": 0.0,
+    "non_merge_failure_rate": 1.0,
+    "collision_rate": 0.0,
+    "reached_merge_zone_rate": 0.0,
+    "entered_main_lane_rate": 0.0,
+    "action_3_frequency": 0.0,
+    "successful_lane_changes_total": 0,
+    "terminal_bonus_count": 0,
+    "terminal_penalty_count": 10,
+    "avg_time_to_merge_when_success": null,
+    "greedy_action_counts": [
+      0,
+      0,
+      600,
+      0
+    ],
+    "action_3_ever_selected": false
+  },
+  "part_d_reward_components": {
+    "components_accessible": true,
+    "avg_progress_reward": 0.00076,
+    "avg_risk_penalty": 0.0,
+    "avg_waiting_penalty": 0.02852,
+    "collision_penalty_steps": 0,
+    "steps_inspected": 600
+  }
+}

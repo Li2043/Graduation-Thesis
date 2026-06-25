@@ -6,19 +6,24 @@ controlled agent. It does not depend on any environment-emitted reward (the V1
 environment emits none), does not access environment internals, does not use the
 experience function, and computes no global multi-agent objective.
 
-Per-agent reward:
+Per-agent reward (per-step ``compute`` plus the shared terminal task term):
 
-    R_i = progress_reward
-          - collision_penalty
-          - risk_penalty          (TTC-based)
-          - waiting_penalty
+    R_ego = progress_reward
+            - collision_penalty
+            - risk_penalty          (TTC-based)
+            - waiting_penalty
+            + merge_task_bonus_or_penalty   (terminal, via terminal_adjustment)
 
-All required signals come from the agent's own state:
+The per-step terms below come from the agent's own raw state:
     position, velocity, lane, ttc, waiting_time, and ``crashed`` (which the
     environment sets equal to its ``collision_flag``). ``goal_position`` is used
-    only to project longitudinal movement toward the goal direction.
+    only to project longitudinal movement toward the goal direction. The merge
+    task term is the shared ``terminal_adjustment`` inherited from
+    ``RewardFunction`` (identical to the Rawlsian condition) and is applied by
+    the training/evaluation loop at the terminal/merge step.
 
-Deterministic, standard-library/NumPy only, no Torch dependency.
+Deterministic, standard-library/NumPy only, no Torch dependency. Does not use
+the experience function and performs no multi-agent aggregation.
 """
 
 from __future__ import annotations
@@ -27,6 +32,7 @@ import math
 from typing import Any, Optional
 
 from v1.rewards.base_reward import EnvState, RewardFunction
+from v1.rewards.merge_task_reward import MergeTaskConfig
 
 
 def _to_float(value: Any, default: float = 0.0) -> float:
@@ -54,6 +60,7 @@ class EgoisticReward(RewardFunction):
         progress_weight: float = 1.0,
         collision_penalty: float = 1.0,
         waiting_normalizer: float = 100.0,
+        merge_task_config: Optional[MergeTaskConfig] = None,
     ) -> None:
         self.agent_id = agent_id
         self.alpha = float(alpha)
@@ -62,6 +69,8 @@ class EgoisticReward(RewardFunction):
         self.progress_weight = float(progress_weight)
         self.collision_penalty_value = float(collision_penalty)
         self.waiting_normalizer = float(waiting_normalizer) if waiting_normalizer else 1.0
+        # Shared terminal merge-task term (see RewardFunction.terminal_adjustment).
+        self.merge_task_config = merge_task_config or MergeTaskConfig()
 
     def _progress_reward(
         self,
