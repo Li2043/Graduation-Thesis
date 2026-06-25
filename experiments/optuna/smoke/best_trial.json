@@ -1,0 +1,85 @@
+{
+  "study_name": "v1_optuna_calibration",
+  "sampler_seed": 42,
+  "calibration_seeds": [
+    1
+  ],
+  "validation_seeds": [
+    4
+  ],
+  "final_evaluation_seeds_locked": [
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
+  "reference_config": {
+    "terminal_collision_penalty": 5.0,
+    "merge_success_bonus": 2.0,
+    "non_merge_failure_penalty": 3.0,
+    "rawlsian_lambda": 1.0,
+    "rawlsian_epsilon": 1e-06
+  },
+  "n_trials_requested": 2,
+  "n_trials_completed": 2,
+  "episodes": 50,
+  "max_steps": 100,
+  "eval_seeds_held_out": [
+    9001,
+    9002,
+    9003,
+    9004,
+    9005,
+    9006,
+    9007,
+    9008,
+    9009,
+    9010
+  ],
+  "best_trial": {
+    "number": 0,
+    "value": 4.260223223342251,
+    "params": {
+      "terminal_collision_penalty": 4.872700594236813,
+      "merge_success_bonus": 4.802857225639665,
+      "non_merge_failure_penalty": 4.92797576724562,
+      "rawlsian_lambda": 1.0986584841970366,
+      "rawlsian_epsilon": 4.2079886696066345e-06
+    },
+    "user_attrs": {
+      "calibration_score": 4.260223223342251,
+      "constraint_passed": true,
+      "egoistic_collision_rate_mean": 0.0,
+      "egoistic_min_experience_mean": 8.29558758867896,
+      "egoistic_non_merge_failure_rate_mean": 0.0,
+      "egoistic_safe_merge_success_rate_mean": 1.0,
+      "final_evaluation_seeds_placeholder": [
+        100,
+        101,
+        102,
+        103,
+        104
+      ],
+      "merge_success_bonus": 4.802857225639665,
+      "non_merge_failure_penalty": 4.92797576724562,
+      "rawlsian_collision_rate_mean": 0.2,
+      "rawlsian_epsilon": 4.2079886696066345e-06,
+      "rawlsian_gini_experience_mean": 0.0004811074072274879,
+      "rawlsian_lambda": 1.0986584841970366,
+      "rawlsian_mean_experience_mean": 9.821625805014133,
+      "rawlsian_min_experience_mean": 9.180479349410778,
+      "rawlsian_non_merge_failure_rate_mean": 0.0,
+      "rawlsian_safe_merge_success_rate_mean": 0.8,
+      "reference_config": {
+        "terminal_collision_penalty": 5.0,
+        "merge_success_bonus": 2.0,
+        "non_merge_failure_penalty": 3.0,
+        "rawlsian_lambda": 1.0,
+        "rawlsian_epsilon": 1e-06
+      },
+      "terminal_collision_penalty": 4.872700594236813,
+      "trial_number": 0
+    }
+  }
+}

@@ -38,6 +38,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from v1.calibration.seed_protocol import single_run_seed_metadata  # noqa: E402
 from v1.env.highway_merge_env import HighwayMergeEnv  # noqa: E402
 from v1.experience.experience import (  # noqa: E402
     ExperienceFunction,
@@ -72,6 +73,9 @@ class RunConfig:
     # experiments/v1_runs/<tag>/ (own results.csv, configs/, logs/) so different
     # pilots/campaigns stay isolated. When None, outputs go to experiments/ root.
     tag: Optional[str] = None
+    # Seed-protocol phase this run belongs to, for audit/leakage tracking:
+    # "calibration" | "validation" | "final" | "adhoc" (see docs/V1_SEED_PROTOCOL.md).
+    seed_phase: Optional[str] = None
     epsilon_start: float = 1.0
     epsilon_end: float = 0.05
     epsilon_decay_episodes: int = 40
@@ -415,8 +419,17 @@ def _ensure_dirs(paths: dict) -> None:
 
 def _write_config(paths: dict, run_id: str, config: RunConfig) -> None:
     path = paths["configs"] / f"{run_id}.json"
+    data = asdict(config)
+    # Self-describing seed metadata: exact train seeds + eval seeds + phase, so
+    # every run is auditable in isolation (see docs/V1_SEED_PROTOCOL.md).
+    data["seed_metadata"] = single_run_seed_metadata(
+        seed=config.seed,
+        episodes=config.episodes,
+        eval_seeds=config.eval_seeds,
+        seed_phase=config.seed_phase,
+    )
     with path.open("w", encoding="utf-8") as handle:
-        json.dump(asdict(config), handle, indent=2)
+        json.dump(data, handle, indent=2)
 
 
 def _write_episode_log(paths: dict, run_id: str, rows: list[dict]) -> None:
@@ -528,6 +541,20 @@ def parse_args(argv: Optional[list] = None) -> argparse.Namespace:
             "(own results.csv, configs/, logs/), keeping pilots isolated."
         ),
     )
+    parser.add_argument(
+        "--seed-phase",
+        choices=["calibration", "validation", "final", "adhoc"],
+        default=None,
+        help="Seed-protocol phase for this run (recorded for audit). "
+        "See docs/V1_SEED_PROTOCOL.md.",
+    )
+    parser.add_argument(
+        "--eval-seeds",
+        type=str,
+        default=None,
+        help="Comma-separated held-out evaluation seeds; overrides the default "
+        "EVAL_SEEDS. Lets calibration/final use distinct eval scenarios.",
+    )
     # Calibration / task-safety parameters (explicit, never chosen by mode).
     parser.add_argument("--merge-success-bonus", type=float, default=1.0)
     parser.add_argument("--non-merge-failure-penalty", type=float, default=1.0)
@@ -561,12 +588,20 @@ def main(argv: Optional[list] = None) -> None:
             f"value ({deprecated_scale}) to --rawlsian-lambda."
         )
 
+    eval_seeds = (
+        [int(s) for s in args.eval_seeds.split(",") if s.strip() != ""]
+        if args.eval_seeds
+        else list(EVAL_SEEDS)
+    )
+
     config = RunConfig(
         mode=args.mode,
         seed=args.seed,
         episodes=args.episodes,
         max_steps=args.max_steps,
         tag=args.tag,
+        seed_phase=args.seed_phase,
+        eval_seeds=eval_seeds,
         merge_success_bonus=args.merge_success_bonus,
         non_merge_failure_penalty=args.non_merge_failure_penalty,
         terminal_collision_penalty=args.terminal_collision_penalty,
