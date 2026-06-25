@@ -1,5 +1,6 @@
-run_id,mode,seed,eval_merge_success_rate,eval_collision_rate,eval_non_merge_failure_rate,eval_mean_time_to_merge_success_only,eval_episode_length_mean,eval_min_experience,eval_final_min_experience,eval_gini_experience,eval_near_collision_steps,eval_mean_experience,eval_episode_reward,n_eval_seeds
-egoistic_seed1_1782400896,egoistic,1,0.9,0.2,0.0,11.0,10.8,9.32852248373644,0.4975994178848743,0.17887484194722847,0.0,9.820610016664055,1.1283918305865823,10
-rawlsian_seed1_1782400914,rawlsian,1,0.0,0.0,1.0,,100.0,-10.761526994892689,0.877312120640152,0.03807286282966922,0.0,-6.780462809755477,-1077.152699489269,10
-rawlsian_seed1_1782400935,rawlsian,1,0.0,0.0,1.0,,100.0,-10.761526994892689,0.877312120640152,0.03807286282966922,0.0,-6.780462809755477,-1077.152699489269,10
-egoistic_seed1_1782400957,egoistic,1,0.9,0.2,0.0,11.0,10.8,9.32852248373644,0.4975994178848743,0.17887484194722847,0.0,9.820610016664055,1.1283918305865823,10
+run_id,mode,seed,eval_safe_merge_success_rate,eval_unsafe_merge_rate,eval_collision_without_merge_rate,eval_non_merge_failure_rate,eval_collision_rate,eval_merge_success_rate,eval_mean_time_to_merge_success_only,eval_episode_length_mean,eval_min_experience,eval_final_min_experience,eval_gini_experience,eval_near_collision_steps,eval_mean_experience,eval_episode_reward,rawlsian_objective_scale,terminal_collision_penalty,merge_success_bonus,non_merge_failure_penalty,n_eval_seeds
+egoistic_seed1_1782402330,egoistic,1,0.0,0.0,0.0,1.0,0.0,0.0,,100.0,-11.579802069771395,-37.3,0.5,0.0,-6.52440250957594,-1.5921615235088045,1.0,10.0,1.0,1.0,10
+rawlsian_seed1_1782402376,rawlsian,1,1.0,0.0,0.0,0.0,0.0,1.0,26.0,26.0,5.198754025991952,-3.1,0.5,0.0,7.0122826565570335,135.91209258259786,1.0,10.0,1.0,1.0,10
+rawlsian_seed1_1782402405,rawlsian,1,0.7,0.3,0.0,0.0,0.3,1.0,18.1,18.1,8.310425397477044,0.6482658265912138,0.13798842749193843,0.2,10.188766336765735,13.03641729949448,0.1,10.0,1.0,1.0,10
+rawlsian_seed1_1782402427,rawlsian,1,1.0,0.0,0.0,0.0,0.0,1.0,30.9,30.9,3.70106703120645,-0.6,0.3,0.0,5.038027975807138,6.694847085088203,0.05,10.0,1.0,1.0,10
+rawlsian_seed1_1782402454,rawlsian,1,0.0,0.0,0.0,1.0,0.0,0.0,,100.0,-4.293851685205622,0.877312120640152,0.03807286282966922,0.0,-3.106542259815606,-5.293851685205622,0.01,10.0,1.0,1.0,10

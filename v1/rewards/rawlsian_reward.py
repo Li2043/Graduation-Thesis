@@ -1,19 +1,25 @@
 """Rawlsian reward (core contribution).
 
 Implements the Rawlsian maximin scalar reward defined in
-``docs/V1_SYSTEM_SPEC.md`` plus the shared merge-task term:
+``docs/V1_SYSTEM_SPEC.md`` plus the shared task/safety terms:
 
-    R_rawls = min_i E_i + merge_task_bonus_or_penalty
+    R_rawls = rawlsian_objective_scale * min_i E_i
+              + merge_task_bonus_or_penalty
+              - terminal_collision_penalty_if_collision
 
 where E_i is the per-agent experience computed by the V1 experience function.
-The per-step ``compute`` returns the unchanged maximin scalar ``min_i E_i``; the
-merge-task term is the shared ``terminal_adjustment`` inherited from
-``RewardFunction`` (identical to the Egoistic condition) and is applied by the
+The per-step ``compute`` returns ``rawlsian_objective_scale * min_i E_i``; the
+merge-task term and the shared terminal collision penalty are the inherited
+``terminal_adjustment`` / ``terminal_collision_adjustment`` from
+``RewardFunction`` (identical to the Egoistic condition) and are applied by the
 training/evaluation loop at the terminal/merge step.
 
-The experience function, ``rawlsian_objective``, and the least-advantaged-agent
-logic are NOT modified: the task term is an external task constraint added to
-the Rawlsian scalar reward, not part of E_i.
+``rawlsian_objective_scale`` is an explicit calibration parameter (default 1.0)
+used to bring the maximin signal onto a comparable scale with the task/safety
+constants; it is logged to the run config and results CSV. The experience
+function, ``rawlsian_objective``, and the least-advantaged-agent logic are NOT
+modified: scaling is applied outside ``rawlsian_objective`` and the task/safety
+terms are external constraints added to the scalar reward, not part of E_i.
 """
 
 from __future__ import annotations
@@ -41,14 +47,17 @@ class RawlsianReward(RewardFunction):
         self,
         experience_function: Optional[ExperienceFunction] = None,
         merge_task_config: Optional[MergeTaskConfig] = None,
+        objective_scale: float = 1.0,
     ) -> None:
         self.experience_function = (
             experience_function if experience_function is not None else ExperienceFunction()
         )
         self.last_least_advantaged: Any = None
         self.last_experiences: dict = {}
-        # Shared terminal merge-task term (see RewardFunction.terminal_adjustment).
+        # Shared terminal merge-task / collision terms (see RewardFunction).
         self.merge_task_config = merge_task_config or MergeTaskConfig()
+        # Explicit calibration scale for the maximin objective (default 1.0).
+        self.objective_scale = float(objective_scale)
 
     def compute(
         self,
@@ -62,4 +71,4 @@ class RawlsianReward(RewardFunction):
         )
         self.last_experiences = dict(experiences)
         self.last_least_advantaged = least_advantaged_agent(experiences)
-        return rawlsian_objective(experiences)
+        return self.objective_scale * rawlsian_objective(experiences)

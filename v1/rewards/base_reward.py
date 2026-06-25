@@ -14,7 +14,11 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any, Mapping, Optional
 
-from v1.rewards.merge_task_reward import MergeTaskConfig, terminal_merge_adjustment
+from v1.rewards.merge_task_reward import (
+    MergeTaskConfig,
+    terminal_collision_adjustment,
+    terminal_merge_adjustment,
+)
 
 AgentId = Any
 AgentState = Mapping[str, Any]
@@ -62,3 +66,17 @@ class RewardFunction(ABC):
         """
         config = getattr(self, "merge_task_config", None) or MergeTaskConfig()
         return terminal_merge_adjustment(ego_state, done, truncated, config, merged)
+
+    def terminal_collision_adjustment(self, ego_state: AgentState) -> float:
+        """Shared terminal collision penalty, identical across conditions.
+
+        Returns ``-terminal_collision_penalty`` when the ego agent has crashed,
+        else ``0.0``. Applied by the loop on top of ``terminal_adjustment``. Both
+        conditions inherit this unchanged, so safety is constrained identically.
+        For the Egoistic condition this is *additional* to its per-step
+        collision aversion (documented as a deliberate task-safety constraint);
+        the Rawlsian condition has no other collision term, so this is its sole
+        collision signal.
+        """
+        config = getattr(self, "merge_task_config", None) or MergeTaskConfig()
+        return terminal_collision_adjustment(ego_state, config)

@@ -33,10 +33,15 @@ DEFAULT_MERGE_COMPLETE_POSITION = 100.0
 
 @dataclass(frozen=True)
 class MergeTaskConfig:
-    """Configurable constants for the shared merge-task adjustment."""
+    """Configurable constants for the shared merge-task / safety adjustments."""
 
     merge_success_bonus: float = 1.0
     non_merge_failure_penalty: float = 1.0
+    # Shared terminal collision penalty applied identically to BOTH conditions.
+    # Subtracted from the learning reward whenever the ego agent crashes. This is
+    # a task-layer safety constraint and is independent of (and additional to)
+    # any per-step collision penalty the egoistic objective already carries.
+    terminal_collision_penalty: float = 10.0
     main_lane_index: int = DEFAULT_MAIN_LANE_INDEX
     merge_complete_position: float = DEFAULT_MERGE_COMPLETE_POSITION
 
@@ -96,6 +101,46 @@ def non_merge_penalty(config: Optional[MergeTaskConfig] = None) -> float:
     return float(config.non_merge_failure_penalty)
 
 
+def classify_outcome(
+    merge_completed: bool,
+    collision: bool,
+    terminal: bool,
+) -> dict:
+    """Map episode-level merge/collision flags to mutually-exclusive outcomes.
+
+    ``merge_success_rate`` alone is misleading because an episode can both merge
+    and collide on the merging step. The flags below split that case out:
+
+    - safe_merge:             merged and not collided  (PRIMARY success metric)
+    - unsafe_merge:           merged and collided
+    - collision_without_merge: collided and not merged
+    - non_merge_failure:      terminal, not merged, not collided (ran out of steps)
+    """
+    safe_merge = bool(merge_completed and not collision)
+    unsafe_merge = bool(merge_completed and collision)
+    collision_without_merge = bool(collision and not merge_completed)
+    non_merge_failure = bool(terminal and not merge_completed and not collision)
+    if safe_merge:
+        reason = "safe_merge"
+    elif unsafe_merge:
+        reason = "unsafe_merge"
+    elif collision_without_merge:
+        reason = "collision_without_merge"
+    elif non_merge_failure:
+        reason = "max_steps_unmerged"
+    else:
+        reason = "unknown"
+    return {
+        "merge_completed": bool(merge_completed),
+        "collision": bool(collision),
+        "safe_merge": safe_merge,
+        "unsafe_merge": unsafe_merge,
+        "collision_without_merge": collision_without_merge,
+        "non_merge_failure": non_merge_failure,
+        "termination_reason": reason,
+    }
+
+
 def outcome_from_state(
     ego_state: Mapping[str, Any],
     done: bool,
@@ -108,22 +153,7 @@ def outcome_from_state(
     completed = bool(merged) if merged is not None else is_merge_completed(ego_state, config)
     collision = is_collision(ego_state)
     terminal = bool(done or truncated)
-    merge_failed = bool(terminal and not completed and not collision)
-    if completed:
-        reason = "merge_completed"
-    elif collision:
-        reason = "collision"
-    elif merge_failed:
-        reason = "max_steps_unmerged"
-    else:
-        reason = "unknown"
-    return {
-        "merge_completed": completed,
-        "merge_failed": merge_failed,
-        "collision": collision,
-        "truncated": bool(truncated),
-        "termination_reason": reason,
-    }
+    return classify_outcome(completed, collision, terminal)
 
 
 def terminal_merge_adjustment(
@@ -145,4 +175,20 @@ def terminal_merge_adjustment(
         return float(config.merge_success_bonus)
     if bool(done or truncated) and not is_collision(ego_state):
         return -float(config.non_merge_failure_penalty)
+    return 0.0
+
+
+def terminal_collision_adjustment(
+    ego_state: Mapping[str, Any],
+    config: Optional[MergeTaskConfig] = None,
+) -> float:
+    """Shared terminal collision penalty: ``-terminal_collision_penalty`` on crash.
+
+    Identical function and config for both conditions. Applied in addition to the
+    merge-task adjustment so that an unsafe merge (merge + collision) nets the
+    merge bonus minus this penalty, making it strictly worse than a safe merge.
+    """
+    config = config or MergeTaskConfig()
+    if is_collision(ego_state):
+        return -float(config.terminal_collision_penalty)
     return 0.0

@@ -47,7 +47,7 @@ from v1.policies.egoistic_dqn import EgoisticDQN  # noqa: E402
 from v1.policies.rawlsian_dqn import RawlsianDQN  # noqa: E402
 from v1.rewards.base_reward import RewardFunction  # noqa: E402
 from v1.rewards.egoistic_reward import EgoisticReward  # noqa: E402
-from v1.rewards.merge_task_reward import MergeTaskConfig  # noqa: E402
+from v1.rewards.merge_task_reward import MergeTaskConfig, classify_outcome  # noqa: E402
 from v1.rewards.rawlsian_reward import RawlsianReward  # noqa: E402
 
 EXPERIMENTS_DIR = ROOT / "experiments"
@@ -83,6 +83,10 @@ class RunConfig:
     w_waiting: float = 1.0
     merge_success_bonus: float = 1.0
     non_merge_failure_penalty: float = 1.0
+    # Shared terminal collision penalty applied identically to both conditions.
+    terminal_collision_penalty: float = 10.0
+    # Calibration scale for the Rawlsian maximin objective (egoistic ignores it).
+    rawlsian_objective_scale: float = 1.0
     eval_seeds: list = field(default_factory=lambda: list(EVAL_SEEDS))
 
 
@@ -145,16 +149,21 @@ def build_reward_function(
     ego_agent: Any,
     experience_function: ExperienceFunction,
 ) -> RewardFunction:
-    # Same shared merge-task term for both conditions (single-factor comparison).
+    # Same shared task/safety constants for both conditions (single-factor
+    # comparison): merge bonus, non-merge penalty, terminal collision penalty.
     merge_cfg = MergeTaskConfig(
         merge_success_bonus=config.merge_success_bonus,
         non_merge_failure_penalty=config.non_merge_failure_penalty,
+        terminal_collision_penalty=config.terminal_collision_penalty,
     )
     if config.mode == "egoistic":
+        # rawlsian_objective_scale is deliberately ignored for egoistic mode.
         return EgoisticReward(agent_id=ego_agent, merge_task_config=merge_cfg)
     if config.mode == "rawlsian":
         return RawlsianReward(
-            experience_function=experience_function, merge_task_config=merge_cfg
+            experience_function=experience_function,
+            merge_task_config=merge_cfg,
+            objective_scale=config.rawlsian_objective_scale,
         )
     raise ValueError(f"Unknown mode '{config.mode}'. Use 'egoistic' or 'rawlsian'.")
 
@@ -195,6 +204,7 @@ def run_episode(
     merge_step: Optional[int] = None
     merge_bonus_applied = 0
     non_merge_penalty_applied = 0
+    collision_penalty_applied = 0
     steps = 0
 
     for _ in range(max_steps):
@@ -204,14 +214,19 @@ def run_episode(
 
         base_reward = reward_fn.compute(obs, next_obs, next_env_state, env_state)
         ego_state = next_env_state[env.ego_agent]
-        adjustment = reward_fn.terminal_adjustment(
+        # Shared terminal adjustments (identical for both conditions): merge
+        # bonus / non-merge penalty, plus the shared terminal collision penalty.
+        merge_adj = reward_fn.terminal_adjustment(
             ego_state, terminated, truncated, merged=info.get("merged")
         )
-        reward = float(base_reward) + float(adjustment)
-        if adjustment > 0:
+        collision_adj = reward_fn.terminal_collision_adjustment(ego_state)
+        reward = float(base_reward) + float(merge_adj) + float(collision_adj)
+        if merge_adj > 0:
             merge_bonus_applied = 1
-        elif adjustment < 0:
+        elif merge_adj < 0:
             non_merge_penalty_applied = 1
+        if collision_adj < 0:
+            collision_penalty_applied = 1
         episode_reward += reward
 
         if learn:
@@ -244,27 +259,23 @@ def run_episode(
     final_experiences = compute_all_experiences(env_state, None, metrics_exp_fn)
     final_values = list(final_experiences.values())
 
-    # Failure = episode ended unmerged and without a collision (ran out of steps).
-    merge_failed = bool(not merge_completed and not collision)
-    if merge_completed:
-        termination_reason = "merge_completed"
-    elif collision:
-        termination_reason = "collision"
-    elif merge_failed:
-        termination_reason = "max_steps_unmerged"
-    else:
-        termination_reason = "unknown"
+    # Mutually-exclusive outcome classification. ``merge_success_rate`` alone is
+    # misleading because an episode can both merge and collide on the merge step,
+    # so we split safe vs. unsafe merges explicitly (see merge_task_reward).
+    outcome = classify_outcome(merge_completed, collision, terminal=True)
 
     return {
         "episode_reward": episode_reward,
         "episode_length": steps,
-        "merge_completed": int(merge_completed),
-        "merge_failed": int(merge_failed),
-        "collision": int(collision),
-        "truncated": int(merge_failed),
+        "merge_completed": int(outcome["merge_completed"]),
+        "collision": int(outcome["collision"]),
+        "safe_merge": int(outcome["safe_merge"]),
+        "unsafe_merge": int(outcome["unsafe_merge"]),
+        "collision_without_merge": int(outcome["collision_without_merge"]),
+        "non_merge_failure": int(outcome["non_merge_failure"]),
+        "termination_reason": outcome["termination_reason"],
         # Actual merge step; blank when the merge never completes (never max_steps).
         "time_to_merge": merge_step if merge_step is not None else "",
-        "termination_reason": termination_reason,
         "mean_experience": sum_mean_exp / denom,
         "min_experience": sum_min_exp / denom,
         "final_min_experience": min(final_values),
@@ -272,6 +283,7 @@ def run_episode(
         "near_collision_steps": near_collision_steps,
         "merge_bonus_applied": merge_bonus_applied,
         "non_merge_penalty_applied": non_merge_penalty_applied,
+        "collision_penalty_applied": collision_penalty_applied,
     }
 
 
@@ -310,10 +322,15 @@ def evaluate(
     mean_ttm_success = float(np.mean(success_times)) if success_times else ""
 
     return {
-        # Task outcomes (explicit success/failure for paper figures)
-        "eval_merge_success_rate": _mean("merge_completed"),
+        # Task outcomes. PRIMARY success metric is eval_safe_merge_success_rate;
+        # eval_merge_success_rate is kept but is NOT the primary success metric
+        # because it counts unsafe (collision) merges too.
+        "eval_safe_merge_success_rate": _mean("safe_merge"),
+        "eval_unsafe_merge_rate": _mean("unsafe_merge"),
+        "eval_collision_without_merge_rate": _mean("collision_without_merge"),
+        "eval_non_merge_failure_rate": _mean("non_merge_failure"),
         "eval_collision_rate": _mean("collision"),
-        "eval_non_merge_failure_rate": _mean("merge_failed"),
+        "eval_merge_success_rate": _mean("merge_completed"),
         "eval_mean_time_to_merge_success_only": mean_ttm_success,
         "eval_episode_length_mean": _mean("episode_length"),
         # Fairness
@@ -324,6 +341,11 @@ def evaluate(
         "eval_near_collision_steps": _mean("near_collision_steps"),
         "eval_mean_experience": _mean("mean_experience"),
         "eval_episode_reward": _mean("episode_reward"),
+        # Calibration parameters echoed into results for auditability.
+        "rawlsian_objective_scale": config.rawlsian_objective_scale,
+        "terminal_collision_penalty": config.terminal_collision_penalty,
+        "merge_success_bonus": config.merge_success_bonus,
+        "non_merge_failure_penalty": config.non_merge_failure_penalty,
         "n_eval_seeds": len(per_seed),
     }
 
@@ -435,6 +457,16 @@ def parse_args(argv: Optional[list] = None) -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--episodes", type=int, default=50)
     parser.add_argument("--max-steps", type=int, default=60)
+    # Calibration / task-safety parameters (explicit, never chosen by mode).
+    parser.add_argument("--merge-success-bonus", type=float, default=1.0)
+    parser.add_argument("--non-merge-failure-penalty", type=float, default=1.0)
+    parser.add_argument("--terminal-collision-penalty", type=float, default=10.0)
+    parser.add_argument(
+        "--rawlsian-objective-scale",
+        type=float,
+        default=1.0,
+        help="Scales min_i E_i in Rawlsian mode only; ignored for egoistic.",
+    )
     return parser.parse_args(argv)
 
 
@@ -445,6 +477,10 @@ def main(argv: Optional[list] = None) -> None:
         seed=args.seed,
         episodes=args.episodes,
         max_steps=args.max_steps,
+        merge_success_bonus=args.merge_success_bonus,
+        non_merge_failure_penalty=args.non_merge_failure_penalty,
+        terminal_collision_penalty=args.terminal_collision_penalty,
+        rawlsian_objective_scale=args.rawlsian_objective_scale,
     )
     run_experiment(config)
 

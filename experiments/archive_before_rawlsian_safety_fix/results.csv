@@ -1,0 +1,3 @@
+run_id,mode,seed,eval_merge_success_rate,eval_collision_rate,eval_non_merge_failure_rate,eval_mean_time_to_merge_success_only,eval_episode_length_mean,eval_min_experience,eval_final_min_experience,eval_gini_experience,eval_near_collision_steps,eval_mean_experience,eval_episode_reward,n_eval_seeds
+egoistic_seed1_1782401256,egoistic,1,1.0,0.0,0.0,12.8,12.8,8.234313741085888,0.8494482730533848,0.0439395203740651,0.0,8.998109095710094,1.4649385151201622,10
+rawlsian_seed1_1782401271,rawlsian,1,1.0,0.7,0.0,23.7,23.7,6.209959610095423,0.1194529695623467,0.31123740150318124,0.5,7.975928335046388,147.5081342533159,10

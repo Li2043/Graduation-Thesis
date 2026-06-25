@@ -1,60 +1,75 @@
 {
+  "calibration": {
+    "rawlsian_objective_scale": 1.0,
+    "terminal_collision_penalty": 10.0,
+    "merge_success_bonus": 1.0,
+    "non_merge_failure_penalty": 1.0
+  },
   "part_a_random": {
     "episodes": 50,
+    "safe_merge_success_rate": 0.84,
+    "unsafe_merge_rate": 0.04,
+    "collision_without_merge_rate": 0.12,
     "merge_success_rate": 0.88,
-    "merge_completion_rate": 0.88,
     "non_merge_failure_rate": 0.0,
     "collision_rate": 0.16,
     "reached_merge_zone_rate": 1.0,
     "entered_main_lane_rate": 1.0,
     "action_3_frequency": 0.2539,
     "successful_lane_changes_total": 50,
-    "terminal_bonus_count": 44,
-    "terminal_penalty_count": 0,
-    "avg_time_to_merge_when_success": 19.3
+    "terminal_merge_bonus_count": 44,
+    "terminal_non_merge_penalty_count": 0,
+    "terminal_collision_penalty_count": 8,
+    "avg_time_to_merge_when_safe_success": 19.74
   },
   "part_b_scripted": {
     "episodes": 20,
+    "safe_merge_success_rate": 0.0,
+    "unsafe_merge_rate": 0.05,
+    "collision_without_merge_rate": 0.95,
     "merge_success_rate": 0.05,
-    "merge_completion_rate": 0.05,
     "non_merge_failure_rate": 0.0,
     "collision_rate": 1.0,
     "reached_merge_zone_rate": 1.0,
     "entered_main_lane_rate": 1.0,
     "action_3_frequency": 0.1869,
     "successful_lane_changes_total": 20,
-    "terminal_bonus_count": 1,
-    "terminal_penalty_count": 0,
-    "avg_time_to_merge_when_success": 8.0,
+    "terminal_merge_bonus_count": 1,
+    "terminal_non_merge_penalty_count": 0,
+    "terminal_collision_penalty_count": 20,
+    "avg_time_to_merge_when_safe_success": null,
     "blocked_by_main_examples": 20
   },
   "part_c_trained": {
     "episodes": 10,
-    "merge_success_rate": 0.0,
-    "merge_completion_rate": 0.0,
-    "non_merge_failure_rate": 1.0,
+    "safe_merge_success_rate": 0.3,
+    "unsafe_merge_rate": 0.0,
+    "collision_without_merge_rate": 0.0,
+    "merge_success_rate": 0.3,
+    "non_merge_failure_rate": 0.7,
     "collision_rate": 0.0,
-    "reached_merge_zone_rate": 0.0,
-    "entered_main_lane_rate": 0.0,
-    "action_3_frequency": 0.0,
-    "successful_lane_changes_total": 0,
-    "terminal_bonus_count": 0,
-    "terminal_penalty_count": 10,
-    "avg_time_to_merge_when_success": null,
+    "reached_merge_zone_rate": 0.5,
+    "entered_main_lane_rate": 0.3,
+    "action_3_frequency": 0.0108,
+    "successful_lane_changes_total": 3,
+    "terminal_merge_bonus_count": 3,
+    "terminal_non_merge_penalty_count": 7,
+    "terminal_collision_penalty_count": 0,
+    "avg_time_to_merge_when_safe_success": 14.67,
     "greedy_action_counts": [
-      0,
-      0,
-      600,
-      0
+      29,
+      46,
+      384,
+      5
     ],
-    "action_3_ever_selected": false
+    "action_3_ever_selected": true
   },
   "part_d_reward_components": {
     "components_accessible": true,
-    "avg_progress_reward": 0.00076,
-    "avg_risk_penalty": 0.0,
-    "avg_waiting_penalty": 0.02852,
+    "avg_progress_reward": 0.00567,
+    "avg_risk_penalty": 0.00023,
+    "avg_waiting_penalty": 0.02539,
     "collision_penalty_steps": 0,
-    "steps_inspected": 600
+    "steps_inspected": 464
   }
 }

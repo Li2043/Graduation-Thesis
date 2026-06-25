@@ -111,6 +111,7 @@ def run_instrumented_episode(
     collision_triggered = False
     terminal_bonus = 0
     terminal_penalty = 0
+    collision_penalty_count = 0
     steps = 0
 
     for t in range(max_steps):
@@ -124,15 +125,21 @@ def run_instrumented_episode(
         done = bool(terminated or truncated)
 
         base_reward = reward_fn.compute(obs, next_obs, next_env_state, env_state)
-        adjustment = reward_fn.terminal_adjustment(
-            next_env_state[RAMP_AGENT], terminated, truncated, merged=info.get("merged")
+        ego_state = next_env_state[RAMP_AGENT]
+        # Mirror the production reward exactly: per-step + shared terminal merge
+        # adjustment + shared terminal collision penalty.
+        merge_adj = reward_fn.terminal_adjustment(
+            ego_state, terminated, truncated, merged=info.get("merged")
         )
-        reward = float(base_reward) + float(adjustment)
+        collision_adj = reward_fn.terminal_collision_adjustment(ego_state)
+        reward = float(base_reward) + float(merge_adj) + float(collision_adj)
         step_rewards.append(reward)
-        if adjustment > 0:
+        if merge_adj > 0:
             terminal_bonus = 1
-        elif adjustment < 0:
+        elif merge_adj < 0:
             terminal_penalty = 1
+        if collision_adj < 0:
+            collision_penalty_count = 1
 
         lane_after = next_env_state[RAMP_AGENT]["lane"]
         if action == ACTION_LANE_CHANGE:
@@ -169,12 +176,17 @@ def run_instrumented_episode(
         if done:
             break
 
-    if collision_triggered:
-        termination_reason = "collision"
-    elif merge_completed:
-        termination_reason = "merged"
+    safe_merge = bool(merge_completed and not collision_triggered)
+    unsafe_merge = bool(merge_completed and collision_triggered)
+    collision_without_merge = bool(collision_triggered and not merge_completed)
+    if safe_merge:
+        termination_reason = "safe_merge"
+    elif unsafe_merge:
+        termination_reason = "unsafe_merge"
+    elif collision_without_merge:
+        termination_reason = "collision_without_merge"
     else:
-        termination_reason = "truncated"
+        termination_reason = "max_steps_unmerged"
 
     final = env_state[RAMP_AGENT]
     q_mean, q_std = _q_stats(policy, observations)
@@ -187,11 +199,15 @@ def run_instrumented_episode(
         "entered_main_lane": int(entered_main_lane),
         "merge_completed": int(merge_completed),
         "merge_failed": int(not merge_completed and not collision_triggered),
+        "safe_merge": int(safe_merge),
+        "unsafe_merge": int(unsafe_merge),
+        "collision_without_merge": int(collision_without_merge),
         "time_to_merge": merge_step if merge_step is not None else "",
         "termination_reason": termination_reason,
         "collision_triggered": int(collision_triggered),
         "terminal_bonus": terminal_bonus,
         "terminal_penalty": terminal_penalty,
+        "collision_penalty_count": collision_penalty_count,
         "final_position": float(final["position"]),
         "final_lane": int(final["lane"]),
         "final_velocity": float(final["velocity"]),
@@ -329,20 +345,31 @@ def _aggregate(diags: list[dict]) -> dict:
     a3 = sum(d["action_counts"][3] for d in diags)
     total_actions = sum(sum(d["action_counts"]) for d in diags)
     merges = [d for d in diags if d["merge_completed"]]
+    safe_merges = [d for d in merges if not d["collision_triggered"]]
     return {
         "episodes": n,
+        # Primary success metric is the SAFE merge rate (merge without collision).
+        "safe_merge_success_rate": round(sum(d.get("safe_merge", 0) for d in diags) / n, 3),
+        "unsafe_merge_rate": round(sum(d.get("unsafe_merge", 0) for d in diags) / n, 3),
+        "collision_without_merge_rate": round(
+            sum(d.get("collision_without_merge", 0) for d in diags) / n, 3
+        ),
         "merge_success_rate": round(sum(d["merge_completed"] for d in diags) / n, 3),
-        "merge_completion_rate": round(sum(d["merge_completed"] for d in diags) / n, 3),
         "non_merge_failure_rate": round(sum(d.get("merge_failed", 0) for d in diags) / n, 3),
         "collision_rate": round(sum(d["collision_triggered"] for d in diags) / n, 3),
         "reached_merge_zone_rate": round(sum(d["reached_merge_zone"] for d in diags) / n, 3),
         "entered_main_lane_rate": round(sum(d["entered_main_lane"] for d in diags) / n, 3),
         "action_3_frequency": round(a3 / total_actions, 4) if total_actions else 0.0,
         "successful_lane_changes_total": sum(d["successful_lane_change"] for d in diags),
-        "terminal_bonus_count": sum(d.get("terminal_bonus", 0) for d in diags),
-        "terminal_penalty_count": sum(d.get("terminal_penalty", 0) for d in diags),
-        "avg_time_to_merge_when_success": (
-            round(float(np.mean([d["time_to_merge"] for d in merges])), 2) if merges else None
+        "terminal_merge_bonus_count": sum(d.get("terminal_bonus", 0) for d in diags),
+        "terminal_non_merge_penalty_count": sum(d.get("terminal_penalty", 0) for d in diags),
+        "terminal_collision_penalty_count": sum(
+            d.get("collision_penalty_count", 0) for d in diags
+        ),
+        "avg_time_to_merge_when_safe_success": (
+            round(float(np.mean([d["time_to_merge"] for d in safe_merges])), 2)
+            if safe_merges
+            else None
         ),
     }
 
@@ -464,7 +491,19 @@ def main() -> None:
     part_d = part_d_reward_components(ego_policy, ego_env)
     print(json.dumps(part_d, indent=2))
 
-    summary = {"part_a_random": part_a, "part_b_scripted": part_b,
+    # Calibration parameters in effect for these diagnostics (RunConfig defaults).
+    _diag_cfg = RunConfig(mode="rawlsian")
+    calibration = {
+        "rawlsian_objective_scale": _diag_cfg.rawlsian_objective_scale,
+        "terminal_collision_penalty": _diag_cfg.terminal_collision_penalty,
+        "merge_success_bonus": _diag_cfg.merge_success_bonus,
+        "non_merge_failure_penalty": _diag_cfg.non_merge_failure_penalty,
+    }
+    print("== Calibration parameters used ==")
+    print(json.dumps(calibration, indent=2))
+
+    summary = {"calibration": calibration,
+               "part_a_random": part_a, "part_b_scripted": part_b,
                "part_c_trained": part_c, "part_d_reward_components": part_d}
     with (DIAG_DIR / "part3_summary.json").open("w", encoding="utf-8") as handle:
         json.dump(summary, handle, indent=2)

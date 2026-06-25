@@ -22,6 +22,14 @@ The per-step terms below come from the agent's own raw state:
     ``RewardFunction`` (identical to the Rawlsian condition) and is applied by
     the training/evaluation loop at the terminal/merge step.
 
+NOTE on collisions (intentional, documented): the egoistic objective keeps its
+own per-step individual collision aversion (``- collision_penalty`` below). The
+training loop ALSO applies the shared terminal collision penalty
+(``terminal_collision_adjustment``) identically to both conditions. This is not
+an accidental double count: the per-step term is the agent's individual safety
+preference, while the shared terminal penalty is a task-level safety constraint
+applied equally to Egoistic and Rawlsian so both solve the same safe-merge task.
+
 Deterministic, standard-library/NumPy only, no Torch dependency. Does not use
 the experience function and performs no multi-agent aggregation.
 """
