@@ -68,6 +68,10 @@ class RunConfig:
     seed: int = 0
     episodes: int = 50
     max_steps: int = 60
+    # Optional run-group/batch name. When set, all outputs for this run go under
+    # experiments/v1_runs/<tag>/ (own results.csv, configs/, logs/) so different
+    # pilots/campaigns stay isolated. When None, outputs go to experiments/ root.
+    tag: Optional[str] = None
     epsilon_start: float = 1.0
     epsilon_end: float = 0.05
     epsilon_decay_episodes: int = 40
@@ -85,8 +89,12 @@ class RunConfig:
     non_merge_failure_penalty: float = 1.0
     # Shared terminal collision penalty applied identically to both conditions.
     terminal_collision_penalty: float = 10.0
-    # Calibration scale for the Rawlsian maximin objective (egoistic ignores it).
-    rawlsian_objective_scale: float = 1.0
+    # Proposal-aligned delta-min Rawlsian shaping (egoistic ignores both).
+    rawlsian_lambda: float = 1.0
+    rawlsian_epsilon: float = 1e-6
+    # Deprecated: previous diagnostic raw-min scaling. Kept only for audit/logging
+    # when --rawlsian-objective-scale is passed; it is mapped to rawlsian_lambda.
+    deprecated_rawlsian_objective_scale: Optional[float] = None
     eval_seeds: list = field(default_factory=lambda: list(EVAL_SEEDS))
 
 
@@ -157,13 +165,16 @@ def build_reward_function(
         terminal_collision_penalty=config.terminal_collision_penalty,
     )
     if config.mode == "egoistic":
-        # rawlsian_objective_scale is deliberately ignored for egoistic mode.
+        # rawlsian_lambda / rawlsian_epsilon are deliberately ignored for egoistic.
         return EgoisticReward(agent_id=ego_agent, merge_task_config=merge_cfg)
     if config.mode == "rawlsian":
+        # Base individual reward (same as egoistic) + delta-min shaping signal.
         return RawlsianReward(
             experience_function=experience_function,
             merge_task_config=merge_cfg,
-            objective_scale=config.rawlsian_objective_scale,
+            rawlsian_lambda=config.rawlsian_lambda,
+            rawlsian_epsilon=config.rawlsian_epsilon,
+            agent_id=ego_agent,
         )
     raise ValueError(f"Unknown mode '{config.mode}'. Use 'egoistic' or 'rawlsian'.")
 
@@ -205,6 +216,9 @@ def run_episode(
     merge_bonus_applied = 0
     non_merge_penalty_applied = 0
     collision_penalty_applied = 0
+    # Rawlsian delta-min shaping diagnostics (blank/0 for egoistic mode).
+    rawlsian_signals: list[float] = []
+    delta_mins: list[float] = []
     steps = 0
 
     for _ in range(max_steps):
@@ -213,6 +227,14 @@ def run_episode(
         done = bool(terminated or truncated)
 
         base_reward = reward_fn.compute(obs, next_obs, next_env_state, env_state)
+
+        # Read-only Rawlsian shaping diagnostics (present only on RawlsianReward).
+        sig = getattr(reward_fn, "last_rawlsian_signal", None)
+        if sig is not None:
+            rawlsian_signals.append(float(sig))
+        dmin = getattr(reward_fn, "last_delta_min_experience", None)
+        if dmin is not None:
+            delta_mins.append(float(dmin))
         ego_state = next_env_state[env.ego_agent]
         # Shared terminal adjustments (identical for both conditions): merge
         # bonus / non-merge penalty, plus the shared terminal collision penalty.
@@ -264,6 +286,16 @@ def run_episode(
     # so we split safe vs. unsafe merges explicitly (see merge_task_reward).
     outcome = classify_outcome(merge_completed, collision, terminal=True)
 
+    # Rawlsian delta-min shaping diagnostics (diagnostic only, never a primary
+    # outcome metric). Egoistic mode produces no signals -> blank / 0.
+    mean_rawlsian_signal = float(np.mean(rawlsian_signals)) if rawlsian_signals else ""
+    rawlsian_positive_signal_count = sum(1 for s in rawlsian_signals if s > 0)
+    rawlsian_negative_signal_count = sum(1 for s in rawlsian_signals if s < 0)
+    rawlsian_zero_signal_count = sum(1 for s in rawlsian_signals if s == 0)
+    mean_delta_min_experience = float(np.mean(delta_mins)) if delta_mins else ""
+    min_delta_min_experience = float(np.min(delta_mins)) if delta_mins else ""
+    max_delta_min_experience = float(np.max(delta_mins)) if delta_mins else ""
+
     return {
         "episode_reward": episode_reward,
         "episode_length": steps,
@@ -284,6 +316,14 @@ def run_episode(
         "merge_bonus_applied": merge_bonus_applied,
         "non_merge_penalty_applied": non_merge_penalty_applied,
         "collision_penalty_applied": collision_penalty_applied,
+        # Diagnostic-only Rawlsian shaping fields.
+        "mean_rawlsian_signal": mean_rawlsian_signal,
+        "rawlsian_positive_signal_count": rawlsian_positive_signal_count,
+        "rawlsian_negative_signal_count": rawlsian_negative_signal_count,
+        "rawlsian_zero_signal_count": rawlsian_zero_signal_count,
+        "mean_delta_min_experience": mean_delta_min_experience,
+        "min_delta_min_experience": min_delta_min_experience,
+        "max_delta_min_experience": max_delta_min_experience,
     }
 
 
@@ -342,7 +382,9 @@ def evaluate(
         "eval_mean_experience": _mean("mean_experience"),
         "eval_episode_reward": _mean("episode_reward"),
         # Calibration parameters echoed into results for auditability.
-        "rawlsian_objective_scale": config.rawlsian_objective_scale,
+        "rawlsian_lambda": config.rawlsian_lambda,
+        "rawlsian_epsilon": config.rawlsian_epsilon,
+        "deprecated_rawlsian_objective_scale": config.deprecated_rawlsian_objective_scale,
         "terminal_collision_penalty": config.terminal_collision_penalty,
         "merge_success_bonus": config.merge_success_bonus,
         "non_merge_failure_penalty": config.non_merge_failure_penalty,
@@ -350,21 +392,37 @@ def evaluate(
     }
 
 
-def _ensure_dirs() -> None:
-    for directory in (EXPERIMENTS_DIR, LOGS_DIR, CONFIGS_DIR):
-        directory.mkdir(parents=True, exist_ok=True)
+def _run_paths(config: RunConfig) -> dict:
+    """Resolve output paths, isolating tagged runs into their own subfolder.
+
+    With ``--tag NAME`` everything for the run lives under
+    ``experiments/v1_runs/NAME/`` (its own ``results.csv``, ``configs/``,
+    ``logs/``). Without a tag, the historical ``experiments/`` layout is used.
+    """
+    base = EXPERIMENTS_DIR / "v1_runs" / config.tag if config.tag else EXPERIMENTS_DIR
+    return {
+        "base": base,
+        "logs": base / "logs",
+        "configs": base / "configs",
+        "results": base / "results.csv",
+    }
 
 
-def _write_config(run_id: str, config: RunConfig) -> None:
-    path = CONFIGS_DIR / f"{run_id}.json"
+def _ensure_dirs(paths: dict) -> None:
+    for key in ("base", "logs", "configs"):
+        paths[key].mkdir(parents=True, exist_ok=True)
+
+
+def _write_config(paths: dict, run_id: str, config: RunConfig) -> None:
+    path = paths["configs"] / f"{run_id}.json"
     with path.open("w", encoding="utf-8") as handle:
         json.dump(asdict(config), handle, indent=2)
 
 
-def _write_episode_log(run_id: str, rows: list[dict]) -> None:
+def _write_episode_log(paths: dict, run_id: str, rows: list[dict]) -> None:
     if not rows:
         return
-    path = LOGS_DIR / f"{run_id}.csv"
+    path = paths["logs"] / f"{run_id}.csv"
     fieldnames = list(rows[0].keys())
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -372,25 +430,26 @@ def _write_episode_log(run_id: str, rows: list[dict]) -> None:
         writer.writerows(rows)
 
 
-def _append_results(run_id: str, config: RunConfig, eval_metrics: dict) -> None:
+def _append_results(paths: dict, run_id: str, config: RunConfig, eval_metrics: dict) -> None:
+    results_csv = paths["results"]
     row = {"run_id": run_id, "mode": config.mode, "seed": config.seed, **eval_metrics}
     fieldnames = list(row.keys())
     expected_header = ",".join(fieldnames)
 
     write_header = True
-    if RESULTS_CSV.exists():
-        with RESULTS_CSV.open("r", encoding="utf-8") as handle:
+    if results_csv.exists():
+        with results_csv.open("r", encoding="utf-8") as handle:
             existing_header = handle.readline().strip()
         if existing_header == expected_header:
             write_header = False
         else:
             # Schema changed (new outcome metrics). Preserve the old pilot file
             # instead of corrupting it by appending mismatched columns.
-            legacy = RESULTS_CSV.with_name(f"results_legacy_{int(time.time())}.csv")
-            RESULTS_CSV.rename(legacy)
+            legacy = results_csv.with_name(f"results_legacy_{int(time.time())}.csv")
+            results_csv.rename(legacy)
             print(f"Note: results schema changed; archived previous results to {legacy.name}")
 
-    with RESULTS_CSV.open("a", newline="", encoding="utf-8") as handle:
+    with results_csv.open("a", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
         if write_header:
             writer.writeheader()
@@ -399,7 +458,8 @@ def _append_results(run_id: str, config: RunConfig, eval_metrics: dict) -> None:
 
 def run_experiment(config: RunConfig) -> dict:
     """Train then evaluate a single condition; persist config, logs, results."""
-    _ensure_dirs()
+    paths = _run_paths(config)
+    _ensure_dirs(paths)
     seed_everything(config.seed)
 
     env = HighwayMergeEnv(max_steps=config.max_steps)
@@ -408,7 +468,7 @@ def run_experiment(config: RunConfig) -> dict:
     reward_fn = build_reward_function(config, env.ego_agent, metrics_exp_fn)
 
     run_id = f"{config.mode}_seed{config.seed}_{int(time.time())}"
-    _write_config(run_id, config)
+    _write_config(paths, run_id, config)
 
     episode_rows = []
     for episode in range(config.episodes):
@@ -435,18 +495,20 @@ def run_experiment(config: RunConfig) -> dict:
             f"len={metrics['episode_length']} ttm={metrics['time_to_merge']}"
         )
 
-    _write_episode_log(run_id, episode_rows)
+    _write_episode_log(paths, run_id, episode_rows)
 
     eval_metrics = evaluate(env, policy, reward_fn, metrics_exp_fn, config)
-    _append_results(run_id, config, eval_metrics)
+    _append_results(paths, run_id, config, eval_metrics)
 
     print(f"\n=== {config.mode} evaluation (held-out seeds) ===")
     for key, value in eval_metrics.items():
         print(f"  {key}: {value}")
     print(f"\nrun_id={run_id}")
-    print(f"config -> {CONFIGS_DIR / (run_id + '.json')}")
-    print(f"episode log -> {LOGS_DIR / (run_id + '.csv')}")
-    print(f"results -> {RESULTS_CSV}")
+    if config.tag:
+        print(f"tag={config.tag}  (outputs isolated under {paths['base']})")
+    print(f"config -> {paths['configs'] / (run_id + '.json')}")
+    print(f"episode log -> {paths['logs'] / (run_id + '.csv')}")
+    print(f"results -> {paths['results']}")
 
     return eval_metrics
 
@@ -457,30 +519,60 @@ def parse_args(argv: Optional[list] = None) -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--episodes", type=int, default=50)
     parser.add_argument("--max-steps", type=int, default=60)
+    parser.add_argument(
+        "--tag",
+        type=str,
+        default=None,
+        help=(
+            "Run-group/batch name. All outputs go under experiments/v1_runs/<tag>/ "
+            "(own results.csv, configs/, logs/), keeping pilots isolated."
+        ),
+    )
     # Calibration / task-safety parameters (explicit, never chosen by mode).
     parser.add_argument("--merge-success-bonus", type=float, default=1.0)
     parser.add_argument("--non-merge-failure-penalty", type=float, default=1.0)
     parser.add_argument("--terminal-collision-penalty", type=float, default=10.0)
+    # Proposal-aligned delta-min Rawlsian shaping (Rawlsian mode only).
+    parser.add_argument("--rawlsian-lambda", type=float, default=1.0)
+    parser.add_argument("--rawlsian-epsilon", type=float, default=1e-6)
     parser.add_argument(
         "--rawlsian-objective-scale",
         type=float,
-        default=1.0,
-        help="Scales min_i E_i in Rawlsian mode only; ignored for egoistic.",
+        default=None,
+        help=(
+            "DEPRECATED. Raw min_i E_i scaling is no longer used. If provided, "
+            "its value is mapped to --rawlsian-lambda with a warning."
+        ),
     )
     return parser.parse_args(argv)
 
 
 def main(argv: Optional[list] = None) -> None:
     args = parse_args(argv)
+
+    rawlsian_lambda = args.rawlsian_lambda
+    deprecated_scale = None
+    if args.rawlsian_objective_scale is not None:
+        deprecated_scale = args.rawlsian_objective_scale
+        rawlsian_lambda = args.rawlsian_objective_scale
+        print(
+            "WARNING: --rawlsian-objective-scale is deprecated; raw min_i E_i "
+            "scaling has been replaced by delta-min shaping. Mapping the given "
+            f"value ({deprecated_scale}) to --rawlsian-lambda."
+        )
+
     config = RunConfig(
         mode=args.mode,
         seed=args.seed,
         episodes=args.episodes,
         max_steps=args.max_steps,
+        tag=args.tag,
         merge_success_bonus=args.merge_success_bonus,
         non_merge_failure_penalty=args.non_merge_failure_penalty,
         terminal_collision_penalty=args.terminal_collision_penalty,
-        rawlsian_objective_scale=args.rawlsian_objective_scale,
+        rawlsian_lambda=rawlsian_lambda,
+        rawlsian_epsilon=args.rawlsian_epsilon,
+        deprecated_rawlsian_objective_scale=deprecated_scale,
     )
     run_experiment(config)
 

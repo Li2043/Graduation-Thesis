@@ -112,6 +112,7 @@ def run_instrumented_episode(
     terminal_bonus = 0
     terminal_penalty = 0
     collision_penalty_count = 0
+    rawlsian_signals: list[float] = []
     steps = 0
 
     for t in range(max_steps):
@@ -140,6 +141,9 @@ def run_instrumented_episode(
             terminal_penalty = 1
         if collision_adj < 0:
             collision_penalty_count = 1
+        sig = getattr(reward_fn, "last_rawlsian_signal", None)
+        if sig is not None:
+            rawlsian_signals.append(float(sig))
 
         lane_after = next_env_state[RAMP_AGENT]["lane"]
         if action == ACTION_LANE_CHANGE:
@@ -208,6 +212,10 @@ def run_instrumented_episode(
         "terminal_bonus": terminal_bonus,
         "terminal_penalty": terminal_penalty,
         "collision_penalty_count": collision_penalty_count,
+        "rawlsian_positive_signal_count": sum(1 for s in rawlsian_signals if s > 0),
+        "rawlsian_negative_signal_count": sum(1 for s in rawlsian_signals if s < 0),
+        "rawlsian_zero_signal_count": sum(1 for s in rawlsian_signals if s == 0),
+        "mean_rawlsian_signal": float(np.mean(rawlsian_signals)) if rawlsian_signals else "",
         "final_position": float(final["position"]),
         "final_lane": int(final["lane"]),
         "final_velocity": float(final["velocity"]),
@@ -366,6 +374,16 @@ def _aggregate(diags: list[dict]) -> dict:
         "terminal_collision_penalty_count": sum(
             d.get("collision_penalty_count", 0) for d in diags
         ),
+        # Rawlsian delta-min shaping diagnostics (0 for egoistic-reward roll-outs).
+        "rawlsian_positive_signal_count": sum(
+            d.get("rawlsian_positive_signal_count", 0) for d in diags
+        ),
+        "rawlsian_negative_signal_count": sum(
+            d.get("rawlsian_negative_signal_count", 0) for d in diags
+        ),
+        "rawlsian_zero_signal_count": sum(
+            d.get("rawlsian_zero_signal_count", 0) for d in diags
+        ),
         "avg_time_to_merge_when_safe_success": (
             round(float(np.mean([d["time_to_merge"] for d in safe_merges])), 2)
             if safe_merges
@@ -494,7 +512,8 @@ def main() -> None:
     # Calibration parameters in effect for these diagnostics (RunConfig defaults).
     _diag_cfg = RunConfig(mode="rawlsian")
     calibration = {
-        "rawlsian_objective_scale": _diag_cfg.rawlsian_objective_scale,
+        "rawlsian_lambda": _diag_cfg.rawlsian_lambda,
+        "rawlsian_epsilon": _diag_cfg.rawlsian_epsilon,
         "terminal_collision_penalty": _diag_cfg.terminal_collision_penalty,
         "merge_success_bonus": _diag_cfg.merge_success_bonus,
         "non_merge_failure_penalty": _diag_cfg.non_merge_failure_penalty,
