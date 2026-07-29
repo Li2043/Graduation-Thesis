@@ -3,11 +3,15 @@
 Stage 3A uses scripted actions only. Primary ranking scenarios evolve through
 environment dynamics without teleportation. Fixture-injected collisions are
 marked ``fixture_only=True`` and excluded from behavioural ranking.
+
+Matched blocks share one initial state per block across all scripts. Blocks are
+chosen so both safe orderings are physically achievable; ICs are not tuned
+after observing reward rankings.
 """
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass
 from typing import Any
 
 from thesis.envs.merge_env_v2 import HighLevelAction, MergeEnvConfig
@@ -38,7 +42,6 @@ class MatchedBlock:
     max_steps: int
     dt: float = 0.2
     collision_distance: float = 4.0
-    # Allow reverse for oscillation audit only when applied in scenario config
     v_min: float = 0.0
     description: str = ""
 
@@ -60,7 +63,6 @@ class MatchedBlock:
             dt=self.dt,
             collision_distance=self.collision_distance,
             v_min=self.v_min,
-            # Keep background far from learners for safe scripts by default
             fixture_mode=None,
             fixture_payload={},
         )
@@ -69,6 +71,14 @@ class MatchedBlock:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+    def ic_fix(self) -> dict[str, float]:
+        return {
+            "fix_route_A": self.spawn_route_A,
+            "fix_route_B": self.spawn_route_B,
+            "fix_speed_A": self.spawn_speed_A,
+            "fix_speed_B": self.spawn_speed_B,
+        }
 
 
 @dataclass
@@ -80,12 +90,10 @@ class AuditScenario:
     fixture_only: bool = False
     primary_ranking: bool = True
     description: str = ""
-    # Exact post-reset route overrides (removes spawn jitter for matched ICs)
     fix_route_A: float | None = None
     fix_route_B: float | None = None
     fix_speed_A: float | None = None
     fix_speed_B: float | None = None
-    # Oscillation / reverse needs negative v_min
     force_v_min: float | None = None
 
 
@@ -100,186 +108,116 @@ def _repeat(a: int, b: int, n: int) -> list[dict[str, int]]:
 
 
 def build_matched_blocks() -> list[MatchedBlock]:
-    """Eight fixed matched blocks. Initial conditions are not tuned after ranking."""
-    # Background parked far away for most blocks
+    """Eight fixed matched blocks covering gap/speed/arrival variation.
+
+    Geometry places mainline A behind the join and ramp B on the approach so
+    either vehicle can clear first under different yield scripts.
+    """
     far_front, far_rear = 2000.0, -200.0
-    blocks = [
-        MatchedBlock(
-            block_id="block_001",
-            seed=101,
-            role_A="mainline",
-            role_B="ramp",
-            spawn_route_A=40.0,
-            spawn_route_B=30.0,
-            spawn_speed_A=16.0,
-            spawn_speed_B=15.0,
-            spawn_route_B_front=far_front,
-            spawn_route_B_rear=far_rear,
-            spawn_speed_B_front=0.0,
-            spawn_speed_B_rear=0.0,
-            target_speed=20.0,
-            max_steps=220,
-            description="Moderate gap, moderate speeds",
-        ),
-        MatchedBlock(
-            block_id="block_002",
-            seed=102,
-            role_A="mainline",
-            role_B="ramp",
-            spawn_route_A=35.0,
-            spawn_route_B=45.0,
-            spawn_speed_A=14.0,
-            spawn_speed_B=17.0,
-            spawn_route_B_front=far_front,
-            spawn_route_B_rear=far_rear,
-            spawn_speed_B_front=0.0,
-            spawn_speed_B_rear=0.0,
-            target_speed=20.0,
-            max_steps=220,
-            description="Ramp slightly ahead in route progress toward merge",
-        ),
-        MatchedBlock(
-            block_id="block_003",
-            seed=103,
-            role_A="mainline",
-            role_B="ramp",
-            spawn_route_A=55.0,
-            spawn_route_B=25.0,
-            spawn_speed_A=18.0,
-            spawn_speed_B=13.0,
-            spawn_route_B_front=far_front,
-            spawn_route_B_rear=far_rear,
-            spawn_speed_B_front=0.0,
-            spawn_speed_B_rear=0.0,
-            target_speed=20.0,
-            max_steps=220,
-            description="Mainline closer to merge, higher speed",
-        ),
-        MatchedBlock(
-            block_id="block_004",
-            seed=104,
-            role_A="mainline",
-            role_B="ramp",
-            spawn_route_A=30.0,
-            spawn_route_B=20.0,
-            spawn_speed_A=12.0,
-            spawn_speed_B=12.0,
-            spawn_route_B_front=far_front,
-            spawn_route_B_rear=far_rear,
-            spawn_speed_B_front=0.0,
-            spawn_speed_B_rear=0.0,
-            target_speed=18.0,
-            max_steps=260,
-            description="Lower speeds, smaller merge gap",
-        ),
-        MatchedBlock(
-            block_id="block_005",
-            seed=105,
-            role_A="mainline",
-            role_B="ramp",
-            spawn_route_A=45.0,
-            spawn_route_B=50.0,
-            spawn_speed_A=20.0,
-            spawn_speed_B=14.0,
-            spawn_route_B_front=far_front,
-            spawn_route_B_rear=far_rear,
-            spawn_speed_B_front=0.0,
-            spawn_speed_B_rear=0.0,
-            target_speed=22.0,
-            max_steps=220,
-            description="Higher mainline speed, ramp nearer join",
-        ),
-        MatchedBlock(
-            block_id="block_006",
-            seed=106,
-            role_A="mainline",
-            role_B="ramp",
-            spawn_route_A=25.0,
-            spawn_route_B=35.0,
-            spawn_speed_A=15.0,
-            spawn_speed_B=18.0,
-            spawn_route_B_front=far_front,
-            spawn_route_B_rear=far_rear,
-            spawn_speed_B_front=0.0,
-            spawn_speed_B_rear=0.0,
-            target_speed=20.0,
-            max_steps=240,
-            description="Ramp faster; both safe orders achievable",
-        ),
-        MatchedBlock(
-            block_id="block_007",
-            seed=107,
-            role_A="mainline",
-            role_B="ramp",
-            spawn_route_A=50.0,
-            spawn_route_B=40.0,
-            spawn_speed_A=17.0,
-            spawn_speed_B=16.0,
-            spawn_route_B_front=far_front,
-            spawn_route_B_rear=far_rear,
-            spawn_speed_B_front=0.0,
-            spawn_speed_B_rear=0.0,
-            target_speed=20.0,
-            max_steps=220,
-            description="Near-merge starts, medium speeds",
-        ),
-        MatchedBlock(
-            block_id="block_008",
-            seed=108,
-            role_A="mainline",
-            role_B="ramp",
-            spawn_route_A=38.0,
-            spawn_route_B=28.0,
-            spawn_speed_A=13.0,
-            spawn_speed_B=19.0,
-            spawn_route_B_front=far_front,
-            spawn_route_B_rear=far_rear,
-            spawn_speed_B_front=0.0,
-            spawn_speed_B_rear=0.0,
-            target_speed=20.0,
-            max_steps=240,
-            description="Asymmetric speeds; larger arrival-time difference",
-        ),
+    # Speeds kept in a narrow band so physical early/late collisions and both
+    # safe orders remain achievable from the shared IC without teleportation.
+    specs = [
+        ("block_001", 101, 20.0, 40.0, 9.0, 9.0, "Baseline equal moderate-low speeds"),
+        ("block_002", 102, 18.0, 39.0, 9.0, 9.0, "Slightly smaller gap"),
+        ("block_003", 103, 22.0, 42.0, 9.0, 9.0, "Slightly larger gap"),
+        ("block_004", 104, 21.0, 41.0, 9.5, 9.0, "Mainline mild arrival lead"),
+        ("block_005", 105, 20.0, 42.0, 9.0, 10.0, "Ramp faster arrival tendency"),
+        ("block_006", 106, 16.0, 40.0, 9.0, 9.0, "Larger initial merge separation"),
+        ("block_007", 107, 24.0, 40.0, 9.0, 9.0, "Smaller separation; A closer to join"),
+        ("block_008", 108, 19.0, 41.0, 9.5, 9.0, "Mild asymmetric speeds and gap"),
     ]
-    return blocks
+    return [
+        MatchedBlock(
+            block_id=bid,
+            seed=seed,
+            role_A="mainline",
+            role_B="ramp",
+            spawn_route_A=ra,
+            spawn_route_B=rb,
+            spawn_speed_A=sa,
+            spawn_speed_B=sb,
+            spawn_route_B_front=far_front,
+            spawn_route_B_rear=far_rear,
+            spawn_speed_B_front=0.0,
+            spawn_speed_B_rear=0.0,
+            target_speed=20.0,
+            max_steps=260,
+            description=desc,
+        )
+        for bid, seed, ra, rb, sa, sb, desc in specs
+    ]
 
 
-def _safe_actions_mainline_first(n_fast: int = 90, n_yield: int = 15) -> list[dict[str, int]]:
-    # Mainline (A) accelerates; ramp (B) yields briefly then accelerates
-    acts = _repeat(ACC, DEC, n_yield) + _repeat(ACC, ACC, n_fast)
-    return acts
+def _safe_actions_mainline_first() -> list[dict[str, int]]:
+    # Brief yield on ramp (DEC), then coast, then both accelerate
+    return _repeat(ACC, DEC, 12) + _repeat(ACC, MNT, 50) + _repeat(ACC, ACC, 160)
 
 
-def _safe_actions_ramp_first(n_yield: int = 15, n_fast: int = 90) -> list[dict[str, int]]:
-    # Mainline yields; ramp accelerates
-    return _repeat(DEC, ACC, n_yield) + _repeat(ACC, ACC, n_fast)
+def _safe_actions_ramp_first() -> list[dict[str, int]]:
+    return _repeat(DEC, ACC, 12) + _repeat(MNT, ACC, 50) + _repeat(ACC, ACC, 160)
 
 
-def _safe_actions_simultaneous(n: int = 100) -> list[dict[str, int]]:
-    return _repeat(ACC, ACC, n)
+def _safe_actions_simultaneous() -> list[dict[str, int]]:
+    # Mild mutual coast then accelerate — keeps exit times close without forcing contact
+    return _repeat(MNT, MNT, 4) + _repeat(ACC, ACC, 160)
 
 
-def _slow_safe(n_slow: int = 160) -> list[dict[str, int]]:
-    # Mostly maintain with sparse accelerate → late completion
+def _slow_cruise(n: int) -> list[dict[str, int]]:
     acts: list[dict[str, int]] = []
-    for i in range(n_slow):
-        if i % 4 == 0:
+    for i in range(n):
+        if i % 5 == 0:
             acts.append({"A": ACC, "B": ACC})
         else:
             acts.append({"A": MNT, "B": MNT})
     return acts
 
 
+def _slow_safe_mainline() -> list[dict[str, int]]:
+    return _repeat(ACC, DEC, 12) + _slow_cruise(220)
+
+
+def _slow_safe_ramp() -> list[dict[str, int]]:
+    return _repeat(DEC, ACC, 12) + _slow_cruise(220)
+
+
+def _early_collision_actions() -> list[dict[str, int]]:
+    # B joins then brakes; A closes from behind (short horizon)
+    return _repeat(ACC, ACC, 4) + _repeat(ACC, DEC, 12) + _repeat(ACC, MNT, 40)
+
+
+def _late_collision_actions() -> list[dict[str, int]]:
+    return (
+        _repeat(ACC, ACC, 5)
+        + _repeat(MNT, ACC, 20)
+        + _repeat(ACC, DEC, 20)
+        + _repeat(ACC, MNT, 40)
+    )
+
+
+def _hard_braking_safe_actions() -> list[dict[str, int]]:
+    # Extra hard-braking burst beyond the matched smooth mainline-first script
+    return (
+        _repeat(ACC, DEC, 12)
+        + _repeat(DEC, MNT, 4)
+        + _repeat(ACC, MNT, 50)
+        + _repeat(ACC, ACC, 160)
+    )
+
+
+def _oscillation_actions() -> list[dict[str, int]]:
+    """Brake toward rest, then closed forward/reverse micro-cycles."""
+    acts = _repeat(DEC, DEC, 30)
+    for _ in range(6):
+        acts.extend(_repeat(ACC, ACC, 2))
+        acts.extend(_repeat(DEC, DEC, 4))
+    return acts
+
+
 def build_block_scenarios(block: MatchedBlock) -> list[AuditScenario]:
-    """All primary + fixture scenarios for one matched block."""
+    """All primary + fixture scenarios for one matched block (shared IC)."""
     out: list[AuditScenario] = []
     bid = block.block_id
-    fix = dict(
-        fix_route_A=block.spawn_route_A,
-        fix_route_B=block.spawn_route_B,
-        fix_speed_A=block.spawn_speed_A,
-        fix_speed_B=block.spawn_speed_B,
-    )
+    fix = block.ic_fix()
 
     out.append(
         AuditScenario(
@@ -315,9 +253,9 @@ def build_block_scenarios(block: MatchedBlock) -> list[AuditScenario]:
         AuditScenario(
             block_id=bid,
             scenario_id="slow_safe_mainline_first",
-            config=block.base_config(max_steps=max(block.max_steps, 280)),
-            actions=_repeat(ACC, DEC, 10) + _slow_safe(200),
-            description="Late safe completion, mainline-leaning yield",
+            config=block.base_config(max_steps=max(block.max_steps, 320)),
+            actions=_slow_safe_mainline(),
+            description="Late safe completion, mainline-first leaning",
             **fix,
         )
     )
@@ -325,9 +263,9 @@ def build_block_scenarios(block: MatchedBlock) -> list[AuditScenario]:
         AuditScenario(
             block_id=bid,
             scenario_id="slow_safe_ramp_first",
-            config=block.base_config(max_steps=max(block.max_steps, 280)),
-            actions=_repeat(DEC, ACC, 10) + _slow_safe(200),
-            description="Late safe completion, ramp-leaning yield",
+            config=block.base_config(max_steps=max(block.max_steps, 320)),
+            actions=_slow_safe_ramp(),
+            description="Late safe completion, ramp-first leaning",
             **fix,
         )
     )
@@ -336,8 +274,8 @@ def build_block_scenarios(block: MatchedBlock) -> list[AuditScenario]:
             block_id=bid,
             scenario_id="stall_at_start",
             config=block.base_config(max_steps=40),
-            actions=_repeat(MNT, MNT, 50),
-            description="No meaningful progress until truncation",
+            actions=_repeat(DEC, DEC, 25) + _repeat(MNT, MNT, 40),
+            description="Brake to stop then no progress until truncation",
             **fix,
         )
     )
@@ -346,79 +284,54 @@ def build_block_scenarios(block: MatchedBlock) -> list[AuditScenario]:
             block_id=bid,
             scenario_id="stall_after_partial_progress",
             config=block.base_config(max_steps=50),
-            actions=_repeat(ACC, ACC, 12) + _repeat(MNT, MNT, 50),
-            description="Partial progress then unresolved truncation",
+            actions=_repeat(ACC, ACC, 5) + _repeat(DEC, DEC, 28) + _repeat(MNT, MNT, 40),
+            description="Partial progress, stop, then unresolved truncation",
             **fix,
         )
     )
-
-    # Physical early collision: place both on shared mainline with closing speeds
-    # A mainline at 70, B ramp past join (route 85 → world ≈ 75), B faster closing?
-    # B world = 50 + (route-60) = route - 10. For B world ~ 66 and A at 70:
-    # B route = 76, world=66; A=70. B speed high, A low → catch from behind.
     out.append(
         AuditScenario(
             block_id=bid,
             scenario_id="early_collision",
-            config=block.base_config(
-                max_steps=40,
-                spawn_route_A=70.0,
-                spawn_route_B=76.0,
-                spawn_speed_A=8.0,
-                spawn_speed_B=22.0,
-            ),
-            actions=_repeat(MNT, ACC, 30),
+            config=block.base_config(max_steps=60, decel_rate=4.0),
+            actions=_early_collision_actions(),
             description="Physically evolved early collision on shared lane",
-            fix_route_A=70.0,
-            fix_route_B=76.0,
-            fix_speed_A=8.0,
-            fix_speed_B=22.0,
+            **fix,
         )
     )
-    # Late collision: progress far then close the gap
     out.append(
         AuditScenario(
             block_id=bid,
             scenario_id="late_collision",
-            config=block.base_config(
-                max_steps=80,
-                spawn_route_A=120.0,
-                spawn_route_B=125.0,
-                spawn_speed_A=10.0,
-                spawn_speed_B=24.0,
-            ),
-            actions=_repeat(ACC, ACC, 8) + _repeat(MNT, ACC, 40),
+            config=block.base_config(max_steps=120, decel_rate=6.0),
+            actions=_late_collision_actions(),
             description="Substantial progress then physical collision",
-            fix_route_A=120.0,
-            fix_route_B=125.0,
-            fix_speed_A=10.0,
-            fix_speed_B=24.0,
+            **fix,
         )
     )
     out.append(
         AuditScenario(
             block_id=bid,
             scenario_id="hard_braking_safe",
-            config=block.base_config(max_steps=block.max_steps, decel_rate=6.0),
-            actions=_repeat(DEC, ACC, 8) + _repeat(ACC, ACC, 100),
-            description="Hard braking then safe completion",
+            config=block.base_config(max_steps=block.max_steps),
+            actions=_hard_braking_safe_actions(),
+            description="Extra braking burst then safe completion",
             **fix,
         )
     )
-    # Oscillation: enable reverse via v_min < 0
-    osc_actions: list[dict[str, int]] = []
-    for _ in range(6):
-        osc_actions.extend(_repeat(ACC, ACC, 4))
-        osc_actions.extend(_repeat(DEC, DEC, 8))  # reverse when v_min < 0
-        osc_actions.extend(_repeat(ACC, ACC, 4))
     out.append(
         AuditScenario(
             block_id=bid,
             scenario_id="oscillation_closed_cycle",
-            config=block.base_config(max_steps=80, v_min=-12.0, decel_rate=4.0),
-            actions=osc_actions,
+            config=block.base_config(
+                max_steps=80,
+                v_min=-2.5,
+                accel_rate=2.5,
+                decel_rate=2.5,
+            ),
+            actions=_oscillation_actions(),
             description="Closed route-progress cycles (reverse enabled)",
-            force_v_min=-12.0,
+            force_v_min=-2.5,
             **fix,
         )
     )
@@ -426,15 +339,14 @@ def build_block_scenarios(block: MatchedBlock) -> list[AuditScenario]:
         AuditScenario(
             block_id=bid,
             scenario_id="reverse_then_recover",
-            config=block.base_config(max_steps=block.max_steps, v_min=-10.0, decel_rate=4.0),
-            actions=_repeat(DEC, DEC, 10) + _repeat(ACC, ACC, 120),
-            description="Brief reverse then recover to safe completion if possible",
-            force_v_min=-10.0,
+            config=block.base_config(max_steps=block.max_steps, v_min=-4.0, decel_rate=3.0),
+            actions=_repeat(DEC, DEC, 10) + _safe_actions_mainline_first(),
+            description="Brief reverse then recover to safe completion",
+            force_v_min=-4.0,
             **fix,
         )
     )
 
-    # Fixture-only stakeholder collision diagnostics (excluded from ranking)
     for target, name in (
         (["A", "B_front"], "fixture_collision_A"),
         (["B", "B_rear"], "fixture_collision_B"),

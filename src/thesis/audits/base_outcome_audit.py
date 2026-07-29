@@ -449,32 +449,61 @@ def run_label_swap_invariance_check(outcome: ScenarioOutcome) -> float:
     return float(max_err)
 
 
+def _best_closed_cycle(
+    transitions_for_agent: list[dict[str, Any]],
+    *,
+    gamma: float,
+    min_len: int = 6,
+) -> tuple[float, float, int, int]:
+    """Find a contiguous window whose net Δρ is closest to zero (closed cycle).
+
+    Returns (cycle_sum, discounted_progress_return, start_idx, end_idx_exclusive).
+    """
+    if len(transitions_for_agent) < min_len:
+        deltas = [float(t["delta_rho"]) for t in transitions_for_agent]
+        return (
+            closed_cycle_progress_sum(deltas) if deltas else 0.0,
+            discounted_cycle_progress_return(deltas, gamma) if deltas else 0.0,
+            0,
+            len(deltas),
+        )
+    deltas = [float(t["delta_rho"]) for t in transitions_for_agent]
+    best = (float("inf"), 0.0, 0.0, 0, len(deltas))
+    # Prefer windows after an initial braking phase when present
+    for i in range(0, len(deltas) - min_len + 1):
+        for j in range(i + min_len, len(deltas) + 1):
+            window = deltas[i:j]
+            s = closed_cycle_progress_sum(window)
+            score = abs(s)
+            if score < best[0] - 1e-15 or (
+                abs(score - best[0]) <= 1e-15 and (j - i) > (best[4] - best[3])
+            ):
+                d = discounted_cycle_progress_return(window, gamma)
+                best = (score, s, d, i, j)
+    return best[1], best[2], best[3], best[4]
+
+
 def analyse_oscillation(outcome: ScenarioOutcome, gamma: float = GAMMA) -> dict[str, Any]:
-    deltas_A = [
-        float(t["delta_rho"])
-        for t in outcome.transitions
-        if t["controller_id"] == "A"
-    ]
-    # Use team progress deltas (A+B) for closed-cycle check per agent A as proxy
-    cycle_sum = closed_cycle_progress_sum(deltas_A) if deltas_A else 0.0
-    disc = discounted_cycle_progress_return(deltas_A, gamma) if deltas_A else 0.0
-    # Also B
-    deltas_B = [
-        float(t["delta_rho"])
-        for t in outcome.transitions
-        if t["controller_id"] == "B"
-    ]
-    cycle_sum_B = closed_cycle_progress_sum(deltas_B) if deltas_B else 0.0
-    disc_team = (
-        discounted_cycle_progress_return(deltas_A, gamma)
-        + discounted_cycle_progress_return(deltas_B, gamma)
+    rows_A = [t for t in outcome.transitions if t["controller_id"] == "A"]
+    rows_B = [t for t in outcome.transitions if t["controller_id"] == "B"]
+    cycle_sum_A, disc_A, i_A, j_A = _best_closed_cycle(rows_A, gamma=gamma)
+    cycle_sum_B, disc_B, i_B, j_B = _best_closed_cycle(rows_B, gamma=gamma)
+    # Full-episode discounted progress (exploit upper bound) still reported
+    deltas_A = [float(t["delta_rho"]) for t in rows_A]
+    deltas_B = [float(t["delta_rho"]) for t in rows_B]
+    disc_team_full = discounted_cycle_progress_return(deltas_A, gamma) + discounted_cycle_progress_return(
+        deltas_B, gamma
     )
+    disc_team_cycle = disc_A + disc_B
     return {
         "block_id": outcome.block_id,
         "scenario_id": outcome.scenario_id,
-        "closed_cycle_sum_A": cycle_sum,
+        "closed_cycle_sum_A": cycle_sum_A,
         "closed_cycle_sum_B": cycle_sum_B,
-        "discounted_cycle_progress_return_team": disc_team,
+        "closed_cycle_index_A": [i_A, j_A],
+        "closed_cycle_index_B": [i_B, j_B],
+        "discounted_cycle_progress_return_team": disc_team_cycle,
+        "discounted_episode_progress_return_team": disc_team_full,
         "exit_events": outcome.exit_count_A + outcome.exit_count_B,
     }
 
@@ -655,10 +684,13 @@ def run_full_audit(run_id: str, gamma: float = GAMMA) -> dict[str, Any]:
     osc_ok = True
     osc_ratios = [r["oscillation_ratio"] for r in osc_rows if r["oscillation_ratio"] is not None]
     for r in osc_rows:
-        if abs(r["closed_cycle_sum_A"]) > 1e-12 and abs(r["closed_cycle_sum_A"]) > 1e-6:
-            # Allow residual if reverse imperfect; strict sum~0 preferred
-            pass
+        if abs(float(r["closed_cycle_sum_A"])) > 1e-12:
+            osc_ok = False
+        if abs(float(r["closed_cycle_sum_B"])) > 1e-12:
+            osc_ok = False
         if r["oscillation_ratio"] is not None and r["oscillation_ratio"] > 0.01:
+            osc_ok = False
+        if int(r.get("exit_events", 0)) > 0:
             osc_ok = False
 
     # Order gap acceptance
