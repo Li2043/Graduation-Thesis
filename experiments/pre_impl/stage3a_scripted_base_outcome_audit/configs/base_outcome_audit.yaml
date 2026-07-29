@@ -1,0 +1,33 @@
+# Stage 3A — scripted base-outcome / incentive audit
+# Comfort / eta remain TEST-ONLY. No DQN training. No lambda tuning.
+
+experiment:
+  name: stage3a_scripted_base_outcome_audit
+  stage: "3A"
+  description: Deterministic scripted audit of frozen base-reward incentives
+
+gamma: 0.995
+
+frozen_reward_weights:
+  progress_weight: 0.4
+  exit_weight: 0.6
+  collision_penalty: 1.0
+
+comfort_test_only:
+  a_comfort: 2.0
+  a_hard: 6.0
+  eta_hard_brake: 0.1
+  note: TEST-ONLY placeholders
+
+acceptance:
+  median_normalised_order_gap_max: 0.05
+  maximum_normalised_order_gap_max: 0.10
+  oscillation_ratio_max: 0.01
+  nominal_braking_share_max: 0.10
+  label_swap_tol: 1.0e-12
+
+pytest:
+  test_paths:
+    - tests/audits/test_base_outcome_audit.py
+    - tests/integration/test_scripted_outcome_rankings.py
+  extra_args: ["-q", "--tb=short"]

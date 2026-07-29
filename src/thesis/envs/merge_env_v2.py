@@ -409,6 +409,14 @@ class MergeEnvV2(gym.Env):
                 "mainline": self.legal_actions("mainline"),
                 "ramp": self.legal_actions("ramp"),
             },
+            "action_masks": {
+                aid: [True, True, True]  # MAINTAIN / ACCELERATE / DECELERATE
+                for aid in LEARNING_CONTROLLERS
+            },
+            "controller_active": {
+                aid: not bool(self._registry.completed.get(aid, False))
+                for aid in LEARNING_CONTROLLERS
+            },
         }
         self.last_info = info
         return self._obs_from_vehicles(), reward, bool(terminated), bool(truncated), info
@@ -443,7 +451,13 @@ class MergeEnvV2(gym.Env):
 
         for sid, veh in self._vehicles.items():
             if sid in ("A", "B"):
-                a = float(cmd[sid])
+                # Option 1 (Stage 2B-2): completed learning controllers are inactive.
+                # Ignore commanded accel; do not keep accelerating an exited vehicle.
+                # Joint step API may still receive a placeholder action from the caller.
+                if self._registry.completed.get(sid, False) or veh.completed:
+                    a = 0.0
+                else:
+                    a = float(cmd[sid])
             else:
                 a = float(bg_accel[sid])
             # Realised SI-signed acceleration

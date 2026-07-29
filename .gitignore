@@ -1,24 +1,25 @@
-# Virtual environment
-.venv/
-venv/
-env/
-
-# Python
+# Virtual environments
+.venv_stage2b1/
+.venv*/
 __pycache__/
 *.py[cod]
-*$py.class
+.pytest_cache/
 *.egg-info/
-.eggs/
-dist/
-build/
+.mypy_cache/
 
-# IDE / OS
-.idea/
-.vscode/
-.DS_Store
-Thumbs.db
+# Local debug leftovers
+_git_status.txt
+_debug_*.py
+get-pip.py
 
-# Trained models and tensorboard logs (v0.3)
-models/*.zip
-logs/**/*
-!logs/.gitkeep
+# Experiment run artifacts (keep directory placeholders via .gitkeep)
+experiments/pre_impl/*/data/raw/*/
+experiments/pre_impl/*/data/processed/*/
+experiments/pre_impl/*/reports/*/
+experiments/pre_impl/*/logs/*/
+experiments/pre_impl/*/artifacts/*/
+# Pointers may be tracked; run payloads are not required in git
+
+env_search.txt
+project_tree.txt
+

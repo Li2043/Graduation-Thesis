@@ -1,0 +1,40 @@
+# Stage 2B-2 Independent DQN / replay / masking integration tests
+# Architecture, epsilon, learning rate, and lambdas are TEST-ONLY.
+
+experiment:
+  name: stage2b2_dqn_replay_bootstrap
+  stage: "2B-2"
+  description: Independent DQN data path correctness (not policy training)
+
+seed_A: 0
+seed_B: 1
+
+python_environment:
+  venv: .venv_stage2b1
+  python: "3.14.6"
+  framework: "torch==2.13.0+cpu"
+
+dqn_test_only:
+  obs_dim: 4
+  n_actions: 3
+  hidden_sizes: [32, 32]
+  learning_rate: 0.001
+  gamma: 0.995
+  epsilon: 0.1
+  replay_capacity: 10000
+  batch_size: 32
+  device: cpu
+  note: TEST-ONLY architecture / optimiser / exploration — not final
+
+completed_controller_policy: option1_inactive
+completed_controller_note: >
+  After safe exit, controller stops replay storage; env forces zero accel;
+  joint API may receive placeholder MAINTAIN; no MERGE/NO_OP invented.
+
+pytest:
+  test_paths:
+    - tests/agents/test_action_masking.py
+    - tests/agents/test_replay_buffer_v2.py
+    - tests/agents/test_dqn_targets.py
+    - tests/integration/test_dqn_env_reward_pipeline.py
+  extra_args: ["-q", "--tb=short"]

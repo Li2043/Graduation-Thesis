@@ -1,0 +1,6 @@
+# Stage 2B-2 Independent DQN / replay / masking integration dependencies.
+# Extends Stage 2B-1 venv (.venv_stage2b1, Python 3.14.6).
+# PyTorch CPU build pinned for cp314 compatibility.
+
+-r requirements-stage2b1.txt
+torch==2.13.0
