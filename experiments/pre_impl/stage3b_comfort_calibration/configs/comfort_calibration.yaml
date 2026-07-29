@@ -1,0 +1,70 @@
+# Stage 3B — comfort threshold and hard-braking weight calibration
+# Candidate grids are preregistered and must not be altered after seeing results.
+
+experiment:
+  name: stage3b_comfort_calibration
+  stage: "3B"
+  description: Offline calibration of a_comfort, a_hard, eta_hard_brake from Stage 3A traces
+
+source_stage3a:
+  run_id: "20260729T222933Z_3b07a818"
+  git_commit: "3b07a81879e913a175bfd05f8c985fc095841d34"
+  require_git_dirty: false
+  require_overall: "PASS"
+  require_policy_training_started: false
+
+dt: 0.2
+gamma: 0.995
+
+frozen_reward_weights:
+  progress_weight: 0.4
+  exit_weight: 0.6
+  collision_penalty: 1.0
+  note: Must not be altered in Stage 3B
+
+# Preregistered candidate grid (complete before execution)
+a_comfort_candidates: [1.5, 2.0, 2.5, 3.0]
+a_hard_candidates: [4.0, 5.0, 6.0, 7.0]
+eta_candidates: [0.02, 0.04, 0.06, 0.08, 0.10, 0.12, 0.15]
+
+threshold_pair_constraints:
+  min_a_hard_minus_a_comfort: 1.5
+  nominal_nonzero_h_rate_max: 0.10
+  nominal_saturation_rate_max: 0.01
+  hard_window_nonzero_h_rate_min: 0.80
+  hard_window_mean_h_min: 0.20
+  separation_score_min: 0.15
+  max_blocks_hard_detection_lt_0_70: 1
+  hard_detection_rate_block_min: 0.70
+
+hard_window:
+  delta_braking_magnitude_min: 1.0
+  align_scenarios:
+    hard: hard_braking_safe
+    nominal: safe_mainline_first
+
+eta_constraints:
+  median_nominal_share_min: 0.02
+  median_nominal_share_max: 0.06
+  max_nominal_share_max: 0.10
+  median_paired_share_diff_min: 0.02
+  median_order_gap_max: 0.05
+  max_order_gap_max: 0.10
+
+selection:
+  threshold: "lexicographic_separation_then_low_nominal_mean_h_then_high_a_comfort_then_high_a_hard"
+  eta: "smallest_feasible_eta"
+  tie_tolerance: 1.0e-12
+
+confirmatory:
+  max_abs_return_difference: 1.0e-10
+
+dt_sensitivity:
+  candidates: [0.1, 0.2, 0.4]
+  note: Primary calibration uses dt=0.2; alternate dt requires valid reruns (not naive interpolation)
+
+pytest:
+  test_paths:
+    - tests/calibration/test_comfort_calibration.py
+    - tests/integration/test_stage3b_confirmatory_rerun.py
+  extra_args: ["-q", "--tb=short"]
