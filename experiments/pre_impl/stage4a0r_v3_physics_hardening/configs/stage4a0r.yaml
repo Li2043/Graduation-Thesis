@@ -1,0 +1,39 @@
+stage: stage4a0r_v3_physics_hardening
+description: >
+  Harden MergeEnvCandidateV3 physics and Markov observations.
+  Does not rerun Stage 4A candidate selection and does not write a final lock.
+
+prior_stage4a_run_id: 20260729T231946Z_c8d92bc3
+prior_stage4a_status: superseded_pending_v3_hardening
+
+flags:
+  environment_parameters_final: false
+  comfort_parameters_final: false
+  policy_training_started: false
+  write_final_environment_lock: false
+  rerun_candidate_selection: false
+
+timing:
+  physics_dt: 0.05
+  policy_interval: 0.20
+  physics_substeps_per_action: 4
+
+observation:
+  dim: 27
+  module: thesis.envs.final_observation
+
+geometry:
+  module: thesis.envs.final_route_geometry
+  lateral_offset: 4.0
+
+idm:
+  maximum_emergency_deceleration_default: 6.0
+
+pytest_targets:
+  - tests/envs/test_final_observation.py
+  - tests/envs/test_final_route_geometry.py
+  - tests/envs/test_vehicle_dynamics.py
+  - tests/envs/test_merge_env_candidate_v3.py
+  - tests/envs/test_idm_background.py
+  - tests/integration/test_stage4a0r_physics_pipeline.py
+  - tests/certification/test_environment_candidate_selection.py

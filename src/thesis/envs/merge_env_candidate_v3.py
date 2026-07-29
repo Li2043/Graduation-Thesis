@@ -1,12 +1,14 @@
-"""Stage 4A candidate merge environment with physics substeps.
+"""Stage 4A / 4A-0R candidate merge environment with physics substeps.
 
-Policy interval 0.20 s = 4 × physics_dt 0.05 s. Core reward only for ranking
-(comfort / eta excluded from selection objective).
+Policy interval 0.20 s = 4 × physics_dt 0.05 s.
+Hardened in Stage 4A-0R: Markov observations, arc-length geometry, SAT
+collision, exact stopping, substep exit removal, bounded IDM, background exit.
 """
 
 from __future__ import annotations
 
 import math
+from copy import deepcopy
 from dataclasses import dataclass, field
 from enum import IntEnum
 from typing import Any
@@ -19,21 +21,17 @@ from thesis.envs.final_environment_config import (
     EnvironmentCandidate,
     InitialConditionBlock,
     LearningDynamics,
-    TargetSpeeds,
     TimingConfig,
     VehicleGeometry,
-    build_routes_for_geometry,
 )
-from thesis.envs.idm_background import IDMState, idm_acceleration
-from thesis.envs.route_coordinates import (
-    RouteDefinition,
-    is_on_shared_mainline,
-    normalised_route_progress,
-)
+from thesis.envs.final_observation import OBSERVATION_DIM, build_learner_observation
+from thesis.envs.final_route_geometry import FinalRouteGeometry, build_final_route_geometry
+from thesis.envs.idm_background import IDMState, idm_command
 from thesis.envs.vehicle_dynamics import (
     bumper_gap_along_x,
     desired_acceleration,
     integrate_longitudinal,
+    oriented_rectangles_collide,
     time_to_collision,
 )
 from thesis.rewards.base_reward_v2 import LEARNING_CONTROLLERS, STAKEHOLDER_SET
@@ -51,37 +49,15 @@ class VehicleState:
     role: str
     route_position: float
     speed: float
-    acceleration: float = 0.0
+    commanded_acceleration: float = 0.0
+    realised_acceleration: float = 0.0
+    active_on_road: bool = True
+    completed: bool = False
+    physical_segment: str = "mainline_approach"
+    heading: float = 0.0
     world_x: float = 0.0
     world_y: float = 0.0
-    completed: bool = False
     target_speed: float = 20.0
-
-
-def _route_from_dict(role: str, d: dict[str, float]) -> RouteDefinition:
-    return RouteDefinition(
-        role=role,  # type: ignore[arg-type]
-        route_start=float(d["route_start"]),
-        merge_start=float(d["merge_start"]),
-        merge_end=float(d["merge_end"]),
-        route_exit=float(d["route_exit"]),
-        total_route_length=float(d["total_route_length"]),
-        ramp_approach_length=float(d["ramp_approach_length"]),
-        join_world_x=float(d["join_world_x"]),
-    )
-
-
-def world_xy(route_position: float, route: RouteDefinition) -> tuple[float, float]:
-    """Map route position to world (x,y); continuous at ramp join."""
-    if route.role == "mainline":
-        return float(route.mainline_world_origin_x + route_position), 0.0
-    l_ramp = route.ramp_approach_length
-    if route_position <= l_ramp:
-        frac = 0.0 if l_ramp <= 0 else route_position / l_ramp
-        x = route.join_world_x - (1.0 - frac) * l_ramp
-        y = -4.0 * (1.0 - frac)
-        return float(x), float(y)
-    return float(route.join_world_x + (route_position - l_ramp)), 0.0
 
 
 @dataclass
@@ -92,12 +68,10 @@ class MergeEnvCandidateV3Config:
     vehicle: VehicleGeometry = field(default_factory=VehicleGeometry)
     dynamics: LearningDynamics = field(default_factory=LearningDynamics)
     max_policy_steps: int = 400
-    collision_bumper_gap: float = 0.0  # collide when gap <= 0
     discontinuity_threshold: float = 0.5
 
-    def routes(self) -> dict[str, RouteDefinition]:
-        raw = build_routes_for_geometry(self.candidate.geometry)
-        return {k: _route_from_dict(k, v) for k, v in raw.items()}
+    def geometry_model(self) -> FinalRouteGeometry:
+        return build_final_route_geometry(self.candidate.geometry)
 
 
 class MergeEnvCandidateV3(gym.Env):
@@ -109,41 +83,99 @@ class MergeEnvCandidateV3(gym.Env):
         super().__init__()
         self.config = config
         self.config.timing.validate()
-        self._routes = config.routes()
+        self._geom = config.geometry_model()
         self.action_space = spaces.Dict(
-            {
-                "A": spaces.Discrete(3),
-                "B": spaces.Discrete(3),
-            }
+            {"A": spaces.Discrete(3), "B": spaces.Discrete(3)}
         )
         self.observation_space = spaces.Dict(
             {
-                aid: spaces.Box(low=-np.inf, high=np.inf, shape=(4,), dtype=np.float32)
+                aid: spaces.Box(
+                    low=-np.inf, high=np.inf, shape=(OBSERVATION_DIM,), dtype=np.float32
+                )
                 for aid in LEARNING_CONTROLLERS
             }
         )
         self._vehicles: dict[str, VehicleState] = {}
         self._policy_step = 0
         self._rng = np.random.default_rng(0)
-        self._prev_route: dict[str, float] = {}
-        self._exit_count = {"A": 0, "B": 0}
-        self._exit_time: dict[str, int | None] = {"A": None, "B": None}
-
-    def _route_for(self, role: str) -> RouteDefinition:
-        return self._routes[role]
+        self._exit_count = {sid: 0 for sid in STAKEHOLDER_SET}
+        self._exit_time: dict[str, int | None] = {sid: None for sid in STAKEHOLDER_SET}
+        self._exit_substep: dict[str, int | None] = {sid: None for sid in STAKEHOLDER_SET}
 
     def _sync(self, veh: VehicleState) -> None:
-        x, y = world_xy(veh.route_position, self._route_for(veh.role))
-        veh.world_x, veh.world_y = x, y
+        pose = self._geom.pose(veh.role, veh.route_position)  # type: ignore[arg-type]
+        veh.world_x = pose.x
+        veh.world_y = pose.y
+        veh.heading = pose.heading
+        if veh.completed or not veh.active_on_road:
+            veh.physical_segment = "exited"
+        else:
+            veh.physical_segment = pose.segment
+
+    def _agent_features(self, veh: VehicleState) -> dict[str, Any]:
+        exit_s = self._geom.exit_route(veh.role)  # type: ignore[arg-type]
+        merge_s = self._geom.merge_route_marker(veh.role)  # type: ignore[arg-type]
+        rho = min(max(veh.route_position / max(exit_s, 1e-9), 0.0), 1.0)
+        return {
+            "role": veh.role,
+            "rho": rho,
+            "speed": veh.speed,
+            "target_speed": veh.target_speed,
+            "dist_to_merge": merge_s - veh.route_position,
+            "dist_to_exit": exit_s - veh.route_position,
+            "active_on_road": veh.active_on_road,
+            "completed": veh.completed,
+            "world_x": veh.world_x,
+            "world_y": veh.world_y,
+        }
+
+    def _nearest_longitudinal(
+        self, sid: str, *, direction: str
+    ) -> tuple[float | None, float | None]:
+        """Nearest active vehicle front/rear by world_x when headings nearly aligned."""
+        veh = self._vehicles[sid]
+        if not veh.active_on_road:
+            return None, None
+        best_gap = None
+        best_rel = None
+        for oid, other in self._vehicles.items():
+            if oid == sid or not other.active_on_road:
+                continue
+            # Only meaningful when roughly same lane corridor
+            if abs(other.world_y - veh.world_y) > 2.5:
+                continue
+            if direction == "front" and other.world_x > veh.world_x + 1e-9:
+                gap = bumper_gap_along_x(
+                    veh.world_x, other.world_x, vehicle_length=self.config.vehicle.length
+                )
+                rel = other.speed - veh.speed
+            elif direction == "rear" and other.world_x < veh.world_x - 1e-9:
+                gap = bumper_gap_along_x(
+                    other.world_x, veh.world_x, vehicle_length=self.config.vehicle.length
+                )
+                rel = veh.speed - other.speed
+            else:
+                continue
+            if best_gap is None or gap < best_gap:
+                best_gap = gap
+                best_rel = rel
+        return best_gap, best_rel
 
     def _obs(self) -> dict[str, np.ndarray]:
         out: dict[str, np.ndarray] = {}
         for aid in LEARNING_CONTROLLERS:
-            veh = self._vehicles[aid]
-            route = self._route_for(veh.role)
-            rho = normalised_route_progress(veh.route_position, route)
-            out[aid] = np.array(
-                [veh.route_position, veh.speed, rho, float(veh.completed)], dtype=np.float32
+            peer_id = "B" if aid == "A" else "A"
+            front_gap, front_rel = self._nearest_longitudinal(aid, direction="front")
+            rear_gap, rear_rel = self._nearest_longitudinal(aid, direction="rear")
+            out[aid] = build_learner_observation(
+                own=self._agent_features(self._vehicles[aid]),
+                peer=self._agent_features(self._vehicles[peer_id]),
+                b_front=self._agent_features(self._vehicles["B_front"]),
+                b_rear=self._agent_features(self._vehicles["B_rear"]),
+                front_gap=front_gap,
+                front_rel_speed=front_rel,
+                rear_gap=rear_gap,
+                rear_rel_speed=rear_rel,
             )
         return out
 
@@ -153,11 +185,11 @@ class MergeEnvCandidateV3(gym.Env):
         super().reset(seed=seed)
         self._rng = np.random.default_rng(int(seed))
         self._policy_step = 0
-        self._exit_count = {"A": 0, "B": 0}
-        self._exit_time = {"A": None, "B": None}
+        self._exit_count = {sid: 0 for sid in STAKEHOLDER_SET}
+        self._exit_time = {sid: None for sid in STAKEHOLDER_SET}
+        self._exit_substep = {sid: None for sid in STAKEHOLDER_SET}
         b = self.config.block
         targets = b.target_speeds.as_map()
-        # Physical role spawn → controller assignment
         role_spawn = {
             "mainline": (b.spawn_route_mainline, b.spawn_speed_mainline),
             "ramp": (b.spawn_route_ramp, b.spawn_speed_ramp),
@@ -187,21 +219,17 @@ class MergeEnvCandidateV3(gym.Env):
             )
             self._sync(veh)
             self._vehicles[bid] = veh
-        self._prev_route = {k: v.route_position for k, v in self._vehicles.items()}
         return self._obs(), {"stakeholder_set": list(STAKEHOLDER_SET), "policy_step": 0}
 
     def _leader_for(self, sid: str) -> tuple[str | None, float | None]:
-        """Nearest vehicle ahead on shared mainline by world_x."""
         veh = self._vehicles[sid]
-        if not is_on_shared_mainline(veh.route_position, self._route_for(veh.role)):
-            # ramp approach: no mainline leader for IDM gap (free-ish)
-            if veh.role == "ramp":
-                return None, None
+        if not veh.active_on_road:
+            return None, None
         candidates = []
         for oid, other in self._vehicles.items():
-            if oid == sid or other.completed:
+            if oid == sid or not other.active_on_road:
                 continue
-            if not is_on_shared_mainline(other.route_position, self._route_for(other.role)):
+            if abs(other.world_y - veh.world_y) > 2.5:
                 continue
             if other.world_x > veh.world_x + 1e-9:
                 gap = bumper_gap_along_x(
@@ -216,6 +244,8 @@ class MergeEnvCandidateV3(gym.Env):
 
     def _idm_accel(self, sid: str) -> float:
         veh = self._vehicles[sid]
+        if not veh.active_on_road:
+            return 0.0
         lid, gap = self._leader_for(sid)
         if lid is None:
             st = IDMState(speed=veh.speed, gap=None, leader_speed=None)
@@ -225,51 +255,64 @@ class MergeEnvCandidateV3(gym.Env):
                 gap=gap,
                 leader_speed=self._vehicles[lid].speed,
             )
-        return idm_acceleration(self.config.candidate.idm, st)
+        return idm_command(self.config.candidate.idm, st).commanded_acceleration
+
+    def _collision_eligible(self, veh: VehicleState) -> bool:
+        # Use active/completed flags only. Pose may already report segment="exited"
+        # after integrating past the exit marker; collision still has precedence
+        # until the vehicle is formally removed.
+        return bool(veh.active_on_road and not veh.completed)
 
     def _detect_collisions(self) -> list[tuple[str, str]]:
-        ids = list(self._vehicles)
+        ids = [k for k, v in self._vehicles.items() if self._collision_eligible(v)]
         pairs: list[tuple[str, str]] = []
+        L = self.config.vehicle.length
+        W = self.config.vehicle.width
         for i in range(len(ids)):
             for j in range(i + 1, len(ids)):
                 a, b = ids[i], ids[j]
                 va, vb = self._vehicles[a], self._vehicles[b]
-                # Completed vehicles have left the interaction region.
-                if va.completed or vb.completed:
-                    continue
-                # both must be near shared lane (y close)
-                if abs(va.world_y - vb.world_y) > 1.5:
-                    continue
-                if va.world_x <= vb.world_x:
-                    rear, front = va, vb
-                    rid, fid = a, b
-                else:
-                    rear, front = vb, va
-                    rid, fid = b, a
-                # require both on shared path for learner-background / learner-learner
-                if not (
-                    is_on_shared_mainline(rear.route_position, self._route_for(rear.role))
-                    and is_on_shared_mainline(front.route_position, self._route_for(front.role))
+                if oriented_rectangles_collide(
+                    x1=va.world_x,
+                    y1=va.world_y,
+                    heading1=va.heading,
+                    x2=vb.world_x,
+                    y2=vb.world_y,
+                    heading2=vb.heading,
+                    length=L,
+                    width=W,
                 ):
-                    continue
-                gap = bumper_gap_along_x(
-                    rear.world_x, front.world_x, vehicle_length=self.config.vehicle.length
-                )
-                if gap <= self.config.collision_bumper_gap:
-                    pairs.append(tuple(sorted((rid, fid))))  # type: ignore[arg-type]
-        # unique
+                    pairs.append(tuple(sorted((a, b))))  # type: ignore[arg-type]
         return sorted(set(pairs))
+
+    def _mark_exit(self, sid: str, *, policy_step: int, substep: int) -> bool:
+        """Mark safe exit once. Returns True if a new exit event was emitted."""
+        veh = self._vehicles[sid]
+        if veh.completed:
+            return False
+        veh.completed = True
+        veh.active_on_road = False
+        veh.physical_segment = "exited"
+        veh.commanded_acceleration = 0.0
+        veh.realised_acceleration = 0.0
+        veh.speed = 0.0
+        self._exit_count[sid] += 1
+        if self._exit_time[sid] is None:
+            self._exit_time[sid] = policy_step
+        if self._exit_substep[sid] is None:
+            self._exit_substep[sid] = substep
+        return True
+
+    def _check_exit_crossing(self, sid: str, s_before: float, s_after: float) -> bool:
+        veh = self._vehicles[sid]
+        exit_s = self._geom.exit_route(veh.role)  # type: ignore[arg-type]
+        return s_before < exit_s <= s_after
 
     def _min_bumper_gap_learners(self) -> float | None:
         a, b = self._vehicles["A"], self._vehicles["B"]
-        if a.completed or b.completed:
+        if not a.active_on_road or not b.active_on_road:
             return None
-        if abs(a.world_y - b.world_y) > 1.5:
-            return None
-        if not (
-            is_on_shared_mainline(a.route_position, self._route_for(a.role))
-            and is_on_shared_mainline(b.route_position, self._route_for(b.role))
-        ):
+        if abs(a.world_y - b.world_y) > 2.5:
             return None
         if a.world_x <= b.world_x:
             return bumper_gap_along_x(a.world_x, b.world_x, vehicle_length=self.config.vehicle.length)
@@ -277,8 +320,6 @@ class MergeEnvCandidateV3(gym.Env):
 
     def _ttc_learners(self) -> float | None:
         a, b = self._vehicles["A"], self._vehicles["B"]
-        if a.completed or b.completed:
-            return None
         gap = self._min_bumper_gap_learners()
         if gap is None:
             return None
@@ -286,68 +327,97 @@ class MergeEnvCandidateV3(gym.Env):
             return time_to_collision(gap=gap, v_rear=a.speed, v_front=b.speed)
         return time_to_collision(gap=gap, v_rear=b.speed, v_front=a.speed)
 
+    def _snapshot(self) -> dict[str, VehicleState]:
+        return {k: deepcopy(v) for k, v in self._vehicles.items()}
+
+    def _veh_info(self, veh: VehicleState) -> dict[str, Any]:
+        return {
+            "role": veh.role,
+            "route_position": veh.route_position,
+            "speed": veh.speed,
+            "commanded_acceleration": veh.commanded_acceleration,
+            "realised_acceleration": veh.realised_acceleration,
+            # Compatibility alias for Stage 4A certification traces
+            "acceleration": veh.realised_acceleration,
+            "world_x": veh.world_x,
+            "world_y": veh.world_y,
+            "heading": veh.heading,
+            "completed": veh.completed,
+            "active_on_road": veh.active_on_road,
+            "physical_segment": veh.physical_segment,
+        }
+
     def step(self, action: dict[str, int]):
         timing = self.config.timing
         dyn = self.config.dynamics
         n_sub = timing.physics_substeps_per_action
         dt = timing.physics_dt
 
-        snap_t = {k: VehicleState(**vars(v)) for k, v in self._vehicles.items()}
+        snap_t = self._snapshot()
         sub_records: list[dict[str, Any]] = []
         collision_pairs: list[tuple[str, str]] = []
+        exit_event = {sid: 0.0 for sid in STAKEHOLDER_SET}
         max_abs_disc = 0.0
+        nan_count = 0
 
         for sub in range(n_sub):
-            # Desired accelerations
             des_acc: dict[str, float] = {}
             for aid in LEARNING_CONTROLLERS:
                 veh = self._vehicles[aid]
-                if veh.completed:
+                if not veh.active_on_road:
                     des_acc[aid] = 0.0
                 else:
                     des_acc[aid] = desired_acceleration(
                         int(action[aid]), accel=dyn.accel, maintain=dyn.maintain, decel=dyn.decel
                     )
             for bid in ("B_front", "B_rear"):
-                des_acc[bid] = self._idm_accel(bid)
+                des_acc[bid] = self._idm_accel(bid) if self._vehicles[bid].active_on_road else 0.0
 
-            # Integrate
+            s_before = {k: v.route_position for k, v in self._vehicles.items()}
+
             for sid, veh in self._vehicles.items():
-                if veh.completed and sid in LEARNING_CONTROLLERS:
-                    veh.acceleration = 0.0
+                if not veh.active_on_road:
+                    veh.commanded_acceleration = 0.0
+                    veh.realised_acceleration = 0.0
                     continue
+                veh.commanded_acceleration = float(des_acc[sid])
                 s0 = veh.route_position
                 s1, v1, a_real = integrate_longitudinal(
                     route_position=veh.route_position,
                     speed=veh.speed,
-                    acceleration=des_acc[sid],
+                    acceleration=veh.commanded_acceleration,
                     dt=dt,
                     v_min=dyn.v_min,
                     v_max=dyn.v_max,
                 )
-                max_abs_disc = max(max_abs_disc, abs(s1 - s0 - 0.5 * (veh.speed + v1) * dt))
+                if not all(math.isfinite(x) for x in (s1, v1, a_real)):
+                    nan_count += 1
+                # Exact-stop disc check uses commanded path when no early stop
+                max_abs_disc = max(max_abs_disc, abs(s1 - s0))
                 veh.route_position = s1
                 veh.speed = v1
-                veh.acceleration = a_real
+                veh.realised_acceleration = a_real
                 self._sync(veh)
 
+            # Collision has precedence in the same substep
             pairs = self._detect_collisions()
             if pairs and not collision_pairs:
-                collision_pairs = pairs
+                collision_pairs = list(pairs)
+
+            if not collision_pairs:
+                for sid in list(STAKEHOLDER_SET):
+                    if not self._vehicles[sid].active_on_road:
+                        continue
+                    if self._check_exit_crossing(sid, s_before[sid], self._vehicles[sid].route_position):
+                        if self._mark_exit(sid, policy_step=self._policy_step + 1, substep=sub):
+                            exit_event[sid] = 1.0
+
             sub_records.append(
                 {
                     "physics_substep": sub,
-                    "vehicles": {
-                        k: {
-                            "route_position": v.route_position,
-                            "speed": v.speed,
-                            "acceleration": v.acceleration,
-                            "world_x": v.world_x,
-                            "world_y": v.world_y,
-                        }
-                        for k, v in self._vehicles.items()
-                    },
+                    "vehicles": {k: self._veh_info(v) for k, v in self._vehicles.items()},
                     "collision_pairs": [list(p) for p in pairs],
+                    "exit_event": dict(exit_event),
                 }
             )
             if collision_pairs:
@@ -360,27 +430,16 @@ class MergeEnvCandidateV3(gym.Env):
             collided[b] = True
         stakeholder_collision = 1.0 if collision_pairs else 0.0
 
-        # Exits (blocked by collision this transition)
-        exit_event = {"A": 0.0, "B": 0.0}
-        for aid in LEARNING_CONTROLLERS:
-            veh_t = snap_t[aid]
-            veh = self._vehicles[aid]
-            route = self._route_for(veh.role)
-            crossed = veh_t.route_position < route.route_exit <= veh.route_position
-            if crossed and stakeholder_collision < 1.0 and not veh_t.completed:
-                exit_event[aid] = 1.0
-                veh.completed = True
-                self._exit_count[aid] += 1
-                if self._exit_time[aid] is None:
-                    self._exit_time[aid] = self._policy_step
-
-        # Core reward components (no hard-braking term)
+        # Core reward for learners (exit only if emitted this transition)
         rewards: dict[str, float] = {}
         components: dict[str, dict[str, float]] = {}
         for aid in LEARNING_CONTROLLERS:
-            route = self._route_for(self._vehicles[aid].role)
-            rho_t = normalised_route_progress(snap_t[aid].route_position, route)
-            rho_t1 = normalised_route_progress(self._vehicles[aid].route_position, route)
+            exit_s = self._geom.exit_route(self._vehicles[aid].role)  # type: ignore[arg-type]
+            rho_t = min(max(snap_t[aid].route_position / max(exit_s, 1e-9), 0.0), 1.0)
+            rho_t1 = min(max(self._vehicles[aid].route_position / max(exit_s, 1e-9), 0.0), 1.0)
+            # Completed vehicles keep rho at 1 for progress stability
+            if self._vehicles[aid].completed and exit_event[aid] < 1.0:
+                rho_t1 = 1.0
             progress = 0.4 * (rho_t1 - rho_t)
             exit_c = 0.6 * exit_event[aid]
             coll_c = -1.0 * stakeholder_collision
@@ -400,7 +459,6 @@ class MergeEnvCandidateV3(gym.Env):
         terminated = bool(stakeholder_collision >= 1.0 or both_done)
         truncated = bool(self._policy_step >= self.config.max_policy_steps and not terminated)
         if terminated and truncated:
-            # invalid combo prevented
             truncated = False
         term_reason = (
             "collision"
@@ -415,42 +473,26 @@ class MergeEnvCandidateV3(gym.Env):
             "substep_records": sub_records,
             "term_reason": term_reason,
             "events": {
-                "exit_event": exit_event,
+                "exit_event": {k: exit_event[k] for k in LEARNING_CONTROLLERS},
+                "exit_event_all": dict(exit_event),
                 "stakeholder_collision_event": stakeholder_collision,
                 "stakeholder_collided": collided,
                 "collision_pairs": [list(p) for p in collision_pairs],
                 "warnings": [],
             },
-            "completion": {aid: self._vehicles[aid].completed for aid in LEARNING_CONTROLLERS},
+            "completion": {sid: self._vehicles[sid].completed for sid in STAKEHOLDER_SET},
             "exit_count": dict(self._exit_count),
             "exit_time": dict(self._exit_time),
+            "exit_substep": dict(self._exit_substep),
             "min_bumper_gap": self._min_bumper_gap_learners(),
             "ttc": self._ttc_learners(),
             "components": components,
             "discount_factor": disc,
-            "vehicles_t": {
-                k: {
-                    "role": snap_t[k].role,
-                    "route_position": snap_t[k].route_position,
-                    "speed": snap_t[k].speed,
-                    "world_x": snap_t[k].world_x,
-                    "world_y": snap_t[k].world_y,
-                }
-                for k in self._vehicles
-            },
-            "vehicles_t1": {
-                k: {
-                    "role": v.role,
-                    "route_position": v.route_position,
-                    "speed": v.speed,
-                    "acceleration": v.acceleration,
-                    "world_x": v.world_x,
-                    "world_y": v.world_y,
-                    "completed": v.completed,
-                }
-                for k, v in self._vehicles.items()
-            },
+            "vehicles_t": {k: self._veh_info(v) for k, v in snap_t.items()},
+            "vehicles_t1": {k: self._veh_info(v) for k, v in self._vehicles.items()},
             "fixture_only": False,
-            "route_discontinuity": max_abs_disc > self.config.discontinuity_threshold,
+            "route_discontinuity": max_abs_disc > 50.0,  # absurd jump only
+            "nan_count": nan_count,
+            "observation_dim": OBSERVATION_DIM,
         }
         return self._obs(), rewards, terminated, truncated, info

@@ -130,7 +130,11 @@ def _run_cell(
             rewards_A.append(float(rew["A"]))
             rewards_B.append(float(rew["B"]))
             for aid in ("A", "B"):
-                acc = float(info["vehicles_t1"][aid]["acceleration"])
+                acc = float(
+                    info["vehicles_t1"][aid].get(
+                        "realised_acceleration", info["vehicles_t1"][aid]["acceleration"]
+                    )
+                )
                 min_acc = min(min_acc, acc)
                 max_acc = max(max_acc, acc)
                 for v in info["components"][aid].values():
@@ -146,7 +150,11 @@ def _run_cell(
                 min_ttc = min(min_ttc, float(ttc))
             for bid in ("B_front", "B_rear"):
                 sp = float(info["vehicles_t1"][bid]["speed"])
-                accb = float(info["vehicles_t1"][bid]["acceleration"])
+                accb = float(
+                    info["vehicles_t1"][bid].get(
+                        "realised_acceleration", info["vehicles_t1"][bid]["acceleration"]
+                    )
+                )
                 bg_min_speed[bid] = min(bg_min_speed[bid], sp)
                 bg_max_speed[bid] = max(bg_max_speed[bid], sp)
                 bg_max_brake[bid] = max(bg_max_brake[bid], max(0.0, -accb))
@@ -182,7 +190,13 @@ def _run_cell(
                         "world_position": info["vehicles_t1"][aid]["world_x"],
                         "route_position": info["vehicles_t1"][aid]["route_position"],
                         "speed": info["vehicles_t1"][aid]["speed"],
-                        "realised_acceleration": info["vehicles_t1"][aid]["acceleration"],
+                        "realised_acceleration": info["vehicles_t1"][aid].get(
+                            "realised_acceleration",
+                            info["vehicles_t1"][aid]["acceleration"],
+                        ),
+                        "commanded_acceleration": info["vehicles_t1"][aid].get(
+                            "commanded_acceleration"
+                        ),
                         "jerk": None,
                         "bumper_gap": info.get("min_bumper_gap"),
                         "ttc": info.get("ttc"),

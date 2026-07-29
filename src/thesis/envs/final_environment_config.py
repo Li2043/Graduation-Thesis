@@ -37,6 +37,7 @@ class IDMProfile:
     comfortable_deceleration: float
     acceleration_exponent: float
     priority_rank: int
+    maximum_emergency_deceleration: float = 6.0
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
