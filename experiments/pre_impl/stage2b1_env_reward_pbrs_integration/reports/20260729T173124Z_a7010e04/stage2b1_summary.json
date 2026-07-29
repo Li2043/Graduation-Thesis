@@ -1,0 +1,44 @@
+{
+  "overall": "PASS",
+  "run_id": "20260729T173124Z_a7010e04",
+  "git_commit": "a7010e049d7b09619929ba092d065de16fd7d7d5",
+  "git_dirty": true,
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "package_versions": {
+    "numpy": "2.3.2",
+    "gymnasium": "1.2.0",
+    "highway-env": "1.12.0",
+    "pytest": "8.4.1",
+    "PyYAML": "6.0.2"
+  },
+  "unit_integration_tests": {
+    "passed": 25,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "pytest_returncode": 0,
+  "scenario_count": 12,
+  "nan_count": 0,
+  "route_discontinuity_count": 3,
+  "repeated_exit_count": 0,
+  "invalid_flag_count": 0,
+  "prior_stage_outputs_intact": true,
+  "recommendation": "PROCEED TO STAGE 2B-2 (DQN/replay wiring) \u2014 DQN still unverified",
+  "dqn_verified": false,
+  "replay_buffer_verified": false,
+  "test_only_braking": {
+    "a_comfort": 2.0,
+    "a_hard": 6.0,
+    "eta_hard_brake": 0.1,
+    "note": "TEST-ONLY placeholders"
+  },
+  "test_only_lambdas": {
+    "learner_gamma": 0.995,
+    "shaping_gamma": 0.995,
+    "lambda_mean": 0.5,
+    "lambda_min": 0.5,
+    "note": "TEST-ONLY placeholders"
+  }
+}

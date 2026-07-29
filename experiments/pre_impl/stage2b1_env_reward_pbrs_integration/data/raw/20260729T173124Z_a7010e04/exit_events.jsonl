@@ -1,0 +1,7 @@
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "mainline_first", "step": 11, "controller": "A", "exit_event": 1.0}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "ramp_first", "step": 11, "controller": "B", "exit_event": 1.0}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "ramp_first", "step": 46, "controller": "A", "exit_event": 1.0}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "A_exits_first", "step": 2, "controller": "A", "exit_event": 1.0}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "B_exits_first", "step": 3, "controller": "B", "exit_event": 1.0}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "simultaneous_exit", "step": 1, "controller": "B", "exit_event": 1.0}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "simultaneous_exit", "step": 3, "controller": "A", "exit_event": 1.0}

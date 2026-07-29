@@ -1,0 +1,87 @@
+{
+  "run_id": "20260729T173124Z_a7010e04",
+  "utc_timestamp": "2026-07-29T17:31:27.282825+00:00",
+  "git_commit": "a7010e049d7b09619929ba092d065de16fd7d7d5",
+  "git_dirty": true,
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "operating_system": "Windows 11",
+  "package_versions": {
+    "numpy": "2.3.2",
+    "gymnasium": "1.2.0",
+    "highway-env": "1.12.0",
+    "pytest": "8.4.1",
+    "PyYAML": "6.0.2"
+  },
+  "random_seeds": [
+    0
+  ],
+  "command": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\.venv_stage2b1\\Scripts\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\scripts\\run_stage2b1_tests.py --config C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\configs\\env_integration_test.yaml",
+  "resolved_configuration_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\artifacts\\20260729T173124Z_a7010e04\\resolved_config.yaml",
+  "configuration_sha256": "f1a49d15b032983d4f7b54b18c57ef4e5373fffbd31a221b82a4d74c577471f8",
+  "road_geometry": "Stage 2B-1 integration-test geometry (not final dissertation)",
+  "vehicle_parameters": {
+    "dt": 0.2,
+    "accel_rate": 2.0,
+    "decel_rate": 3.0,
+    "collision_distance": 4.0,
+    "target_speed": 20.0,
+    "role_A": "mainline",
+    "role_B": "ramp"
+  },
+  "idm_parameters": {
+    "v0": 20.0,
+    "T": 1.2,
+    "a_max": 1.5,
+    "b": 2.0,
+    "delta": 4.0,
+    "s0": 4.0
+  },
+  "action_definitions": [
+    "MAINTAIN",
+    "ACCELERATE",
+    "DECELERATE"
+  ],
+  "maximum_simulation_steps": 200,
+  "test_only_braking_values": {
+    "a_comfort": 2.0,
+    "a_hard": 6.0,
+    "eta_hard_brake": 0.1,
+    "note": "TEST-ONLY placeholders"
+  },
+  "test_only_lambda_values": {
+    "learner_gamma": 0.995,
+    "shaping_gamma": 0.995,
+    "lambda_mean": 0.5,
+    "lambda_min": 0.5,
+    "note": "TEST-ONLY placeholders"
+  },
+  "test_counts": {
+    "passed": 25,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "scenario_counts": 12,
+  "nan_count": 0,
+  "route_discontinuity_count": 3,
+  "repeated_exit_count": 0,
+  "invalid_flag_count": 0,
+  "outputs": {
+    "transition_trace_jsonl": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\data\\raw\\20260729T173124Z_a7010e04\\transition_trace.jsonl",
+    "collision_events_jsonl": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\data\\raw\\20260729T173124Z_a7010e04\\collision_events.jsonl",
+    "exit_events_jsonl": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\data\\raw\\20260729T173124Z_a7010e04\\exit_events.jsonl",
+    "scenario_summary_csv": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\data\\processed\\20260729T173124Z_a7010e04\\scenario_summary.csv",
+    "reward_potential_summary_csv": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\data\\processed\\20260729T173124Z_a7010e04\\reward_potential_summary.csv",
+    "stage2b1_report_md": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\reports\\20260729T173124Z_a7010e04\\stage2b1_report.md",
+    "stage2b1_summary_json": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\reports\\20260729T173124Z_a7010e04\\stage2b1_summary.json",
+    "pytest_log": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\logs\\20260729T173124Z_a7010e04\\pytest.log",
+    "runner_log": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\logs\\20260729T173124Z_a7010e04\\runner.log",
+    "resolved_config_yaml": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\artifacts\\20260729T173124Z_a7010e04\\resolved_config.yaml",
+    "manifest_json": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b1_env_reward_pbrs_integration\\artifacts\\20260729T173124Z_a7010e04\\manifest.json"
+  },
+  "pass_fail_status": "PASS",
+  "dqn_verified": false,
+  "replay_buffer_verified": false,
+  "note": "Stage 1 / 2A outputs not modified. No training in this stage."
+}

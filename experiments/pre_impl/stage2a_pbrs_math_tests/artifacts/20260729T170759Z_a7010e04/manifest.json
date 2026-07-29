@@ -1,0 +1,48 @@
+{
+  "run_id": "20260729T170759Z_a7010e04",
+  "utc_timestamp": "2026-07-29T17:08:00.386160+00:00",
+  "git_commit": "a7010e049d7b09619929ba092d065de16fd7d7d5",
+  "git_dirty": true,
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "operating_system": "Windows 11 (10.0.26200)",
+  "package_versions": {
+    "pytest": "9.1.1",
+    "PyYAML": "6.0.3"
+  },
+  "random_seed": 0,
+  "command": "C:\\Python314\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\scripts\\run_stage2a_tests.py --config C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\configs\\pbrs_math_tests.yaml",
+  "resolved_configuration_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\artifacts\\20260729T170759Z_a7010e04\\resolved_config.yaml",
+  "configuration_sha256": "a36a53d8a119106838583bcefa7fdfd52688cd7f52409fdee74ccf14e78a6e31",
+  "learner_gamma": 0.995,
+  "shaping_gamma": 0.995,
+  "test_only_lambda_values": {
+    "lambda_mean": 0.5,
+    "lambda_min": 0.5,
+    "note": "TEST-ONLY; not final"
+  },
+  "test_counts": {
+    "passed": 44,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "terminal_telescoping_maximum_absolute_error": 0.0,
+  "truncation_telescoping_maximum_absolute_error": 1.1102230246251565e-16,
+  "outputs": {
+    "potential_cases_jsonl": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\data\\raw\\20260729T170759Z_a7010e04\\potential_cases.jsonl",
+    "telescoping_transitions_jsonl": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\data\\raw\\20260729T170759Z_a7010e04\\telescoping_transitions.jsonl",
+    "potential_summary_csv": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\data\\processed\\20260729T170759Z_a7010e04\\potential_summary.csv",
+    "telescoping_summary_csv": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\data\\processed\\20260729T170759Z_a7010e04\\telescoping_summary.csv",
+    "stage2a_report_md": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\reports\\20260729T170759Z_a7010e04\\stage2a_report.md",
+    "stage2a_summary_json": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\reports\\20260729T170759Z_a7010e04\\stage2a_summary.json",
+    "pytest_log": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\logs\\20260729T170759Z_a7010e04\\pytest.log",
+    "runner_log": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\logs\\20260729T170759Z_a7010e04\\runner.log",
+    "resolved_config_yaml": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\artifacts\\20260729T170759Z_a7010e04\\resolved_config.yaml",
+    "manifest_json": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2a_pbrs_math_tests\\artifacts\\20260729T170759Z_a7010e04\\manifest.json"
+  },
+  "pass_fail_status": "PASS",
+  "environment_verified": false,
+  "dqn_verified": false,
+  "note": "Stage 1 outputs were not modified. No env/DQN in this stage."
+}

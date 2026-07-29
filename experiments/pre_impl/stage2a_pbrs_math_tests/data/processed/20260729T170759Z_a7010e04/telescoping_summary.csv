@@ -1,0 +1,15 @@
+trajectory_id,condition,n_transitions,terminated_last,truncated_last,absolute_error,telescoping_ok,final_cumulative,expected_telescoping_value
+smooth_improvement__mean,mean,3,False,False,1.1102230246251565e-16,True,0.29029866875,0.2902986687500001
+smooth_improvement__min,min,3,False,False,0.0,True,0.2925374375,0.2925374375
+mean_improve_min_constant__mean,mean,2,False,False,0.0,True,0.14202000000000004,0.14202000000000004
+mean_improve_min_constant__min,min,2,False,False,5.204170427930421e-18,True,-0.001995000000000002,-0.0019949999999999968
+worst_off_improvement__mean,mean,2,False,False,6.245004513516506e-17,True,0.018266874999999953,0.018266875000000016
+worst_off_improvement__min,min,2,False,False,0.0,True,0.09700749999999997,0.09700749999999997
+worst_off_identity_switch__mean,mean,2,False,False,1.214306433183765e-17,True,-0.005511187500000002,-0.005511187500000014
+worst_off_identity_switch__min,min,2,False,False,2.7755575615628914e-17,True,-0.02279299999999998,-0.022792999999999952
+true_terminal_success__mean,mean,2,True,False,0.0,True,-0.65,-0.65
+true_terminal_success__min,min,2,True,False,0.0,True,-0.5,-0.5
+true_terminal_collision__mean,mean,2,True,False,0.0,True,-0.55,-0.55
+true_terminal_collision__min,min,2,True,False,0.0,True,-0.4,-0.4
+external_truncation_nonzero__mean,mean,2,False,True,0.0,True,0.09451375000000001,0.09451375000000001
+external_truncation_nonzero__min,min,2,False,True,2.7755575615628914e-17,True,0.09601000000000007,0.09601000000000004

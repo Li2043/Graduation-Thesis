@@ -1,0 +1,6 @@
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "nominal_forward", "step": 29, "stakeholder_collided": {"A": true, "B": false, "B_front": true, "B_rear": false}, "collision_pairs": [["A", "B_front"]]}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "mainline_first", "step": 24, "stakeholder_collided": {"A": false, "B": true, "B_front": false, "B_rear": true}, "collision_pairs": [["B", "B_rear"]]}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "controlled_collision_A", "step": 1, "stakeholder_collided": {"A": true, "B": false, "B_front": true, "B_rear": false}, "collision_pairs": [["A", "B_front"]]}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "controlled_collision_B", "step": 1, "stakeholder_collided": {"A": false, "B": true, "B_front": false, "B_rear": true}, "collision_pairs": [["B", "B_rear"]]}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "background_front_collision", "step": 1, "stakeholder_collided": {"A": true, "B": false, "B_front": true, "B_rear": false}, "collision_pairs": [["A", "B_front"]]}
+{"run_id": "20260729T173124Z_a7010e04", "scenario_id": "background_rear_collision", "step": 1, "stakeholder_collided": {"A": false, "B": true, "B_front": false, "B_rear": true}, "collision_pairs": [["B", "B_rear"]]}

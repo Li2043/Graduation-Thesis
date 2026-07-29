@@ -1,0 +1,51 @@
+# Stage 2B-1 — minimal merge env + reward/PBRS integration
+# Geometry / braking / lambda values are TEST-ONLY or integration-test config.
+
+experiment:
+  name: stage2b1_env_reward_pbrs_integration
+  stage: "2B-1"
+  description: Minimal MergeEnvV2 with base reward and Mean/Min PBRS diagnostics
+
+seed: 0
+
+python_environment:
+  venv: .venv_stage2b1
+  note: Dedicated venv; system Python unmodified. Local 3.12 install corrupted; 3.14 used with highway-env 1.12.0.
+
+env:
+  dt: 0.2
+  max_steps: 200
+  role_A: mainline
+  role_B: ramp
+  collision_distance: 4.0
+  accel_rate: 2.0
+  decel_rate: 3.0
+  target_speed: 20.0
+  geometry_note: Stage 2B-1 integration-test geometry (not final dissertation)
+  idm:
+    v0: 20.0
+    T: 1.2
+    a_max: 1.5
+    b: 2.0
+    delta: 4.0
+    s0: 4.0
+  actions: [MAINTAIN, ACCELERATE, DECELERATE]
+
+reward_test_only:
+  a_comfort: 2.0
+  a_hard: 6.0
+  eta_hard_brake: 0.1
+  note: TEST-ONLY placeholders
+
+pbrs_test_only:
+  learner_gamma: 0.995
+  shaping_gamma: 0.995
+  lambda_mean: 0.5
+  lambda_min: 0.5
+  note: TEST-ONLY placeholders
+
+pytest:
+  test_paths:
+    - tests/envs/test_merge_env_v2.py
+    - tests/integration/test_reward_pbrs_integration.py
+  extra_args: ["-q", "--tb=short"]

@@ -1,0 +1,13 @@
+scenario_id,n_transitions,exit_count_A,exit_count_B,final_terminated,final_truncated,term_reason
+nominal_forward,29,0,0,True,False,collision
+mainline_first,24,1,0,True,False,collision
+ramp_first,46,1,1,True,False,success
+A_exits_first,15,1,0,False,False,ongoing
+B_exits_first,15,0,1,False,False,ongoing
+simultaneous_exit,3,1,1,True,False,success
+controlled_collision_A,1,0,0,True,False,collision
+controlled_collision_B,1,0,0,True,False,collision
+background_front_collision,1,0,0,True,False,collision
+background_rear_collision,1,0,0,True,False,collision
+external_truncation,5,0,0,False,True,truncation
+hard_braking_trace,15,0,0,False,False,ongoing
