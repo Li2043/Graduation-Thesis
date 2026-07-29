@@ -1,0 +1,39 @@
+stage: stage4a_environment_choice_state
+description: Preregistered GO/YIELD macro library for choice-state certification.
+
+actions:
+  MAINTAIN: 0
+  ACCELERATE: 1
+  DECELERATE: 2
+
+go_profiles:
+  - profile_id: GO_1
+    action: ACCELERATE
+    n_policy_steps: 4
+    absolute_acceleration: 2.0
+  - profile_id: GO_2
+    action: ACCELERATE
+    n_policy_steps: 8
+    absolute_acceleration: 2.0
+
+yield_profiles:
+  - profile_id: YIELD_1
+    action: DECELERATE
+    n_policy_steps: 4
+    absolute_acceleration: 3.0
+  - profile_id: YIELD_2
+    action: DECELERATE
+    n_policy_steps: 8
+    absolute_acceleration: 3.0
+
+selection_rule_when_multiple_satisfy:
+  - shorter_intervention_first
+  - lower_absolute_acceleration_second
+  - lower_profile_id_third
+  - do_not_select_by_largest_reward
+
+matrix_cells:
+  - GO_GO
+  - GO_YIELD
+  - YIELD_GO
+  - YIELD_YIELD

@@ -1,0 +1,106 @@
+stage: stage4a_environment_choice_state
+description: >
+  Preregistered geometry × IDM candidates for Stage 4A.
+  Priority order is frozen before execution and must not be reordered after results.
+
+timing:
+  physics_dt: 0.05
+  policy_interval: 0.20
+  physics_substeps_per_action: 4
+
+vehicle:
+  length: 5.0
+  width: 2.0
+
+learning_dynamics:
+  ACCELERATE: 2.0
+  MAINTAIN: 0.0
+  DECELERATE: -3.0
+  v_min: 0.0
+  v_max: 30.0
+
+target_speeds:
+  A: 20.0
+  B: 20.0
+  B_front: 20.0
+  B_rear: 20.0
+
+core_reward:
+  progress_weight: 0.4
+  exit_weight: 0.6
+  collision_weight: -1.0
+  hard_braking_term_included: false
+
+geometry_candidates:
+  - geometry_id: G1
+    priority_rank: 1
+    mainline_route_start: 0.0
+    ramp_route_start: 0.0
+    merge_start: 80.0
+    merge_end: 140.0
+    downstream_exit: 260.0
+  - geometry_id: G2
+    priority_rank: 2
+    mainline_route_start: 0.0
+    ramp_route_start: 0.0
+    merge_start: 80.0
+    merge_end: 160.0
+    downstream_exit: 280.0
+  - geometry_id: G3
+    priority_rank: 3
+    mainline_route_start: 0.0
+    ramp_route_start: 0.0
+    merge_start: 100.0
+    merge_end: 170.0
+    downstream_exit: 300.0
+
+idm_profiles:
+  - profile_id: I1
+    priority_rank: 1
+    desired_speed: 20.0
+    minimum_gap: 2.0
+    desired_time_headway: 1.5
+    maximum_acceleration: 1.5
+    comfortable_deceleration: 2.0
+    acceleration_exponent: 4
+  - profile_id: I2
+    priority_rank: 2
+    desired_speed: 20.0
+    minimum_gap: 2.5
+    desired_time_headway: 1.8
+    maximum_acceleration: 1.2
+    comfortable_deceleration: 2.5
+    acceleration_exponent: 4
+  - profile_id: I3
+    priority_rank: 3
+    desired_speed: 20.0
+    minimum_gap: 1.5
+    desired_time_headway: 1.2
+    maximum_acceleration: 1.8
+    comfortable_deceleration: 2.0
+    acceleration_exponent: 4
+
+# Complete candidate set in fixed priority order (do not reorder after results)
+environment_candidate_priority:
+  - G1-I1
+  - G1-I2
+  - G1-I3
+  - G2-I1
+  - G2-I2
+  - G2-I3
+  - G3-I1
+  - G3-I2
+  - G3-I3
+
+selection:
+  calibration_min_certified: 11
+  validation_min_certified: 7
+  background_relevance_min: 0.75
+  median_order_gap_max: 0.05
+  max_order_gap_max: 0.10
+  label_swap_max_error: 1.0e-12
+  use_validation_for_selection: false
+  comfort_influences_selection: false
+
+stage3a_retained_manifest_run_id: 20260729T222933Z_3b07a818
+stage3b_failed_run_id: 20260729T225046Z_8624f03a
