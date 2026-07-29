@@ -1,0 +1,30 @@
+experiment:
+  name: stage1_base_reward_unit_tests
+  stage: 1
+  description: Pure unit tests for base_reward_v2 (no DQN training)
+seed: 0
+reward:
+  progress_weight: 0.4
+  exit_weight: 0.6
+  collision_penalty: 1.0
+  eta_hard_brake: 0.1
+  a_comfort: 2.0
+  a_hard: 6.0
+  discontinuity_report_threshold: 0.25
+stakeholders:
+  fixed_set:
+  - A
+  - B
+  - B_front
+  - B_rear
+  learning_controllers:
+  - A
+  - B
+integration_smoke:
+  enabled: true
+  require_env_module: thesis.envs.long_repeated_merge
+pytest:
+  test_path: tests/rewards/test_base_reward_v2.py
+  extra_args:
+  - -q
+  - --tb=short

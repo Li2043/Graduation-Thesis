@@ -1,0 +1,3 @@
+case_id,condition,raw_potential,actual_potential,terminated,truncated
+active_target,mean,1.0,1.0,False,False
+active_target,min,1.0,1.0,False,False

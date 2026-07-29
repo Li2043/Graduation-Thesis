@@ -1,0 +1,15 @@
+case_id,controller,total_reward,decomposition_ok
+T01_stationary,A,0.0,True
+T01_stationary,B,0.0,True
+T02_positive_progress,A,0.04000000000000001,True
+T02_positive_progress,B,0.04000000000000001,True
+T04_safe_exit_A,A,0.604,True
+T04_safe_exit_A,B,0.0040000000000000036,True
+T08_collision_blocks_exit,A,-0.996,True
+T08_collision_blocks_exit,B,-1.0,True
+T10_intermediate_braking,A,-0.025,True
+T10_intermediate_braking,B,0.0,True
+T14_negative_progress,A,-0.019999999999999997,True
+T14_negative_progress,B,0.0,True
+T16_decomposition_combo,A,-0.985,True
+T16_decomposition_combo,B,-1.02,True

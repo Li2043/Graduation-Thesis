@@ -1,0 +1,7 @@
+[2026-07-29T16:34:19.437087+00:00] run_id=20260729T163419Z_e55e4170
+[2026-07-29T16:34:19.437121+00:00] repo_root=C:\Users\HP\Desktop\毕业项目\thesis\final_new
+[2026-07-29T16:34:19.437165+00:00] config=C:\Users\HP\Desktop\毕业项目\thesis\final_new\experiments\pre_impl\stage1_base_reward_unit_tests\configs\reward_unit_tests.yaml
+[2026-07-29T16:34:19.510201+00:00] running pytest: C:\Users\HP\Desktop\毕业项目\thesis\final_new\tests\rewards\test_base_reward_v2.py
+[2026-07-29T16:34:22.751552+00:00] pytest returncode=0 counts={'passed': 29, 'failed': 0, 'errors': 0, 'skipped': 0, 'status': 'PASS'}
+[2026-07-29T16:34:22.774213+00:00] integration_status=BLOCKED
+[2026-07-29T16:34:22.774249+00:00] BLOCKED: environment integration smoke cannot run because `C:/Users/HP/Desktop/毕业项目/thesis/final_new/src/thesis/envs` does not exist in this repository. Tried imports: thesis.envs.long_repeated_merge (No module named 'thesis.envs'); thesis.envs (No module named 'thesis.envs'); thesis.environment (No module named 'thesis.environment'). No LongRepeatedMergeEnv (or equivalent) is available; refusing to fabricate an adapter. Pure unit tests remain authoritative.

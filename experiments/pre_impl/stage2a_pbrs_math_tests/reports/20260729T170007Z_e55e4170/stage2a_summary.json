@@ -1,0 +1,30 @@
+{
+  "overall": "PASS",
+  "run_id": "20260729T170007Z_e55e4170",
+  "git_commit": "e55e4170219dc6a33abb452abac36f822b49e3cd",
+  "git_dirty": true,
+  "config_sha256": "a36a53d8a119106838583bcefa7fdfd52688cd7f52409fdee74ccf14e78a6e31",
+  "learner_gamma": 0.995,
+  "shaping_gamma": 0.995,
+  "test_only_lambdas": {
+    "lambda_mean": 0.5,
+    "lambda_min": 0.5,
+    "note": "TEST-ONLY placeholders; not final experimental values"
+  },
+  "unit_tests": {
+    "passed": 44,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "pytest_returncode": 0,
+  "terminal_telescoping_max_abs_error": 0.0,
+  "truncation_telescoping_max_abs_error": 1.1102230246251565e-16,
+  "all_telescoping_ok": true,
+  "recommendation": "PROCEED TO STAGE 2B (environment / learner wiring only; lambdas still uncalibrated)",
+  "scope": {
+    "environment_verified": false,
+    "dqn_verified": false
+  }
+}

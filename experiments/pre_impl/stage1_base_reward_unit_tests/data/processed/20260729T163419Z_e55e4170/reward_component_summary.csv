@@ -1,0 +1,15 @@
+case_id,controller,progress_component,exit_component,collision_component,hard_braking_component,total_reward,delta_route_progress,safe_exit_event,stakeholder_collision_event,hard_braking_cost,rho_t,rho_t1,warnings,decomposition_ok
+T01_stationary,A,0.0,0.0,-0.0,-0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,[],True
+T01_stationary,B,0.0,0.0,-0.0,-0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,[],True
+T02_positive_progress,A,0.04000000000000001,0.0,-0.0,-0.0,0.04000000000000001,0.1,0.0,0.0,0.0,0.0,0.1,[],True
+T02_positive_progress,B,0.04000000000000001,0.0,-0.0,-0.0,0.04000000000000001,0.1,0.0,0.0,0.0,0.0,0.1,[],True
+T04_safe_exit_A,A,0.0040000000000000036,0.6,-0.0,-0.0,0.604,0.010000000000000009,1.0,0.0,0.0,0.99,1.0,[],True
+T04_safe_exit_A,B,0.0040000000000000036,0.0,-0.0,-0.0,0.0040000000000000036,0.010000000000000009,0.0,0.0,0.0,0.5,0.51,[],True
+T08_collision_blocks_exit,A,0.0040000000000000036,0.0,-1.0,-0.0,-0.996,0.010000000000000009,0.0,1.0,0.0,0.99,1.0,[],True
+T08_collision_blocks_exit,B,0.0,0.0,-1.0,-0.0,-1.0,0.0,0.0,1.0,0.0,0.0,0.0,[],True
+T10_intermediate_braking,A,0.0,0.0,-0.0,-0.025,-0.025,0.0,0.0,0.0,0.25,0.0,0.0,[],True
+T10_intermediate_braking,B,0.0,0.0,-0.0,-0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,[],True
+T14_negative_progress,A,-0.019999999999999997,0.0,-0.0,-0.0,-0.019999999999999997,-0.04999999999999999,0.0,0.0,0.0,0.5,0.45,[],True
+T14_negative_progress,B,0.0,0.0,-0.0,-0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,[],True
+T16_decomposition_combo,A,0.04000000000000001,0.0,-1.0,-0.025,-0.985,0.1,0.0,1.0,0.25,0.0,0.1,[],True
+T16_decomposition_combo,B,0.08000000000000002,0.0,-1.0,-0.1,-1.02,0.2,0.0,1.0,1.0,0.0,0.2,[],True

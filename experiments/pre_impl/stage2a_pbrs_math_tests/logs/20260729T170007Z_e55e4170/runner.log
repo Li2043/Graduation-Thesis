@@ -1,0 +1,7 @@
+[2026-07-29T17:00:07.172018+00:00] run_id=20260729T170007Z_e55e4170
+[2026-07-29T17:00:07.172044+00:00] git_dirty=True
+[2026-07-29T17:00:07.172048+00:00] WARNING: git working tree is DIRTY
+[2026-07-29T17:00:07.197386+00:00] running pytest: C:\Users\HP\Desktop\毕业项目\thesis\final_new\tests\rewards\test_pbrs_v2.py
+[2026-07-29T17:00:07.905492+00:00] pytest returncode=0 counts={'passed': 44, 'failed': 0, 'errors': 0, 'skipped': 0, 'status': 'PASS'}
+[2026-07-29T17:00:07.922097+00:00] terminal_telescoping_max_abs_error=0.0
+[2026-07-29T17:00:07.922116+00:00] truncation_telescoping_max_abs_error=1.1102230246251565e-16

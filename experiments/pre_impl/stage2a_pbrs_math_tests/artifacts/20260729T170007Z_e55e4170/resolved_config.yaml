@@ -1,0 +1,27 @@
+experiment:
+  name: stage2a_pbrs_math_tests
+  stage: 2A
+  description: Pure-function PBRS / potential mathematics (no env, no DQN)
+seed: 0
+pbrs:
+  learner_gamma: 0.995
+  shaping_gamma: 0.995
+  lambda_mean: 0.5
+  lambda_min: 0.5
+  gamma_match_tolerance: 1.0e-12
+stakeholders:
+  fixed_set:
+  - A
+  - B
+  - B_front
+  - B_rear
+  learning_controllers:
+  - A
+  - B
+telescoping:
+  tolerance: 1.0e-12
+pytest:
+  test_path: tests/rewards/test_pbrs_v2.py
+  extra_args:
+  - -q
+  - --tb=short

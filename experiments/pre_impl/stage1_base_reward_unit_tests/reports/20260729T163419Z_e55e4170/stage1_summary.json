@@ -1,0 +1,26 @@
+{
+  "overall": "PASS",
+  "run_id": "20260729T163419Z_e55e4170",
+  "git_commit": "e55e4170219dc6a33abb452abac36f822b49e3cd",
+  "config_sha256": "644971fd85390380a2f42f9e255cf740d55cca6db8db1205c221a25d639a319f",
+  "unit_tests": {
+    "passed": 29,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "pytest_returncode": 0,
+  "integration_smoke": {
+    "status": "BLOCKED",
+    "reason": "BLOCKED: environment integration smoke cannot run because `C:/Users/HP/Desktop/\u6bd5\u4e1a\u9879\u76ee/thesis/final_new/src/thesis/envs` does not exist in this repository. Tried imports: thesis.envs.long_repeated_merge (No module named 'thesis.envs'); thesis.envs (No module named 'thesis.envs'); thesis.environment (No module named 'thesis.environment'). No LongRepeatedMergeEnv (or equivalent) is available; refusing to fabricate an adapter. Pure unit tests remain authoritative.",
+    "n_transitions": 0
+  },
+  "recommendation": "PROCEED TO STAGE 2 (with caveat: environment smoke BLOCKED; wire simulator before claiming env-integrated reward validation)",
+  "test_only_braking_params": {
+    "a_comfort": 2.0,
+    "a_hard": 6.0,
+    "eta_hard_brake": 0.1,
+    "note": "TEST-ONLY placeholders; not final experimental values"
+  }
+}

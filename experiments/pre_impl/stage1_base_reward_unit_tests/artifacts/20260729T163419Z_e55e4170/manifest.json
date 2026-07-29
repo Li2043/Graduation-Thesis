@@ -1,0 +1,42 @@
+{
+  "run_id": "20260729T163419Z_e55e4170",
+  "utc_timestamp": "2026-07-29T16:34:22.780840+00:00",
+  "git_commit": "e55e4170219dc6a33abb452abac36f822b49e3cd",
+  "git_dirty": true,
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "operating_system": "Windows 11 (10.0.26200)",
+  "package_versions": {
+    "pytest": "9.1.1",
+    "PyYAML": "6.0.3",
+    "numpy": "not_installed",
+    "gymnasium": "not_installed",
+    "highway_env": "not_installed"
+  },
+  "random_seed": 0,
+  "command": "C:\\Python314\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\scripts\\run_stage1_tests.py --config C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\configs\\reward_unit_tests.yaml",
+  "resolved_configuration_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\artifacts\\20260729T163419Z_e55e4170\\resolved_config.yaml",
+  "configuration_sha256": "644971fd85390380a2f42f9e255cf740d55cca6db8db1205c221a25d639a319f",
+  "test_counts": {
+    "passed": 29,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "pass_fail_status": "PASS",
+  "integration_smoke_test_status": "BLOCKED",
+  "integration_smoke_blocker": "BLOCKED: environment integration smoke cannot run because `C:/Users/HP/Desktop/\u6bd5\u4e1a\u9879\u76ee/thesis/final_new/src/thesis/envs` does not exist in this repository. Tried imports: thesis.envs.long_repeated_merge (No module named 'thesis.envs'); thesis.envs (No module named 'thesis.envs'); thesis.environment (No module named 'thesis.environment'). No LongRepeatedMergeEnv (or equivalent) is available; refusing to fabricate an adapter. Pure unit tests remain authoritative.",
+  "outputs": {
+    "unit_test_cases_jsonl": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\data\\raw\\20260729T163419Z_e55e4170\\unit_test_cases.jsonl",
+    "integration_transitions_jsonl": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\data\\raw\\20260729T163419Z_e55e4170\\integration_transitions.jsonl",
+    "unit_test_summary_csv": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\data\\processed\\20260729T163419Z_e55e4170\\unit_test_summary.csv",
+    "reward_component_summary_csv": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\data\\processed\\20260729T163419Z_e55e4170\\reward_component_summary.csv",
+    "stage1_report_md": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\reports\\20260729T163419Z_e55e4170\\stage1_report.md",
+    "stage1_summary_json": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\reports\\20260729T163419Z_e55e4170\\stage1_summary.json",
+    "pytest_log": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\logs\\20260729T163419Z_e55e4170\\pytest.log",
+    "runner_log": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\logs\\20260729T163419Z_e55e4170\\runner.log",
+    "resolved_config_yaml": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\artifacts\\20260729T163419Z_e55e4170\\resolved_config.yaml",
+    "manifest_json": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage1_base_reward_unit_tests\\artifacts\\20260729T163419Z_e55e4170\\manifest.json"
+  },
+  "note": "Large environment dumps are intentionally omitted from this manifest."
+}
