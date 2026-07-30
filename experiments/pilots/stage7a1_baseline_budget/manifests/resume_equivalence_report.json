@@ -1,0 +1,284 @@
+{
+  "seed": 62001,
+  "interruption_step": 25000,
+  "comparison_step": 50000,
+  "passed": true,
+  "network_parameter_max_abs_diff": 0.0,
+  "replay_row_mismatch": 0,
+  "rng_state_mismatch": 0,
+  "evaluation_outcome_mismatch": 0,
+  "optimizer_state_mismatch": 0,
+  "schedule_cursor_a": {
+    "cursor": {
+      "cycle": 17,
+      "index_in_cycle": 13,
+      "order": [
+        [
+          "calibration_001",
+          1
+        ],
+        [
+          "calibration_003",
+          1
+        ],
+        [
+          "calibration_004",
+          0
+        ],
+        [
+          "calibration_009",
+          0
+        ],
+        [
+          "calibration_011",
+          0
+        ],
+        [
+          "calibration_004",
+          1
+        ],
+        [
+          "calibration_001",
+          0
+        ],
+        [
+          "calibration_008",
+          1
+        ],
+        [
+          "calibration_002",
+          1
+        ],
+        [
+          "calibration_010",
+          1
+        ],
+        [
+          "calibration_008",
+          0
+        ],
+        [
+          "calibration_006",
+          0
+        ],
+        [
+          "calibration_012",
+          0
+        ],
+        [
+          "calibration_012",
+          1
+        ],
+        [
+          "calibration_009",
+          1
+        ],
+        [
+          "calibration_005",
+          1
+        ],
+        [
+          "calibration_005",
+          0
+        ],
+        [
+          "calibration_007",
+          1
+        ],
+        [
+          "calibration_006",
+          1
+        ],
+        [
+          "calibration_007",
+          0
+        ],
+        [
+          "calibration_002",
+          0
+        ],
+        [
+          "calibration_010",
+          0
+        ],
+        [
+          "calibration_011",
+          1
+        ],
+        [
+          "calibration_003",
+          0
+        ]
+      ]
+    },
+    "rng_state": {
+      "bit_generator": "PCG64",
+      "state": {
+        "state": 169864740301388675676144990180028670196,
+        "inc": 20986307344395080373332426439039158695
+      },
+      "has_uint32": 0,
+      "uinteger": 324111474
+    },
+    "block_ids": [
+      "calibration_001",
+      "calibration_002",
+      "calibration_003",
+      "calibration_004",
+      "calibration_005",
+      "calibration_006",
+      "calibration_007",
+      "calibration_008",
+      "calibration_009",
+      "calibration_010",
+      "calibration_011",
+      "calibration_012"
+    ]
+  },
+  "schedule_cursor_b": {
+    "cursor": {
+      "cycle": 17,
+      "index_in_cycle": 13,
+      "order": [
+        [
+          "calibration_001",
+          1
+        ],
+        [
+          "calibration_003",
+          1
+        ],
+        [
+          "calibration_004",
+          0
+        ],
+        [
+          "calibration_009",
+          0
+        ],
+        [
+          "calibration_011",
+          0
+        ],
+        [
+          "calibration_004",
+          1
+        ],
+        [
+          "calibration_001",
+          0
+        ],
+        [
+          "calibration_008",
+          1
+        ],
+        [
+          "calibration_002",
+          1
+        ],
+        [
+          "calibration_010",
+          1
+        ],
+        [
+          "calibration_008",
+          0
+        ],
+        [
+          "calibration_006",
+          0
+        ],
+        [
+          "calibration_012",
+          0
+        ],
+        [
+          "calibration_012",
+          1
+        ],
+        [
+          "calibration_009",
+          1
+        ],
+        [
+          "calibration_005",
+          1
+        ],
+        [
+          "calibration_005",
+          0
+        ],
+        [
+          "calibration_007",
+          1
+        ],
+        [
+          "calibration_006",
+          1
+        ],
+        [
+          "calibration_007",
+          0
+        ],
+        [
+          "calibration_002",
+          0
+        ],
+        [
+          "calibration_010",
+          0
+        ],
+        [
+          "calibration_011",
+          1
+        ],
+        [
+          "calibration_003",
+          0
+        ]
+      ]
+    },
+    "rng_state": {
+      "bit_generator": "PCG64",
+      "state": {
+        "state": 169864740301388675676144990180028670196,
+        "inc": 20986307344395080373332426439039158695
+      },
+      "has_uint32": 0,
+      "uinteger": 324111474
+    },
+    "block_ids": [
+      "calibration_001",
+      "calibration_002",
+      "calibration_003",
+      "calibration_004",
+      "calibration_005",
+      "calibration_006",
+      "calibration_007",
+      "calibration_008",
+      "calibration_009",
+      "calibration_010",
+      "calibration_011",
+      "calibration_012"
+    ]
+  },
+  "env_steps_a": 50000,
+  "env_steps_b": 50000,
+  "checkpoint_sha256_interrupt": "520ea3fa748ec43143a6575408f5b62122d6b5e59135790aeec673ba15d92f36",
+  "update_counts_a": {
+    "A": 29147,
+    "B": 42744
+  },
+  "update_counts_b": {
+    "A": 29147,
+    "B": 42744
+  },
+  "target_syncs_a": {
+    "A": 116,
+    "B": 170
+  },
+  "target_syncs_b": {
+    "A": 116,
+    "B": 170
+  }
+}
