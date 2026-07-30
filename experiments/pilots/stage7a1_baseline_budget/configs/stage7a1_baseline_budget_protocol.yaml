@@ -1,0 +1,141 @@
+stage: stage7a1
+name: Baseline-Only Unchanged-Budget Competence Pilot
+analysis_status: exploratory
+experiment_version: "Experiment Version 2 pilot"
+description: >
+  New Baseline-only runs trained from initialization to 300K under the
+  unchanged Stage 6 protocol, using previously unused seeds.
+  Not a continuation of the original formal 100K runs.
+
+condition: baseline
+reward_shaping_enabled: false
+shaping_coefficient: 0.0
+lambda: 0.0
+allow_mean_pbrs: false
+allow_min_pbrs: false
+
+master_seeds:
+  - 62001
+  - 62002
+  - 62003
+  - 62004
+  - 62005
+  - 62006
+  - 62007
+  - 62008
+  - 62009
+  - 62010
+  - 62011
+  - 62012
+  - 62013
+  - 62014
+  - 62015
+  - 62016
+  - 62017
+  - 62018
+  - 62019
+  - 62020
+
+forbidden_formal_seeds:
+  - 61001
+  - 61002
+  - 61003
+  - 61004
+  - 61005
+  - 61006
+  - 61007
+  - 61008
+  - 61009
+  - 61010
+
+maximum_training_steps: 300000
+
+checkpoint_steps:
+  - 0
+  - 10000
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+  - 150000
+  - 200000
+  - 250000
+  - 300000
+
+primary_budget_checkpoints:
+  - 100000
+  - 150000
+  - 200000
+  - 250000
+  - 300000
+
+trajectory_log_checkpoints:
+  - 100000
+  - 150000
+  - 200000
+  - 250000
+  - 300000
+
+evaluation_episodes_per_checkpoint: 16
+validation_blocks: 8
+assignments_per_block: 2
+early_stopping: false
+best_checkpoint_selection: false
+statistical_unit: training_seed
+
+# Unchanged vs Stage 6 formal protocol
+epsilon_start: 1.0
+epsilon_end: 0.10
+epsilon_decay_environment_steps: 50000
+epsilon_after_decay: 0.10
+evaluation_epsilon: 0.0
+gamma: 0.995
+learning_rate: 0.0005
+batch_size: 64
+replay_capacity_per_controller: 20000
+replay_warmup_per_controller: 512
+target_sync_interval_updates: 250
+hidden_sizes: [64, 64]
+observation_dimension: 27
+action_count: 3
+max_policy_steps: 400
+policy_interval_seconds: 0.2
+num_parallel_training_envs_per_run: 1
+vectorized_training: false
+device: cpu
+
+# Provisional pilot competence gate (frozen before training; not confirmatory)
+competence_gate:
+  status: provisional_pilot_competence_gate
+  note: PROVISIONAL DIAGNOSTIC GATE — NOT YET PREREGISTERED
+  min_seeds_success_ge_0_75: 16
+  n_seeds: 20
+  min_mean_success: 0.75
+  max_mean_collision: 0.05
+  max_mean_truncation: 0.15
+  min_swap_eligible_pair_proportion: 0.75
+
+budget_selection:
+  require_consecutive_gate_pass: true
+  non_degradation:
+    max_mean_success_drop: 0.05
+    max_collision_increase: 0.02
+    max_truncation_increase: 0.05
+    max_seeds_ge_075_decrease: 2
+  candidate_pairs:
+    - [100000, 150000]
+    - [150000, 200000]
+    - [200000, 250000]
+    - [250000, 300000]
+
+locks:
+  reuse_stage6_environment_lock: true
+  reuse_stage6_comfort_lock: true
+  reuse_stage6_base_reward: true
+  reuse_stage6_training_blocks: true
+  reuse_stage6_validation_blocks: true
+
+historical_formal_100k_reference:
+  seeds: [61001, 61002, 61003, 61004, 61005, 61006, 61007, 61008, 61009, 61010]
+  mean_success: 0.35
+  note: descriptive reference only; do not pool with this pilot

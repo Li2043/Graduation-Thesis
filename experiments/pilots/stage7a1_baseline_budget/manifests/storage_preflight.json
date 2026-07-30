@@ -1,0 +1,12 @@
+{
+  "per_full_checkpoint_mb_estimate": 45.0,
+  "n_seeds": 20,
+  "n_checkpoints": 10,
+  "estimated_full_checkpoints_gb": 8.789,
+  "estimated_total_with_20pct_margin_gb": 25.357,
+  "free_disk_gb": 143.795,
+  "output_root": "C:/Users/HP/Desktop/\u6bd5\u4e1a\u9879\u76ee/thesis/final_new/experiments/pilots/stage7a1_baseline_budget/output",
+  "status": "PASS",
+  "abort_reason": null,
+  "generated_at_utc": "2026-07-30T22:25:27.955751+00:00"
+}

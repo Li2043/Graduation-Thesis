@@ -1,0 +1,54 @@
+{
+  "pilot_seeds": [
+    62001,
+    62002,
+    62003,
+    62004,
+    62005,
+    62006,
+    62007,
+    62008,
+    62009,
+    62010,
+    62011,
+    62012,
+    62013,
+    62014,
+    62015,
+    62016,
+    62017,
+    62018,
+    62019,
+    62020
+  ],
+  "forbidden_formal_seeds": [
+    61001,
+    61002,
+    61003,
+    61004,
+    61005,
+    61006,
+    61007,
+    61008,
+    61009,
+    61010
+  ],
+  "collision_seeds": [
+    62002,
+    62017
+  ],
+  "hits": [
+    {
+      "seed": 62002,
+      "path": "C:/Users/HP/Desktop/\u6bd5\u4e1a\u9879\u76ee/thesis/final_new_results_100k/formal_results/100k/stage6a_20260730T094829Z_a89256db_44d5e647/aggregates/episode_summaries.csv",
+      "marker": ",62002,"
+    },
+    {
+      "seed": 62017,
+      "path": "C:/Users/HP/Desktop/\u6bd5\u4e1a\u9879\u76ee/thesis/final_new_results_100k/formal_results/100k/stage6a_20260730T094829Z_a89256db_44d5e647/aggregates/episode_summaries.csv",
+      "marker": ",62017,"
+    }
+  ],
+  "status": "ABORT",
+  "generated_at_utc": "2026-07-30T22:25:27.955238+00:00"
+}
