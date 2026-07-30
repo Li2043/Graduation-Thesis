@@ -1,0 +1,10 @@
+{
+  "run_id": "20260730T003122Z_aee2d425",
+  "overall": "PASS",
+  "stage": "stage4a_r1_final_environment_reselection",
+  "selected_candidate_id": "G1-I1",
+  "environment_parameters_final": true,
+  "prior_stage4a0r_run_id": "20260729T235855Z_8ab30c89",
+  "prior_stage4a0r2_run_id": "20260730T000945Z_d0051f73",
+  "superseded_stage4a_run_id": "20260729T231946Z_c8d92bc3"
+}

@@ -1,0 +1,97 @@
+{
+  "run_id": "20260730T003122Z_aee2d425",
+  "utc_timestamp": "2026-07-30T00:33:19.570345+00:00",
+  "git_commit": "aee2d425319a0f1c917c98af8df1cb1b8d6550a9",
+  "git_dirty": false,
+  "python_and_packages": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.3.2",
+    "gymnasium": "1.2.0",
+    "pytest": "8.4.1",
+    "torch": "2.13.0+cpu",
+    "yaml": "6.0.2"
+  },
+  "exact_command": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\.venv_stage2b1\\Scripts\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\scripts\\run_stage4a_r1_reselection.py",
+  "configuration_file_hashes": {
+    "stage4a_r1.yaml": "3850edd70f096f77c9afdb8282940f0159c36f9fbc397cedc8929bead1f79dd2"
+  },
+  "source_hashes": {
+    "src/thesis/envs/merge_env_candidate_v3.py": "6579cf2cac3b56c619bec8042726363fe89e743f438fcc789a54160be665c076",
+    "src/thesis/envs/final_route_geometry.py": "0bdfb88c78e17fb31a3558f236e9cb62aa40669e895bdc17253b557085c96754",
+    "src/thesis/envs/final_observation.py": "6ff3c83614c056be30aacb78ede6462eb1466e57cd2aba416427faf25bb47afc",
+    "src/thesis/envs/vehicle_dynamics.py": "128cecd56ba82fa7df7bb3fbfc7bdf022f6a2ce5688cd648a8c622ca5eeb125d",
+    "src/thesis/envs/idm_background.py": "caa34dbf3130146ed1f76704a1fdda68fdfab4752904c15a2ce80cfb3cb229aa",
+    "src/thesis/envs/final_environment_config.py": "f5ca1ced1686740382d839868235a1ec8268e5ae8433758167ee855207f624ab",
+    "src/thesis/certification/choice_state_scenarios.py": "294f73e231d516d5f121b68bb20ad23ff84a5c57a522a1263c20ef009d7d1262",
+    "src/thesis/certification/choice_state_certification.py": "8c05aaff2d512dec536f27586909036a57630acb9b11af46101b088f23cb540b",
+    "src/thesis/certification/choice_state_metrics.py": "7bea953c2419722b8e33e985cfcc4502aabe1969df86a84b90399b810701fe88",
+    "src/thesis/certification/environment_candidate_selection.py": "63e82726477218258b1a4cdfbd04b1f2ee74fc5586cf859ce90effe405383488",
+    "src/thesis/certification/holdout_signatures.py": "d83aff6424bb3c5537bf22ceca8fba6f3c314f8c0911b034ab5f7377f2ef29c6"
+  },
+  "prior_stage4a0r_run_id": "20260729T235855Z_8ab30c89",
+  "prior_stage4a0r2_run_id": "20260730T000945Z_d0051f73",
+  "superseded_stage4a_run_id": "20260729T231946Z_c8d92bc3",
+  "superseded_lock_sha256": "d5614d41d0c229db70b76973c55daa6905d7c5f07dc0781b81826b8891d76ded",
+  "environment_candidate_ids": [
+    "G1-I1",
+    "G1-I2",
+    "G1-I3",
+    "G2-I1",
+    "G2-I2",
+    "G2-I3",
+    "G3-I1",
+    "G3-I2",
+    "G3-I3"
+  ],
+  "feasible_candidate_ids": [
+    "G1-I1",
+    "G1-I2",
+    "G1-I3",
+    "G2-I1",
+    "G2-I2",
+    "G2-I3",
+    "G3-I1",
+    "G3-I2",
+    "G3-I3"
+  ],
+  "selected_candidate_id": "G1-I1",
+  "n_calibration_blocks": 12,
+  "n_validation_blocks": 8,
+  "duplicate_signature_count": 0,
+  "macro_definitions": {
+    "GO": [
+      "GO_1",
+      "GO_2"
+    ],
+    "YIELD": [
+      "YIELD_1",
+      "YIELD_2"
+    ]
+  },
+  "physics_dt": 0.05,
+  "policy_interval": 0.2,
+  "physics_substeps_per_action": 4,
+  "observation_dimension": 27,
+  "route_geometry_version": "v3_quintic_arc_length_4a0r2",
+  "output_paths": {
+    "raw": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\data\\raw\\20260730T003122Z_aee2d425",
+    "processed": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\data\\processed\\20260730T003122Z_aee2d425",
+    "reports": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\reports\\20260730T003122Z_aee2d425",
+    "logs": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\logs\\20260730T003122Z_aee2d425",
+    "artifacts": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\artifacts\\20260730T003122Z_aee2d425"
+  },
+  "final_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\artifacts\\20260730T003122Z_aee2d425\\final_environment_lock.yaml",
+  "final_lock_sha256": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "overall_status": "PASS",
+  "environment_parameters_final": true,
+  "comfort_parameters_final": false,
+  "policy_training_started": false,
+  "tests": {
+    "passed": 50,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,528 @@
+selected_geometry_id: G1
+selected_idm_profile_id: I1
+candidate_id: G1-I1
+candidate_priority_rank: 1
+geometry:
+  geometry_id: G1
+  mainline_route_start: 0.0
+  ramp_route_start: 0.0
+  merge_start: 80.0
+  merge_end: 140.0
+  downstream_exit: 260.0
+  priority_rank: 1
+physics_dt: 0.05
+policy_interval: 0.2
+physics_substeps_per_action: 4
+vehicle_dimensions:
+  length: 5.0
+  width: 2.0
+learning_action_accelerations:
+  ACCELERATE: 2.0
+  MAINTAIN: 0.0
+  DECELERATE: -3.0
+speed_limits:
+  v_min: 0.0
+  v_max: 30.0
+collision_thresholds:
+  bumper_gap_collision: 0.0
+  min_safe_bumper_gap: 2.0
+target_speeds:
+  A: 20.0
+  B: 20.0
+  B_front: 20.0
+  B_rear: 20.0
+idm_parameters:
+  profile_id: I1
+  desired_speed: 20.0
+  minimum_gap: 2.0
+  desired_time_headway: 1.5
+  maximum_acceleration: 1.5
+  comfortable_deceleration: 2.0
+  acceleration_exponent: 4.0
+  priority_rank: 1
+  maximum_emergency_deceleration: 6.0
+maximum_emergency_deceleration: 6.0
+observation_version: final_observation_v1_stage4a0r
+observation_dimension: 27
+route_geometry_version: v3_quintic_arc_length_4a0r2
+collision_model_version: oriented_rectangle_sat_v1
+exit_removal_semantics:
+  check_every_physics_substep: true
+  collision_precedence_same_substep: true
+  remove_from_collision_and_idm_immediately: true
+  applies_to:
+  - A
+  - B
+  - B_front
+  - B_rear
+calibration_block_definitions:
+- block_id: calibration_001
+  block_set: calibration
+  seed: 1001
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 38.4
+  spawn_route_ramp: 26.0
+  spawn_speed_mainline: 16.0
+  spawn_speed_ramp: 18.0
+  spawn_route_B_front: 104.0
+  spawn_route_B_rear: 2.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: -0.4
+  arrival_category: mainline_lead
+  background_time_headway: 1.5
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_002
+  block_set: calibration
+  seed: 1002
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 38.4
+  spawn_route_ramp: 29.599999999999994
+  spawn_speed_mainline: 16.0
+  spawn_speed_ramp: 18.0
+  spawn_route_B_front: 102.0
+  spawn_route_B_rear: 10.399999999999995
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: -0.2
+  arrival_category: mainline_lead
+  background_time_headway: 1.2
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_003
+  block_set: calibration
+  seed: 1003
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 33.199999999999996
+  spawn_route_ramp: 38.4
+  spawn_speed_mainline: 18.0
+  spawn_speed_ramp: 16.0
+  spawn_route_B_front: 107.0
+  spawn_route_B_rear: 6.199999999999996
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.0
+  arrival_category: near_simultaneous
+  background_time_headway: 1.5
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_004
+  block_set: calibration
+  seed: 1004
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 33.199999999999996
+  spawn_route_ramp: 41.6
+  spawn_speed_mainline: 18.0
+  spawn_speed_ramp: 16.0
+  spawn_route_B_front: 112.4
+  spawn_route_B_rear: 0.7999999999999972
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.2
+  arrival_category: ramp_lead
+  background_time_headway: 1.8
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_005
+  block_set: calibration
+  seed: 1005
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 28.0
+  spawn_route_ramp: 40.4
+  spawn_speed_mainline: 20.0
+  spawn_speed_ramp: 18.0
+  spawn_route_B_front: 110.0
+  spawn_route_B_rear: 0.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.4
+  arrival_category: ramp_lead
+  background_time_headway: 1.5
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_006
+  block_set: calibration
+  seed: 1006
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 33.199999999999996
+  spawn_route_ramp: 20.0
+  spawn_speed_mainline: 18.0
+  spawn_speed_ramp: 20.0
+  spawn_route_B_front: 102.0
+  spawn_route_B_rear: 0.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: -0.4
+  arrival_category: mainline_lead
+  background_time_headway: 1.2
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_007
+  block_set: calibration
+  seed: 1007
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 38.4
+  spawn_route_ramp: 28.0
+  spawn_speed_mainline: 16.0
+  spawn_speed_ramp: 20.0
+  spawn_route_B_front: 108.8
+  spawn_route_B_rear: 0.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.0
+  arrival_category: near_simultaneous
+  background_time_headway: 1.8
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_008
+  block_set: calibration
+  seed: 1008
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 33.199999999999996
+  spawn_route_ramp: 32.0
+  spawn_speed_mainline: 18.0
+  spawn_speed_ramp: 20.0
+  spawn_route_B_front: 107.0
+  spawn_route_B_rear: 5.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.2
+  arrival_category: ramp_lead
+  background_time_headway: 1.5
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_009
+  block_set: calibration
+  seed: 1009
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 28.0
+  spawn_route_ramp: 35.199999999999996
+  spawn_speed_mainline: 20.0
+  spawn_speed_ramp: 16.0
+  spawn_route_B_front: 104.0
+  spawn_route_B_rear: 4.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: -0.2
+  arrival_category: mainline_lead
+  background_time_headway: 1.2
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_010
+  block_set: calibration
+  seed: 1010
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 33.199999999999996
+  spawn_route_ramp: 44.8
+  spawn_speed_mainline: 18.0
+  spawn_speed_ramp: 16.0
+  spawn_route_B_front: 112.4
+  spawn_route_B_rear: 0.7999999999999972
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.4
+  arrival_category: ramp_lead
+  background_time_headway: 1.8
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_011
+  block_set: calibration
+  seed: 1011
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 38.4
+  spawn_route_ramp: 20.0
+  spawn_speed_mainline: 16.0
+  spawn_speed_ramp: 20.0
+  spawn_route_B_front: 104.0
+  spawn_route_B_rear: 0.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: -0.4
+  arrival_category: mainline_lead
+  background_time_headway: 1.5
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: calibration_012
+  block_set: calibration
+  seed: 1012
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 28.0
+  spawn_route_ramp: 33.199999999999996
+  spawn_speed_mainline: 20.0
+  spawn_speed_ramp: 18.0
+  spawn_route_B_front: 104.0
+  spawn_route_B_rear: 4.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.0
+  arrival_category: near_simultaneous
+  background_time_headway: 1.2
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+validation_block_definitions:
+- block_id: validation_001
+  block_set: validation
+  seed: 2001
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 28.0
+  spawn_route_ramp: 20.0
+  spawn_speed_mainline: 20.0
+  spawn_speed_ramp: 20.0
+  spawn_route_B_front: 116.0
+  spawn_route_B_rear: 0.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: -0.4
+  arrival_category: mainline_lead
+  background_time_headway: 1.8
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: validation_002
+  block_set: validation
+  seed: 2002
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 33.199999999999996
+  spawn_route_ramp: 44.8
+  spawn_speed_mainline: 18.0
+  spawn_speed_ramp: 16.0
+  spawn_route_B_front: 102.0
+  spawn_route_B_rear: 11.599999999999998
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.4
+  arrival_category: ramp_lead
+  background_time_headway: 1.2
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: validation_003
+  block_set: validation
+  seed: 2003
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 28.0
+  spawn_route_ramp: 38.4
+  spawn_speed_mainline: 20.0
+  spawn_speed_ramp: 16.0
+  spawn_route_B_front: 116.0
+  spawn_route_B_rear: 0.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.0
+  arrival_category: near_simultaneous
+  background_time_headway: 1.8
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: validation_004
+  block_set: validation
+  seed: 2004
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 33.199999999999996
+  spawn_route_ramp: 23.999999999999993
+  spawn_speed_mainline: 18.0
+  spawn_speed_ramp: 20.0
+  spawn_route_B_front: 107.0
+  spawn_route_B_rear: 0.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: -0.2
+  arrival_category: mainline_lead
+  background_time_headway: 1.5
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: validation_005
+  block_set: validation
+  seed: 2005
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 38.4
+  spawn_route_ramp: 32.0
+  spawn_speed_mainline: 16.0
+  spawn_speed_ramp: 20.0
+  spawn_route_B_front: 102.0
+  spawn_route_B_rear: 12.8
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.2
+  arrival_category: ramp_lead
+  background_time_headway: 1.2
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: validation_006
+  block_set: validation
+  seed: 2006
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 38.4
+  spawn_route_ramp: 33.199999999999996
+  spawn_speed_mainline: 16.0
+  spawn_speed_ramp: 18.0
+  spawn_route_B_front: 102.0
+  spawn_route_B_rear: 13.999999999999996
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.0
+  arrival_category: near_simultaneous
+  background_time_headway: 1.2
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: validation_007
+  block_set: validation
+  seed: 2007
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 28.0
+  spawn_route_ramp: 40.4
+  spawn_speed_mainline: 20.0
+  spawn_speed_ramp: 18.0
+  spawn_route_B_front: 116.0
+  spawn_route_B_rear: 0.0
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: 0.4
+  arrival_category: ramp_lead
+  background_time_headway: 1.8
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+- block_id: validation_008
+  block_set: validation
+  seed: 2008
+  role_A: mainline
+  role_B: ramp
+  spawn_route_mainline: 38.4
+  spawn_route_ramp: 29.599999999999994
+  spawn_speed_mainline: 16.0
+  spawn_speed_ramp: 18.0
+  spawn_route_B_front: 104.0
+  spawn_route_B_rear: 5.599999999999994
+  spawn_speed_B_front: 20.0
+  spawn_speed_B_rear: 20.0
+  delta_arrival: -0.2
+  arrival_category: mainline_lead
+  background_time_headway: 1.5
+  target_speeds:
+    A: 20.0
+    B: 20.0
+    B_front: 20.0
+    B_rear: 20.0
+zero_duplicate_holdout_audit:
+- geometry_id: G1
+  n_calibration: 12
+  n_validation: 8
+  n_duplicate_signatures: 0
+  duplicates: []
+  pass: true
+- geometry_id: G2
+  n_calibration: 12
+  n_validation: 8
+  n_duplicate_signatures: 0
+  duplicates: []
+  pass: true
+- geometry_id: G3
+  n_calibration: 12
+  n_validation: 8
+  n_duplicate_signatures: 0
+  duplicates: []
+  pass: true
+route_coordinate_version: v3_quintic_arc_length_4a0r2
+termination_truncation_rules:
+  success: both_learners_exit_without_stakeholder_collision
+  collision: oriented_rectangle_sat_overlap
+  truncation: max_policy_steps_without_terminal
+controller_role_balancing:
+  assignments:
+  - A=mainline,B=ramp
+  - A=ramp,B=mainline
+  permanent_role_assignment_forbidden: true
+source_git_commit: aee2d425319a0f1c917c98af8df1cb1b8d6550a9
+source_hashes:
+  src/thesis/envs/merge_env_candidate_v3.py: 6579cf2cac3b56c619bec8042726363fe89e743f438fcc789a54160be665c076
+  src/thesis/envs/final_route_geometry.py: 0bdfb88c78e17fb31a3558f236e9cb62aa40669e895bdc17253b557085c96754
+  src/thesis/envs/final_observation.py: 6ff3c83614c056be30aacb78ede6462eb1466e57cd2aba416427faf25bb47afc
+  src/thesis/envs/vehicle_dynamics.py: 128cecd56ba82fa7df7bb3fbfc7bdf022f6a2ce5688cd648a8c622ca5eeb125d
+  src/thesis/envs/idm_background.py: caa34dbf3130146ed1f76704a1fdda68fdfab4752904c15a2ce80cfb3cb229aa
+  src/thesis/envs/final_environment_config.py: f5ca1ced1686740382d839868235a1ec8268e5ae8433758167ee855207f624ab
+  src/thesis/certification/choice_state_scenarios.py: 294f73e231d516d5f121b68bb20ad23ff84a5c57a522a1263c20ef009d7d1262
+  src/thesis/certification/choice_state_certification.py: 8c05aaff2d512dec536f27586909036a57630acb9b11af46101b088f23cb540b
+  src/thesis/certification/choice_state_metrics.py: 7bea953c2419722b8e33e985cfcc4502aabe1969df86a84b90399b810701fe88
+  src/thesis/certification/environment_candidate_selection.py: 63e82726477218258b1a4cdfbd04b1f2ee74fc5586cf859ce90effe405383488
+  src/thesis/certification/holdout_signatures.py: d83aff6424bb3c5537bf22ceca8fba6f3c314f8c0911b034ab5f7377f2ef29c6
+configuration_sha256:
+  stage4a_r1.yaml: 3850edd70f096f77c9afdb8282940f0159c36f9fbc397cedc8929bead1f79dd2
+superseded_stage4a_run_id: 20260729T231946Z_c8d92bc3
+superseded_lock_sha256: d5614d41d0c229db70b76973c55daa6905d7c5f07dc0781b81826b8891d76ded
+comfort_parameters_final: false
+policy_training_started: false
+environment_parameters_final: true
