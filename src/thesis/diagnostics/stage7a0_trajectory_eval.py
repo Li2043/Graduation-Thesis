@@ -289,6 +289,11 @@ def run_diagnostic_evaluation_episode(
         "minimum_stakeholder_utility": derived["minimum_stakeholder_utility"],
         "utility_A": derived["utility_A"],
         "utility_B": derived["utility_B"],
+        "utility_background_front": derived["utility_background_front"],
+        "utility_background_rear": derived["utility_background_rear"],
+        "worst_off_stakeholder_ids_json": json.dumps(
+            derived["worst_off_stakeholder_ids_json"]
+        ),
         "roles0_A": roles0["A"],
         "roles0_B": roles0["B"],
         "evaluation_guard": evaluation_guard,

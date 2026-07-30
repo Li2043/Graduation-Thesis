@@ -4,6 +4,16 @@ experiments/formal/**/output*/
 experiments/formal/stage6a_formal_training/runs/
 experiments/formal/stage6a_formal_training/local_outputs/
 
+# Stage 7A-1 pilot large local artifacts (tracked via release archives + hashes)
+experiments/pilots/stage7a1_baseline_budget/output/runs/
+experiments/pilots/stage7a1_baseline_budget/output/checkpoints/
+experiments/pilots/stage7a1_baseline_budget/output/weights/
+experiments/pilots/stage7a1_baseline_budget/output/trajectories/
+experiments/pilots/stage7a1_baseline_budget/output/diagnostics/
+experiments/pilots/stage7a1_baseline_budget/release/
+**/*_full.pt
+**/weights_step_*.pt
+
 # Full replay / intermediate checkpoint payloads
 **/ckpt_step_*.pt
 **/*_emergency.pt

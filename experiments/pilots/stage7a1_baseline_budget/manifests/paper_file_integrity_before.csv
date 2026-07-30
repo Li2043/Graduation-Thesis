@@ -1,0 +1,3 @@
+path,sha256,size_bytes,mtime_ns,label,captured_at_utc
+experiments/formal/stage6b_analysis_100k/reports/stage6b_20260730T140035Z_c7584593/dissertation_results_narrative_draft.md,f39015f21117be0c314861b71b201278a765dcababdc7dbeada31b288e9b3cd4,1999,1785420145272902800,paper,2026-07-30T22:42:44.180212+00:00
+experiments/formal/stage6b_analysis_100k/reports/stage6b_20260730T140035Z_c7584593/dissertation_results_tables.md,381f0207b1a5b001f310030b142b61f07ae4c1ebd087a708e85ba7ff10e904ab,671,1785420145271926900,paper,2026-07-30T22:42:44.181082+00:00

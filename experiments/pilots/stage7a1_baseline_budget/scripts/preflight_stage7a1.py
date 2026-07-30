@@ -27,53 +27,89 @@ def sha256_file(path: Path) -> str:
 
 
 def audit_seeds() -> dict:
+    """Detect prior *master-seed* use of 62001–62020 (not unrelated numeric columns)."""
     hits: list[dict] = []
-    # Scan for master_seed JSON/YAML fields equal to pilot seeds in final_new
-    patterns = [
+    roots = [
         REPO / "experiments",
         REPO / "src",
         Path(r"C:\Users\HP\Desktop\毕业项目\thesis\final_new_results_100k\formal_results"),
         Path(r"C:\Users\HP\Desktop\毕业项目\thesis\final_new_analysis_100k\experiments"),
     ]
-    needles = {str(s) for s in PILOT_SEEDS}
-    for root in patterns:
+    pilot = set(PILOT_SEEDS)
+
+    def _rel(path: Path) -> str:
+        try:
+            return str(path.relative_to(REPO)).replace("\\", "/")
+        except Exception:
+            return path.as_posix()
+
+    for root in roots:
         if not root.exists():
             continue
         for path in root.rglob("*"):
             if not path.is_file():
                 continue
-            if path.suffix.lower() not in {".json", ".yaml", ".yml", ".csv", ".md", ".py"}:
+            if "stage7a1_baseline_budget" in path.as_posix():
                 continue
-            # skip this pilot's own outputs/protocol once created
-            if "stage7a1_baseline_budget" in path.as_posix() and path.name != "stage7a1_baseline_budget_protocol.yaml":
-                continue
-            try:
-                text = path.read_text(encoding="utf-8", errors="ignore")
-            except Exception:
-                continue
-            # Look for master_seed assignments / lists — not bare integers in unrelated columns
-            for s in PILOT_SEEDS:
-                markers = (
-                    f"master_seed\": {s}",
-                    f"master_seed': {s}",
-                    f"master_seed: {s}",
-                    f",{s}," if path.suffix.lower() == ".csv" and "master_seed" in text[:200].lower() else None,
-                    f"range(62001",
-                    f"62001–62020",
-                    f"62001-62020",
-                )
-                for m in markers:
-                    if m and m in text:
-                        # ignore chapter prose mentioning numbers accidentally unless master_seed nearby
-                        if m.startswith("range") or m.startswith("62001"):
-                            if "master_seed" in text or "master_seeds" in text or "seeds" in path.name:
-                                hits.append({"seed": s, "path": path.as_posix(), "marker": m})
-                        else:
-                            hits.append({"seed": s, "path": str(path.relative_to(REPO)).replace("\\", "/") if path.is_relative_to(REPO) else path.as_posix(), "marker": m})
+            suf = path.suffix.lower()
+            if suf == ".csv":
+                try:
+                    import pandas as pd
+
+                    df = pd.read_csv(path, nrows=5)
+                    cols = {c.lower(): c for c in df.columns}
+                    if "master_seed" not in cols:
+                        continue
+                    full = pd.read_csv(path, usecols=[cols["master_seed"]])
+                    used = set(int(x) for x in full[cols["master_seed"]].dropna().unique())
+                    overlap = sorted(used & pilot)
+                    for s in overlap:
+                        hits.append(
+                            {
+                                "seed": s,
+                                "path": _rel(path),
+                                "marker": "master_seed column",
+                            }
+                        )
+                except Exception:
+                    continue
+            elif suf in {".json", ".yaml", ".yml"}:
+                try:
+                    text = path.read_text(encoding="utf-8", errors="ignore")
+                except Exception:
+                    continue
+                for s in PILOT_SEEDS:
+                    for m in (
+                        f'"master_seed": {s}',
+                        f"'master_seed': {s}",
+                        f"master_seed: {s}",
+                        f"- {s}\n",  # yaml list under master_seeds (context checked below)
+                    ):
+                        if m not in text:
+                            continue
+                        if m.startswith("- ") and "master_seed" not in text and "master_seeds" not in text:
+                            continue
+                        # protocol-like seed lists
+                        if m.startswith("- ") and "master_seeds" not in text and "seeds" not in text[:500]:
+                            continue
+                        hits.append({"seed": s, "path": _rel(path), "marker": m.strip()})
                         break
-    # Formal seeds must not appear as pilot seeds
+            elif suf == ".py":
+                try:
+                    text = path.read_text(encoding="utf-8", errors="ignore")
+                except Exception:
+                    continue
+                if "62001" in text and (
+                    "master_seed" in text or "master_seeds" in text or "range(62001" in text
+                ):
+                    for s in PILOT_SEEDS:
+                        if f"{s}" in text and (
+                            f"master_seed={s}" in text
+                            or f"master_seed = {s}" in text
+                            or "range(62001" in text
+                        ):
+                            hits.append({"seed": s, "path": _rel(path), "marker": "python master seed use"})
     collision = sorted({h["seed"] for h in hits})
-    # Deduplicate hits
     uniq = []
     seen = set()
     for h in hits:
@@ -87,6 +123,9 @@ def audit_seeds() -> dict:
         "forbidden_formal_seeds": FORBIDDEN,
         "collision_seeds": collision,
         "hits": uniq,
+        "false_positive_note": (
+            "CSV audit uses master_seed column only; env_steps coincidences are ignored."
+        ),
         "status": "ABORT" if collision else "PASS",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
     }
