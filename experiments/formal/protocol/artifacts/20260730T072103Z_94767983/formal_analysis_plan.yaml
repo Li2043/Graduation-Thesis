@@ -1,0 +1,77 @@
+statistical_unit: formal_training_seed
+aggregation: "condition \xD7 seed \xD7 checkpoint before condition-level comparisons"
+pairing: same master seeds across all three conditions
+pairwise_contrasts:
+- mean_pbrs - baseline
+- min_pbrs - baseline
+- min_pbrs - mean_pbrs
+primary_endpoints_at_step_20000:
+- evaluation_success_rate
+- stakeholder_collision_rate
+- mean_stakeholder_episode_utility
+- minimum_stakeholder_episode_utility
+- convention_consistency
+convention_labels:
+- mainline_first
+- ramp_first
+- simultaneous
+convention_consistency_definition: proportion of successful evaluation episodes following
+  the seed's modal non-simultaneous convention; missing (not zero) when no successful
+  non-simultaneous episode exists
+missing_convention_policy:
+  zero_fill: false
+  report_missing_count: true
+  compare_only_complete_paired_seeds: true
+  include_success_availability_sensitivity: true
+secondary_endpoints:
+- episode_length
+- learner_A_utility
+- learner_B_utility
+- B_front_utility
+- B_rear_utility
+- worst_off_stakeholder_identity
+- discounted_base_return
+- discounted_learner_reward
+- collision_type
+- minimum_bumper_gap
+- minimum_TTC
+- hard_braking_rate
+- background_maximum_braking
+- mainline_first_frequency
+- ramp_first_frequency
+- learning_curve_area_under_the_curve
+per_primary_endpoint_reports:
+- per_condition_seed_level_values
+- paired_seed_level_differences
+- mean_difference
+- median_difference
+- 95_percent_paired_bootstrap_ci
+- paired_wilcoxon_signed_rank_when_defined
+- paired_standardised_effect_size_when_defined
+bootstrap:
+  resampling_unit: paired_seed
+  replicates: 10000
+  rng_seed: 91001
+multiple_comparisons:
+  method: Holm
+  within: each primary endpoint across the three pairwise contrasts
+  report_raw_and_adjusted_p: true
+  no_significance_filtering_of_reported_effects: true
+hypothesis_tests:
+  sidedness: two_sided
+  alpha: 0.05
+  no_effect_claim_from_p_gt_alpha_alone: true
+learning_curves:
+  checkpoints:
+  - 0
+  - 5000
+  - 10000
+  - 15000
+  - 20000
+  role: descriptive_and_secondary
+  auc_method: trapezoidal_rule_over_fixed_checkpoints
+  no_interpolation_of_missing_checkpoints: true
+  no_smoothing_for_statistical_computation: true
+  figure_smoothing_visual_only_if_used: true
+best_checkpoint_selection: false
+primary_formal_endpoint_checkpoint: 20000

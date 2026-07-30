@@ -1,0 +1,284 @@
+lock_type: final_training_protocol
+stage: stage5c0
+conditions:
+- baseline
+- mean_pbrs
+- min_pbrs
+only_condition_dependent_component: pbrs_shaping_term
+environment:
+  candidate_id: G1-I1
+  observation_dimension: 27
+  environment_class: MergeEnvCandidateV3
+  environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+  comfort_lock_sha256: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+  a_comfort: 1.5
+  a_hard: 3.5
+  eta_H: 0.015
+pbrs:
+  lambda_mean: 0.2
+  lambda_min: 0.2
+  baseline_lambda: 0.0
+  gamma: 0.995
+  pbrs_lock_sha256: 8ce5025690e5f217296386af765a85f6c1afa7f3028c3eab5fb06a64d87fbf4b
+  pbrs_parameters_final: true
+  selected_using_pilot_performance: false
+dqn:
+  algorithm: vanilla_independent_dqn
+  separate_learners:
+  - A
+  - B
+  shared_weights: false
+  observation_dimension: 27
+  action_count: 3
+  hidden_sizes:
+  - 64
+  - 64
+  activation: ReLU
+  output: 3_linear_Q_values
+  loss: mean_squared_td_error
+  gamma: 0.995
+  learning_rate: 0.0005
+  optimiser: Adam
+  batch_size: 64
+  replay_capacity_per_controller: 20000
+  replay_warmup_per_controller: 512
+  sampling: uniform_without_replacement_within_batch
+  update_frequency: every_environment_policy_step
+  updates_per_active_controller: 1
+  target_sync_type: hard
+  target_sync_interval_updates: 250
+  device: cpu
+  promoted_unchanged_from_engineering_pilot: true
+  selected_by_pilot_reward_performance: false
+exploration:
+  epsilon_start: 1.0
+  epsilon_end: 0.1
+  epsilon_decay_environment_steps: 4000
+  epsilon_schedule: linear
+  epsilon_after_decay: 0.1
+training_budget:
+  formal_environment_steps_per_run: 20000
+  early_stopping: false
+  master_seeds:
+  - 61001
+  - 61002
+  - 61003
+  - 61004
+  - 61005
+  - 61006
+  - 61007
+  - 61008
+  - 61009
+  - 61010
+  n_master_seeds: 10
+  n_conditions: 3
+  n_formal_runs: 30
+  total_planned_environment_steps: 600000
+seed_derivation:
+  environment_seed: S
+  learner_A_seed: S + 100000
+  learner_B_seed: S + 200000
+  replay_A_seed: S + 300000
+  replay_B_seed: S + 400000
+  evaluation_seed: S + 500000
+  schedule_seed: S + 600000
+  condition_name_affects_derivation: false
+training_initial_conditions:
+  source: 12_retained_calibration_blocks_only
+  validation_blocks_used_for_training: false
+  scheduling:
+  - deterministic_seeded_shuffled_cycles
+  - every_cycle_includes_all_12_blocks
+  - both_controller_role_assignments_balanced
+  - schedule_cursor_checkpointed
+  - resume_continues_from_exact_cursor
+  block_definitions_modified: false
+checkpoint_schedule:
+  steps:
+  - 5000
+  - 10000
+  - 15000
+  - 20000
+  primary_endpoint: 20000
+  best_checkpoint_selection: false
+  retain_all_scheduled_checkpoints: true
+  emergency_checkpoints_on_controlled_interruption: true
+evaluation_schedule:
+  steps:
+  - 0
+  - 5000
+  - 10000
+  - 15000
+  - 20000
+  episodes_per_point: 16
+  validation_blocks: 8
+  controller_role_assignments: 2
+  greedy: true
+  epsilon: 0.0
+  no_replay_writes: true
+  no_optimiser_updates: true
+  no_target_sync: true
+  no_epsilon_counter_changes: true
+  no_training_rng_mutation: true
+  no_network_or_optimiser_mutation: true
+  results_alter_training: false
+  results_alter_checkpoint_selection: false
+  results_alter_run_termination: false
+terminal_and_replay_semantics:
+  learner_safe_exit:
+    controller_terminal: true
+    next_observation: null
+    next_action_mask: null
+    bootstrap: false
+    store_exit_transition: true
+    store_later_transitions: false
+  collision_or_joint_success:
+    controller_terminal: true
+    bootstrap: false
+  max_step_truncation_without_completion:
+    controller_terminal: false
+    successor_required: true
+    bootstrap: true
+  placeholder_replay_rows_for_completed_learners: false
+failure_and_resume_policy:
+  infrastructure_failures:
+  - process_interruption
+  - machine_restart
+  - disk_or_checkpoint_io_failure
+  - verified_software_exception_unrelated_to_condition_behaviour
+  infrastructure_resume:
+  - resume_from_most_recent_valid_checkpoint
+  - same_condition_and_seed
+  - retain_interruption_log
+  - do_not_restart_with_different_seed
+  - do_not_alter_protocol
+  scientific_behavioral_outcomes_are_not_run_failures: true
+  numerical_invalidity_is_formal_run_failure:
+  - nan_or_infinity
+  - illegal_action
+  - corrupted_replay_semantics
+  - reward_decomposition_failure
+  - lock_mismatch
+  silent_omit_failed_run: false
+  replace_failed_seeds_with_new_seeds: false
+run_completion_rule:
+  exact_environment_steps: 20000
+  all_evaluation_points_exist: true
+  all_scheduled_checkpoints_exist: true
+  final_checkpoint_reloads: true
+  lock_hashes_match: true
+  no_numerical_integrity_failure: true
+  required_logs_and_manifests_exist: true
+  terminal_statuses:
+  - COMPLETE
+  - FAILED_WITH_REASON
+  all_30_slots_must_have_terminal_status: true
+data_retention_plan:
+- resolved_run_config
+- source_and_lock_hashes
+- episode_summaries
+- evaluation_episode_records
+- update_summaries
+- checkpoint_manifests
+- integrity_logs
+- final_online_and_target_networks
+- optimiser_state
+- replay_metadata
+- interruption_resume_records
+analysis_plan:
+  statistical_unit: formal_training_seed
+  aggregation: "condition \xD7 seed \xD7 checkpoint before condition-level comparisons"
+  pairing: same master seeds across all three conditions
+  pairwise_contrasts:
+  - mean_pbrs - baseline
+  - min_pbrs - baseline
+  - min_pbrs - mean_pbrs
+  primary_endpoints_at_step_20000:
+  - evaluation_success_rate
+  - stakeholder_collision_rate
+  - mean_stakeholder_episode_utility
+  - minimum_stakeholder_episode_utility
+  - convention_consistency
+  convention_labels:
+  - mainline_first
+  - ramp_first
+  - simultaneous
+  convention_consistency_definition: proportion of successful evaluation episodes
+    following the seed's modal non-simultaneous convention; missing (not zero) when
+    no successful non-simultaneous episode exists
+  missing_convention_policy:
+    zero_fill: false
+    report_missing_count: true
+    compare_only_complete_paired_seeds: true
+    include_success_availability_sensitivity: true
+  secondary_endpoints:
+  - episode_length
+  - learner_A_utility
+  - learner_B_utility
+  - B_front_utility
+  - B_rear_utility
+  - worst_off_stakeholder_identity
+  - discounted_base_return
+  - discounted_learner_reward
+  - collision_type
+  - minimum_bumper_gap
+  - minimum_TTC
+  - hard_braking_rate
+  - background_maximum_braking
+  - mainline_first_frequency
+  - ramp_first_frequency
+  - learning_curve_area_under_the_curve
+  per_primary_endpoint_reports:
+  - per_condition_seed_level_values
+  - paired_seed_level_differences
+  - mean_difference
+  - median_difference
+  - 95_percent_paired_bootstrap_ci
+  - paired_wilcoxon_signed_rank_when_defined
+  - paired_standardised_effect_size_when_defined
+  bootstrap:
+    resampling_unit: paired_seed
+    replicates: 10000
+    rng_seed: 91001
+  multiple_comparisons:
+    method: Holm
+    within: each primary endpoint across the three pairwise contrasts
+    report_raw_and_adjusted_p: true
+    no_significance_filtering_of_reported_effects: true
+  hypothesis_tests:
+    sidedness: two_sided
+    alpha: 0.05
+    no_effect_claim_from_p_gt_alpha_alone: true
+  learning_curves:
+    checkpoints:
+    - 0
+    - 5000
+    - 10000
+    - 15000
+    - 20000
+    role: descriptive_and_secondary
+    auc_method: trapezoidal_rule_over_fixed_checkpoints
+    no_interpolation_of_missing_checkpoints: true
+    no_smoothing_for_statistical_computation: true
+    figure_smoothing_visual_only_if_used: true
+  best_checkpoint_selection: false
+  primary_formal_endpoint_checkpoint: 20000
+prerequisites:
+  stage5a0_run_id: 20260730T015222Z_05e9613c
+  stage5b0_run_id: 20260730T065218Z_33b6ebf9
+  pilot_comparative_outcomes_used: false
+source_git_commit: 94767983dcfb5b9c21b475b7b2a3d4db87186075
+source_hashes:
+  src/thesis/protocol/prerequisites.py: c38fd6ae6d4cad2c809e150ffdf7957cba2be25de0a1cae4493a1256f8d91ca9
+  src/thesis/protocol/final_pbrs_lock.py: cc4bdcd50dab0e241b9ec3b0bdfc83ffc4d5e9601bf59a200a29dbe160b676a2
+  src/thesis/protocol/final_training_protocol.py: 629a549bd8f2477cf7f18d5faa5bd4a0599c506f3d1e2cdd187af17b69b4e4aa
+configuration_sha256: efe57ec7d76c31ba2f928dea0cf9703a6fc7c712536b0722050361b4597cc9f5
+environment_parameters_final: true
+comfort_parameters_final: true
+pbrs_parameters_final: true
+training_protocol_final: true
+pilot_training_started: true
+policy_training_started: true
+sustained_training_invoked: true
+formal_training_started: false
+sustained_training_invoked_during_stage5c0: false

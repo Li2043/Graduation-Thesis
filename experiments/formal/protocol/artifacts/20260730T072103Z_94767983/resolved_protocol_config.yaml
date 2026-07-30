@@ -1,0 +1,50 @@
+run_id: 20260730T072103Z_94767983
+config:
+  stage: stage5c0_final_pbrs_and_training_protocol_lock
+  description: 'Freeze final PBRS scales and the formal dissertation training protocol.
+    No sustained or formal multi-seed training in this stage.
+
+    '
+  authoritative_locks:
+    environment_lock_path: experiments/pre_impl/stage4a_r1_final_environment_reselection/artifacts/20260730T003122Z_aee2d425/final_environment_lock.yaml
+    environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+    comfort_lock_path: experiments/pre_impl/stage3b_r1_final_environment_comfort_calibration/artifacts/20260730T005639Z_c6992dd4/final_comfort_parameters.yaml
+    comfort_lock_sha256: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+  prerequisites:
+    stage5a0_run_id: 20260730T015222Z_05e9613c
+    stage5b0_run_id: 20260730T065218Z_33b6ebf9
+  pbrs:
+    lambda_mean: 0.2
+    lambda_min: 0.2
+    gamma: 0.995
+    pbrs_parameters_final: true
+  protocol:
+    formal_environment_steps_per_run: 20000
+    n_master_seeds: 10
+    n_conditions: 3
+    n_formal_runs: 30
+    total_planned_environment_steps: 600000
+    training_protocol_final: true
+    formal_training_started: false
+  pytest_targets:
+  - tests/protocol/test_final_pbrs_lock.py
+  - tests/protocol/test_final_training_protocol.py
+  - tests/protocol/test_formal_run_matrix.py
+  - tests/protocol/test_formal_seed_pairing.py
+  - tests/protocol/test_formal_evaluation_plan.py
+  - tests/protocol/test_formal_analysis_plan.py
+  - tests/integration/test_stage5c0_protocol_lock.py
+  forbidden:
+    sustained_training: true
+    formal_multi_seed_training: true
+    read_pilot_behavioral_observations: true
+    best_checkpoint_selection: true
+config_sha256: efe57ec7d76c31ba2f928dea0cf9703a6fc7c712536b0722050361b4597cc9f5
+source_hashes:
+  src/thesis/protocol/prerequisites.py: c38fd6ae6d4cad2c809e150ffdf7957cba2be25de0a1cae4493a1256f8d91ca9
+  src/thesis/protocol/final_pbrs_lock.py: cc4bdcd50dab0e241b9ec3b0bdfc83ffc4d5e9601bf59a200a29dbe160b676a2
+  src/thesis/protocol/final_training_protocol.py: 629a549bd8f2477cf7f18d5faa5bd4a0599c506f3d1e2cdd187af17b69b4e4aa
+git_commit: 94767983dcfb5b9c21b475b7b2a3d4db87186075
+git_dirty: false
+formal_training_started: false
+sustained_training_invoked_during_stage5c0: false
