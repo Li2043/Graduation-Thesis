@@ -16,6 +16,8 @@ def _tr(**kw) -> ReplayTransition:
         next_observation=np.ones(4),
         terminated=False,
         truncated=False,
+        controller_terminal=False,
+        learner_completed=False,
         action_mask=np.array([True, True, True]),
         next_action_mask=np.array([True, True, True]),
         base_reward=0.1,
@@ -27,6 +29,12 @@ def _tr(**kw) -> ReplayTransition:
         traffic_role="mainline",
     )
     base.update(kw)
+    # Keep bootstrap consistency: terminal rows may omit next state
+    if base.get("controller_terminal") and "next_observation" not in kw:
+        pass
+    if base.get("controller_terminal") is True and kw.get("next_observation", "KEEP") is None:
+        base["next_observation"] = None
+        base["next_action_mask"] = None
     return ReplayTransition(**base)
 
 
@@ -40,17 +48,26 @@ def test_07_illegal_stored_action():
 
 def test_08_replay_schema_retains_separate_flags():
     buf = ReplayBuffer(8, obs_dim=4, n_actions=3, seed=0)
-    buf.append(_tr(terminated=True, truncated=False, shaped_reward=1.0))
+    buf.append(
+        _tr(
+            terminated=True,
+            truncated=False,
+            controller_terminal=True,
+            shaped_reward=1.0,
+            next_observation=None,
+            next_action_mask=None,
+        )
+    )
     buf.append(_tr(terminated=False, truncated=True, shaped_reward=0.5, step=2))
     payload = buf.serialize()
     buf2 = ReplayBuffer.deserialize(payload)
     batch = buf2.sample(2)
-    # Flags remain distinct
     assert set(zip(batch.terminated.tolist(), batch.truncated.tolist())) == {
         (True, False),
         (False, True),
     }
     assert not any(t and tr for t, tr in zip(batch.terminated, batch.truncated))
+    assert True in batch.controller_terminal.tolist()
 
 
 def test_09_invalid_simultaneous_flags():

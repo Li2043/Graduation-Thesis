@@ -55,15 +55,28 @@ def build_transition_for_controller(
         scaled_min_shaping=float(diag["scaled_min_shaping"]),
     )
     role = info["vehicles_t"][controller_id]["role"]
+    exit_now = float(info["events"]["exit_event"].get(controller_id, 0.0)) >= 1.0
+    # Controller-terminal: learner safe exit, or environment true terminal.
+    # Max-step truncation alone is not controller-terminal.
+    controller_terminal = bool(exit_now or terminated)
+    learner_completed = bool(
+        exit_now or info["completion"].get(controller_id, False)
+    )
     return ReplayTransition(
         observation=np.asarray(obs, dtype=np.float64),
         action=int(action),
         shaped_reward=learner_r,
-        next_observation=np.asarray(next_obs, dtype=np.float64),
+        next_observation=None
+        if controller_terminal
+        else np.asarray(next_obs, dtype=np.float64),
         terminated=bool(terminated),
         truncated=bool(truncated),
+        controller_terminal=controller_terminal,
+        learner_completed=learner_completed,
         action_mask=np.asarray(action_mask, dtype=bool),
-        next_action_mask=np.asarray(next_action_mask, dtype=bool),
+        next_action_mask=None
+        if controller_terminal
+        else np.asarray(next_action_mask, dtype=bool),
         base_reward=base,
         shaping_component=shaping,
         reward_condition=reward_condition,
@@ -147,9 +160,15 @@ def run_pipeline_scenario(
                     "learner_reward": tr.shaped_reward,
                     "terminated": tr.terminated,
                     "truncated": tr.truncated,
+                    "controller_terminal": tr.controller_terminal,
+                    "learner_completed": tr.learner_completed,
                     "observation": tr.observation.tolist(),
-                    "next_observation": tr.next_observation.tolist(),
-                    "next_action_mask": tr.next_action_mask.tolist(),
+                    "next_observation": None
+                    if tr.next_observation is None
+                    else tr.next_observation.tolist(),
+                    "next_action_mask": None
+                    if tr.next_action_mask is None
+                    else tr.next_action_mask.tolist(),
                     "target": target.target,
                     "bootstrap_multiplier": target.bootstrap_multiplier,
                     "masked_next_q_max": target.masked_next_q_max,
@@ -159,7 +178,7 @@ def run_pipeline_scenario(
                             target.reward
                             + target.gamma
                             * target.bootstrap_multiplier
-                            * target.masked_next_q_max
+                            * (target.masked_next_q_max or 0.0)
                         )
                     )
                     < 1e-12,

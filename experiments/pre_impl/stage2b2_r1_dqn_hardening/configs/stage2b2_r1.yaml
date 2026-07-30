@@ -1,0 +1,38 @@
+stage: stage2b2_r1_dqn_hardening
+description: >
+  Strict action-mask validation and controller-terminal TD-target hardening
+  for the retained Independent DQN implementation. No pilot training.
+
+authoritative_locks:
+  environment_lock_path: experiments/pre_impl/stage4a_r1_final_environment_reselection/artifacts/20260730T003122Z_aee2d425/final_environment_lock.yaml
+  environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+  comfort_lock_path: experiments/pre_impl/stage3b_r1_final_environment_comfort_calibration/artifacts/20260730T005639Z_c6992dd4/final_comfort_parameters.yaml
+  comfort_lock_sha256: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+  a_comfort: 1.5
+  a_hard: 3.5
+  eta_H: 0.015
+  candidate_id: G1-I1
+
+algorithm: vanilla_dqn_masked_target_max
+policy_training_started: false
+
+modified_sources:
+  - src/thesis/agents/action_masking.py
+  - src/thesis/agents/dqn_targets.py
+  - src/thesis/agents/replay_buffer_v2.py
+  - src/thesis/agents/independent_dqn_v2.py
+  - src/thesis/agents/dqn_pipeline.py
+
+pytest_targets:
+  - tests/agents/test_action_masking.py
+  - tests/agents/test_replay_buffer_v2.py
+  - tests/agents/test_dqn_targets.py
+  - tests/agents/test_stage2b2_r1_hardening.py
+  - tests/integration/test_stage2b2_r1_terminal_pipeline.py
+  - tests/integration/test_dqn_env_reward_pipeline.py
+
+forbidden:
+  pilot_training: true
+  modify_environment_lock: true
+  modify_comfort_lock: true
+  sustained_env_training_loop: true

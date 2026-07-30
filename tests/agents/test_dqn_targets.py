@@ -48,20 +48,20 @@ def test_02_deterministic_initialisation():
 def test_10_true_terminal_target():
     bd = compute_dqn_target(
         1.25,
-        terminated=True,
+        controller_terminal=True,
         truncated=False,
         gamma=0.9,
-        next_q_values=[10.0, 20.0, 30.0],
-        next_action_mask=[True, True, True],
+        terminated=True,
     )
     assert bd.target == pytest.approx(1.25)
     assert bd.bootstrap_multiplier == 0.0
+    assert bd.next_q_values is None
 
 
 def test_11_ordinary_bootstrap_target():
     bd = compute_dqn_target(
         1.0,
-        terminated=False,
+        controller_terminal=False,
         truncated=False,
         gamma=0.9,
         next_q_values=[5.0, 1.0, 2.0],
@@ -74,7 +74,7 @@ def test_11_ordinary_bootstrap_target():
 def test_12_truncation_retains_bootstrap():
     bd = compute_dqn_target(
         1.0,
-        terminated=False,
+        controller_terminal=False,
         truncated=True,
         gamma=0.9,
         next_q_values=[5.0, 0.0, 0.0],
@@ -87,7 +87,7 @@ def test_12_truncation_retains_bootstrap():
 def test_13_illegal_next_action_excluded():
     bd = compute_dqn_target(
         0.0,
-        terminated=False,
+        controller_terminal=False,
         truncated=False,
         gamma=0.9,
         next_q_values=[2.0, 100.0, 5.0],
@@ -100,7 +100,7 @@ def test_13_illegal_next_action_excluded():
 def test_14_batch_target_calculation():
     outs = compute_dqn_targets_batch(
         rewards=[1.0, 1.25, 1.0],
-        terminated=[False, True, False],
+        controller_terminal=[False, True, False],
         truncated=[False, False, True],
         gamma=0.9,
         next_q_values=np.array(
@@ -109,6 +109,7 @@ def test_14_batch_target_calculation():
         next_action_masks=np.array(
             [[True, True, True], [True, True, True], [True, True, True]]
         ),
+        terminated=[False, True, False],
     )
     assert outs[0].target == pytest.approx(5.5)
     assert outs[1].target == pytest.approx(1.25)
@@ -167,6 +168,7 @@ def test_21_one_deterministic_optimiser_update():
                 next_observation=np.ones(4) * 0.1,
                 terminated=False,
                 truncated=False,
+                controller_terminal=False,
                 action_mask=np.array([True, True, True]),
                 next_action_mask=np.array([True, True, True]),
                 base_reward=1.0,
@@ -199,6 +201,7 @@ def test_22_target_network_synchronisation():
                 next_observation=np.random.default_rng(i + 10).normal(size=4),
                 terminated=False,
                 truncated=False,
+                controller_terminal=False,
                 action_mask=np.array([True, True, True]),
                 next_action_mask=np.array([True, True, True]),
                 controller_id="A",

@@ -1,6 +1,8 @@
 """Action masking for Independent DQN (selection + Bellman target).
 
 Masks are role/state based, never controller-identity based.
+
+Stage 2B-2R: strict mask validation — no silent float coercion via ``astype(bool)``.
 """
 
 from __future__ import annotations
@@ -10,42 +12,81 @@ from typing import Sequence
 import numpy as np
 
 
-def validate_action_mask(mask: Sequence[bool] | np.ndarray, n_actions: int) -> np.ndarray:
-    """Return a boolean mask of length ``n_actions``.
+def validate_action_mask(mask: Sequence | np.ndarray, n_actions: int) -> np.ndarray:
+    """Return a canonical Boolean mask of length ``n_actions``.
 
-    Raises
-    ------
-    ValueError
-        On wrong length, non-boolean-compatible values, or all-False mask.
+    Accepted input dtypes (before conversion):
+    - Boolean dtype;
+    - Integer dtype whose values are exactly ``{0, 1}`` only.
+
+    Rejected (no silent coercion):
+    - floating dtypes (including ``0.0`` / ``1.0``);
+    - values other than exact 0/1 for integers;
+    - negatives, NaN, infinity;
+    - strings / object arrays;
+    - scalars, wrong length, multidimensional;
+    - all-illegal (no legal action).
     """
+    if np.isscalar(mask) or isinstance(mask, (str, bytes)):
+        raise ValueError(f"action mask must be a 1-D sequence, got scalar/type {type(mask)!r}")
+
     arr = np.asarray(mask)
+    if arr.dtype == object or arr.dtype.kind in {"U", "S", "O"}:
+        raise ValueError(f"action mask dtype {arr.dtype} is not allowed (object/string)")
     if arr.ndim != 1:
         raise ValueError(f"action mask must be 1-D, got shape {arr.shape}")
     if arr.shape[0] != n_actions:
         raise ValueError(
             f"action mask length {arr.shape[0]} != action-space size {n_actions}"
         )
-    # Force boolean; reject non 0/1 numeric ambiguity only after bool cast
-    bool_mask = arr.astype(bool)
+    if arr.size == 0:
+        raise ValueError("action mask is empty; at least one legal action required")
+
+    # Strict dtype gate — never call astype(bool) before this check.
+    if np.issubdtype(arr.dtype, np.floating):
+        raise ValueError(
+            f"float action masks are rejected (got dtype={arr.dtype}); "
+            "use bool or integer 0/1"
+        )
+    if np.issubdtype(arr.dtype, np.bool_):
+        values = arr
+    elif np.issubdtype(arr.dtype, np.integer):
+        # Reject any value outside {0, 1} before bool conversion.
+        as_int = arr.astype(np.int64, copy=False)
+        if np.any(as_int < 0):
+            raise ValueError(f"action mask contains negative values: {as_int}")
+        if not np.all((as_int == 0) | (as_int == 1)):
+            raise ValueError(
+                f"integer action mask must contain only exact 0/1, got {as_int}"
+            )
+        values = as_int
+    else:
+        raise ValueError(f"unsupported action mask dtype {arr.dtype}")
+
+    if not np.all(np.isfinite(values.astype(np.float64))):
+        raise ValueError(f"action mask contains non-finite values: {values}")
+
+    bool_mask = np.asarray(values, dtype=bool)
     if not np.any(bool_mask):
         raise ValueError("action mask is all-False; at least one legal action required")
     return bool_mask
 
 
-def legal_action_indices(mask: Sequence[bool] | np.ndarray, n_actions: int) -> np.ndarray:
+def legal_action_indices(mask: Sequence | np.ndarray, n_actions: int) -> np.ndarray:
     m = validate_action_mask(mask, n_actions)
     return np.flatnonzero(m)
 
 
 def masked_argmax(
     q_values: Sequence[float] | np.ndarray,
-    mask: Sequence[bool] | np.ndarray,
+    mask: Sequence | np.ndarray,
     *,
     n_actions: int | None = None,
 ) -> int:
     """Greedy action = argmax over legal actions only.
 
     Ties among legal actions: smallest index wins (deterministic).
+    Illegal Q-values never affect the result.
     """
     q = np.asarray(q_values, dtype=np.float64)
     if q.ndim != 1:
@@ -57,12 +98,11 @@ def masked_argmax(
         raise ValueError(f"non-finite Q-values: {q}")
     legal = legal_action_indices(mask, n)
     legal_q = q[legal]
-    # np.argmax returns first max → smallest index among ties
     return int(legal[int(np.argmax(legal_q))])
 
 
 def masked_random_action(
-    mask: Sequence[bool] | np.ndarray,
+    mask: Sequence | np.ndarray,
     n_actions: int,
     rng: np.random.Generator,
 ) -> int:
@@ -74,7 +114,7 @@ def masked_random_action(
 
 def masked_max_q(
     q_values: Sequence[float] | np.ndarray,
-    mask: Sequence[bool] | np.ndarray,
+    mask: Sequence | np.ndarray,
     *,
     n_actions: int | None = None,
 ) -> float:

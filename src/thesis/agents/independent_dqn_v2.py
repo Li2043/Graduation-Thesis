@@ -191,46 +191,80 @@ class IndependentDQNLearner:
     def compute_target_for_transition(
         self, transition: ReplayTransition
     ) -> TargetBreakdown:
+        if bool(transition.controller_terminal):
+            return compute_dqn_target(
+                transition.shaped_reward,
+                controller_terminal=True,
+                truncated=transition.truncated,
+                gamma=self.config.gamma,
+                terminated=transition.terminated,
+            )
         next_q = self.q_values(transition.next_observation, network="target")
         return compute_dqn_target(
             transition.shaped_reward,
-            terminated=transition.terminated,
+            controller_terminal=False,
             truncated=transition.truncated,
             gamma=self.config.gamma,
             next_q_values=next_q,
             next_action_mask=transition.next_action_mask,
+            terminated=transition.terminated,
         )
 
     def update(self, batch: ReplayBatch | None = None) -> dict[str, Any]:
-        """One deterministic optimiser step on a batch (or sample from replay)."""
+        """One deterministic optimiser step on a batch (or sample from replay).
+
+        Vanilla DQN: target network supplies masked max Q for bootstrap rows only.
+        Controller-terminal rows set target = reward and never forward the target net.
+        """
         if batch is None:
             batch = self.replay.sample(self.config.batch_size)
 
         obs = torch.as_tensor(batch.observations, dtype=torch.float32, device=self.device)
         actions = torch.as_tensor(batch.actions, dtype=torch.int64, device=self.device)
-        # Targets without grad tracking
+        n = len(batch.actions)
+        targets_arr = np.asarray(batch.shaped_rewards, dtype=np.float64).copy()
+        target_forward_calls = 0
+
         with torch.no_grad():
-            next_obs = torch.as_tensor(
-                batch.next_observations, dtype=torch.float32, device=self.device
-            )
-            next_q = self.target(next_obs).cpu().numpy()
-            targets_list = []
-            for i in range(len(batch.actions)):
-                bd = compute_dqn_target(
-                    float(batch.shaped_rewards[i]),
-                    terminated=bool(batch.terminated[i]),
-                    truncated=bool(batch.truncated[i]),
-                    gamma=self.config.gamma,
-                    next_q_values=next_q[i],
-                    next_action_mask=batch.next_action_masks[i],
+            boot_idx = [int(i) for i in batch.bootstrap_indices.tolist()]
+            if boot_idx:
+                next_obs_list = []
+                next_masks = []
+                for i in boot_idx:
+                    nobs = batch.next_observations[i]
+                    nmask = batch.next_action_masks[i]
+                    if nobs is None or nmask is None:
+                        raise ValueError(
+                            f"bootstrap row {i} missing next_observation/next_action_mask"
+                        )
+                    next_obs_list.append(nobs)
+                    next_masks.append(nmask)
+                next_obs_t = torch.as_tensor(
+                    np.stack(next_obs_list), dtype=torch.float32, device=self.device
                 )
-                targets_list.append(bd.target)
-            # Confirm target net grads absent
+                next_q = self.target(next_obs_t).cpu().numpy()
+                target_forward_calls = 1
+                for j, i in enumerate(boot_idx):
+                    bd = compute_dqn_target(
+                        float(batch.shaped_rewards[i]),
+                        controller_terminal=False,
+                        truncated=bool(batch.truncated[i]),
+                        gamma=self.config.gamma,
+                        next_q_values=next_q[j],
+                        next_action_mask=next_masks[j],
+                        terminated=bool(batch.terminated[i]),
+                    )
+                    targets_arr[i] = bd.target
+            # Terminal rows already hold reward in targets_arr
+            for i in range(n):
+                if bool(batch.controller_terminal[i]):
+                    targets_arr[i] = float(batch.shaped_rewards[i])
+
             for p in self.target.parameters():
                 if p.grad is not None:
                     raise RuntimeError("target network unexpectedly has gradients")
             target_t = torch.as_tensor(
-                targets_list, dtype=torch.float32, device=self.device
+                targets_arr, dtype=torch.float32, device=self.device
             )
             if not torch.isfinite(target_t).all():
                 raise ValueError("non-finite targets in batch")
@@ -243,7 +277,6 @@ class IndependentDQNLearner:
         if not torch.isfinite(loss):
             raise ValueError(f"non-finite loss: {loss.item()}")
 
-        # Snapshot params for change detection
         before_vec = torch.nn.utils.parameters_to_vector(
             self.online.parameters()
         ).detach().clone()
@@ -265,7 +298,6 @@ class IndependentDQNLearner:
             torch.equal(target_before[k], v)
             for k, v in self.target.state_dict().items()
         )
-        # Target grads still None
         for p in self.target.parameters():
             if p.grad is not None:
                 raise RuntimeError("target network gained gradients during update")
@@ -277,6 +309,9 @@ class IndependentDQNLearner:
             "mean_q_sa": float(q_sa.detach().mean().item()),
             "mean_target": float(target_t.mean().item()),
             "update_count": self._update_count,
+            "target_network_forward_calls": int(target_forward_calls),
+            "n_bootstrap_rows": int(len(boot_idx)),
+            "n_terminal_rows": int(n - len(boot_idx)),
         }
 
     def parameter_vector(self, *, network: str = "online") -> np.ndarray:
