@@ -1,0 +1,10 @@
+{
+  "run_id": "20260730T005639Z_c6992dd4",
+  "overall": "PASS",
+  "selected": {
+    "a_comfort": 1.5,
+    "a_hard": 3.5,
+    "eta_H": 0.015
+  },
+  "comfort_parameters_final": true
+}

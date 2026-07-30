@@ -1,0 +1,97 @@
+a_comfort: 1.5
+a_hard: 3.5
+eta_H: 0.015
+eta_hard_brake: 0.015
+candidate_grids:
+  a_comfort:
+  - 1.5
+  - 2.0
+  - 2.5
+  a_hard:
+  - 3.0
+  - 3.5
+  - 4.0
+  - 5.0
+  - 6.0
+  eta_H:
+  - 0.005
+  - 0.0075
+  - 0.01
+  - 0.0125
+  - 0.015
+  - 0.0175
+  - 0.02
+  - 0.0225
+  - 0.025
+  - 0.0275
+  - 0.03
+  - 0.0325
+  - 0.035
+  - 0.0375
+  - 0.04
+  - 0.0425
+  - 0.045
+  - 0.0475
+  - 0.05
+tuple_selection_rule:
+- smallest_eta_H
+- largest_hard_minus_nominal_mean_H_separation
+- lowest_median_nominal_safe_braking_share
+- highest_a_comfort
+- highest_a_hard
+share_definition:
+  B_i: sum_t gamma^t * eta_H * H_i,t
+  D_i: "sum_t gamma^t * (|0.4 \u0394\u03C1| + |0.6 exit| + |collision| + eta_H H)"
+  S_i: B_i / max(D_i, 1e-12)
+  team: mean of available learner shares
+policy_level_acceleration_definition: minimum realised acceleration across active
+  physics substeps of the 0.20 s policy transition
+calibration_metrics:
+  median_nominal_share: 0.022336472307510628
+  max_nominal_share: 0.04575567996627712
+  hard_nonzero_rate: 1.0
+  mean_H_hard: 0.5624999999999907
+  mean_H_nominal: 0.020096463022507706
+  H_separation: 0.542403536977483
+  median_paired_share_diff: 0.5977406001087069
+  median_order_gap: 0.008612954820814084
+  max_order_gap: 0.06342660627702279
+  ordering_violations: 0
+validation_metrics:
+  median_nominal_share: 0.022336472307510628
+  max_nominal_share: 0.023245131026011275
+  hard_nonzero_rate: 1.0
+  mean_H_hard: 0.5624999999999891
+  median_paired_share_diff: 0.5977406001087069
+  median_order_gap: 0.007320757837246235
+  max_order_gap: 0.01811599225018787
+  pass: true
+final_environment_lock_path: "C:\\Users\\HP\\Desktop\\\u6BD5\u4E1A\u9879\u76EE\\thesis\\\
+  final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\artifacts\\\
+  20260730T003122Z_aee2d425\\final_environment_lock.yaml"
+final_environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+source_git_commit: c6992dd413e39ec21c22c362c4110db760d3e7bf
+source_hashes:
+  src/thesis/calibration/final_environment_trace_loader.py: 54d6a01fdc9eae9516fb9fbba57151c47c97b67bee689a29e69723f98c6c5443
+  src/thesis/calibration/policy_acceleration.py: 252661d5393faac0fc95db767726ef8a710e041ecc69c44ef6db8e0de62a3873
+  src/thesis/calibration/joint_comfort_calibration.py: 8c9522aeab4ed6b72c6379b0a052e35b02cfc907eeefc08a4838c1575cdc383c
+  src/thesis/calibration/comfort_validation.py: d929bc8b874cc2a14967cbc08fa1b7c8fec49f43bded9b9b254590e5601a7553
+  src/thesis/calibration/comfort_lock.py: aa9cb79e747af9ffe20f2c0babd896c630be187f64a82273875259f89b10fee9
+  src/thesis/rewards/base_reward_v2.py: e7f8a3249291a0ea1cfb138c1c70d8f3c09c6ade9a2b83dd469401ff35bda678
+  src/thesis/envs/merge_env_candidate_v3.py: ee5024de5c06448ccbe95f917d339f450d40c833de093ff0aea4b8c4e3350030
+configuration_sha256: 62b050c37e2bf9c12fea28d8d6948202b4a97469b44cb1603cf118d0e38b4d36
+original_stage3b_failure_reference:
+  run_id: 20260729T225046Z_8624f03a
+  development_calibration: FAIL
+  reason: threshold candidates existed; no eta in the original coarse preregistered
+    grid was feasible; thresholds selected before eta; comfort and eta were not jointly
+    selected
+stage4a_r1_environment_reference:
+  run_id: 20260730T003122Z_aee2d425
+  candidate_id: G1-I1
+online_offline_maximum_errors:
+  max_per_transition_reward_error: 0.0
+  max_discounted_return_error: 0.0
+environment_parameters_final: true
+comfort_parameters_final: true
+policy_training_started: false

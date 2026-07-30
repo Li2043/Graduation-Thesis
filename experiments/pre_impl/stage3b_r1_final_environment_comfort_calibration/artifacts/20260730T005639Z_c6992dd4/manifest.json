@@ -1,0 +1,96 @@
+{
+  "run_id": "20260730T005639Z_c6992dd4",
+  "overall": "PASS",
+  "status_note": "",
+  "git_commit": "c6992dd413e39ec21c22c362c4110db760d3e7bf",
+  "git_dirty": false,
+  "tests": {
+    "passed": 20,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "source_environment_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\artifacts\\20260730T003122Z_aee2d425\\final_environment_lock.yaml",
+  "source_environment_lock_sha256": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "n_calibration_blocks": 12,
+  "n_validation_blocks": 8,
+  "counts": {
+    "included_transitions": 17400,
+    "excluded_transitions": 2736,
+    "hard_window_transitions": 328,
+    "hard_window_calibration_blocks": 12,
+    "n_episodes": 160,
+    "n_transitions": 20136
+  },
+  "integrity": {
+    "route_discontinuity_count": 0,
+    "repeated_exit_count": 0,
+    "invalid_flag_count": 0,
+    "fixture_count": 0,
+    "nan_inf_count": 0,
+    "missing_substep_acceleration_count": 0
+  },
+  "n_threshold_pairs": 14,
+  "n_complete_tuples": 266,
+  "n_feasible_tuples": 49,
+  "selected": {
+    "a_comfort": 1.5,
+    "a_hard": 3.5,
+    "eta_H": 0.015
+  },
+  "calibration_metrics": {
+    "median_nominal_share": 0.022336472307510628,
+    "max_nominal_share": 0.04575567996627712,
+    "hard_nonzero_rate": 1.0,
+    "mean_H_hard": 0.5624999999999907,
+    "median_paired_share_diff": 0.5977406001087069,
+    "median_order_gap": 0.008612954820814084,
+    "max_order_gap": 0.06342660627702279,
+    "ordering_violations": 0
+  },
+  "validation_metrics": {
+    "pass": true,
+    "median_nominal_share": 0.022336472307510628,
+    "max_nominal_share": 0.023245131026011275,
+    "rejection_reasons": []
+  },
+  "confirmatory": {
+    "pass": true,
+    "max_per_transition_reward_error": 0.0,
+    "max_discounted_return_error": 0.0
+  },
+  "comfort_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\artifacts\\20260730T005639Z_c6992dd4\\final_comfort_parameters.yaml",
+  "comfort_lock_sha256": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "environment_parameters_final": true,
+  "comfort_parameters_final": true,
+  "policy_training_started": false,
+  "development_calibration": "FAIL",
+  "utc_timestamp": "2026-07-30T00:57:50.240610+00:00",
+  "exact_command": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\.venv_stage2b1\\Scripts\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\scripts\\run_stage3b_r1_calibration.py",
+  "python_and_packages": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.3.2",
+    "gymnasium": "1.2.0",
+    "pytest": "8.4.1",
+    "yaml": "6.0.2"
+  },
+  "configuration_sha256": "62b050c37e2bf9c12fea28d8d6948202b4a97469b44cb1603cf118d0e38b4d36",
+  "source_hashes": {
+    "src/thesis/calibration/final_environment_trace_loader.py": "54d6a01fdc9eae9516fb9fbba57151c47c97b67bee689a29e69723f98c6c5443",
+    "src/thesis/calibration/policy_acceleration.py": "252661d5393faac0fc95db767726ef8a710e041ecc69c44ef6db8e0de62a3873",
+    "src/thesis/calibration/joint_comfort_calibration.py": "8c9522aeab4ed6b72c6379b0a052e35b02cfc907eeefc08a4838c1575cdc383c",
+    "src/thesis/calibration/comfort_validation.py": "d929bc8b874cc2a14967cbc08fa1b7c8fec49f43bded9b9b254590e5601a7553",
+    "src/thesis/calibration/comfort_lock.py": "aa9cb79e747af9ffe20f2c0babd896c630be187f64a82273875259f89b10fee9",
+    "src/thesis/rewards/base_reward_v2.py": "e7f8a3249291a0ea1cfb138c1c70d8f3c09c6ade9a2b83dd469401ff35bda678",
+    "src/thesis/envs/merge_env_candidate_v3.py": "ee5024de5c06448ccbe95f917d339f450d40c833de093ff0aea4b8c4e3350030"
+  },
+  "output_paths": {
+    "raw": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\data\\raw\\20260730T005639Z_c6992dd4",
+    "processed": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\data\\processed\\20260730T005639Z_c6992dd4",
+    "reports": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\reports\\20260730T005639Z_c6992dd4",
+    "logs": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\logs\\20260730T005639Z_c6992dd4",
+    "artifacts": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\artifacts\\20260730T005639Z_c6992dd4"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "run_id": "20260730T005639Z_c6992dd4",
+  "overall": "PASS",
+  "status_note": "",
+  "git_commit": "c6992dd413e39ec21c22c362c4110db760d3e7bf",
+  "git_dirty": false,
+  "tests": {
+    "passed": 20,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "source_environment_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\artifacts\\20260730T003122Z_aee2d425\\final_environment_lock.yaml",
+  "source_environment_lock_sha256": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "n_calibration_blocks": 12,
+  "n_validation_blocks": 8,
+  "counts": {
+    "included_transitions": 17400,
+    "excluded_transitions": 2736,
+    "hard_window_transitions": 328,
+    "hard_window_calibration_blocks": 12,
+    "n_episodes": 160,
+    "n_transitions": 20136
+  },
+  "integrity": {
+    "route_discontinuity_count": 0,
+    "repeated_exit_count": 0,
+    "invalid_flag_count": 0,
+    "fixture_count": 0,
+    "nan_inf_count": 0,
+    "missing_substep_acceleration_count": 0
+  },
+  "n_threshold_pairs": 14,
+  "n_complete_tuples": 266,
+  "n_feasible_tuples": 49,
+  "selected": {
+    "a_comfort": 1.5,
+    "a_hard": 3.5,
+    "eta_H": 0.015
+  },
+  "calibration_metrics": {
+    "median_nominal_share": 0.022336472307510628,
+    "max_nominal_share": 0.04575567996627712,
+    "hard_nonzero_rate": 1.0,
+    "mean_H_hard": 0.5624999999999907,
+    "median_paired_share_diff": 0.5977406001087069,
+    "median_order_gap": 0.008612954820814084,
+    "max_order_gap": 0.06342660627702279,
+    "ordering_violations": 0
+  },
+  "validation_metrics": {
+    "pass": true,
+    "median_nominal_share": 0.022336472307510628,
+    "max_nominal_share": 0.023245131026011275,
+    "rejection_reasons": []
+  },
+  "confirmatory": {
+    "pass": true,
+    "max_per_transition_reward_error": 0.0,
+    "max_discounted_return_error": 0.0
+  },
+  "comfort_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\artifacts\\20260730T005639Z_c6992dd4\\final_comfort_parameters.yaml",
+  "comfort_lock_sha256": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "environment_parameters_final": true,
+  "comfort_parameters_final": true,
+  "policy_training_started": false,
+  "development_calibration": "FAIL"
+}
