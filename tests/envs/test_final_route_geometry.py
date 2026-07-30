@@ -1,58 +1,103 @@
-"""Tests for arc-length final route geometry."""
+"""Tests for quintic merge centreline geometry (Stage 4A-0R2)."""
 
 from __future__ import annotations
 
 import math
 
 from thesis.certification.choice_state_scenarios import GEOMETRY
-from thesis.envs.final_route_geometry import build_final_route_geometry
+from thesis.envs.final_route_geometry import (
+    MAX_LATERAL_ACCEL_AT_20,
+    build_final_route_geometry,
+    quintic_q,
+    quintic_qp,
+    quintic_qpp,
+)
 
 
-def test_round_trip_mainline_and_ramp():
+def test_quintic_boundary_derivatives():
+    for u in (0.0, 1.0):
+        assert abs(float(quintic_qp(u))) < 1e-12
+        assert abs(float(quintic_qpp(u))) < 1e-12
+    assert abs(float(quintic_q(0.0))) < 1e-12
+    assert abs(float(quintic_q(1.0)) - 1.0) < 1e-12
+
+
+def test_ramp_parallel_offset_before_merge_start():
     geom = build_final_route_geometry(GEOMETRY[0])
-    for role in ("mainline", "ramp"):
-        for frac in (0.0, 0.2, 0.5, 0.8, 0.99):
-            s = frac * geom.exit_route(role)
-            pose = geom.pose(role, s)
-            s_rec = geom.recover_route_position(role, pose.x, pose.y)
-            assert abs(s_rec - s) < 0.05
+    for s in (0.0, 20.0, geom.merge_start - 1.0):
+        p = geom.pose("ramp", s)
+        m = geom.pose("mainline", s)
+        assert abs(p.y + geom.lateral_offset) < 1e-12
+        assert abs(m.y) < 1e-12
+        assert abs(p.heading) < 1e-12
+        assert abs(p.x - s) < 1e-12
+        assert p.segment == "ramp_approach"
 
 
-def test_heading_and_position_continuity_at_join():
+def test_convergence_starts_at_merge_start_and_ends_at_merge_end():
     geom = build_final_route_geometry(GEOMETRY[0])
-    # Just before and at join on ramp
-    s0 = geom.ramp_join_route - 1e-6
-    s1 = geom.ramp_join_route
-    p0 = geom.pose("ramp", s0)
-    p1 = geom.pose("ramp", s1)
-    assert abs(p0.x - p1.x) < 1e-3
-    assert abs(p0.y - p1.y) < 1e-3
-    assert abs(p0.heading - p1.heading) < 1e-3
-    # Mainline at join
-    pm = geom.pose("mainline", geom.join_x)
-    assert abs(pm.y) < 1e-12
-    assert abs(pm.heading) < 1e-12
+    p0 = geom.pose("ramp", geom.merge_start)
+    assert abs(p0.y + geom.lateral_offset) < 1e-9
+    assert p0.segment in ("ramp_approach", "merge_connector")
+    # Just inside connector
+    p_in = geom.pose("ramp", geom.merge_start + 1e-3)
+    assert p_in.segment == "merge_connector"
+    assert p_in.y > -geom.lateral_offset
+    # At end of connector arc (== merge_end in world-x)
+    p1 = geom.pose("ramp", geom.ramp_connector_end_route)
+    assert abs(p1.y) < 1e-9
+    assert abs(p1.x - geom.merge_end) < 1e-6
 
 
-def test_segment_labels():
+def test_heading_and_curvature_continuous_at_boundaries():
     geom = build_final_route_geometry(GEOMETRY[0])
-    assert geom.segment("mainline", 10.0) == "mainline_approach"
-    assert geom.segment("mainline", 100.0) == "merge_conflict"
-    assert geom.segment("mainline", 200.0) == "shared_mainline"
-    assert geom.segment("ramp", 5.0) == "ramp_approach"
-    assert geom.segment("ramp", geom.ramp_straight_length + 1.0) == "merge_connector"
+    eps = 1e-6
+    for s_b in (geom.merge_start, geom.ramp_connector_end_route):
+        a = geom.pose("ramp", s_b - eps)
+        b = geom.pose("ramp", s_b + eps)
+        assert abs(a.heading - b.heading) < 1e-5
+        assert abs(a.curvature - b.curvature) < 1e-4
+        assert math.hypot(a.x - b.x, a.y - b.y) < 1e-4
 
 
-def test_heading_continuity_max_jump():
+def test_route_monotonic_and_connector_lut_monotonic():
     geom = build_final_route_geometry(GEOMETRY[0])
-    samples = geom.heading_continuity_samples("ramp", n=500)
-    max_jump = 0.0
-    prev = samples[0][1]
-    for s, h, _ in samples[1:]:
-        # unwrap small
-        dh = abs(h - prev)
-        dh = min(dh, abs(dh - 2 * math.pi))
-        max_jump = max(max_jump, dh)
-        prev = h
-    # Arc connector: Δθ ≈ Δs / R; with ~1.3 m samples and R=4, expect ~0.33 rad.
-    assert max_jump < 0.40
+    prev = -1.0
+    for i in range(200):
+        s = geom.exit_route("ramp") * i / 199
+        p = geom.pose("ramp", s)
+        assert p.route_position + 1e-12 >= prev
+        prev = p.route_position
+    prev_s = -1.0
+    for i in range(100):
+        u = i / 99
+        sc = geom.connector_arc_from_u(u)
+        assert sc + 1e-12 >= prev_s
+        prev_s = sc
+        assert abs(geom.u_from_connector_arc(sc) - u) < 1e-5
+
+
+def test_inverse_recovery_error_bound_all_geometries():
+    for g in GEOMETRY:
+        geom = build_final_route_geometry(g)
+        for role in ("mainline", "ramp"):
+            err = geom.max_route_recovery_error(role, n=1000)
+            assert err <= 0.01, (g.geometry_id, role, err)
+
+
+def test_g1_g2_g3_distinct_connector_lengths():
+    g1, g2, g3 = [build_final_route_geometry(g) for g in GEOMETRY]
+    assert g1.connector_world_length == 60.0
+    assert g2.connector_world_length == 80.0
+    assert g3.connector_world_length == 70.0
+    assert g2.connector_arc_length > g1.connector_arc_length
+    assert abs(g3.merge_start - 100.0) < 1e-12
+    assert abs(g3.merge_end - 170.0) < 1e-12
+
+
+def test_lateral_acceleration_plausibility_bound():
+    for g in GEOMETRY:
+        geom = build_final_route_geometry(g)
+        d = geom.diagnostics()
+        assert d["physically_feasible"]
+        assert d["maximum_implied_lateral_acceleration_at_20"] <= MAX_LATERAL_ACCEL_AT_20 + 1e-12

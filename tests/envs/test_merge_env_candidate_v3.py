@@ -237,3 +237,37 @@ def test_observation_dim():
     env, _ = _env()
     obs, _ = env.reset(seed=1)
     assert obs["A"].shape == (OBSERVATION_DIM,)
+    assert np.all(np.isfinite(obs["A"]))
+
+
+def test_parallel_lanes_do_not_collide_before_convergence():
+    env, cand = _env()
+    s = cand.geometry.merge_start - 20.0
+    env._vehicles["A"].role = "mainline"
+    env._vehicles["B"].role = "ramp"
+    env._vehicles["A"].route_position = s
+    env._vehicles["B"].route_position = s
+    for aid in ("A", "B"):
+        env._vehicles[aid].active_on_road = True
+        env._sync(env._vehicles[aid])
+    assert abs(env._vehicles["B"].world_y + 4.0) < 1e-9
+    assert abs(env._vehicles["A"].world_y) < 1e-9
+    assert env._detect_collisions() == []
+
+
+def test_sat_detects_overlap_inside_connector():
+    env, cand = _env()
+    # Near merge_end on ramp (y≈0) vs mainline at same x → overlap
+    geom = env._geom
+    s_ramp = geom.ramp_connector_end_route - 0.5
+    env._vehicles["A"].role = "mainline"
+    env._vehicles["B"].role = "ramp"
+    env._vehicles["B"].route_position = s_ramp
+    env._sync(env._vehicles["B"])
+    env._vehicles["A"].route_position = env._vehicles["B"].world_x
+    env._vehicles["A"].active_on_road = True
+    env._vehicles["B"].active_on_road = True
+    env._sync(env._vehicles["A"])
+    env._sync(env._vehicles["B"])
+    assert abs(env._vehicles["B"].world_y) < 0.2
+    assert env._detect_collisions() == [("A", "B")]

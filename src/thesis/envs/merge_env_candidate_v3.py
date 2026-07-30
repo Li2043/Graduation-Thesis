@@ -107,6 +107,8 @@ class MergeEnvCandidateV3(gym.Env):
         veh.world_x = pose.x
         veh.world_y = pose.y
         veh.heading = pose.heading
+        # Stash curvature on instance for diagnostics (not part of VehicleState schema)
+        setattr(veh, "curvature", float(pose.curvature))
         if veh.completed or not veh.active_on_road:
             veh.physical_segment = "exited"
         else:
@@ -342,6 +344,7 @@ class MergeEnvCandidateV3(gym.Env):
             "world_x": veh.world_x,
             "world_y": veh.world_y,
             "heading": veh.heading,
+            "curvature": float(getattr(veh, "curvature", 0.0)),
             "completed": veh.completed,
             "active_on_road": veh.active_on_road,
             "physical_segment": veh.physical_segment,

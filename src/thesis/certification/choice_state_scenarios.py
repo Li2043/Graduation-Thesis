@@ -210,7 +210,13 @@ def build_ic_blocks() -> tuple[list[InitialConditionBlock], list[InitialConditio
 def materialize_block_for_geometry(
     block: InitialConditionBlock, geometry: GeometryCandidate
 ) -> InitialConditionBlock:
-    """Recompute absolute spawns from preregistered speed/delta/headway for a geometry."""
+    """Recompute absolute spawns from preregistered speed/delta/headway for a geometry.
+
+    Arrival times refer to ``merge_start`` (start of convergence). Ramp route
+    positions before ``merge_start`` lie on the parallel ramp approach
+    (y = -lateral_offset). Controller-label swapping does not alter these
+    physical positions.
+    """
     pm, pr, svm, svr, front, rear = _spawn_from_delta(
         merge_start=float(geometry.merge_start),
         v_m=float(block.spawn_speed_mainline),
@@ -218,6 +224,11 @@ def materialize_block_for_geometry(
         delta_arrival=float(block.delta_arrival),
         headway=float(block.background_time_headway),
     )
+    # Keep both learners strictly before merge_start (no invalid connector spawn)
+    pm = min(pm, float(geometry.merge_start) - 5.0)
+    pr = min(pr, float(geometry.merge_start) - 5.0)
+    pm = max(5.0, pm)
+    pr = max(5.0, pr)
     return InitialConditionBlock(
         block_id=block.block_id,
         block_set=block.block_set,

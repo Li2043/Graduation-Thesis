@@ -1,0 +1,26 @@
+stage: stage4a0r2_merge_geometry_correction
+description: >
+  Replace quarter-circle ramp join with quintic lateral convergence between
+  merge_start and merge_end. No candidate reselection; no final lock.
+
+prior_stage4a0r_run_id: 20260729T235855Z_8ab30c89
+prior_stage4a_run_id: 20260729T231946Z_c8d92bc3
+prior_stage4a_status: superseded_pending_v3_hardening
+
+flags:
+  environment_parameters_final: false
+  comfort_parameters_final: false
+  policy_training_started: false
+  write_final_environment_lock: false
+  rerun_candidate_selection: false
+
+geometry:
+  lateral_offset: 4.0
+  connector: quintic_lateral_transition
+  max_lateral_acceleration_at_20: 3.0
+
+pytest_targets:
+  - tests/envs/test_final_route_geometry.py
+  - tests/envs/test_merge_env_candidate_v3.py
+  - tests/envs/test_final_observation.py
+  - tests/integration/test_stage4a0r2_geometry_pipeline.py
