@@ -318,6 +318,40 @@ class IndependentDQNLearner:
         net = self.online if network == "online" else self.target
         return torch.nn.utils.parameters_to_vector(net.parameters()).detach().cpu().numpy()
 
+    def export_state(self) -> dict[str, Any]:
+        return {
+            "controller_id": self.controller_id,
+            "seed": self.seed,
+            "config": {
+                "obs_dim": self.config.obs_dim,
+                "n_actions": self.config.n_actions,
+                "hidden_sizes": list(self.config.hidden_sizes),
+                "learning_rate": self.config.learning_rate,
+                "gamma": self.config.gamma,
+                "epsilon": self.config.epsilon,
+                "replay_capacity": self.config.replay_capacity,
+                "batch_size": self.config.batch_size,
+                "device": self.config.device,
+                "reward_condition": self.config.reward_condition,
+            },
+            "online": {k: v.detach().cpu() for k, v in self.online.state_dict().items()},
+            "target": {k: v.detach().cpu() for k, v in self.target.state_dict().items()},
+            "optimiser": self.optimiser.state_dict(),
+            "replay": self.replay.export_full_state(),
+            "learner_rng": self._rng.bit_generator.state,
+            "update_count": int(self._update_count),
+        }
+
+    def import_state(self, payload: dict[str, Any]) -> None:
+        if payload.get("controller_id") != self.controller_id:
+            raise ValueError("controller_id mismatch in learner checkpoint")
+        self.online.load_state_dict(payload["online"])
+        self.target.load_state_dict(payload["target"])
+        self.optimiser.load_state_dict(payload["optimiser"])
+        self.replay = ReplayBuffer.import_full_state(payload["replay"])
+        self._rng.bit_generator.state = payload["learner_rng"]
+        self._update_count = int(payload["update_count"])
+
 
 def build_independent_learners(
     config: DQNConfig,

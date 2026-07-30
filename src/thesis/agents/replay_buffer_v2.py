@@ -300,6 +300,43 @@ class ReplayBuffer:
             transitions=list(transitions),
         )
 
+    def get_rng_state(self) -> dict:
+        return self._rng.bit_generator.state
+
+    def set_rng_state(self, state: dict) -> None:
+        self._rng.bit_generator.state = state
+
+    def export_full_state(self) -> dict[str, Any]:
+        """Serialize transitions plus write cursor and RNG for exact resume."""
+        return {
+            "serialized": self.serialize(),
+            "size": int(self._size),
+            "write": int(self._write),
+            "rng_state": self.get_rng_state(),
+        }
+
+    @classmethod
+    def import_full_state(cls, payload: dict[str, Any]) -> "ReplayBuffer":
+        buf = cls.deserialize(payload["serialized"])
+        # deserialize rebuilds via append; restore circular write/size if needed
+        # After deserialize, size==len(transitions) and write==size % capacity.
+        # Re-validate against recorded size.
+        if int(payload["size"]) != len(buf):
+            raise ValueError(
+                f"replay size mismatch: payload={payload['size']} restored={len(buf)}"
+            )
+        buf._write = int(payload["write"]) % buf.capacity
+        buf._size = int(payload["size"])
+        # Rebuild storage layout from serialized logical order into circular slots
+        data = json.loads(payload["serialized"])
+        transitions = [ReplayTransition.from_dict(item) for item in data["transitions"]]
+        buf._storage = [None] * buf.capacity
+        start = (buf._write - buf._size) % buf.capacity
+        for i, tr in enumerate(transitions):
+            buf._storage[(start + i) % buf.capacity] = tr
+        buf.set_rng_state(payload["rng_state"])
+        return buf
+
     def serialize(self) -> str:
         items = []
         start = (self._write - self._size) % self.capacity

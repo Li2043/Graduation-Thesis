@@ -1,0 +1,47 @@
+stage: stage5b0_bounded_engineering_pilot
+description: >
+  Bounded engineering pilot over the final V3 training pipeline.
+  Verifies sustained interaction, checkpoints, resume, evaluation isolation.
+  Not formal dissertation training. Not condition ranking.
+
+authoritative_locks:
+  environment_lock_path: experiments/pre_impl/stage4a_r1_final_environment_reselection/artifacts/20260730T003122Z_aee2d425/final_environment_lock.yaml
+  environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+  comfort_lock_path: experiments/pre_impl/stage3b_r1_final_environment_comfort_calibration/artifacts/20260730T005639Z_c6992dd4/final_comfort_parameters.yaml
+  comfort_lock_sha256: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+
+pilot:
+  conditions: [baseline, mean_pbrs, min_pbrs]
+  seeds: [51001, 51002]
+  environment_steps_per_run: 5000
+  lambda_mean: 0.2
+  lambda_min: 0.2
+  pilot_only: true
+  pbrs_parameters_final: false
+  training_protocol_final: false
+  formal_training_started: false
+
+resume_equivalence:
+  condition: baseline
+  pilot_seed: 51001
+  comparison_length: 1000
+  interruption_step: 500
+
+pytest_targets:
+  - tests/training/test_pilot_config_freeze.py
+  - tests/training/test_final_v3_training_loop.py
+  - tests/training/test_pilot_checkpoint.py
+  - tests/training/test_pilot_resume_equivalence.py
+  - tests/training/test_pilot_evaluation_isolation.py
+  - tests/training/test_pilot_condition_paths.py
+  - tests/integration/test_stage5b0_pilot_pipeline.py
+  - tests/integration/test_stage5a0_pipeline.py
+  - tests/agents/test_stage2b2_r1_hardening.py
+  - tests/agents/test_stage2b2_r1_h1_ingress.py
+  - tests/agents/test_stage2b2_r1_h1_1_target_guard.py
+
+forbidden:
+  formal_training_protocol_lock: true
+  formal_pbrs_lock: true
+  formal_multi_seed_training: true
+  condition_ranking_from_pilot: true
