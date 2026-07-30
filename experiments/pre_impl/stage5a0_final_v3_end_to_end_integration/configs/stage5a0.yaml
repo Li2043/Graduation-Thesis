@@ -1,0 +1,71 @@
+stage: stage5a0_final_v3_end_to_end_integration
+description: >
+  Final V3 reward–PBRS–DQN end-to-end integration regression.
+  Isolated optimiser updates only. No pilot / sustained training.
+
+authoritative_locks:
+  environment_lock_path: experiments/pre_impl/stage4a_r1_final_environment_reselection/artifacts/20260730T003122Z_aee2d425/final_environment_lock.yaml
+  environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+  comfort_lock_path: experiments/pre_impl/stage3b_r1_final_environment_comfort_calibration/artifacts/20260730T005639Z_c6992dd4/final_comfort_parameters.yaml
+  comfort_lock_sha256: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+  candidate_id: G1-I1
+  observation_dimension: 27
+  a_comfort: 1.5
+  a_hard: 3.5
+  eta_H: 0.015
+
+integration_pbrs:
+  lambda_mean: 0.2
+  lambda_min: 0.2
+  integration_test_only: true
+  pbrs_parameters_final: false
+
+flags:
+  environment_parameters_final: true
+  comfort_parameters_final: true
+  pbrs_parameters_final: false
+  policy_training_started: false
+  pilot_training_started: false
+  sustained_training_invoked: false
+  isolated_optimizer_updates_only: true
+  integration_test_architecture: true
+
+algorithm: vanilla_dqn_masked_target_max
+environment_class: MergeEnvCandidateV3
+
+pytest_targets:
+  # Stage 5A-0
+  - tests/integration/test_final_v3_lock_loading.py
+  - tests/integration/test_final_v3_reward_conditions.py
+  - tests/integration/test_final_v3_pbrs_semantics.py
+  - tests/integration/test_final_v3_replay_semantics.py
+  - tests/integration/test_final_v3_dqn_update.py
+  - tests/integration/test_final_v3_condition_invariance.py
+  - tests/integration/test_stage5a0_pipeline.py
+  # Stage 2B-2R / H1 / H1.1
+  - tests/agents/test_action_masking.py
+  - tests/agents/test_replay_buffer_v2.py
+  - tests/agents/test_dqn_targets.py
+  - tests/agents/test_stage2b2_r1_hardening.py
+  - tests/agents/test_stage2b2_r1_h1_ingress.py
+  - tests/agents/test_stage2b2_r1_h1_1_target_guard.py
+  - tests/integration/test_stage2b2_r1_terminal_pipeline.py
+  # Final V3 env / geometry / observation
+  - tests/envs/test_merge_env_candidate_v3.py
+  - tests/envs/test_final_route_geometry.py
+  - tests/envs/test_final_observation.py
+  - tests/integration/test_stage4a0r2_geometry_pipeline.py
+  # Comfort
+  - tests/calibration/test_policy_acceleration.py
+  - tests/integration/test_stage3b_r1_final_environment_pipeline.py
+  # Reward / PBRS pure unit
+  - tests/rewards/test_base_reward_v2.py
+  - tests/rewards/test_pbrs_v2.py
+
+forbidden:
+  pilot_training: true
+  sustained_env_training_loop: true
+  modify_environment_lock: true
+  modify_comfort_lock: true
+  write_final_pbrs_lock: true
+  write_final_training_lock: true
