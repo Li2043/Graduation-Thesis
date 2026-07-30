@@ -1,0 +1,1 @@
+Forest plot of paired seed-level mean differences with 95 percent percentile-bootstrap intervals for four primary endpoints and three fixed contrasts.

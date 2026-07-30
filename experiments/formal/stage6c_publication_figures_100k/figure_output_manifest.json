@@ -1,0 +1,67 @@
+{
+  "figures": {
+    "fig_4_1_primary_endpoint_seed_distributions": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_1_primary_endpoint_seed_distributions.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_1_primary_endpoint_seed_distributions.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_1_primary_endpoint_seed_distributions.png",
+      "sha256_png": "5c5c300d59a76e384fad85cba985591b3295384f7baa9eb5878d88637a0a78d1",
+      "sha256_pdf": "962145e316bc4fb0ef5b2603919575c9bdce49f630097c768c496ad625143bf1"
+    },
+    "fig_4_2_primary_endpoint_paired_contrasts": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_2_primary_endpoint_paired_contrasts.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_2_primary_endpoint_paired_contrasts.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_2_primary_endpoint_paired_contrasts.png",
+      "sha256_png": "8276ef09982b44807e7838d37240776ad7e320e19ff5ac64e82905552ec4e895",
+      "sha256_pdf": "1be5b1643bdffa5132cce1986d3bd09dd9524914959d83a91002c2955da803ab"
+    },
+    "fig_4_3_convention_selection_and_consistency": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_3_convention_selection_and_consistency.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_3_convention_selection_and_consistency.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_3_convention_selection_and_consistency.png",
+      "sha256_png": "c36c0326b777399b57140a553bb0f4bbc8cb211c02611fc86ab3fdec192aba48",
+      "sha256_pdf": "97ef1b0b6a67b56a1002287dd04c08fd8f350ef5f043cc68146228e685d8fd05"
+    },
+    "fig_4_5_stakeholder_utility_by_role": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_5_stakeholder_utility_by_role.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_5_stakeholder_utility_by_role.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_5_stakeholder_utility_by_role.png",
+      "sha256_png": "2388ec02852e2ecb9f8795c3653ce8ae183c0108e5a0bd125c7d5a561a6e4fdc",
+      "sha256_pdf": "cec739148e50c1945a7daa8f17fc5d51846641f716d29de8d8e34d7473d8d219"
+    },
+    "fig_4_6_safety_comfort_diagnostics": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_6_safety_comfort_diagnostics.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_6_safety_comfort_diagnostics.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_6_safety_comfort_diagnostics.png",
+      "sha256_png": "8ae4a9037958dd1d3df9785086991433ed0b35637ac855fdde9253ae79dea92c",
+      "sha256_pdf": "5eda085a3f41491e4541b0f2a425500b6a7e5ba19fd5051276e81f4d886dd470"
+    },
+    "fig_s1_run_completion_and_integrity": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s1_run_completion_and_integrity.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s1_run_completion_and_integrity.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s1_run_completion_and_integrity.png",
+      "sha256_png": "26156d1ff33691bd4f024b0cc8e44b49d7c2621f5c69761ac6df8c9af3a68605",
+      "sha256_pdf": "00966fa5edc13e7751a5d57e2c2ba2a6a092d3f71793186d22c12b7f9f846571"
+    },
+    "fig_s3_worst_off_stakeholder_identity": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s3_worst_off_stakeholder_identity.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s3_worst_off_stakeholder_identity.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s3_worst_off_stakeholder_identity.png",
+      "sha256_png": "1123b4a08b23d05e712066ae861b6f2ad53a99a3aaac352db73579e81bc623a7",
+      "sha256_pdf": "842596cc8e2b2aed25430e85d21c9ddf07e27d1f9e6641451fddce2444a74c88"
+    },
+    "fig_s4_collision_type_composition": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s4_collision_type_composition.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s4_collision_type_composition.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s4_collision_type_composition.png",
+      "sha256_png": "d90cc8252dcf938c1947f9bd8907112312a46200f64cdf22a5a2d009d374966e",
+      "sha256_pdf": "8a94afc192cb082057160b782f0b20f44937c399e276f3829181bcb47b143e6c"
+    },
+    "fig_s5_seed_level_primary_endpoint_matrix": {
+      "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s5_seed_level_primary_endpoint_matrix.pdf",
+      "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s5_seed_level_primary_endpoint_matrix.svg",
+      "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\supplementary\\fig_s5_seed_level_primary_endpoint_matrix.png",
+      "sha256_png": "37bded66c480321dba1801b0fc0f525ff2c16b10df9355a1c5ab64b16bc9cef4",
+      "sha256_pdf": "f6342c500cb047b1840cb0223068000882e35c689c469aa9c2eab0873c054e2e"
+    }
+  }
+}

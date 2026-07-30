@@ -1,0 +1,10 @@
+condition,collision_type,share_among_collisions
+baseline,A-B,0.7142857142857143
+mean_pbrs,A-B,0.8125
+min_pbrs,A-B,0.9
+baseline,A-B_rear,0.14285714285714285
+mean_pbrs,A-B_rear,0.1875
+min_pbrs,A-B_rear,0.1
+baseline,B-B_rear,0.14285714285714285
+mean_pbrs,B-B_rear,0.0
+min_pbrs,B-B_rear,0.0

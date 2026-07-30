@@ -1,0 +1,35 @@
+{
+  "resolved_font": "Times New Roman",
+  "matplotlib_version": "3.11.1",
+  "base_fontsize": 9.0,
+  "condition_styles": {
+    "baseline": {
+      "color": "#4D4D4D",
+      "marker": "o",
+      "linestyle": "-"
+    },
+    "mean_pbrs": {
+      "color": "#0072B2",
+      "marker": "s",
+      "linestyle": "--"
+    },
+    "min_pbrs": {
+      "color": "#D55E00",
+      "marker": "^",
+      "linestyle": "-."
+    }
+  },
+  "widths_inches": {
+    "single": 3.35,
+    "one_half": 5.2,
+    "full": 6.8
+  },
+  "probability_yticks": [
+    0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ]
+}

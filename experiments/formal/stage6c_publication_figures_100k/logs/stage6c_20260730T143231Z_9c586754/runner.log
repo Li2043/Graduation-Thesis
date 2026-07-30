@@ -1,0 +1,12 @@
+[2026-07-30T14:32:31.952164+00:00] source inputs resolved and hashed
+[2026-07-30T14:32:31.974997+00:00] matplotlib=3.11.1 font=Times New Roman
+[2026-07-30T14:32:33.762459+00:00] wrote fig_4_1_primary_endpoint_seed_distributions
+[2026-07-30T14:32:34.925381+00:00] wrote fig_4_2_primary_endpoint_paired_contrasts
+[2026-07-30T14:32:35.843753+00:00] wrote fig_4_3_convention_selection_and_consistency
+[2026-07-30T14:32:37.310571+00:00] wrote fig_4_5_stakeholder_utility_by_role
+[2026-07-30T14:32:38.775076+00:00] wrote fig_4_6_safety_comfort_diagnostics
+[2026-07-30T14:32:39.100422+00:00] wrote fig_s1_run_completion_and_integrity
+[2026-07-30T14:32:39.645300+00:00] wrote fig_s3_worst_off_stakeholder_identity
+[2026-07-30T14:32:40.046779+00:00] wrote fig_s4_collision_type_composition
+[2026-07-30T14:32:42.111814+00:00] wrote fig_s5_seed_level_primary_endpoint_matrix
+[2026-07-30T14:32:50.526277+00:00] overall=PASS

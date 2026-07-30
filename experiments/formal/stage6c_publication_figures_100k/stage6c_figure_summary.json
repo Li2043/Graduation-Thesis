@@ -1,0 +1,52 @@
+{
+  "run_id": "stage6c_20260730T143231Z_9c586754",
+  "overall": "PASS",
+  "analysis_tag": "formal-analysis-100k-complete",
+  "analysis_commit": "9c586754d3548b89cf0f1ecd7d3a262caf4b7cf6",
+  "analysis_id": "stage6b_20260730T140035Z_c7584593",
+  "matplotlib_version": "3.11.1",
+  "resolved_font": "Times New Roman",
+  "main_figures": [
+    "fig_4_1_primary_endpoint_seed_distributions",
+    "fig_4_2_primary_endpoint_paired_contrasts",
+    "fig_4_3_convention_selection_and_consistency",
+    "fig_4_5_stakeholder_utility_by_role",
+    "fig_4_6_safety_comfort_diagnostics"
+  ],
+  "supplementary_figures": [
+    "fig_s1_run_completion_and_integrity",
+    "fig_s3_worst_off_stakeholder_identity",
+    "fig_s4_collision_type_composition",
+    "fig_s5_seed_level_primary_endpoint_matrix"
+  ],
+  "excluded_figures": [
+    {
+      "figure": "fig_4_4_learning_curve_summaries",
+      "reason": "Case C: only the 100000-step checkpoint endpoint summaries are available; intermediate episode-level checkpoint payloads were not published. No interpolation performed."
+    },
+    {
+      "figure": "fig_s2_learning_curve_auc",
+      "reason": "All learning-curve AUC values are missing (single available checkpoint)."
+    }
+  ],
+  "convention_missing_count": 11,
+  "checkpoint_availability": [
+    100000
+  ],
+  "formats": [
+    "pdf",
+    "svg",
+    "png"
+  ],
+  "png_dpi": 600,
+  "integrity": {
+    "source_hash_mismatches": 0,
+    "validation_failures": 0,
+    "excluded_figures": 2,
+    "training_invoked": 0,
+    "evaluation_invoked": 0
+  },
+  "exact_command": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\.venv_stage2b1\\Scripts\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\scripts\\run_stage6c_figures.py --analysis-tag formal-analysis-100k-complete --analysis-worktree C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_analysis_100k --output-root C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k --formats pdf svg png --png-dpi 600",
+  "formal_training_started": false,
+  "evaluation_invoked": false
+}

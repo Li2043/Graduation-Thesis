@@ -1,0 +1,95 @@
+{
+  "figure": "fig_4_6_safety_comfort_diagnostics",
+  "kind": "main",
+  "input_sources": {
+    "run_accounting": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\run_accounting.csv",
+      "sha256": "b6f783a9c5025fada9a366c64e6ae111d2263e23bdf3984ec6f61230eee510c7"
+    },
+    "evaluation_episode_validated": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\evaluation_episode_validated.csv",
+      "sha256": "d26beb10c24070fabd9a55e2e22d95bbf5f8ad1b350f0877af4a8c50970384cc"
+    },
+    "seed_checkpoint_endpoints": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\seed_checkpoint_endpoints.csv",
+      "sha256": "503b0892c7639003fab884e06ae1127b3e4f3f7dbdd3918156f7d698947a0e32"
+    },
+    "primary_endpoint_seed_values": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\primary_endpoint_seed_values.csv",
+      "sha256": "b9d139ca613e581a85a2e32eea70972c09c4731b84588bb2a7a3f82c58195c4f"
+    },
+    "paired_differences": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\paired_differences.csv",
+      "sha256": "810b79c9a13e8d80d2f2313c819d4a225dba8f5dd547bad15a63fdc17d1d3618"
+    },
+    "bootstrap_intervals": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\bootstrap_intervals.csv",
+      "sha256": "d1eaa95d02c91326125ee1e8ed093f36bfc8db81b100f6302c1283b08bdb08e5"
+    },
+    "wilcoxon_results": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\wilcoxon_results.csv",
+      "sha256": "cc1f81fea557c4b899a8e93178bc2428f95b790de7a63663af870c6860c06c76"
+    },
+    "holm_adjusted_results": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\holm_adjusted_results.csv",
+      "sha256": "a9c928402b3e8e229a024f946dbef26c4f9d45a34ae1791b5321f89770893d03"
+    },
+    "effect_sizes": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\effect_sizes.csv",
+      "sha256": "909e06bd492c52f3fc9e7349f0c03857792e562d1ddba428ebcda05a848e849f"
+    },
+    "convention_availability": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\convention_availability.csv",
+      "sha256": "b92d49c4db160bd635f2ce5e68b379fdb35c9c2c007215310196a2c99ea67e91"
+    },
+    "secondary_endpoints": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\secondary_endpoints.csv",
+      "sha256": "1925944c81816b72b00fdcdee3c117fc8e2fefd13b7f6ee81394008fb24d7922"
+    },
+    "learning_curve_auc": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\learning_curve_auc.csv",
+      "sha256": "74e466a8ba862b2513f85cdef3d4f8ff141abd28e257eae0d6005258720b8bbe"
+    },
+    "integrity_summary": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\data\\processed\\stage6b_20260730T140035Z_c7584593\\integrity_summary.csv",
+      "sha256": "f38ca89f0414c8664ab156155997dfcae99d888211871662d76ac4ffac9b5371"
+    },
+    "primary_endpoint_descriptives": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\tables\\stage6b_20260730T140035Z_c7584593\\primary_endpoint_descriptives.csv",
+      "sha256": "e6dda32cdb8f8c39d8cc07021ad52da34647b34f1e72daf27173e19eed941ef8"
+    },
+    "primary_endpoint_contrasts": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\tables\\stage6b_20260730T140035Z_c7584593\\primary_endpoint_contrasts.csv",
+      "sha256": "6a995ba149fc4c27005b30e8081545c707f6c88adbb2246080c496057112ac7c"
+    },
+    "secondary_endpoint_descriptives": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\tables\\stage6b_20260730T140035Z_c7584593\\secondary_endpoint_descriptives.csv",
+      "sha256": "1925944c81816b72b00fdcdee3c117fc8e2fefd13b7f6ee81394008fb24d7922"
+    },
+    "convention_summary": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\tables\\stage6b_20260730T140035Z_c7584593\\convention_summary.csv",
+      "sha256": "b92d49c4db160bd635f2ce5e68b379fdb35c9c2c007215310196a2c99ea67e91"
+    },
+    "analysis_manifest": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\analysis_manifest.json",
+      "sha256": "6e5a0d0a0c69a2ba9659563b4d495a850df0167e68cca9911abf54d1407376d3"
+    },
+    "analysis_summary": {
+      "path": "..\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k\\reports\\stage6b_20260730T140035Z_c7584593\\stage6b_formal_analysis_summary.json",
+      "sha256": "d1456d1a17d3008ffb0a9d2955faf0a7f14637448d5357fb3431cb995622a90e"
+    }
+  },
+  "statistical_unit": "formal_training_seed",
+  "primary_checkpoint_step": 100000,
+  "matplotlib_version": "3.11.1",
+  "resolved_font": "Times New Roman",
+  "png_dpi": 600,
+  "formats": {
+    "pdf": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_6_safety_comfort_diagnostics.pdf",
+    "svg": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_6_safety_comfort_diagnostics.svg",
+    "png": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage6c_publication_figures_100k\\figures\\main\\fig_4_6_safety_comfort_diagnostics.png"
+  },
+  "row_count_plotted": 113,
+  "endpoint_class": "secondary",
+  "aggregation": "episode_to_seed_from_stage6b_table"
+}

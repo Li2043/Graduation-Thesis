@@ -1,0 +1,20 @@
+stage: stage6c_publication_figures_100k
+analysis_tag: formal-analysis-100k-complete
+analysis_commit: 9c586754d3548b89cf0f1ecd7d3a262caf4b7cf6
+result_tag: formal-results-100k-complete
+result_commit: c75845935a7fe9179b691298b2329208853773a6
+analysis_id: stage6b_20260730T140035Z_c7584593
+formal_execution_id: stage6a_20260730T094829Z_a89256db_44d5e647
+primary_checkpoint_step: 100000
+statistical_unit: formal_training_seed
+conditions:
+  - baseline
+  - mean_pbrs
+  - min_pbrs
+formal_seeds: [61001, 61002, 61003, 61004, 61005, 61006, 61007, 61008, 61009, 61010]
+expected_convention_missing_cells: 11
+formats: [pdf, svg, png]
+png_dpi: 600
+exclude_if_unavailable:
+  - fig_4_4_learning_curve_summaries
+  - fig_s2_learning_curve_auc

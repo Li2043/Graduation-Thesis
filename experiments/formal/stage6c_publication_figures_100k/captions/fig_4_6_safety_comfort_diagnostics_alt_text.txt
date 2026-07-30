@@ -1,0 +1,1 @@
+Four-panel secondary diagnostics of seed-aggregated minimum bumper gap, minimum TTC, hard-braking rate and maximum background braking.

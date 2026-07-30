@@ -1,0 +1,1 @@
+Stacked bars of collision-type composition among collision episodes by condition.

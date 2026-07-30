@@ -1,0 +1,7 @@
+excluded:
+- figure: fig_4_4_learning_curve_summaries
+  reason: 'Case C: only the 100000-step checkpoint endpoint summaries are available;
+    intermediate episode-level checkpoint payloads were not published. No interpolation
+    performed.'
+- figure: fig_s2_learning_curve_auc
+  reason: All learning-curve AUC values are missing (single available checkpoint).
