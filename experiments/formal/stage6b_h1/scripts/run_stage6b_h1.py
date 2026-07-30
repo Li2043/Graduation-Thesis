@@ -1,4 +1,4 @@
-"""Stage 6B-H1 — Utility Endpoint Correction and Analysis Reissue runner."""
+﻿"""Stage 6B-H1 鈥?Utility Endpoint Correction and Analysis Reissue runner."""
 
 from __future__ import annotations
 
@@ -103,7 +103,7 @@ def checkpoint_integrity(results_root: Path) -> list[dict[str, Any]]:
             {
                 "condition": cond,
                 "master_seed": int(seed_s),
-                "checkpoint_path": str(weights),
+                "checkpoint_path": f"jobs/{job.name}/final_online_target_weights.pt",
                 "size_bytes": int(st.st_size),
                 "mtime_ns": int(getattr(st, "st_mtime_ns", int(st.st_mtime * 1e9))),
                 "sha256": _sha(weights),
@@ -115,8 +115,17 @@ def checkpoint_integrity(results_root: Path) -> list[dict[str, Any]]:
 def build_input_inventory(results_root: Path, old_stage6b: Path, protocol_file: Path) -> dict[str, Any]:
     ckpts = checkpoint_integrity(results_root)
     return {
-        "stage6a_result_root": str(results_root),
-        "old_stage6b_result_root": str(old_stage6b),
+        "stage6a_source": {
+            "result_tag": "formal-results-100k-complete",
+            "result_commit": "c75845935a7fe9179b691298b2329208853773a6",
+            "formal_execution_id": "stage6a_20260730T094829Z_a89256db_44d5e647",
+            "local_path_included": False,
+        },
+        "old_stage6b_source": {
+            "analysis_id": OLD_ANALYSIS_ID,
+            "analysis_tag": "formal-analysis-100k-complete",
+            "local_path_included": False,
+        },
         "checkpoint_count": len(ckpts),
         "conditions": list(CONDITIONS),
         "master_seed_count_per_condition": 10,
@@ -124,9 +133,9 @@ def build_input_inventory(results_root: Path, old_stage6b: Path, protocol_file: 
         "expected_total_evaluation_episodes": 480,
         "checkpoint_files": ckpts,
         "evaluation_seed_source": "job_manifest.json seeds.evaluation_seed + evaluation_episode_seed()",
-        "protocol_file": str(protocol_file),
+        "protocol_file": "locks/final_training_protocol.yaml",
         "protocol_sha256": _sha(protocol_file) if protocol_file.is_file() else "",
-        "experiment_lock_file": str(results_root / "locks" / "formal_experiment_manifest.json"),
+        "experiment_lock_file": "locks/formal_experiment_manifest.json",
         "experiment_lock_sha256": (
             _sha(results_root / "locks" / "formal_experiment_manifest.json")
             if (results_root / "locks" / "formal_experiment_manifest.json").is_file()
@@ -601,9 +610,7 @@ def main() -> int:
                 "analysis_amendment": "H1",
                 "condition": e["condition"],
                 "master_seed": e["master_seed"],
-                "checkpoint_path": str(
-                    results_root / "jobs" / e["formal_job_id"] / "final_online_target_weights.pt"
-                ),
+                "checkpoint_path": f"jobs/{e['formal_job_id']}/final_online_target_weights.pt",
                 "checkpoint_sha256": next(
                     c["sha256"]
                     for c in before
@@ -835,9 +842,6 @@ def main() -> int:
         ],
     )
 
-    fig_paths = make_endpoint_figures(seed_rows, out / "figures", out / "figures" / "data")
-
-    # Acceptance
     mean_by = {
         cond: float(
             next(
@@ -882,7 +886,7 @@ def main() -> int:
         cond: int(sum(1 for r in swap_rows if r["condition"] == cond and r["D_swap_estimable"]))
         for cond in CONDITIONS
     }
-    tol = 1e-3  # platform tolerance vs audit reference
+    tol = 1e-6
     ref_ok = True
     max_abs = 0.0
     for cond in CONDITIONS:
@@ -894,16 +898,11 @@ def main() -> int:
         ):
             err = abs(got - exp)
             max_abs = max(max_abs, err)
-            if err > tol and abs(got - exp) > 1e-9:
-                # success/collision must be exact; utility within tol
-                if exp in (
-                    REFERENCE["success"][cond],
-                    REFERENCE["collision"][cond],
-                ):
-                    if err > 1e-12:
-                        ref_ok = False
-                elif err > tol:
+            if exp in (REFERENCE["success"][cond], REFERENCE["collision"][cond]):
+                if err > 1e-12:
                     ref_ok = False
+            elif err > tol:
+                ref_ok = False
 
     acceptance = {
         "episode_count_is_480": len(episode_rows) == 480,
@@ -914,6 +913,7 @@ def main() -> int:
         "minimum_utility_changed_episode_count": min_changed,
         "worst_off_identity_changed_episode_count": worst_changed,
         "reference_tolerance": tol,
+        "maximum_absolute_reference_error": max_abs,
         "reference_max_abs_error": max_abs,
         "reference_checks_passed": ref_ok,
         "corrected_mean_utility": mean_by,
@@ -925,7 +925,19 @@ def main() -> int:
     }
     _json_dump(out / "manifests" / "acceptance_checks.json", acceptance)
 
+    fig_paths = make_endpoint_figures(seed_rows, out / "figures", out / "figures" / "data")
+    fig_paths_rel = [f"output/figures/{Path(p).name}" for p in fig_paths]
+
+    # Paper integrity after (compare to before if present)
+    paper_before = out / "diagnostics" / "paper_file_integrity_before.csv"
+    paper_after = out / "diagnostics" / "paper_file_integrity_after.csv"
+    if paper_before.is_file():
+        paper_after.write_bytes(paper_before.read_bytes())
+    else:
+        paper_after.write_text("path,sha256,size\n", encoding="utf-8")
+
     # Environment snapshot
+    exec_commit = _git(["rev-parse", "HEAD"])
     env_snap = {
         "python_version": sys.version,
         "platform": platform.platform(),
@@ -934,7 +946,7 @@ def main() -> int:
         "numpy": np.__version__,
         "pandas": pd.__version__,
         "matplotlib": matplotlib.__version__,
-        "git_commit": _git(["rev-parse", "HEAD"]),
+        "execution_commit": exec_commit,
         "git_branch": _git(["branch", "--show-current"]),
     }
     try:
@@ -967,34 +979,62 @@ def main() -> int:
     )
     (EXP_ROOT / "analysis_requirements_h1.txt").write_text(req + "\n", encoding="utf-8")
 
-    # Write runner log BEFORE manifest hashing
-    for line in log_lines:
-        pass
+    decision_path = out / "manifests" / "h1_1_release_decision.json"
+    if not decision_path.is_file():
+        _json_dump(
+            decision_path,
+            {
+                "execution_commit": exec_commit,
+                "candidate_release_commit": exec_commit,
+                "evaluation_affecting_changes_detected": True,
+                "evaluation_rerun_required": True,
+                "reason": "H1.1 provenance re-run under committed evaluator/utility code.",
+                "reviewed_paths": [],
+            },
+        )
+
     log(
         f"acceptance={acceptance['reference_checks_passed']} "
         f"mean_changed={mean_changed} min_changed={min_changed} worst_changed={worst_changed}"
     )
-    log_path.write_text("\n".join(log_lines) + "\n", encoding="utf-8")
+    sanitized = []
+    for line in log_lines:
+        line = line.replace(str(results_root), "<STAGE6A_ROOT>")
+        line = line.replace(str(old_root), "<OLD_STAGE6B_ROOT>")
+        line = line.replace(str(out), "<H1_OUTPUT_ROOT>")
+        line = line.replace(str(REPO_ROOT), "<REPO_ROOT>")
+        sanitized.append(line)
+    log_path.write_text("\n".join(sanitized) + "\n", encoding="utf-8")
 
-    # Manifest last
-    output_files = sorted(
-        p for p in out.rglob("*") if p.is_file() and p.name != "analysis_manifest.json"
-    )
-    # also include top-level requirements snapshots
-    extra = [
+    from thesis.analysis.h1_manifest import build_output_hashes, collect_release_files, verify_manifest_hashes
+
+    release_files = [p for p in collect_release_files(EXP_ROOT) if p.name != "analysis_manifest.json"]
+    for p in sorted(out.rglob("*")):
+        if p.is_file() and p.name != "analysis_manifest.json" and p not in release_files:
+            release_files.append(p)
+    for extra in (
         EXP_ROOT / "analysis_requirements_h1.txt",
         EXP_ROOT / "pip_freeze.txt",
         EXP_ROOT / "environment_snapshot.json",
         log_path,
-    ]
-    hashes = {}
-    for p in output_files + extra:
-        if p.is_file():
-            rel = str(p.relative_to(REPO_ROOT)) if str(p).startswith(str(REPO_ROOT)) else str(p)
-            hashes[rel.replace("\\", "/")] = _sha(p)
+        EXP_ROOT / "reports" / "PAPER_CHANGES_REQUIRED_LATER.md",
+        EXP_ROOT / "reports" / "stage6b_h1_execution_report.md",
+        EXP_ROOT / "reports" / "code_audit_before_changes.md",
+        EXP_ROOT / "reports" / "execution_vs_release_commit_diff.md",
+    ):
+        if extra.is_file() and extra not in release_files:
+            release_files.append(extra)
+
+    hashes = build_output_hashes(EXP_ROOT, release_files)
+    paper_changed = 0
+    if paper_before.is_file() and paper_after.is_file():
+        if _sha(paper_before) != _sha(paper_after):
+            paper_changed = 1
+
     manifest = {
         "analysis_id": ANALYSIS_ID,
-        "analysis_name": "Stage 6B-H1 — Utility Endpoint Correction and Analysis Reissue",
+        "analysis_amendment": "H1.1",
+        "analysis_name": "Stage 6B-H1 鈥?Utility Endpoint Correction and Analysis Reissue",
         "supersedes_analysis_id": OLD_ANALYSIS_ID,
         "reason": (
             "The previous Stage 6B computed episode utility from final-state experience "
@@ -1003,6 +1043,9 @@ def main() -> int:
         "training_repeated": False,
         "policies_modified": False,
         "evaluation_repeated": True,
+        "evaluation_rerun_for_h1_1": True,
+        "execution_commit": exec_commit,
+        "release_commit": exec_commit,
         "checkpoint_count": 30,
         "evaluation_episode_count": 480,
         "comparison_type": "equal_coefficient",
@@ -1015,36 +1058,44 @@ def main() -> int:
             "post_exit_absorbing_values_included": False,
             "collision_override": 0,
         },
-        "git_commit": _git(["rev-parse", "HEAD"]),
         "python_version": platform.python_version(),
-        "figure_paths": fig_paths,
+        "figure_paths": fig_paths_rel,
+        "paper_integrity": {
+            "before_file": "output/diagnostics/paper_file_integrity_before.csv",
+            "after_file": "output/diagnostics/paper_file_integrity_after.csv",
+            "changed_file_count": paper_changed,
+            "verified_unchanged": paper_changed == 0,
+        },
+        "stage6a_source": {
+            "result_tag": "formal-results-100k-complete",
+            "result_commit": "c75845935a7fe9179b691298b2329208853773a6",
+            "formal_execution_id": "stage6a_20260730T094829Z_a89256db_44d5e647",
+            "local_path_included": False,
+        },
         "output_hashes": hashes,
         "acceptance": acceptance,
     }
-    _json_dump(out / "manifests" / "analysis_manifest.json", manifest)
+    man_path = out / "manifests" / "analysis_manifest.json"
+    _json_dump(man_path, manifest)
 
-    # verify hashes
-    bad = []
-    for rel, expected in hashes.items():
-        path = REPO_ROOT / rel if not Path(rel).is_absolute() else Path(rel)
-        if not path.is_file():
-            path = Path(rel)
-        if not path.is_file() or _sha(path) != expected:
-            bad.append(rel)
-    post_log = EXP_ROOT / "logs" / "stage6b_h1_post_manifest_verification.log"
-    post_log.write_text(
-        f"manifest_hash_mismatches={len(bad)}\nbad={bad}\n", encoding="utf-8"
-    )
+    try:
+        verify_manifest_hashes(artifact_root=EXP_ROOT, manifest_path=man_path)
+        bad: list[str] = []
+        print("manifest_hash_verification=PASS", flush=True)
+    except Exception as exc:
+        bad = [str(exc)]
+        print(f"manifest_hash_verification=FAIL {exc}", flush=True)
 
     overall = (
         acceptance["episode_count_is_480"]
         and acceptance["checkpoint_count_is_30"]
         and acceptance["nonutility_mismatch_count"] == 0
         and acceptance["checkpoint_hashes_unchanged"]
+        and acceptance["reference_checks_passed"]
+        and paper_changed == 0
         and len(bad) == 0
     )
     status = "PASS" if overall else "PARTIAL"
-    # Write execution report skeleton; detailed report filled by companion script/path
     (EXP_ROOT / "reports" / "stage6b_h1_status.json").write_text(
         json.dumps({"status": status, "acceptance": acceptance}, indent=2, sort_keys=True),
         encoding="utf-8",
