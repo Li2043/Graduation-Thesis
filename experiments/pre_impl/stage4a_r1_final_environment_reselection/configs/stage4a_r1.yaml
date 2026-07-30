@@ -1,0 +1,89 @@
+stage: stage4a_r1_final_environment_reselection
+description: >
+  Reselect final environment candidate and certify genuine choice states on
+  hardened V3 physics (4A-0R) and corrected quintic merge geometry (4A-0R2).
+  Supersedes historical Stage 4A lock 20260729T231946Z_c8d92bc3.
+
+timing:
+  physics_dt: 0.05
+  policy_interval: 0.20
+  physics_substeps_per_action: 4
+
+vehicle:
+  length: 5.0
+  width: 2.0
+
+observation:
+  version: final_observation_v1_stage4a0r
+  dimension: 27
+
+route_geometry_version: v3_quintic_arc_length_4a0r2
+collision_model_version: oriented_rectangle_sat_v1
+
+geometry_candidates:
+  - geometry_id: G1
+    merge_start: 80.0
+    merge_end: 140.0
+    downstream_exit: 260.0
+  - geometry_id: G2
+    merge_start: 80.0
+    merge_end: 160.0
+    downstream_exit: 280.0
+  - geometry_id: G3
+    merge_start: 100.0
+    merge_end: 170.0
+    downstream_exit: 300.0
+
+environment_candidate_priority:
+  - G1-I1
+  - G1-I2
+  - G1-I3
+  - G2-I1
+  - G2-I2
+  - G2-I3
+  - G3-I1
+  - G3-I2
+  - G3-I3
+
+selection:
+  calibration_min_certified: 11
+  validation_min_certified: 7
+  background_relevance_min: 0.75
+  median_order_gap_max: 0.05
+  max_order_gap_max: 0.10
+  label_swap_max_error: 1.0e-12
+  use_validation_for_selection: false
+  comfort_influences_selection: false
+  max_a_lat_at_20: 3.0
+  max_route_recovery_error: 0.01
+
+validation_replacements:
+  validation_001:
+    mainline_speed: 20.0
+    ramp_speed: 20.0
+    delta_arrival: -0.4
+    background_headway: 1.8
+  validation_006:
+    mainline_speed: 16.0
+    ramp_speed: 18.0
+    delta_arrival: 0.0
+    background_headway: 1.2
+
+prior_stage4a0r_run_id: 20260729T235855Z_8ab30c89
+prior_stage4a0r2_run_id: 20260730T000945Z_d0051f73
+superseded_stage4a_run_id: 20260729T231946Z_c8d92bc3
+superseded_lock_sha256: d5614d41d0c229db70b76973c55daa6905d7c5f07dc0781b81826b8891d76ded
+
+pytest_targets:
+  - tests/certification/test_choice_state_metrics.py
+  - tests/certification/test_environment_candidate_selection.py
+  - tests/certification/test_stage4a_r1_holdout_and_lock.py
+  - tests/integration/test_stage4a_r1_reselection_pipeline.py
+  - tests/integration/test_stage4a0r2_geometry_pipeline.py
+  - tests/envs/test_merge_env_candidate_v3.py
+
+forbidden:
+  dqn_training: true
+  comfort_calibration: true
+  pbrs_lambda_calibration: true
+  reuse_superseded_stage4a_lock: true

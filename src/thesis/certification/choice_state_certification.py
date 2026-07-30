@@ -281,10 +281,27 @@ def _run_cell(
                 best_trace = trace
             continue
         elif cell == "GO_GO":
-            # Least-intervention GO/GO only (first pair)
-            best = outcome
-            best_trace = trace
-            break
+            # Prefer strategically problematic GO/GO among preregistered pairs
+            # (collision / unsafe gap / TTC / truncation), keeping least-intervention
+            # order by iterating _profile_pairs first-to-last.
+            def _gogo_score(o: CellOutcome) -> int:
+                if o.collision:
+                    return 0
+                if o.min_bumper_gap is not None and o.min_bumper_gap < 2.0:
+                    return 1
+                if o.min_ttc is not None and o.min_ttc < 1.0:
+                    return 2
+                if o.truncated or not o.success:
+                    return 3
+                return 4
+
+            if best is None or _gogo_score(outcome) < _gogo_score(best):
+                best = outcome
+                best_trace = trace
+            # Early stop if we already have a collision under least-intervention
+            if _gogo_score(outcome) == 0 and g_prof.profile_id == "GO_1" and y_prof.profile_id == "GO_1":
+                break
+            continue
         else:
             ok = False
         if ok:

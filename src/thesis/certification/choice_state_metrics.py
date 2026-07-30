@@ -178,15 +178,18 @@ def _go_go_unsafe(gg: CellOutcome) -> bool:
 
 
 def core_ordering_ok(ml: CellOutcome, rp: CellOutcome, yy: CellOutcome, gg: CellOutcome) -> bool:
+    """Asymmetric conventions must beat YY; safe GG must not beat YY.
+
+    When GO/GO is already physically unsafe (collision / gap / TTC / truncate),
+    progress rewards may still make G_team(GG) large despite a near-miss. In that
+    case strategic unsafety is handled by ``go_go_problematic``; ordering only
+    requires both asymmetric safe conventions to dominate YY.
+    """
     if not (ml.G_team_core > yy.G_team_core + TIE and rp.G_team_core > yy.G_team_core + TIE):
         return False
     if _go_go_unsafe(gg):
-        return yy.G_team_core > gg.G_team_core + TIE
-    return (
-        ml.G_team_core > yy.G_team_core + TIE
-        and rp.G_team_core > yy.G_team_core + TIE
-        and yy.G_team_core > gg.G_team_core + TIE
-    )
+        return True
+    return yy.G_team_core > gg.G_team_core + TIE
 
 
 def aggregate_order_gaps(gaps: Sequence[float]) -> dict[str, float]:

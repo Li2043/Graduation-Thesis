@@ -163,13 +163,15 @@ def build_ic_blocks() -> tuple[list[InitialConditionBlock], list[InitialConditio
         (16, 20, -0.4, 1.5),
         (20, 18, 0.0, 1.2),
     ]
+    # Keep six non-duplicate validation blocks; replace only validation_001 and
+    # validation_006 (Stage 4A-R1) to eliminate duplicate physical signatures.
     val_specs = [
-        (16, 18, -0.4, 1.5),
+        (20, 20, -0.4, 1.8),  # validation_001 replacement
         (18, 16, 0.4, 1.2),
         (20, 16, 0.0, 1.8),
         (18, 20, -0.2, 1.5),
         (16, 20, 0.2, 1.2),
-        (18, 16, 0.0, 1.5),
+        (16, 18, 0.0, 1.2),  # validation_006 replacement
         (20, 18, 0.4, 1.8),
         (16, 18, -0.2, 1.5),
     ]

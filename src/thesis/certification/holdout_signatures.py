@@ -66,3 +66,40 @@ def assert_no_duplicate_holdout(
 
 def signatures_of(blocks: Iterable[InitialConditionBlock]) -> set[tuple]:
     return {physical_block_signature(b) for b in blocks}
+
+
+def audit_holdout_signatures_for_geometries(
+    calibration: Sequence[InitialConditionBlock],
+    validation: Sequence[InitialConditionBlock],
+    geometries,
+) -> list[dict]:
+    """Materialise blocks per geometry and report any cal/val signature collisions."""
+    from thesis.certification.choice_state_scenarios import materialize_block_for_geometry
+
+    rows: list[dict] = []
+    for geom in geometries:
+        cm = [materialize_block_for_geometry(b, geom) for b in calibration]
+        vm = [materialize_block_for_geometry(b, geom) for b in validation]
+        dupes = find_duplicate_signatures(cm, vm)
+        rows.append(
+            {
+                "geometry_id": geom.geometry_id,
+                "n_calibration": len(cm),
+                "n_validation": len(vm),
+                "n_duplicate_signatures": len(dupes),
+                "duplicates": dupes,
+                "pass": len(dupes) == 0,
+            }
+        )
+    return rows
+
+
+def assert_no_duplicate_holdout_for_geometries(
+    calibration: Sequence[InitialConditionBlock],
+    validation: Sequence[InitialConditionBlock],
+    geometries,
+) -> None:
+    audit = audit_holdout_signatures_for_geometries(calibration, validation, geometries)
+    bad = [r for r in audit if not r["pass"]]
+    if bad:
+        raise ValueError(f"duplicate holdout signatures after materialisation: {bad}")

@@ -6,6 +6,7 @@ from thesis.certification.choice_state_metrics import (
     CellOutcome,
     background_meaningful,
     classify_exit_order,
+    core_ordering_ok,
     go_go_problematic,
     no_unilateral_guarantee,
     normalised_order_gap,
@@ -73,6 +74,25 @@ def test_go_go_and_yield_yield_and_unilateral():
         "YIELD_YIELD": yy,
     }
     assert no_unilateral_guarantee(matrix)
+
+
+def test_core_ordering_unsafe_gogo_does_not_require_yy_dominate_progress():
+    """Near-miss GO/GO may keep high progress return; ordering still holds via YY < asymmetric."""
+    ml = _cell(cell="GO_YIELD", G_team_core=1.53, episode_length=64)
+    rp = _cell(cell="YIELD_GO", exit_order="ramp_first", G_team_core=1.52, episode_length=71)
+    yy = _cell(cell="YIELD_YIELD", G_team_core=1.45, episode_length=73)
+    gg_unsafe = _cell(
+        cell="GO_GO",
+        G_team_core=1.60,
+        episode_length=44,
+        min_bumper_gap=0.13,
+        success=True,
+        collision=False,
+    )
+    assert go_go_problematic(gg_unsafe, ml, rp)
+    assert core_ordering_ok(ml, rp, yy, gg_unsafe)
+    gg_safe = _cell(cell="GO_GO", G_team_core=1.60, episode_length=44, min_bumper_gap=3.0)
+    assert not core_ordering_ok(ml, rp, yy, gg_safe)
 
 
 def test_background_meaningful():

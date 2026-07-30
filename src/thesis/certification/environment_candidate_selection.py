@@ -332,7 +332,13 @@ def build_final_environment_lock(
     validation_blocks: list[dict[str, Any]],
     git_commit: str,
     config_hashes: dict[str, str],
-    route_coordinate_version: str = "v2_continuous_ramp_join",
+    source_hashes: dict[str, str] | None = None,
+    holdout_audit: list[dict[str, Any]] | None = None,
+    superseded_stage4a_run_id: str = "20260729T231946Z_c8d92bc3",
+    superseded_lock_sha256: str = (
+        "d5614d41d0c229db70b76973c55daa6905d7c5f07dc0781b81826b8891d76ded"
+    ),
+    route_coordinate_version: str = "v3_quintic_arc_length_4a0r2",
 ) -> dict[str, Any]:
     from thesis.envs.final_environment_config import (
         LearningDynamics,
@@ -340,6 +346,7 @@ def build_final_environment_lock(
         TimingConfig,
         VehicleGeometry,
     )
+    from thesis.envs.final_observation import OBSERVATION_DIM
 
     geom = selected["geometry"]
     idm = selected["idm"]
@@ -350,6 +357,8 @@ def build_final_environment_lock(
     return {
         "selected_geometry_id": geom["geometry_id"],
         "selected_idm_profile_id": idm["profile_id"],
+        "candidate_id": selected["candidate_id"],
+        "candidate_priority_rank": selected["priority_rank"],
         "geometry": geom,
         "physics_dt": timing.physics_dt,
         "policy_interval": timing.policy_interval,
@@ -364,22 +373,35 @@ def build_final_environment_lock(
         "collision_thresholds": {"bumper_gap_collision": 0.0, "min_safe_bumper_gap": 2.0},
         "target_speeds": asdict(targets),
         "idm_parameters": idm,
+        "maximum_emergency_deceleration": idm.get("maximum_emergency_deceleration", 6.0),
+        "observation_version": "final_observation_v1_stage4a0r",
+        "observation_dimension": OBSERVATION_DIM,
+        "route_geometry_version": route_coordinate_version,
+        "collision_model_version": "oriented_rectangle_sat_v1",
+        "exit_removal_semantics": {
+            "check_every_physics_substep": True,
+            "collision_precedence_same_substep": True,
+            "remove_from_collision_and_idm_immediately": True,
+            "applies_to": ["A", "B", "B_front", "B_rear"],
+        },
         "calibration_block_definitions": calibration_blocks,
         "validation_block_definitions": validation_blocks,
+        "zero_duplicate_holdout_audit": holdout_audit or [],
         "route_coordinate_version": route_coordinate_version,
         "termination_truncation_rules": {
             "success": "both_learners_exit_without_stakeholder_collision",
-            "collision": "bumper_gap_<=0_on_shared_mainline",
+            "collision": "oriented_rectangle_sat_overlap",
             "truncation": "max_policy_steps_without_terminal",
         },
         "controller_role_balancing": {
             "assignments": ["A=mainline,B=ramp", "A=ramp,B=mainline"],
             "permanent_role_assignment_forbidden": True,
         },
-        "candidate_priority_rank": selected["priority_rank"],
-        "candidate_id": selected["candidate_id"],
         "source_git_commit": git_commit,
+        "source_hashes": source_hashes or {},
         "configuration_sha256": config_hashes,
+        "superseded_stage4a_run_id": superseded_stage4a_run_id,
+        "superseded_lock_sha256": superseded_lock_sha256,
         "comfort_parameters_final": False,
         "policy_training_started": False,
         "environment_parameters_final": True,
