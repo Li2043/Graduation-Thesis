@@ -1,0 +1,260 @@
+{
+  "checkpoint_count": 30,
+  "checkpoint_files": [
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61001\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61001,
+      "mtime_ns": 1785419264457407400,
+      "sha256": "e9628546d2aca735c119844c0c1bd18a01fffc3179f44b7ce903408b03f36b63",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61002\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61002,
+      "mtime_ns": 1785419264480113400,
+      "sha256": "3440b62063dddb4cf8cfcf965776613cc631d684f38754e9c4f6a122e6e7e63a",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61003\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61003,
+      "mtime_ns": 1785419264496823500,
+      "sha256": "cc41f916c31e5c28b10305f0b7ea9c2e7600a3bc2fc4ace025524984870e71eb",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61004\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61004,
+      "mtime_ns": 1785419264514824700,
+      "sha256": "a52ed6d4bd69dfffdc07d6236d70fedaff01f555cd6e54ad45acbffe30216f7a",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61005\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61005,
+      "mtime_ns": 1785419264532856800,
+      "sha256": "37cca9b1c1253db4ca4befd9eb67e83d587383f2b369c05bf988af2d0bf7fd51",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61006\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61006,
+      "mtime_ns": 1785419264565838400,
+      "sha256": "1b427c4c02839683d57c1fb7d6108496b99a5c5b79a51a217c003cae5adf9e39",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61007\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61007,
+      "mtime_ns": 1785419264590840100,
+      "sha256": "d8a23c1923e38e4291ef5f720e3af2a104b41d30b80de8fbdbaa89ba9c3c59b7",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61008\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61008,
+      "mtime_ns": 1785419264618834500,
+      "sha256": "036db8b02fd5fd487c629aa16d2b7e6df51779df63eb7458c92332112bae328b",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61009\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61009,
+      "mtime_ns": 1785419264648708600,
+      "sha256": "5ea8fa385ae64a753b24a44a9de43968a425e4d490c46988a86edfdbd6c5540c",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61010\\final_online_target_weights.pt",
+      "condition": "baseline",
+      "master_seed": 61010,
+      "mtime_ns": 1785419264674630500,
+      "sha256": "6c323fa50b01e39ff9c7e207ff6f201451407bba428ea6383ec3a42099fce385",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61001\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61001,
+      "mtime_ns": 1785419264697661700,
+      "sha256": "bb8b5954007d56a7c09e0315dd18bde630b95364344bbf4b1ce6be5f6c496887",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61002\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61002,
+      "mtime_ns": 1785419264720670800,
+      "sha256": "4587a90a379b2f34e8093cef9955abcce6f8633a6416fe933a3633ace2836954",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61003\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61003,
+      "mtime_ns": 1785419264749427600,
+      "sha256": "1ee21637c893e06ffb8ded0363d9df15433bb7fabd2fcfdffc3b0e5c8b19b450",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61004\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61004,
+      "mtime_ns": 1785419264772448500,
+      "sha256": "73f5efc40f6977e4c3d4efa75f7e1d5aedf6dd9454964b3825868789e2fa96c9",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61005\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61005,
+      "mtime_ns": 1785419264798143300,
+      "sha256": "80407d345ebc6b609fde422abfdd2f40d475b968e912b88c1305473f799c3649",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61006\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61006,
+      "mtime_ns": 1785419264822200100,
+      "sha256": "a1ac896e3e797ddb805b9fe299bc0f6358898c01f312d54803c1ae1252716832",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61007\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61007,
+      "mtime_ns": 1785419264848901700,
+      "sha256": "0c1e77f38615a6dc231fae237b60e1e9fd534f217b072cffdc7d68ba96e8be22",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61008\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61008,
+      "mtime_ns": 1785419264867896300,
+      "sha256": "deaed96a8895c76df104cdcb262a95ce4aab3e6b3057031d2c18249f90b0b8b0",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61009\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61009,
+      "mtime_ns": 1785419264888948100,
+      "sha256": "f93b72283e36027477472024279c518981a3ff4d96a9ea4fdc24899c28a479d0",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61010\\final_online_target_weights.pt",
+      "condition": "mean_pbrs",
+      "master_seed": 61010,
+      "mtime_ns": 1785419264915385300,
+      "sha256": "41d59fe47acf2b8dd107deca6692637b6bc1b8cd2a50a7902f38a46c617094c2",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61001\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61001,
+      "mtime_ns": 1785419264939244100,
+      "sha256": "36343762ebb0501833d0ab277137787858cfde7e67b39382ed2d1edf311b033e",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61002\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61002,
+      "mtime_ns": 1785419265000361500,
+      "sha256": "9cb0e1a573bd831e291b764aa65c91e2476e382fd82f25c0f2784251a1c12594",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61003\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61003,
+      "mtime_ns": 1785419265028785400,
+      "sha256": "8902b5ffa5081ae406f12a3158c1b7dfb56d7be491d8166e5d82210a08f90dec",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61004\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61004,
+      "mtime_ns": 1785419265053334300,
+      "sha256": "4a8cd9e26513e0293a08fd90d4c6860568194da139aafeec0d5d61ddd63b0704",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61005\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61005,
+      "mtime_ns": 1785419265069330400,
+      "sha256": "11d4b07c37b15723bf89dc46c329f2b75a879306cc0b23bf5ad75cd0bf7fda53",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61006\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61006,
+      "mtime_ns": 1785419265085350300,
+      "sha256": "b14dee85fb2d6eeed5d8c9ce0cd52708044e55252fe9b63b741cc7da916974cd",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61007\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61007,
+      "mtime_ns": 1785419265110754300,
+      "sha256": "54c119a37f9e8f31c6c8a8431cef7594207ce31567c49c35a2d4472a6b496a51",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61008\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61008,
+      "mtime_ns": 1785419265133141600,
+      "sha256": "6c3b0c8417c4b285ca0f6fb25a22571dfa3dbe97ec3815573937b42a6fb2df4d",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61009\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61009,
+      "mtime_ns": 1785419265153122500,
+      "sha256": "b57c597e70dccb00450acb492699cee40cfed384b7bb294235efac48bec64769",
+      "size_bytes": 106765
+    },
+    {
+      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61010\\final_online_target_weights.pt",
+      "condition": "min_pbrs",
+      "master_seed": 61010,
+      "mtime_ns": 1785419265174048600,
+      "sha256": "0d0dceafa6011ffb2d3ea8568787a37d4ae78dd6c9ebab8bf3b1a998bf8415be",
+      "size_bytes": 106765
+    }
+  ],
+  "conditions": [
+    "baseline",
+    "mean_pbrs",
+    "min_pbrs"
+  ],
+  "evaluation_episodes_per_checkpoint": 16,
+  "evaluation_seed_source": "job_manifest.json seeds.evaluation_seed + evaluation_episode_seed()",
+  "expected_total_evaluation_episodes": 480,
+  "experiment_lock_file": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\locks\\formal_experiment_manifest.json",
+  "experiment_lock_sha256": "85895d33c7bb9a254fdbc9680804d12a3d035e38e767babf8f2a3377ea9e8518",
+  "master_seed_count_per_condition": 10,
+  "old_stage6b_result_root": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k",
+  "protocol_file": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\locks\\final_training_protocol.yaml",
+  "protocol_sha256": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+  "stage6a_result_root": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647"
+}

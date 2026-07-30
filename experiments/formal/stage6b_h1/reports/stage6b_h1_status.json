@@ -1,0 +1,45 @@
+{
+  "acceptance": {
+    "checkpoint_count_is_30": true,
+    "checkpoint_hashes_unchanged": true,
+    "collision_rate": {
+      "baseline": 0.04375,
+      "mean_pbrs": 0.1,
+      "min_pbrs": 0.0625
+    },
+    "controller_swap_estimable_seeds": {
+      "baseline": 4,
+      "mean_pbrs": 0,
+      "min_pbrs": 4
+    },
+    "controller_swap_reference": {
+      "baseline": 4,
+      "mean_pbrs": 0,
+      "min_pbrs": 4
+    },
+    "corrected_mean_utility": {
+      "baseline": 0.6052128410267041,
+      "mean_pbrs": 0.5277716082547186,
+      "min_pbrs": 0.5862062128929038
+    },
+    "corrected_minimum_utility": {
+      "baseline": 0.2694955653371812,
+      "mean_pbrs": 0.15149978463012959,
+      "min_pbrs": 0.28795988545832085
+    },
+    "episode_count_is_480": true,
+    "mean_utility_changed_episode_count": 480,
+    "minimum_utility_changed_episode_count": 477,
+    "nonutility_mismatch_count": 0,
+    "reference_checks_passed": true,
+    "reference_max_abs_error": 4.3466281879345203e-07,
+    "reference_tolerance": 0.001,
+    "success_rate": {
+      "baseline": 0.35,
+      "mean_pbrs": 0.16875,
+      "min_pbrs": 0.3125
+    },
+    "worst_off_identity_changed_episode_count": 116
+  },
+  "status": "PASS"
+}

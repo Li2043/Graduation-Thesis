@@ -1,0 +1,12 @@
+﻿=== git status --short ===
+
+=== git branch --show-current ===
+formal/figures-100k
+=== git rev-parse HEAD ===
+c54905ece91ffb5c8f5ec4634b65c457a102e0d5
+=== git log -10 --oneline ===
+c54905e feat(figures): Stage 6C publication-quality formal 100K result figures 9c58675 chore(analysis): drop incomplete Stage 6B partial run and record analysis commit 7bbd146 feat(analysis): Stage 6B formal 100K multi-seed result verification and analysis 38d28bd chore(formal): record verified runner_release.json a89256d feat(formal): 100K protocol amendment and independent-run training infrastructure 597b08d chore(stage5c0): record retained final PBRS and training protocol lock run 9476798 feat(stage5c0): freeze final PBRS and formal training protocol locks bfed90e chore(stage5b0): record retained bounded engineering pilot run 33b6ebf feat(stage5b0): bounded engineering pilot over final V3 training pipeline f793595 chore(stage5a0): record retained final V3 end-to-end integration run
+=== python --version ===
+Python 3.14.6
+=== python -m pip --version ===
+pip 26.1.2 from C:\Python314\Lib\site-packages\pip (python 3.14) 
