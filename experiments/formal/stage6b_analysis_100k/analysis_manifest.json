@@ -63,5 +63,6 @@
     "tables/stage6b_20260730T140035Z_c7584593/primary_endpoint_descriptives.csv": "e6dda32cdb8f8c39d8cc07021ad52da34647b34f1e72daf27173e19eed941ef8",
     "tables/stage6b_20260730T140035Z_c7584593/secondary_endpoint_descriptives.csv": "1925944c81816b72b00fdcdee3c117fc8e2fefd13b7f6ee81394008fb24d7922"
   },
-  "overall": "PASS"
+  "overall": "PASS",
+  "analysis_git_commit": "7bbd14665af2927077053ebd8fb6c394bc806923"
 }
