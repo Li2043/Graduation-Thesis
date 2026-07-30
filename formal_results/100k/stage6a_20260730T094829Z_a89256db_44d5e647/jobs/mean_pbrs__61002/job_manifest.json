@@ -1,0 +1,25 @@
+{
+  "condition": "mean_pbrs",
+  "master_seed": 61002,
+  "seeds": {
+    "master_seed": 61002,
+    "environment_seed": 61002,
+    "learner_A_seed": 161002,
+    "learner_B_seed": 261002,
+    "replay_A_seed": 361002,
+    "replay_B_seed": 461002,
+    "evaluation_seed": 561002,
+    "schedule_seed": 661002
+  },
+  "replay_seeds_actual": {
+    "A": 361002,
+    "B": 461002
+  },
+  "env_steps": 100000,
+  "status": "COMPLETE",
+  "reason": "",
+  "protocol_hash": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+  "num_parallel_training_envs_per_run": 1,
+  "vectorized_training": false,
+  "formal_training_started": true
+}

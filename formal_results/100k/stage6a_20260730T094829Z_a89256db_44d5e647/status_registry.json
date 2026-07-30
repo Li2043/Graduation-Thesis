@@ -1,0 +1,215 @@
+{
+  "jobs": {
+    "baseline__61001": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61001,
+      "seed_replaced": false
+    },
+    "baseline__61002": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61002,
+      "seed_replaced": false
+    },
+    "baseline__61003": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61003,
+      "seed_replaced": false
+    },
+    "baseline__61004": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61004,
+      "seed_replaced": false
+    },
+    "baseline__61005": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61005,
+      "seed_replaced": false
+    },
+    "baseline__61006": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61006,
+      "seed_replaced": false
+    },
+    "baseline__61007": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61007,
+      "seed_replaced": false
+    },
+    "baseline__61008": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61008,
+      "seed_replaced": false
+    },
+    "baseline__61009": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61009,
+      "seed_replaced": false
+    },
+    "baseline__61010": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "baseline",
+      "master_seed": 61010,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61001": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61001,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61002": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61002,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61003": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61003,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61004": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61004,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61005": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61005,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61006": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61006,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61007": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61007,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61008": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61008,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61009": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61009,
+      "seed_replaced": false
+    },
+    "mean_pbrs__61010": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "mean_pbrs",
+      "master_seed": 61010,
+      "seed_replaced": false
+    },
+    "min_pbrs__61001": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61001,
+      "seed_replaced": false
+    },
+    "min_pbrs__61002": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61002,
+      "seed_replaced": false
+    },
+    "min_pbrs__61003": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61003,
+      "seed_replaced": false
+    },
+    "min_pbrs__61004": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61004,
+      "seed_replaced": false
+    },
+    "min_pbrs__61005": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61005,
+      "seed_replaced": false
+    },
+    "min_pbrs__61006": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61006,
+      "seed_replaced": false
+    },
+    "min_pbrs__61007": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61007,
+      "seed_replaced": false
+    },
+    "min_pbrs__61008": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61008,
+      "seed_replaced": false
+    },
+    "min_pbrs__61009": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61009,
+      "seed_replaced": false
+    },
+    "min_pbrs__61010": {
+      "status": "COMPLETE",
+      "reason": "",
+      "condition": "min_pbrs",
+      "master_seed": 61010,
+      "seed_replaced": false
+    }
+  },
+  "replace_failed_seeds": false
+}

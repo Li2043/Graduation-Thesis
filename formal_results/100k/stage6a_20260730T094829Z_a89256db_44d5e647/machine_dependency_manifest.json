@@ -1,0 +1,10 @@
+{
+  "python": "3.12.10",
+  "numpy": "2.3.2",
+  "torch": "2.13.0+cpu",
+  "pytest": "8.4.1",
+  "os": "Windows-11-10.0.26200-SP0",
+  "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "logical_cpus": 32,
+  "requirements_stage2b2_sha256": "03f0d5327df9cb5c6a0bf69bbec8777a7003e7e32429da1d09a26a32d005d56d"
+}

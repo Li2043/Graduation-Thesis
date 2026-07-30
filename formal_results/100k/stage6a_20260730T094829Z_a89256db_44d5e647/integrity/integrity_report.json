@@ -1,0 +1,7 @@
+{
+  "nan_inf_count": 0,
+  "illegal_action_count": 0,
+  "integrity_failures": [],
+  "resume_events": [],
+  "completed_env_steps_total": 3000000
+}

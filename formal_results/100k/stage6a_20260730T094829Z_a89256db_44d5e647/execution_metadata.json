@@ -1,0 +1,18 @@
+﻿{
+    "formal_execution_id":  "stage6a_20260730T094829Z_a89256db_44d5e647",
+    "runner_tag":  "formal-runner-100k-ready",
+    "runner_commit":  "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+    "protocol_path":  "C:\\Users\\SamChui\\Desktop\\li\\stage6a_formal_100k_run\\Graduation-Thesis\\experiments\\formal\\stage5c0_h1_r1_100k_protocol\\artifacts\\20260730T090159Z_597b08d4\\final_training_protocol.yaml",
+    "protocol_hash":  "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+    "pbrs_hash":  "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2",
+    "matrix_path":  "C:\\Users\\SamChui\\Desktop\\li\\stage6a_formal_100k_run\\Graduation-Thesis\\experiments\\formal\\stage5c0_h1_r1_100k_protocol\\artifacts\\20260730T090159Z_597b08d4\\formal_run_matrix.csv",
+    "workers":  12,
+    "threads_per_worker":  1,
+    "thread_limits":  {
+                          "NUMEXPR_NUM_THREADS":  "1",
+                          "MKL_NUM_THREADS":  "1",
+                          "OPENBLAS_NUM_THREADS":  "1",
+                          "OMP_NUM_THREADS":  "1"
+                      },
+    "note":  "runner_release.json not present in tag worktree; verified via origin/formal/runner-100k and using skip-runner-release-check in orchestrator"
+}

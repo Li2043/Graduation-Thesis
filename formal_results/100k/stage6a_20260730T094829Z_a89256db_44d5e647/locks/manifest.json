@@ -1,0 +1,23 @@
+{
+  "run_id": "20260730T090159Z_597b08d4",
+  "overall": "PASS",
+  "git_commit": "597b08d413145d4ec1c0eebaf24e3cb56c879273",
+  "git_dirty": true,
+  "tests": {
+    "passed": 0,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "SKIPPED"
+  },
+  "protocol_version": "5C-0-H1-R1-100K",
+  "pbrs_lock_sha256": "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2",
+  "training_protocol_sha256": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+  "n_formal_run_slots": 30,
+  "formal_environment_steps_per_run": 100000,
+  "total_planned_environment_steps": 3000000,
+  "epsilon_decay_environment_steps": 50000,
+  "formal_training_started": false,
+  "sustained_training_invoked_in_this_stage": false,
+  "exact_command": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\.venv_stage2b1\\Scripts\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\formal\\stage5c0_h1_r1_100k_protocol\\scripts\\run_stage5c0_h1_r1_protocol_lock.py"
+}

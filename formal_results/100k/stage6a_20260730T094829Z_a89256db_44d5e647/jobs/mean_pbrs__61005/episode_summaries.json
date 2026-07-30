@@ -1,0 +1,4673 @@
+[
+  {
+    "episode": 1,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 23,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 2,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 245,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 3,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 274,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 4,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 576,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 5,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 634,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 6,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 673,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 7,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 777,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 8,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 798,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 9,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 820,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 10,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 903,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 11,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 1028,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 12,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 1102,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 13,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 1125,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 14,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 1149,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 15,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 1250,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 16,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 1270,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 17,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 1293,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 18,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 1363,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 19,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 1385,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 20,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 1423,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 21,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 1463,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 22,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 1549,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 23,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 1571,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 24,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 1597,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 25,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 1622,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 26,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 1652,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 27,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 1673,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 28,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 1694,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 29,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 1716,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 30,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 1798,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 31,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 1821,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 32,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 1844,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 33,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 1875,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 34,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 1897,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 35,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 1919,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 36,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 2172,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 37,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 2264,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 38,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 2341,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 39,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 2364,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 40,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 2440,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 41,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 2462,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 42,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 2482,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 43,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 2561,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 44,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 2585,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 45,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 2607,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 46,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 2713,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 47,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 2809,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 48,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 2832,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 49,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 2855,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 50,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 3207,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 51,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 3296,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 52,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 3316,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 53,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 3396,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 54,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 3421,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 55,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 3502,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 56,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 3563,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 57,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 3646,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 58,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 3667,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 59,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 3783,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 60,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 3805,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 61,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 3904,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 62,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 3926,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 63,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 3969,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 64,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 3991,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 65,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 4018,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 66,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 4063,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 67,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 4085,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 68,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 4160,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 69,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 4181,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 70,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 4301,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 71,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 4395,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 72,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 4419,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 73,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 4519,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 74,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 4543,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 75,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 4615,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 76,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 4715,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 77,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 4804,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 78,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 4886,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 79,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 4909,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 80,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 5251,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 81,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 5342,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 82,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 5371,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 83,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 5454,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 84,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 5477,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 85,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 5500,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 86,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 5524,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 87,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 5603,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 88,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 5693,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 89,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 5802,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 90,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 5823,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 91,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 5872,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 92,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 5966,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 93,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 6004,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 94,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 6026,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 95,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 6091,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 96,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 6111,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 97,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 6131,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 98,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 6155,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 99,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 6176,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 100,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 6273,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 101,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 6363,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 102,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 6387,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 103,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 6407,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 104,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 6486,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 105,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 6508,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 106,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 6617,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 107,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 6638,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 108,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 6719,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 109,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 6744,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 110,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 6843,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 111,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 6968,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 112,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 6992,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 113,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 7158,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 114,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 7184,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 115,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 7409,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 116,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 7433,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 117,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 7510,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 118,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 7533,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 119,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 7629,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 120,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 7654,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 121,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 7738,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 122,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 8002,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 123,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 8074,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 124,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 8303,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 125,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 8389,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 126,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 8482,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 127,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 8563,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 128,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 8656,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 129,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 8740,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 130,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 8830,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 131,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 8926,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 132,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 9020,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 133,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 9092,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 134,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 9180,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 135,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 9268,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 136,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 9297,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 137,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 9318,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 138,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 9393,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 139,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 9499,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 140,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 9522,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 141,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 9544,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 142,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 9652,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 143,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 9676,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 144,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 9789,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 145,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 9987,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 146,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 10073,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 147,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 10172,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 148,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 10302,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 149,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 10419,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 150,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 10819,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 151,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 10889,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 152,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 10990,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 153,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 11080,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 154,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 11157,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 155,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 11180,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 156,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 11263,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 157,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 11348,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 158,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 11380,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 159,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 11463,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 160,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 11545,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 161,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 11628,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 162,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 11772,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 163,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 11858,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 164,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 11946,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 165,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 12034,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 166,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 12229,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 167,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 12323,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 168,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 12513,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 169,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 12604,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 170,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 12692,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 171,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 12778,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 172,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 13000,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 173,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 13026,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 174,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 13107,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 175,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 13131,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 176,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 13226,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 177,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 13301,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 178,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 13455,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 179,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 13533,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 180,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 13623,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 181,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 13643,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 182,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 13743,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 183,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 13840,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 184,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 13916,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 185,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 14008,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 186,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 14031,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 187,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 14115,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 188,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 14204,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 189,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 14303,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 190,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 14334,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 191,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 14412,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 192,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 14512,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 193,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 14590,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 194,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 14665,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 195,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 14757,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 196,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 14817,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 197,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 14924,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 198,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 14999,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 199,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 15069,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 200,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 15158,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 201,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 15253,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 202,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 15653,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 203,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 15737,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 204,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 15811,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 205,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 15920,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 206,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 16006,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 207,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 16224,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 208,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 16304,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 209,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 16704,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 210,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 16725,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 211,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 16820,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 212,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 16839,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 213,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 17239,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 214,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 17336,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 215,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 17369,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 216,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 17393,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 217,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 17477,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 218,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 17555,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 219,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 17658,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 220,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 17892,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 221,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 17977,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 222,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 18007,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 223,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 18407,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 224,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 18493,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 225,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 18524,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 226,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 18628,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 227,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 18650,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 228,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 18681,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 229,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 18710,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 230,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 18782,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 231,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 18921,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 232,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 19000,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 233,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 19085,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 234,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 19485,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 235,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 19660,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 236,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 19732,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 237,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 20132,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 238,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 20225,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 239,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 20625,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 240,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 20654,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 241,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 21054,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 242,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 21454,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 243,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 21841,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 244,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 21917,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 245,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 22006,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 246,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 22086,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 247,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 22430,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 248,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 22782,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 249,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 22886,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 250,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 22968,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 251,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 23368,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 252,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 23768,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 253,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 24168,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 254,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 24568,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 255,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 24814,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 256,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 25214,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 257,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 25614,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 258,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 26014,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 259,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 26043,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 260,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 26074,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 261,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 26175,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 262,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 26575,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 263,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 26822,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 264,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 26902,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 265,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 27302,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 266,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 27702,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 267,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 28102,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 268,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 28502,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 269,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 28533,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 270,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 28564,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 271,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 28964,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 272,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 28993,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 273,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 29022,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 274,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 29422,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 275,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 29494,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 276,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 29526,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 277,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 29926,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 278,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 30326,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 279,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 30726,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 280,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 31126,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 281,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 31526,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 282,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 31926,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 283,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 32326,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 284,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 32358,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 285,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 32758,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 286,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 32822,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 287,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 33222,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 288,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 33622,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 289,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 34022,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 290,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 34082,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 291,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 34159,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 292,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 34222,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 293,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 34622,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 294,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 34725,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 295,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 35125,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 296,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 35427,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 297,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 35489,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 298,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 35548,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 299,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 35948,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 300,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 36348,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 301,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 36748,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 302,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 36768,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 303,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 37168,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 304,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 37568,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 305,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 37588,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 306,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 37644,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 307,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 38044,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 308,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 38099,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 309,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 38499,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 310,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 38899,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 311,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 39299,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 312,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 39699,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 313,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 40099,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 314,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 40366,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 315,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 40766,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 316,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 41166,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 317,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 41566,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 318,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 41966,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 319,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 42366,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 320,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 42766,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 321,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 42836,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 322,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 42901,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 323,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 43301,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 324,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 43701,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 325,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 43757,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 326,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 44157,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 327,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 44557,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 328,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 44651,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 329,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 45051,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 330,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 45451,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 331,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 45527,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 332,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 45869,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 333,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 45920,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 334,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 45975,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 335,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 46375,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 336,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 46775,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 337,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 46795,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 338,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 46850,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 339,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 46905,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 340,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 46970,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 341,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 47026,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 342,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 47094,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 343,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 47154,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 344,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 47554,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 345,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 47954,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 346,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 48354,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 347,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 48754,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 348,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 49154,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 349,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 49554,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 350,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 49630,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 351,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 49691,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 352,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 49890,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 353,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 50290,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 354,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 50690,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 355,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 50839,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 356,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 50899,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 357,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 51299,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 358,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 51699,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 359,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 51754,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 360,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 52154,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 361,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 52554,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 362,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 52611,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 363,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 52670,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 364,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 52849,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 365,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 52869,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 366,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 52927,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 367,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 52988,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 368,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 53045,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 369,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 53106,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 370,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 53506,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 371,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 53601,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 372,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 53672,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 373,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 54072,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 374,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 54472,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 375,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 54872,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 376,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 55272,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 377,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 55672,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 378,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 55808,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 379,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 56208,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 380,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 56277,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 381,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 56677,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 382,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 57077,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 383,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 57477,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 384,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 57877,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 385,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 58277,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 386,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 58515,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 387,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 58580,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 388,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 58599,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 389,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 58999,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 390,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 59399,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 391,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 59481,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 392,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 59881,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 393,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 60281,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 394,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 60681,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 395,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 61081,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 396,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 61481,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 397,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 61881,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 398,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 62281,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 399,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 62400,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 400,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 62516,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 401,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 62916,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 402,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 62996,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 403,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 63396,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 404,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 63796,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 405,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 64196,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 406,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 64596,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 407,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 64874,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 408,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 65274,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 409,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 65406,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 410,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 65806,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 411,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 66206,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 412,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 66606,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 413,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 67006,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 414,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 67406,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 415,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 67806,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 416,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 68206,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 417,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 68606,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 418,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 68727,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 419,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 69127,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 420,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 69527,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 421,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 69927,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 422,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 70327,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 423,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 70727,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 424,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 70924,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 425,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 71324,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 426,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 71724,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 427,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 72124,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 428,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 72524,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 429,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 72924,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 430,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 72965,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 431,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 73365,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 432,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 73765,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 433,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 73808,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 434,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 74208,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 435,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 74608,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 436,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 75008,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 437,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 75408,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 438,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 75808,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 439,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 76208,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 440,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 76608,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 441,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 77008,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 442,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 77408,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 443,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 77808,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 444,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 78208,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 445,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 78608,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 446,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 79008,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 447,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 79408,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 448,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 79808,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 449,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 80208,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 450,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 80451,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 451,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 80851,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 452,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 81251,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 453,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 81651,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 454,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 81712,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 455,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 82112,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 456,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 82512,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 457,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 82912,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 458,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 83312,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 459,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 83342,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 460,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 83742,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 461,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 84142,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 462,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 84171,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 463,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 84200,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 464,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 84296,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 465,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 84696,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 466,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 84758,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 467,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 84791,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 468,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 85191,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 469,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 85591,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 470,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 85991,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 471,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 86391,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 472,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 86791,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 473,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 86839,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 474,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 86871,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 475,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 87271,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 476,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 87671,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 477,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 87711,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 478,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 88111,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 479,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 88511,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 480,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 88911,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 481,
+    "block_id": "calibration_004",
+    "assignment": 0,
+    "env_steps": 89311,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 482,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 89477,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 483,
+    "block_id": "calibration_004",
+    "assignment": 1,
+    "env_steps": 89877,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 484,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 90035,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 485,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 90435,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 486,
+    "block_id": "calibration_009",
+    "assignment": 0,
+    "env_steps": 90804,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 487,
+    "block_id": "calibration_010",
+    "assignment": 0,
+    "env_steps": 91176,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 488,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 91269,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 489,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 91524,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 490,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 91924,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 491,
+    "block_id": "calibration_003",
+    "assignment": 1,
+    "env_steps": 92324,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 492,
+    "block_id": "calibration_003",
+    "assignment": 0,
+    "env_steps": 92724,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 493,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 93124,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 494,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 93210,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 495,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 93535,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 496,
+    "block_id": "calibration_008",
+    "assignment": 1,
+    "env_steps": 93935,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 497,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 94335,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 498,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 94735,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 499,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 95135,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 500,
+    "block_id": "calibration_006",
+    "assignment": 1,
+    "env_steps": 95535,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 501,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 95702,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 502,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 96102,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 503,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 96502,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 504,
+    "block_id": "calibration_006",
+    "assignment": 0,
+    "env_steps": 96567,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 505,
+    "block_id": "calibration_012",
+    "assignment": 0,
+    "env_steps": 96640,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 506,
+    "block_id": "calibration_010",
+    "assignment": 1,
+    "env_steps": 96760,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 507,
+    "block_id": "calibration_011",
+    "assignment": 1,
+    "env_steps": 97160,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 508,
+    "block_id": "calibration_002",
+    "assignment": 0,
+    "env_steps": 97229,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 509,
+    "block_id": "calibration_008",
+    "assignment": 0,
+    "env_steps": 97288,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "collision"
+  },
+  {
+    "episode": 510,
+    "block_id": "calibration_005",
+    "assignment": 1,
+    "env_steps": 97367,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 511,
+    "block_id": "calibration_011",
+    "assignment": 0,
+    "env_steps": 97767,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 512,
+    "block_id": "calibration_009",
+    "assignment": 1,
+    "env_steps": 97845,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 513,
+    "block_id": "calibration_007",
+    "assignment": 0,
+    "env_steps": 98245,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 514,
+    "block_id": "calibration_001",
+    "assignment": 1,
+    "env_steps": 98645,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 515,
+    "block_id": "calibration_012",
+    "assignment": 1,
+    "env_steps": 99045,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 516,
+    "block_id": "calibration_002",
+    "assignment": 1,
+    "env_steps": 99445,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 517,
+    "block_id": "calibration_005",
+    "assignment": 0,
+    "env_steps": 99519,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  },
+  {
+    "episode": 518,
+    "block_id": "calibration_001",
+    "assignment": 0,
+    "env_steps": 99919,
+    "terminated": false,
+    "truncated": true,
+    "term_reason": "truncation"
+  },
+  {
+    "episode": 519,
+    "block_id": "calibration_007",
+    "assignment": 1,
+    "env_steps": 99987,
+    "terminated": true,
+    "truncated": false,
+    "term_reason": "success"
+  }
+]

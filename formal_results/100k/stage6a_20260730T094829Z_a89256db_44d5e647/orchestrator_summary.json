@@ -1,0 +1,251 @@
+{
+  "expected": 30,
+  "complete": 30,
+  "failed": 0,
+  "interrupted": 0,
+  "pending_or_missing": 0,
+  "running": 0,
+  "results": [
+    {
+      "formal_job_id": "baseline__61001",
+      "condition": "baseline",
+      "master_seed": 61001,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61002",
+      "condition": "baseline",
+      "master_seed": 61002,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61003",
+      "condition": "baseline",
+      "master_seed": 61003,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61004",
+      "condition": "baseline",
+      "master_seed": 61004,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61005",
+      "condition": "baseline",
+      "master_seed": 61005,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61006",
+      "condition": "baseline",
+      "master_seed": 61006,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61007",
+      "condition": "baseline",
+      "master_seed": 61007,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61008",
+      "condition": "baseline",
+      "master_seed": 61008,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61009",
+      "condition": "baseline",
+      "master_seed": 61009,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "baseline__61010",
+      "condition": "baseline",
+      "master_seed": 61010,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61001",
+      "condition": "mean_pbrs",
+      "master_seed": 61001,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61002",
+      "condition": "mean_pbrs",
+      "master_seed": 61002,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61003",
+      "condition": "mean_pbrs",
+      "master_seed": 61003,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61004",
+      "condition": "mean_pbrs",
+      "master_seed": 61004,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61005",
+      "condition": "mean_pbrs",
+      "master_seed": 61005,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61006",
+      "condition": "mean_pbrs",
+      "master_seed": 61006,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61007",
+      "condition": "mean_pbrs",
+      "master_seed": 61007,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61008",
+      "condition": "mean_pbrs",
+      "master_seed": 61008,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61009",
+      "condition": "mean_pbrs",
+      "master_seed": 61009,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "mean_pbrs__61010",
+      "condition": "mean_pbrs",
+      "master_seed": 61010,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61001",
+      "condition": "min_pbrs",
+      "master_seed": 61001,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61002",
+      "condition": "min_pbrs",
+      "master_seed": 61002,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61003",
+      "condition": "min_pbrs",
+      "master_seed": 61003,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61004",
+      "condition": "min_pbrs",
+      "master_seed": 61004,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61005",
+      "condition": "min_pbrs",
+      "master_seed": 61005,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61006",
+      "condition": "min_pbrs",
+      "master_seed": 61006,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61007",
+      "condition": "min_pbrs",
+      "master_seed": 61007,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61008",
+      "condition": "min_pbrs",
+      "master_seed": 61008,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61009",
+      "condition": "min_pbrs",
+      "master_seed": 61009,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    },
+    {
+      "formal_job_id": "min_pbrs__61010",
+      "condition": "min_pbrs",
+      "master_seed": 61010,
+      "status": "COMPLETE",
+      "reason": "",
+      "returncode": 0
+    }
+  ],
+  "replace_failed_seeds": false
+}

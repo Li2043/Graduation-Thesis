@@ -1,0 +1,11 @@
+{
+  "tag": "formal-runner-100k-ready",
+  "commit": "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+  "branch": "formal/runner-100k",
+  "protocol_hashes": {
+    "training_protocol_sha256": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+    "pbrs_parameters_sha256": "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2"
+  },
+  "formal_execution_id": "stage6a_20260730T094829Z_a89256db_44d5e647",
+  "note": "Verified against origin/formal/runner-100k runner_release.json and locked H1-R1 artifacts"
+}

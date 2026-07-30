@@ -1,0 +1,34 @@
+{
+  "stage": "6A",
+  "formal_execution_id": "stage6a_20260730T094829Z_a89256db_44d5e647",
+  "overall": "COMPLETE",
+  "completed_jobs": 30,
+  "failed_jobs": 0,
+  "expected_jobs": 30,
+  "runner_tag": "formal-runner-100k-ready",
+  "runner_commit": "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+  "protocol_hash": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+  "pbrs_hash": "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2",
+  "workers": 12,
+  "threads_per_worker": 1,
+  "total_completed_environment_steps": 3000000,
+  "checkpoints_per_job": [
+    10000,
+    25000,
+    50000,
+    75000,
+    100000
+  ],
+  "evaluations_per_job": [
+    0,
+    10000,
+    25000,
+    50000,
+    75000,
+    100000
+  ],
+  "nan_inf_count": 0,
+  "illegal_action_count": 0,
+  "resume_events": 0,
+  "utc": "2026-07-30T10:32:15.070552+00:00"
+}

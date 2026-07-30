@@ -1,0 +1,22 @@
+{
+  "job_id": "baseline__61003",
+  "condition": "baseline",
+  "master_seed": 61003,
+  "seeds": {
+    "master_seed": 61003,
+    "environment_seed": 61003,
+    "learner_A_seed": 161003,
+    "learner_B_seed": 261003,
+    "replay_A_seed": 361003,
+    "replay_B_seed": 461003,
+    "evaluation_seed": 561003,
+    "schedule_seed": 661003
+  },
+  "protocol_lock": "C:\\Users\\SamChui\\Desktop\\li\\stage6a_formal_100k_run\\Graduation-Thesis\\experiments\\formal\\stage5c0_h1_r1_100k_protocol\\artifacts\\20260730T090159Z_597b08d4\\final_training_protocol.yaml",
+  "protocol_hash": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+  "max_steps": 100000,
+  "device": "cpu",
+  "num_parallel_training_envs_per_run": 1,
+  "vectorized_training": false,
+  "test_budget": false
+}
