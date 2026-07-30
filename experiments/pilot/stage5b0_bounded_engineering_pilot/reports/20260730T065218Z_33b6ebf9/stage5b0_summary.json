@@ -1,0 +1,172 @@
+{
+  "run_id": "20260730T065218Z_33b6ebf9",
+  "overall": "PASS",
+  "exact_command": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\.venv_stage2b1\\Scripts\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pilot\\stage5b0_bounded_engineering_pilot\\scripts\\run_stage5b0_pilot.py",
+  "git_commit": "33b6ebf9bcdb8f8b7d0bda269454cb6856e462a3",
+  "git_dirty": false,
+  "tests": {
+    "passed": 52,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "environment_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\artifacts\\20260730T003122Z_aee2d425\\final_environment_lock.yaml",
+  "environment_lock_sha256_before": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "environment_lock_sha256_after": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "comfort_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\artifacts\\20260730T005639Z_c6992dd4\\final_comfort_parameters.yaml",
+  "comfort_lock_sha256_before": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "comfort_lock_sha256_after": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "pilot_config_hash": "7738af2b5ad26a47904fa243344fb2b264ff50d1755253e6e2fad4cf4a2d8c70",
+  "conditions": [
+    "baseline",
+    "mean_pbrs",
+    "min_pbrs"
+  ],
+  "seeds": [
+    51001,
+    51002
+  ],
+  "runs_completed": 6,
+  "environment_steps_per_run": 5000,
+  "total_environment_steps": 30000,
+  "episodes_per_run": {
+    "baseline/51001": 81,
+    "baseline/51002": 74,
+    "mean_pbrs/51001": 85,
+    "mean_pbrs/51002": 74,
+    "min_pbrs/51001": 80,
+    "min_pbrs/51002": 86
+  },
+  "replay_sizes": {
+    "baseline/51001": {
+      "A": 4542,
+      "B": 4154
+    },
+    "baseline/51002": {
+      "A": 3560,
+      "B": 4827
+    },
+    "mean_pbrs/51001": {
+      "A": 4571,
+      "B": 4174
+    },
+    "mean_pbrs/51002": {
+      "A": 3640,
+      "B": 4638
+    },
+    "min_pbrs/51001": {
+      "A": 4244,
+      "B": 4436
+    },
+    "min_pbrs/51002": {
+      "A": 4123,
+      "B": 4649
+    }
+  },
+  "optimiser_updates": {
+    "baseline/51001": {
+      "A": 4031,
+      "B": 3643
+    },
+    "baseline/51002": {
+      "A": 3049,
+      "B": 4316
+    },
+    "mean_pbrs/51001": {
+      "A": 4060,
+      "B": 3663
+    },
+    "mean_pbrs/51002": {
+      "A": 3129,
+      "B": 4127
+    },
+    "min_pbrs/51001": {
+      "A": 3733,
+      "B": 3925
+    },
+    "min_pbrs/51002": {
+      "A": 3612,
+      "B": 4138
+    }
+  },
+  "target_syncs": {
+    "baseline/51001": {
+      "A": 16,
+      "B": 14
+    },
+    "baseline/51002": {
+      "A": 12,
+      "B": 17
+    },
+    "mean_pbrs/51001": {
+      "A": 16,
+      "B": 14
+    },
+    "mean_pbrs/51002": {
+      "A": 12,
+      "B": 16
+    },
+    "min_pbrs/51001": {
+      "A": 14,
+      "B": 15
+    },
+    "min_pbrs/51002": {
+      "A": 14,
+      "B": 16
+    }
+  },
+  "checkpoint_counts": {
+    "baseline/51001": 3,
+    "baseline/51002": 3,
+    "mean_pbrs/51001": 3,
+    "mean_pbrs/51002": 3,
+    "min_pbrs/51001": 3,
+    "min_pbrs/51002": 3
+  },
+  "evaluation_counts": {
+    "baseline/51001": 3,
+    "baseline/51002": 3,
+    "mean_pbrs/51001": 3,
+    "mean_pbrs/51002": 3,
+    "min_pbrs/51001": 3,
+    "min_pbrs/51002": 3
+  },
+  "resume_equivalence_errors": 0,
+  "action_replay_integrity_counts": {
+    "illegal_actions": 0
+  },
+  "nan_inf_counts": 0,
+  "maximum_loss": 0.11740756034851074,
+  "maximum_absolute_q": 0.6137999892234802,
+  "maximum_absolute_target": 0.5951629877090454,
+  "reward_decomposition_error": 0.0,
+  "evaluation_state_mutation_counts": 0,
+  "baseline_nonzero_shaping_count": 0,
+  "mean_nonzero_shaping_count": 17023,
+  "min_nonzero_shaping_count": 17214,
+  "integrity": {
+    "lock_hash_mismatch": 0,
+    "engineering_failures": 0,
+    "resume_errors": 0,
+    "nan_inf_errors": 0,
+    "illegal_action_errors": 0,
+    "evaluation_mutation_errors": 0,
+    "missing_checkpoint_errors": 0,
+    "step_count_errors": 0
+  },
+  "environment_parameters_final": true,
+  "comfort_parameters_final": true,
+  "pbrs_parameters_final": false,
+  "training_protocol_final": false,
+  "pilot_training_started": true,
+  "policy_training_started": true,
+  "formal_training_started": false,
+  "sustained_training_invoked": true,
+  "unresolved_engineering_limitations": [
+    "Pilot hyperparameters are engineering-only; not a training-protocol lock.",
+    "PBRS lambda=0.2 is pilot-only and not selected by performance.",
+    "Network [64,64] is pilot-only; not architecture selection."
+  ],
+  "behavioral_observations_notice": "NOT FOR FORMAL CONDITION COMPARISON"
+}

@@ -1,0 +1,2 @@
+passed,action_mismatch_count,transition_mismatch_count,max_parameter_abs_diff,max_loss_diff,param_errors,counts_ok,env_steps_a,env_steps_b,updates_a,updates_b,epsilon_a,epsilon_b,comparison_length,interruption_step
+True,0,0,0.0,0.0,"{'online_A': 0.0, 'online_B': 0.0, 'target_A': 0.0, 'target_B': 0.0}",True,1000,1000,"{'A': 380, 'B': 312}","{'A': 380, 'B': 312}",0.775,0.775,1000,500

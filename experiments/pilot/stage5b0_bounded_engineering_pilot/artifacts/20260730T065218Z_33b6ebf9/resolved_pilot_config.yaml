@@ -1,0 +1,80 @@
+run_id: 20260730T065218Z_33b6ebf9
+pilot_config:
+  conditions:
+  - baseline
+  - mean_pbrs
+  - min_pbrs
+  pilot_seeds:
+  - 51001
+  - 51002
+  dqn:
+    algorithm: vanilla_independent_dqn
+    observation_dimension: 27
+    action_count: 3
+    hidden_sizes:
+    - 64
+    - 64
+    activation: ReLU
+    loss: mse
+    gamma: 0.995
+    learning_rate: 0.0005
+    replay_capacity_per_controller: 20000
+    batch_size: 64
+    replay_warmup_per_controller: 512
+    update_frequency: every_environment_policy_step
+    updates_per_active_controller: 1
+    target_sync_type: hard
+    target_sync_interval_updates: 250
+    device: cpu
+  exploration:
+    epsilon_start: 1.0
+    epsilon_end: 0.1
+    epsilon_decay_environment_steps: 4000
+    schedule: linear
+    epsilon_after_decay: 0.1
+  duration:
+    environment_steps_per_run: 5000
+    maximum_runs: 6
+    checkpoint_steps:
+    - 1000
+    - 2500
+    - 5000
+    evaluation_steps:
+    - 0
+    - 2500
+    - 5000
+  pbrs:
+    lambda_mean: 0.2
+    lambda_min: 0.2
+    pilot_only: true
+    integration_test_only: false
+    pbrs_parameters_final: false
+  pilot_configuration_final_for_run: true
+  training_protocol_final: false
+  formal_training_started: false
+  environment_parameters_final: true
+  comfort_parameters_final: true
+pilot_config_sha256: 7738af2b5ad26a47904fa243344fb2b264ff50d1755253e6e2fad4cf4a2d8c70
+git_commit: 33b6ebf9bcdb8f8b7d0bda269454cb6856e462a3
+git_dirty: false
+environment_lock_sha256_before: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+comfort_lock_sha256_before: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+environment_parameters_final: true
+comfort_parameters_final: true
+pbrs_parameters_final: false
+training_protocol_final: false
+pilot_training_started: true
+policy_training_started: true
+formal_training_started: false
+sustained_training_invoked: true
+source_hashes:
+  src/thesis/training/pilot_config.py: 9998b8b3d36ffe5d77ea1e60f0cd827d35f13b0ba35b0607b1383dada0c7946e
+  src/thesis/training/pilot_ic_schedule.py: b607f76c1e170f92d2ac5deb9e532a55e6a25fd5ef66a836b406933f10a455da
+  src/thesis/training/pilot_checkpoint.py: 629ad980c292636f2f7a713e7fca70cadc6762a9d1a7a73084dd82f75852d4a5
+  src/thesis/training/pilot_evaluation.py: 420ca9461168566e56328af4015c5d3933fc8c241011afbfdf4ff069bf77f3f8
+  src/thesis/training/pilot_training_loop.py: 2b733d1f1b88084f4c2e547fbea49f1e1ca15e8c17aa088c38b59f42f6c17cca
+  src/thesis/training/pilot_resume.py: f0e2f34addfa5e3f6972bf0f04397ea1825f23c531aa3d75284e97fc9e912552
+  src/thesis/training/final_v3_pipeline.py: 23609c093dc51d6bc39b42f5a9e6050f922511f37dd415d263d06c8b82e80a71
+  src/thesis/training/final_lock_loader.py: 4cd5247abdf9cd2096968beee04d9af3517c5f620cbb94593000637da11861d1
+  src/thesis/agents/independent_dqn_v2.py: 7ed4dadf7d3f6859743ef0a1970d0a163582ce867e23abe656ea841209a198de
+  src/thesis/agents/replay_buffer_v2.py: b1c303d29f8f49996cd51c874372278ff64fe171b8b0bdb48a5271fd965c4d8a

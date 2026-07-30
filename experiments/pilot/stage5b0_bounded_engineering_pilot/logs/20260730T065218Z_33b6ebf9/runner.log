@@ -1,0 +1,24 @@
+[2026-07-30T06:52:18.843794+00:00] run_id=20260730T065218Z_33b6ebf9
+[2026-07-30T06:52:18.844226+00:00] git_commit=33b6ebf9bcdb8f8b7d0bda269454cb6856e462a3 dirty=False
+[2026-07-30T06:52:18.844445+00:00] pilot_config_hash=7738af2b5ad26a47904fa243344fb2b264ff50d1755253e6e2fad4cf4a2d8c70
+[2026-07-30T06:52:18.844889+00:00] environment lock sha before=d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+[2026-07-30T06:52:18.845062+00:00] comfort lock sha before=1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+[2026-07-30T06:52:18.869332+00:00] running resume-equivalence comparison (baseline/51001, 1000 steps)
+[2026-07-30T06:52:32.972878+00:00] resume equivalence PASS
+[2026-07-30T06:52:32.973509+00:00] starting pilot run condition=baseline seed=51001
+[2026-07-30T06:53:51.432092+00:00] completed baseline/51001: steps=5000 updatesA=4031 updatesB=3643
+[2026-07-30T06:53:51.432358+00:00] starting pilot run condition=baseline seed=51002
+[2026-07-30T06:55:06.506684+00:00] completed baseline/51002: steps=5000 updatesA=3049 updatesB=4316
+[2026-07-30T06:55:06.506928+00:00] starting pilot run condition=mean_pbrs seed=51001
+[2026-07-30T06:56:23.912621+00:00] completed mean_pbrs/51001: steps=5000 updatesA=4060 updatesB=3663
+[2026-07-30T06:56:23.912831+00:00] starting pilot run condition=mean_pbrs seed=51002
+[2026-07-30T06:57:39.836487+00:00] completed mean_pbrs/51002: steps=5000 updatesA=3129 updatesB=4127
+[2026-07-30T06:57:39.836703+00:00] starting pilot run condition=min_pbrs seed=51001
+[2026-07-30T06:58:57.311065+00:00] completed min_pbrs/51001: steps=5000 updatesA=3733 updatesB=3925
+[2026-07-30T06:58:57.311621+00:00] starting pilot run condition=min_pbrs seed=51002
+[2026-07-30T07:00:18.466243+00:00] completed min_pbrs/51002: steps=5000 updatesA=3612 updatesB=4138
+[2026-07-30T07:00:18.466667+00:00] running pytest suite
+[2026-07-30T07:01:01.976326+00:00] pytest={'passed': 52, 'failed': 0, 'errors': 0, 'skipped': 0, 'status': 'PASS'}
+[2026-07-30T07:01:01.976961+00:00] environment lock sha after=d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+[2026-07-30T07:01:01.977256+00:00] comfort lock sha after=1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+[2026-07-30T07:01:02.148723+00:00] overall=PASS
