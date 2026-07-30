@@ -1,0 +1,57 @@
+from_protocol_sha256: a7b0a34ce08541d8f9e5adf24856924429fbb8463bc6e271bba824affc806b4f
+to_protocol_version: 5C-0-H1-R1-100K
+changes:
+  formal_environment_steps_per_run:
+    from: 20000
+    to: 100000
+  total_planned_environment_steps:
+    from: 600000
+    to: 3000000
+  epsilon_decay_environment_steps:
+    from: 4000
+    to: 50000
+  checkpoint_steps:
+    from:
+    - 5000
+    - 10000
+    - 15000
+    - 20000
+    to:
+    - 10000
+    - 25000
+    - 50000
+    - 75000
+    - 100000
+  evaluation_steps:
+    from:
+    - 0
+    - 5000
+    - 10000
+    - 15000
+    - 20000
+    to:
+    - 0
+    - 10000
+    - 25000
+    - 50000
+    - 75000
+    - 100000
+  primary_endpoint:
+    from: 20000
+    to: 100000
+  num_parallel_training_envs_per_run:
+    from: 1
+    to: 1
+  training_cycle:
+    from: 12_block_alternating
+    to: 24_pair_shuffled
+unchanged:
+- conditions
+- lambda_mean
+- lambda_min
+- dqn_architecture
+- master_seeds
+- seed_derivation
+- statistical_unit
+- paired_contrasts
+pre_result_budget_amendment: true

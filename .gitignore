@@ -1,4 +1,22 @@
-# Virtual environments
+# Formal training — keep local-only payloads out of ordinary Git
+experiments/formal/**/checkpoints/
+experiments/formal/**/output*/
+experiments/formal/stage6a_formal_training/runs/
+experiments/formal/stage6a_formal_training/local_outputs/
+
+# Full replay / intermediate checkpoint payloads
+**/ckpt_step_*.pt
+**/*_emergency.pt
+**/full_replay*
+**/transition_stream*
+
+# Secrets / local notify URLs must never be committed
+.env
+.env.*
+**/webhook_url*
+formal_notify_webhook*
+
+# Python
 .venv_stage2b1/
 .venv*/
 __pycache__/
@@ -18,8 +36,6 @@ experiments/pre_impl/*/data/processed/*/
 experiments/pre_impl/*/reports/*/
 experiments/pre_impl/*/logs/*/
 experiments/pre_impl/*/artifacts/*/
-# Pointers may be tracked; run payloads are not required in git
 
 env_search.txt
 project_tree.txt
-

@@ -1,0 +1,10 @@
+{
+  "protocol_version": "5C-0-H1-R1-100K",
+  "pbrs_lock_sha256": "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2",
+  "training_protocol_sha256": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+  "n_formal_run_slots": 30,
+  "formal_environment_steps_per_run": 100000,
+  "total_planned_environment_steps": 3000000,
+  "formal_training_started": false,
+  "supersedes_stage5c0_protocol_sha256": "a7b0a34ce08541d8f9e5adf24856924429fbb8463bc6e271bba824affc806b4f"
+}

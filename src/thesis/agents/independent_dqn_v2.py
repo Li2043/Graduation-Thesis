@@ -106,6 +106,7 @@ class IndependentDQNLearner:
         config: DQNConfig,
         *,
         seed: int,
+        replay_seed: int | None = None,
     ):
         config.validate()
         if controller_id not in {"A", "B"}:
@@ -113,6 +114,9 @@ class IndependentDQNLearner:
         self.controller_id = controller_id
         self.config = config
         self.seed = int(seed)
+        # Historical default: learner_seed + 17. Formal runtime must pass explicit
+        # replay_A_seed / replay_B_seed and must not rely on this fallback.
+        self.replay_seed = int(self.seed + 17 if replay_seed is None else replay_seed)
         self.device = torch.device(config.device)
 
         self._rng = np.random.default_rng(self.seed)
@@ -135,7 +139,7 @@ class IndependentDQNLearner:
             config.replay_capacity,
             obs_dim=config.obs_dim,
             n_actions=config.n_actions,
-            seed=self.seed + 17,
+            seed=self.replay_seed,
         )
         self._update_count = 0
 
@@ -322,6 +326,7 @@ class IndependentDQNLearner:
         return {
             "controller_id": self.controller_id,
             "seed": self.seed,
+            "replay_seed": int(self.replay.seed),
             "config": {
                 "obs_dim": self.config.obs_dim,
                 "n_actions": self.config.n_actions,
@@ -358,9 +363,15 @@ def build_independent_learners(
     *,
     seed_A: int,
     seed_B: int,
+    replay_seed_A: int | None = None,
+    replay_seed_B: int | None = None,
 ) -> dict[str, IndependentDQNLearner]:
     """Create persistent separate learners for A and B."""
     return {
-        "A": IndependentDQNLearner("A", config, seed=seed_A),
-        "B": IndependentDQNLearner("B", copy.deepcopy(config), seed=seed_B),
+        "A": IndependentDQNLearner(
+            "A", config, seed=seed_A, replay_seed=replay_seed_A
+        ),
+        "B": IndependentDQNLearner(
+            "B", copy.deepcopy(config), seed=seed_B, replay_seed=replay_seed_B
+        ),
     }

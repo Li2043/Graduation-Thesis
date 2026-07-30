@@ -1,0 +1,42 @@
+lock_type: final_pbrs_parameters
+protocol_version: 5C-0-H1-R1-100K
+stage: stage5c0_h1_r1
+supersedes_stage5c0_pbrs_sha256: 8ce5025690e5f217296386af765a85f6c1afa7f3028c3eab5fb06a64d87fbf4b
+lambda_mean: 0.2
+lambda_min: 0.2
+baseline_lambda: 0.0
+gamma: 0.995
+comparison_type: equal_coefficient
+magnitude_matched: false
+rms_matched: false
+equal_scales_across_shaped_conditions: true
+conditions:
+  baseline:
+    lambda: 0.0
+  mean_pbrs:
+    lambda_mean: 0.2
+  min_pbrs:
+    lambda_min: 0.2
+stakeholder_set:
+- A
+- B
+- B_front
+- B_rear
+potential_definitions:
+  Phi_mean: (E_A + E_B + E_B_front + E_B_rear) / 4
+  Phi_min: min(E_A, E_B, E_B_front, E_B_rear)
+terminal_semantics:
+  true_terminal_successor_potential: 0.0
+  truncation_successor_potential: actual_successor_potential
+base_reward_retained:
+  a_comfort: 1.5
+  a_hard: 3.5
+  eta_H: 0.015
+pilot_comparative_outcomes_used_for_selection: false
+environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+comfort_lock_sha256: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+source_git_commit: 597b08d413145d4ec1c0eebaf24e3cb56c879273
+pbrs_parameters_final: true
+formal_training_started: false
+pre_result_budget_amendment: true
+formal_results_existed_at_amendment: false

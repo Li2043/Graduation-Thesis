@@ -1,0 +1,203 @@
+lock_type: final_training_protocol
+protocol_version: 5C-0-H1-R1-100K
+stage: stage5c0_h1_r1
+supersedes_stage5c0_protocol_sha256: a7b0a34ce08541d8f9e5adf24856924429fbb8463bc6e271bba824affc806b4f
+superseded_stage5c0_run_id: 20260730T072103Z_94767983
+pre_result_budget_amendment: true
+formal_results_existed_at_amendment: false
+conditions:
+- baseline
+- mean_pbrs
+- min_pbrs
+only_condition_dependent_component: pbrs_shaping_term
+environment:
+  candidate_id: G1-I1
+  observation_dimension: 27
+  environment_class: MergeEnvCandidateV3
+  environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+  comfort_lock_sha256: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+  num_parallel_training_envs_per_run: 1
+  vectorized_training: false
+  environment_execution_mode: single_environment
+  policy_interval_seconds: 0.2
+  physics_dt_seconds: 0.05
+  physics_substeps: 4
+  maximum_episode_policy_steps: 400
+  maximum_episode_simulated_seconds: 80
+timestep_semantics:
+  one_timestep: one joint policy-level environment step / MergeEnvCandidateV3.step()
+  does_not_increment_for:
+  - physics_substeps
+  - replay_rows
+  - controller_count
+  - optimiser_updates
+  - evaluation_steps
+  - checkpoint_operations
+  - resets
+pbrs:
+  lambda_mean: 0.2
+  lambda_min: 0.2
+  baseline_lambda: 0.0
+  gamma: 0.995
+  comparison_type: equal_coefficient
+  magnitude_matched: false
+  rms_matched: false
+  pbrs_lock_sha256: 032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2
+  pbrs_parameters_final: true
+dqn:
+  algorithm: vanilla_independent_dqn
+  separate_learners:
+  - A
+  - B
+  shared_weights: false
+  observation_dimension: 27
+  action_count: 3
+  hidden_sizes:
+  - 64
+  - 64
+  activation: ReLU
+  loss: mean_squared_td_error
+  gamma: 0.995
+  learning_rate: 0.0005
+  optimiser: Adam
+  batch_size: 64
+  replay_capacity_per_controller: 20000
+  replay_warmup_per_controller: 512
+  target_sync_type: hard
+  target_sync_interval_updates: 250
+  updates_per_active_controller_per_environment_step: 1
+  device: cpu
+  explicit_replay_seed_injection: true
+exploration:
+  epsilon_start: 1.0
+  epsilon_end: 0.1
+  epsilon_schedule: linear
+  epsilon_decay_environment_steps: 50000
+  epsilon_after_decay: 0.1
+training_budget:
+  formal_environment_steps_per_run: 100000
+  early_stopping: false
+  master_seeds:
+  - 61001
+  - 61002
+  - 61003
+  - 61004
+  - 61005
+  - 61006
+  - 61007
+  - 61008
+  - 61009
+  - 61010
+  n_master_seeds: 10
+  n_conditions: 3
+  n_formal_runs: 30
+  total_planned_environment_steps: 3000000
+seed_derivation:
+  environment_seed: S
+  learner_A_seed: S + 100000
+  learner_B_seed: S + 200000
+  replay_A_seed: S + 300000
+  replay_B_seed: S + 400000
+  evaluation_seed: S + 500000
+  schedule_seed: S + 600000
+  condition_name_affects_derivation: false
+parallelism:
+  num_parallel_training_envs_per_run: 1
+  vectorized_training: false
+  independent_job_parallelism_allowed: true
+  no_shared_state_across_jobs: true
+  default_workers: 12
+  default_threads_per_worker: 1
+  multiprocessing_start_method: spawn
+  worker_count_is_execution_metadata_not_experimental_variable: true
+training_initial_conditions:
+  source: 12_retained_calibration_blocks_only
+  validation_blocks_used_for_training: false
+  cycle_episodes: 24
+  scheduling:
+  - deterministic_seeded_shuffled_24_episode_cycles
+  - every_cycle_includes_each_block_assignment_pair_exactly_once
+  - schedule_cursor_checkpointed
+checkpoint_schedule:
+  steps:
+  - 10000
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+  primary_endpoint: 100000
+  best_checkpoint_selection: false
+  retain_all_scheduled_checkpoints: true
+  full_replay_checkpoints_local_only: true
+evaluation_schedule:
+  steps:
+  - 0
+  - 10000
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+  episodes_per_point: 16
+  validation_blocks: 8
+  controller_role_assignments: 2
+  greedy: true
+  epsilon: 0.0
+  episode_seed_formula: evaluation_seed + 1000 * checkpoint_index + 2 * block_index
+    + assignment_index
+  results_alter_training: false
+  results_alter_checkpoint_selection: false
+failure_and_resume_policy:
+  replace_failed_seeds_with_new_seeds: false
+  silent_omit_failed_run: false
+  terminal_statuses:
+  - COMPLETE
+  - FAILED_WITH_REASON
+  - INTERRUPTED_RESUMABLE
+analysis_plan:
+  statistical_unit: formal_training_seed
+  pairing: same master seeds across all three conditions
+  pairwise_contrasts:
+  - mean_pbrs - baseline
+  - min_pbrs - baseline
+  - min_pbrs - mean_pbrs
+  primary_endpoints_at_step_100000:
+  - evaluation_success_rate
+  - stakeholder_collision_rate
+  - mean_stakeholder_episode_utility
+  - minimum_stakeholder_episode_utility
+  - convention_consistency
+  missing_convention_policy:
+    zero_fill: false
+    report_missing_count: true
+    compare_only_complete_paired_seeds: true
+  bootstrap:
+    resampling_unit: paired_seed
+    replicates: 10000
+    rng_seed: 91001
+  multiple_comparisons:
+    method: Holm
+  hypothesis_tests:
+    sidedness: two_sided
+    alpha: 0.05
+  best_checkpoint_selection: false
+  primary_formal_endpoint_checkpoint: 100000
+  learning_curves:
+    checkpoints:
+    - 0
+    - 10000
+    - 25000
+    - 50000
+    - 75000
+    - 100000
+    auc_method: trapezoidal_rule_over_fixed_checkpoints
+prerequisites:
+  stage5a0_run_id: 20260730T015222Z_05e9613c
+  stage5b0_run_id: 20260730T065218Z_33b6ebf9
+  stage5c0_run_id: 20260730T072103Z_94767983
+source_git_commit: 597b08d413145d4ec1c0eebaf24e3cb56c879273
+environment_parameters_final: true
+comfort_parameters_final: true
+pbrs_parameters_final: true
+training_protocol_final: true
+formal_training_started: false
+sustained_training_invoked_in_this_stage: false

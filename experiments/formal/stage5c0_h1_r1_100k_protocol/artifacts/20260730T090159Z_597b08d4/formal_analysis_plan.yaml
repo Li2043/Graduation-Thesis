@@ -1,0 +1,36 @@
+statistical_unit: formal_training_seed
+pairing: same master seeds across all three conditions
+pairwise_contrasts:
+- mean_pbrs - baseline
+- min_pbrs - baseline
+- min_pbrs - mean_pbrs
+primary_endpoints_at_step_100000:
+- evaluation_success_rate
+- stakeholder_collision_rate
+- mean_stakeholder_episode_utility
+- minimum_stakeholder_episode_utility
+- convention_consistency
+missing_convention_policy:
+  zero_fill: false
+  report_missing_count: true
+  compare_only_complete_paired_seeds: true
+bootstrap:
+  resampling_unit: paired_seed
+  replicates: 10000
+  rng_seed: 91001
+multiple_comparisons:
+  method: Holm
+hypothesis_tests:
+  sidedness: two_sided
+  alpha: 0.05
+best_checkpoint_selection: false
+primary_formal_endpoint_checkpoint: 100000
+learning_curves:
+  checkpoints:
+  - 0
+  - 10000
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+  auc_method: trapezoidal_rule_over_fixed_checkpoints
