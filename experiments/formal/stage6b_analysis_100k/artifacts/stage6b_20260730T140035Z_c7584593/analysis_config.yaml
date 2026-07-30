@@ -1,0 +1,10 @@
+stage: stage6b
+results_root: "C:\\Users\\HP\\Desktop\\\u6BD5\u4E1A\u9879\u76EE\\thesis\\final_new_results_100k\\\
+  formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647"
+result_tag: formal-results-100k-complete
+result_commit: c75845935a7fe9179b691298b2329208853773a6
+primary_endpoint_step: 100000
+bootstrap_replicates: 10000
+bootstrap_seed: 91001
+reconstruction: final_weights_step_100000_only
+formal_training_started: false

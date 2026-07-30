@@ -1,0 +1,67 @@
+{
+  "analysis_id": "stage6b_20260730T140035Z_c7584593",
+  "result_tag": "formal-results-100k-complete",
+  "result_commit": "c75845935a7fe9179b691298b2329208853773a6",
+  "runner_commit": "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+  "protocol_hashes": {
+    "training_protocol": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+    "pbrs": "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2",
+    "environment": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+    "comfort": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061"
+  },
+  "analysis_git_commit_at_run": "38d28bde44827758b8f36324e7a2754247cf49a9",
+  "analysis_rng_seeds": {
+    "bootstrap": 91001
+  },
+  "library_versions": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.3.2",
+    "scipy": "1.18.0",
+    "matplotlib": "3.11.1"
+  },
+  "input_hashes": {
+    "formal_publish_manifest.json": "b308645326b3cff0326062ca4862ef475d0aef3e915537afe552f31066399996",
+    "run_status.csv": "e114b702c31023c508e3c0a97592d71b75b8a0d52195d934b05d121584632ea4"
+  },
+  "output_hashes": {
+    "data/processed/stage6b_20260730T140035Z_c7584593/bootstrap_intervals.csv": "d1eaa95d02c91326125ee1e8ed093f36bfc8db81b100f6302c1283b08bdb08e5",
+    "data/processed/stage6b_20260730T140035Z_c7584593/convention_availability.csv": "b92d49c4db160bd635f2ce5e68b379fdb35c9c2c007215310196a2c99ea67e91",
+    "data/processed/stage6b_20260730T140035Z_c7584593/effect_sizes.csv": "909e06bd492c52f3fc9e7349f0c03857792e562d1ddba428ebcda05a848e849f",
+    "data/processed/stage6b_20260730T140035Z_c7584593/evaluation_episode_validated.csv": "d26beb10c24070fabd9a55e2e22d95bbf5f8ad1b350f0877af4a8c50970384cc",
+    "data/processed/stage6b_20260730T140035Z_c7584593/holm_adjusted_results.csv": "a9c928402b3e8e229a024f946dbef26c4f9d45a34ae1791b5321f89770893d03",
+    "data/processed/stage6b_20260730T140035Z_c7584593/integrity_summary.csv": "f38ca89f0414c8664ab156155997dfcae99d888211871662d76ac4ffac9b5371",
+    "data/processed/stage6b_20260730T140035Z_c7584593/learning_curve_auc.csv": "74e466a8ba862b2513f85cdef3d4f8ff141abd28e257eae0d6005258720b8bbe",
+    "data/processed/stage6b_20260730T140035Z_c7584593/paired_differences.csv": "810b79c9a13e8d80d2f2313c819d4a225dba8f5dd547bad15a63fdc17d1d3618",
+    "data/processed/stage6b_20260730T140035Z_c7584593/primary_endpoint_seed_values.csv": "b9d139ca613e581a85a2e32eea70972c09c4731b84588bb2a7a3f82c58195c4f",
+    "data/processed/stage6b_20260730T140035Z_c7584593/run_accounting.csv": "b6f783a9c5025fada9a366c64e6ae111d2263e23bdf3984ec6f61230eee510c7",
+    "data/processed/stage6b_20260730T140035Z_c7584593/secondary_endpoints.csv": "1925944c81816b72b00fdcdee3c117fc8e2fefd13b7f6ee81394008fb24d7922",
+    "data/processed/stage6b_20260730T140035Z_c7584593/seed_checkpoint_endpoints.csv": "503b0892c7639003fab884e06ae1127b3e4f3f7dbdd3918156f7d698947a0e32",
+    "data/processed/stage6b_20260730T140035Z_c7584593/wilcoxon_results.csv": "cc1f81fea557c4b899a8e93178bc2428f95b790de7a63663af870c6860c06c76",
+    "figures/stage6b_20260730T140035Z_c7584593/collision_learning_curve.pdf": "9899c1d8810f915e1176f724361d1c6ea46b0687ecc726ca18673abad63f2ceb",
+    "figures/stage6b_20260730T140035Z_c7584593/collision_learning_curve.png": "68f9bfae85121b80b780a15a9bda90a505642d7c1acb0cc57f9d819b40df41bc",
+    "figures/stage6b_20260730T140035Z_c7584593/convention_consistency_learning_curve.pdf": "c4323a2482db545bb9c9a9e151511b7447afc6cbe6eb163ad9f6d22ce12fe0b8",
+    "figures/stage6b_20260730T140035Z_c7584593/convention_consistency_learning_curve.png": "3ff5efc89b7502c2219992cc9344da33e5f29b587bd48bb2a16569f034f64261",
+    "figures/stage6b_20260730T140035Z_c7584593/convention_frequency_plot.pdf": "42362fc38f3d079d16e8ebecfa06c41bb79eb577a726db658fbed04c71b42e9e",
+    "figures/stage6b_20260730T140035Z_c7584593/convention_frequency_plot.png": "ede6b5c14c56a9cb29291c151e31d63783dcad43dd77ad86aff0612b7f6e2f92",
+    "figures/stage6b_20260730T140035Z_c7584593/mean_utility_learning_curve.pdf": "1eb38539f4629074eb9fd54b8ee550984e46abc09a8502a96b13f0a11a0f9ec2",
+    "figures/stage6b_20260730T140035Z_c7584593/mean_utility_learning_curve.png": "58e65aa2ce26b13a8818a6f99d125bc76cc1f2f5f20975d0b92fee46fa6fbc55",
+    "figures/stage6b_20260730T140035Z_c7584593/minimum_utility_learning_curve.pdf": "0f4bd33bb69d95b834fda2f3299757d0255e50a407948748166d510f54c5432a",
+    "figures/stage6b_20260730T140035Z_c7584593/minimum_utility_learning_curve.png": "04bcd6c3b8c9941457cee465a44c0fbfbc7ac9f6c842914f1e38c214e392e506",
+    "figures/stage6b_20260730T140035Z_c7584593/primary_endpoint_paired_difference_plots.pdf": "c8f7d2abfb0985b54f1d055772da426fa132db84a1bb17173916e2b25a2af070",
+    "figures/stage6b_20260730T140035Z_c7584593/primary_endpoint_paired_difference_plots.png": "08ad393b70c1f064e2714afc27784cd5bb5d5450a849e5a39db0b67766431196",
+    "figures/stage6b_20260730T140035Z_c7584593/success_learning_curve.pdf": "1262408ffcd228929f32c8b95cf1b5c5d761ac7a37f61659e176c85f75cb0f8c",
+    "figures/stage6b_20260730T140035Z_c7584593/success_learning_curve.png": "96701442daba29bdb4ef44bee7238f75b81436ecd7871ca206216dd5aa307c0d",
+    "logs/stage6b_20260730T140035Z_c7584593/runner.log": "4f2b2ec750275ec2b485cc9eaa01a43a95c54767198598ce4ddd002827fd8358",
+    "reports/stage6b_20260730T140035Z_c7584593/dissertation_results_narrative_draft.md": "f39015f21117be0c314861b71b201278a765dcababdc7dbeada31b288e9b3cd4",
+    "reports/stage6b_20260730T140035Z_c7584593/dissertation_results_tables.md": "381f0207b1a5b001f310030b142b61f07ae4c1ebd087a708e85ba7ff10e904ab",
+    "reports/stage6b_20260730T140035Z_c7584593/stage6b_formal_analysis_report.md": "98fe4435cc873d709ff48133be8460b352e4538349edd6bcddf37ade819245cf",
+    "reports/stage6b_20260730T140035Z_c7584593/stage6b_formal_analysis_summary.json": "d1456d1a17d3008ffb0a9d2955faf0a7f14637448d5357fb3431cb995622a90e",
+    "tables/stage6b_20260730T140035Z_c7584593/convention_summary.csv": "b92d49c4db160bd635f2ce5e68b379fdb35c9c2c007215310196a2c99ea67e91",
+    "tables/stage6b_20260730T140035Z_c7584593/formal_run_completion_table.csv": "b6f783a9c5025fada9a366c64e6ae111d2263e23bdf3984ec6f61230eee510c7",
+    "tables/stage6b_20260730T140035Z_c7584593/primary_endpoint_contrasts.csv": "6a995ba149fc4c27005b30e8081545c707f6c88adbb2246080c496057112ac7c",
+    "tables/stage6b_20260730T140035Z_c7584593/primary_endpoint_descriptives.csv": "e6dda32cdb8f8c39d8cc07021ad52da34647b34f1e72daf27173e19eed941ef8",
+    "tables/stage6b_20260730T140035Z_c7584593/secondary_endpoint_descriptives.csv": "1925944c81816b72b00fdcdee3c117fc8e2fefd13b7f6ee81394008fb24d7922"
+  },
+  "overall": "PASS"
+}

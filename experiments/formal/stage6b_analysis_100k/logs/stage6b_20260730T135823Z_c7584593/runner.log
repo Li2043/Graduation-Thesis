@@ -1,0 +1,4 @@
+[2026-07-30T13:58:23.713564+00:00] manifest OK files=265
+[2026-07-30T13:58:23.716213+00:00] locks OK execution_id=stage6a_20260730T094829Z_a89256db_44d5e647
+[2026-07-30T13:58:23.726280+00:00] reconstructing step-100000 evaluation episodes from final weights (no training)
+[2026-07-30T14:00:06.274017+00:00] validated evaluation episodes at step 100000: 480

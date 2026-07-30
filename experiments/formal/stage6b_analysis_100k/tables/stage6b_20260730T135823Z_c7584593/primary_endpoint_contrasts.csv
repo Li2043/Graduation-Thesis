@@ -1,0 +1,16 @@
+endpoint,contrast,n_complete,n_missing,mean_diff,median_diff,ci95_low,ci95_high,wilcoxon_p_raw,wilcoxon_p_holm,wilcoxon_defined,cohens_dz,dz_defined,checkpoint_step,pbrs_comparison_type,magnitude_matched,rms_matched
+evaluation_success_rate,mean_pbrs - baseline,10,0,-0.18125,0.0,-0.45625,0.06875,0.40625,0.8125,True,-0.40701336810013106,True,100000,equal_coefficient,False,False
+evaluation_success_rate,min_pbrs - baseline,10,0,-0.0375,0.0,-0.23125,0.1625,0.75,0.8125,True,-0.11375103131225069,True,100000,equal_coefficient,False,False
+evaluation_success_rate,min_pbrs - mean_pbrs,10,0,0.14375,0.15625,-0.0625,0.34375,0.2265625,0.6796875,True,0.41676819874464927,True,100000,equal_coefficient,False,False
+stakeholder_collision_rate,mean_pbrs - baseline,10,0,0.05625,0.0,-0.03125,0.15625,0.578125,1.0,True,0.3459832849973203,True,100000,equal_coefficient,False,False
+stakeholder_collision_rate,min_pbrs - baseline,10,0,0.01875,0.03125,-0.0625,0.1,0.765625,1.0,True,0.13552618543578765,True,100000,equal_coefficient,False,False
+stakeholder_collision_rate,min_pbrs - mean_pbrs,10,0,-0.0375,0.0,-0.14375,0.06875,0.65625,1.0,True,-0.20868250309207573,True,100000,equal_coefficient,False,False
+mean_stakeholder_episode_utility,mean_pbrs - baseline,10,0,-0.07742009140801062,-0.06979493516469223,-0.22068750115299754,0.04895228751555999,0.431640625,1.0,True,-0.3403647209437076,True,100000,equal_coefficient,False,False
+mean_stakeholder_episode_utility,min_pbrs - baseline,10,0,-0.0434234820006814,-0.11129282542627472,-0.16498695288554124,0.09702187161550857,0.556640625,1.0,True,-0.19556900291898266,True,100000,equal_coefficient,False,False
+mean_stakeholder_episode_utility,min_pbrs - mean_pbrs,10,0,0.03399660940732922,0.08915296015607763,-0.12929692331348625,0.1899191389638773,0.76953125,1.0,True,0.12488369210074328,True,100000,equal_coefficient,False,False
+minimum_stakeholder_episode_utility,mean_pbrs - baseline,10,0,-0.13363015289611258,-0.0929045230930127,-0.36532208277895367,0.08225929689961078,0.431640625,0.966796875,True,-0.35499834239404954,True,100000,equal_coefficient,False,False
+minimum_stakeholder_episode_utility,min_pbrs - baseline,10,0,0.03125369147080116,-0.022812499999999937,-0.1862102123047386,0.2711741144556843,1.0,1.0,True,0.08090722519769546,True,100000,equal_coefficient,False,False
+minimum_stakeholder_episode_utility,min_pbrs - mean_pbrs,10,0,0.16488384436691367,0.08268093681548527,-0.07934611359898819,0.4185229119434669,0.322265625,0.966796875,True,0.39024223207440634,True,100000,equal_coefficient,False,False
+convention_consistency,mean_pbrs - baseline,4,6,0.18194444444444444,0.1833333333333333,0.13333333333333336,0.22916666666666666,0.125,0.375,True,3.11904761904762,True,100000,equal_coefficient,False,False
+convention_consistency,min_pbrs - baseline,5,5,-0.01444444444444446,-0.13333333333333341,-0.15333333333333338,0.15222222222222226,0.8125,0.8125,True,-0.07447441923537469,True,100000,equal_coefficient,False,False
+convention_consistency,min_pbrs - mean_pbrs,4,6,-0.2666666666666667,-0.33333333333333337,-0.3833333333333333,-0.08333333333333334,0.25,0.5,True,-1.477097891751993,True,100000,equal_coefficient,False,False

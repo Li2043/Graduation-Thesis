@@ -1,0 +1,41 @@
+{
+  "overall": "PASS",
+  "analysis_id": "stage6b_20260730T140035Z_c7584593",
+  "result_tag": "formal-results-100k-complete",
+  "result_commit": "c75845935a7fe9179b691298b2329208853773a6",
+  "runner_commit": "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+  "formal_execution_id": "stage6a_20260730T094829Z_a89256db_44d5e647",
+  "protocol_hash": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+  "pbrs_hash": "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2",
+  "completed_jobs": 30,
+  "failed_jobs": 0,
+  "validated_evaluation_episodes": 480,
+  "primary_endpoint_step": 100000,
+  "missing_convention_counts": 11,
+  "paired_seed_count_default": 10,
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 91001,
+    "method": "percentile"
+  },
+  "wilcoxon_defined": 15,
+  "wilcoxon_undefined": 0,
+  "holm_correction": "within each primary endpoint across three contrasts",
+  "effect_size_defined": 15,
+  "pbrs_comparison_type": "equal_coefficient",
+  "magnitude_matched": false,
+  "rms_matched": false,
+  "formal_training_started_during_analysis": false,
+  "limitations": [
+    "Stage 6A published evaluation summaries only; episode-level eval payloads were reconstructed at step 100000 from final weights.",
+    "Intermediate checkpoint learning-curve endpoint values are unavailable without unpublished local checkpoints; no interpolation was applied.",
+    "PBRS comparison is equal-coefficient; realised shaping magnitudes were not magnitude- or RMS-matched."
+  ],
+  "integrity": {
+    "manifest_mismatches": 0,
+    "lock_mismatches": 0,
+    "nan_inf": 0,
+    "missing_intermediate_eval_payloads": 150,
+    "training_invoked": 0
+  }
+}

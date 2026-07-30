@@ -1,0 +1,1602 @@
+{
+  "protocol_hash": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+  "git_runner_commit": "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+  "files": [
+    {
+      "relative_path": "DATA_DICTIONARY.md",
+      "size": 658,
+      "sha256": "da6261ac3c9bd9c8d1c2cf1b7228c0766695ee688f22d0cb34537f7288b85423",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "execution_metadata.json",
+      "size": 1285,
+      "sha256": "acdc09602bb5068921797261677a9158ea9b44cfdbb0c8907e7d3cac3d192908",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "interruption_resume_logs.json",
+      "size": 20,
+      "sha256": "ee4e42ba626bdd63c2923e6a99679c4e6fcf32f9130b3436196fd553fe63be8e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "machine_dependency_manifest.json",
+      "size": 325,
+      "sha256": "b7dbcf5dae58363f72bb61b898311d69818c8be33a8241b8cfd02e2302363623",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "orchestrator_plan.json",
+      "size": 1028,
+      "sha256": "6cc0595768795bbfca43e8692817de8b0c180ac3a3a5d35154c510342f235c6b",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "orchestrator_summary.json",
+      "size": 5958,
+      "sha256": "3b4a116d8032cc770d786ff658fb2c8e6032aa2d5e82d75622be18edb5818d52",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "protocol_checks.json",
+      "size": 572,
+      "sha256": "3ce36ca7c8c389624c0f1f326e190461a3224aba1f773052b2ee6c2b2ff49d8e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "runner_release_metadata.json",
+      "size": 538,
+      "sha256": "d5724b25e816b1ca84a93739719151516f73d4c0f08d5bbe88dcfc471d1b06cf",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "status_registry.json",
+      "size": 5325,
+      "sha256": "2907151a000bd15680604f58861d2016aac2f0fc1f813ec711c9c1ee7b0ee8db",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "aggregates/checkpoint_manifest.csv",
+      "size": 32142,
+      "sha256": "f1c0363afdb8ef0203f642893e91e46f92bd758fe0250f1db399143408ce81ae",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "aggregates/episode_summaries.csv",
+      "size": 1489711,
+      "sha256": "fbe9ab7a8de5e79c8f9c44a50186d3055d65ba3b42df47efff488c996743fd28",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "aggregates/evaluation_episodes.csv",
+      "size": 8933,
+      "sha256": "c185a5b8ff606d20d464529d0cfb9b5c574b0b8474f5fec6408236a2050f8206",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "aggregates/run_status.csv",
+      "size": 3515,
+      "sha256": "e114b702c31023c508e3c0a97592d71b75b8a0d52195d934b05d121584632ea4",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "aggregates/run_status.json",
+      "size": 8123,
+      "sha256": "1afec4f463ac078aa7c482b2a57a829f36afcdd6767d088bfc29a6ae832c01b8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "integrity/integrity_report.json",
+      "size": 150,
+      "sha256": "7d532c61c875541f30b6f286a113d27432f0a81870fa044b73d10568f2cde45c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "locks/final_pbrs_parameters.sha256",
+      "size": 66,
+      "sha256": "7c74dd1a7bbbe4bd658773900eb6e488c88010b664b982a3aa5bbde34f444b8c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "locks/final_pbrs_parameters.yaml",
+      "size": 1304,
+      "sha256": "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "locks/final_training_protocol.sha256",
+      "size": 66,
+      "sha256": "9d13b421cf874b071af776b133639cf56b7664568769010ca6cd5b1746bdea9b",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "locks/final_training_protocol.yaml",
+      "size": 5784,
+      "sha256": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "locks/formal_experiment_manifest.json",
+      "size": 505,
+      "sha256": "85895d33c7bb9a254fdbc9680804d12a3d035e38e767babf8f2a3377ea9e8518",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "locks/formal_run_matrix.csv",
+      "size": 12006,
+      "sha256": "7ea0a329e507710c7a54a15dfafd37324291b2c99fe30d5f397269a7549368a6",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "locks/manifest.json",
+      "size": 1052,
+      "sha256": "1cad7170f67c966baeb7ae3344c768e3fb72251d7e618314daaa88dfc0a5c23b",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "locks/protocol_amendment_record.yaml",
+      "size": 656,
+      "sha256": "662056099414eb3e59c0538256676eddaea6fcfe4eff0dbd02a6e958aad8f183",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "reports/stage6a_report.md",
+      "size": 556,
+      "sha256": "6326a63aca83e741bab157efb177b70bb882f511f88bc2d4b1bfeaab5503c035",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "reports/stage6a_summary.json",
+      "size": 883,
+      "sha256": "4baec915a1c94a19fb7e58d93101639684eaf267e365722d67d47133ae3cfc84",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61001/episode_summaries.json",
+      "size": 109307,
+      "sha256": "c5da000ac369fe382793876afc71393062902727dca4a09519a66aa945eb1e0c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61001/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61001/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "e9628546d2aca735c119844c0c1bd18a01fffc3179f44b7ce903408b03f36b63",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61001/job.log",
+      "size": 58,
+      "sha256": "02a907b5dfc04ac715f18fd426411e8fb4fce06826680b8b93dddf257b1ffd3d",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61001/job.log.gz",
+      "size": 82,
+      "sha256": "f7f48f12ae35f9a55a7ffb26bc8cba40c8fb0cf0edcb37e4e56afc4e8c087435",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61001/job_manifest.json",
+      "size": 654,
+      "sha256": "426d884b6bb4c4972b22696ec5afcc14c06e18d00e4aa1e31c5037456a064b4e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61001/resolved_run_config.json",
+      "size": 802,
+      "sha256": "c9ff17390944aafaedc7c41f7e35ae22b1a159b5ad7163f6f8c72aed5a302700",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61001/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61002/episode_summaries.json",
+      "size": 103274,
+      "sha256": "82b273c7cec85f53a937f6145fe184c563b290e300533a72c292254ff6f71692",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61002/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61002/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "3440b62063dddb4cf8cfcf965776613cc631d684f38754e9c4f6a122e6e7e63a",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61002/job.log",
+      "size": 58,
+      "sha256": "042526f84aaee603b739adc643ed4af6849b62b0efe843fb0159be7562c62ee3",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61002/job.log.gz",
+      "size": 82,
+      "sha256": "597dcfe1ba75b7c1481c2e03761954c7862189b8c51b2222c67fe491137694e6",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61002/job_manifest.json",
+      "size": 654,
+      "sha256": "5be406eb1c64ba62a48ab6fb9c460466f7e1c553626a2c28eacbfd0395a4c6f6",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61002/resolved_run_config.json",
+      "size": 802,
+      "sha256": "a5f0a3cefb623616f0d5ae663a7fbf9444ac822a5edc5f151ec479081ff826be",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61002/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61003/episode_summaries.json",
+      "size": 111397,
+      "sha256": "4618e8a903855d5348b8c7ec6613f07a1a3599b975e4358cfad9915c322d177a",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61003/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61003/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "cc41f916c31e5c28b10305f0b7ea9c2e7600a3bc2fc4ace025524984870e71eb",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61003/job.log",
+      "size": 58,
+      "sha256": "9fcac3ca4b61884f37d60ceac2ee631b27769e61e1e0f095791973c13209155b",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61003/job.log.gz",
+      "size": 82,
+      "sha256": "dfad9179065979c99da33c11aef6569edfbce420edf5c18b79f6ccae9e377633",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61003/job_manifest.json",
+      "size": 654,
+      "sha256": "aa9489d6b2c4042d273c55364adea8a530931fe9f2a2bb38a983765077c47e8c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61003/resolved_run_config.json",
+      "size": 802,
+      "sha256": "1323f40f3f05f0597b623c7d6743d6cb68d53e2e7a0bf40246402c91546970e9",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61003/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61004/episode_summaries.json",
+      "size": 130623,
+      "sha256": "62ae9f568037a072d49080d9bae7c93f751357f872fafd2f13c4d8c03c22eca8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61004/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61004/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "a52ed6d4bd69dfffdc07d6236d70fedaff01f555cd6e54ad45acbffe30216f7a",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61004/job.log",
+      "size": 58,
+      "sha256": "2551b95e2096a013aa74363713d8755dfc36c7c210e48e5051b0c9659d144601",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61004/job.log.gz",
+      "size": 82,
+      "sha256": "66c403e72f081aa5359e9a17a4066530da8bc5c4e65541bcf00aad2d5276963c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61004/job_manifest.json",
+      "size": 654,
+      "sha256": "51bf89dc069aac10c932eb94d3709952a4ce615f579551fcf6780857a7225a23",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61004/resolved_run_config.json",
+      "size": 802,
+      "sha256": "a35bf41a93ea056899a566486aefb1a3e0d6b23cca4dd3b037d6f36d4ef2e785",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61004/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61005/episode_summaries.json",
+      "size": 102676,
+      "sha256": "d9d129bbbf6b1170ffc06006c543acf597072d22660e81af2e817eba52bb1288",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61005/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61005/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "37cca9b1c1253db4ca4befd9eb67e83d587383f2b369c05bf988af2d0bf7fd51",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61005/job.log",
+      "size": 58,
+      "sha256": "3c7de5c11a8d5739173cf09e6352e55acbb36b3dcff2613ef768355bb4e3e758",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61005/job.log.gz",
+      "size": 82,
+      "sha256": "aea50221d6fb5f9f65340182aca38f277487f652e7e23bb7c19e1921635e91ec",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61005/job_manifest.json",
+      "size": 654,
+      "sha256": "22d51b850032c53b4a5000de4995372e36772473bc6af344d9fcfb1e7af32bc5",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61005/resolved_run_config.json",
+      "size": 802,
+      "sha256": "e15ed86500dcaa0c24bcf75b61658b4223522daf9334c091b56f9cf0c81a60f8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61005/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61006/episode_summaries.json",
+      "size": 111996,
+      "sha256": "29b40126a6ac18e29581bb7e11c51734d3b5209344673eb26c4747d4e159bf82",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61006/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61006/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "1b427c4c02839683d57c1fb7d6108496b99a5c5b79a51a217c003cae5adf9e39",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61006/job.log",
+      "size": 58,
+      "sha256": "0d137569548b8de1876d1c612b40edce1151e8959f14a36f13688566b4ce68c9",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61006/job.log.gz",
+      "size": 82,
+      "sha256": "971d600881aed236ab4224d3afb502e4b1aaa17c519ad172b30acdf21cfe69fd",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61006/job_manifest.json",
+      "size": 654,
+      "sha256": "a4183e0d79bf291b4f0e5f66e0f31d5b33ff9450b149d25ce30d78220419f16c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61006/resolved_run_config.json",
+      "size": 802,
+      "sha256": "37d99e2278ae6acf6c2532f55fa8b4579c5d2a3a97fdea405436504c39e52edd",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61006/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61007/episode_summaries.json",
+      "size": 196787,
+      "sha256": "b91dee8da41959213dabead02e264887776430f38ee377b631fc6978cd9b58b7",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61007/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61007/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "d8a23c1923e38e4291ef5f720e3af2a104b41d30b80de8fbdbaa89ba9c3c59b7",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61007/job.log",
+      "size": 58,
+      "sha256": "db6332aac3b4f4242c198cc04783cd7f4479ddf1634fe35b43513167e50e69ed",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61007/job.log.gz",
+      "size": 82,
+      "sha256": "7fca306afbf0ba3108db933c8da10028917bd50c1feca0af6bcc7707e27aca7d",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61007/job_manifest.json",
+      "size": 654,
+      "sha256": "bb562afd895e441e095b189a48472755757fd5bed70448c50730ec17f81b511a",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61007/resolved_run_config.json",
+      "size": 802,
+      "sha256": "8f255f2db7efbed275593dd95a11df4b4c4108bb72c74354c5c929b63233fbcb",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61007/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61008/episode_summaries.json",
+      "size": 108748,
+      "sha256": "b6f8782ee7135c5020ca7306012e0c213ef59a06cc3226531f1d22f18981cd9d",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61008/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61008/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "036db8b02fd5fd487c629aa16d2b7e6df51779df63eb7458c92332112bae328b",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61008/job.log",
+      "size": 58,
+      "sha256": "170eb8b5675c82bdb2879d9ebd2119d9701058de2f58fea0065fb78e56d1e2f8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61008/job.log.gz",
+      "size": 82,
+      "sha256": "1c3500644677876de26bee92630ce631d8d6d31599c153d504e64ed64456b3b2",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61008/job_manifest.json",
+      "size": 654,
+      "sha256": "34977eebaa5968e316b59a757c00c47fce1c7a315c74c88f2840d0ab09cc3408",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61008/resolved_run_config.json",
+      "size": 802,
+      "sha256": "45d2c18adfd65e0e01cbc1bb48e3e437d4acfc376f355e77bf988e86cdaef3bc",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61008/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61009/episode_summaries.json",
+      "size": 102089,
+      "sha256": "20df7646421fe5e1ae970d57a63e64b5d3940d09d3fa8fdd4e310f3f66010af9",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61009/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61009/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "5ea8fa385ae64a753b24a44a9de43968a425e4d490c46988a86edfdbd6c5540c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61009/job.log",
+      "size": 58,
+      "sha256": "e5b521e84af2ccd628db05036032f404302051ab292888337929026db4eb62be",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61009/job.log.gz",
+      "size": 82,
+      "sha256": "fdb7f7a49dfe55b7e84ce6525187e6b0a077941e0da67af2d2c1c82a0decbc86",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61009/job_manifest.json",
+      "size": 654,
+      "sha256": "9f16a0e2bed92d55219b548917666db75a00724ce0136140198b20e6ba6da6a9",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61009/resolved_run_config.json",
+      "size": 802,
+      "sha256": "ddbd37299dfb06cd279756ea2fd40b3c37cadb0f4b43710942a467e694e2f0d4",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61009/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61010/episode_summaries.json",
+      "size": 113464,
+      "sha256": "01a49b23e910768f126e9ff3d4d4cd187e57d76eb64cf60b7eeb70779c2c900c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61010/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61010/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "6c323fa50b01e39ff9c7e207ff6f201451407bba428ea6383ec3a42099fce385",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61010/job.log",
+      "size": 58,
+      "sha256": "51b512fec1fb126ef4709a30c69816245bc1f7031539c90f9c7d6860d867228b",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61010/job.log.gz",
+      "size": 82,
+      "sha256": "66dd5648622702f0823a7776fe712cdfab2af0a3b9a695cb49f3b46e89507eb6",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61010/job_manifest.json",
+      "size": 654,
+      "sha256": "3eb042cd7567b2e4d327916dd4fad9e9daa1f65dd58db56dd68951833d51456e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61010/resolved_run_config.json",
+      "size": 802,
+      "sha256": "1e23f0fe227444aa3b0554b65396010ac7eeeec41aeae0f9f8da17aa8141b774",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/baseline__61010/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61001/episode_summaries.json",
+      "size": 113381,
+      "sha256": "bfc1042f49ba534583659c776d3a6419ab506816482f05267ade5cd1edc13e7e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61001/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61001/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "bb8b5954007d56a7c09e0315dd18bde630b95364344bbf4b1ce6be5f6c496887",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61001/job.log",
+      "size": 58,
+      "sha256": "397b836e4aad35464f55e9512f4a4cfb0ebbe52b32c8ed08d5d483bcaff526f2",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61001/job.log.gz",
+      "size": 82,
+      "sha256": "268472bacc1ea40984572fb9ed6b7ccab47c015a4596a5fce7dc3682edaf5814",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61001/job_manifest.json",
+      "size": 655,
+      "sha256": "75f9f7f88ba79a78be9ce7d291ef20867c4b5469cf29acdcfdd50bd79ea6796b",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61001/resolved_run_config.json",
+      "size": 804,
+      "sha256": "ff91841cdb6e19ec8051e046d8f6df233b7b39a18df074b9fb2484d39a54ab4c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61001/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61002/episode_summaries.json",
+      "size": 86333,
+      "sha256": "e7d698688f2a2e5d7d99a885a9dc2c354179bb35ac9539d0a10295c2e8f52cf6",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61002/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61002/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "4587a90a379b2f34e8093cef9955abcce6f8633a6416fe933a3633ace2836954",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61002/job.log",
+      "size": 58,
+      "sha256": "56220def74c23c9db9b0ec7fed1584623fe3d4d19413da6ac63809368ca9efc5",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61002/job.log.gz",
+      "size": 82,
+      "sha256": "c46632686142cddc5aad0a94dfa5e41a03cdacfa4201ca054706a45301d1e654",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61002/job_manifest.json",
+      "size": 655,
+      "sha256": "92f45a1f4ee9ed322de4114f90eede36340061d9534b565aea0ea6834e7fde44",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61002/resolved_run_config.json",
+      "size": 804,
+      "sha256": "3cfadb3b2f6f4b57270f38616dc905dc4e59b314fee512243b1a693a9d0a0bdc",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61002/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61003/episode_summaries.json",
+      "size": 126400,
+      "sha256": "d11348085513b23b93dfeac647898bed859c4cd027e37909813cf4b330603f03",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61003/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61003/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "1ee21637c893e06ffb8ded0363d9df15433bb7fabd2fcfdffc3b0e5c8b19b450",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61003/job.log",
+      "size": 58,
+      "sha256": "146c49ec901ff170f47f9c35d161bfea59b19d5a04632590082d15663df279cf",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61003/job.log.gz",
+      "size": 83,
+      "sha256": "3853e99ef684701a47b5d3d8c2f5b4458a27c428b764a6163efe5d4a0a1065dd",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61003/job_manifest.json",
+      "size": 655,
+      "sha256": "2d52fad43c9f3a3a5e18da5fc7e5c1780a20a8bbfc11dd923e869a9009e62285",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61003/resolved_run_config.json",
+      "size": 804,
+      "sha256": "59c0dbab44fcabee6373e297304ea0a71e05c1fb980acd0181ab3129bc810705",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61003/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61004/episode_summaries.json",
+      "size": 107327,
+      "sha256": "461c9a9a6bcdfa8061bd2cfa8a0e6b461242f611865fae56ee6689eda76342b2",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61004/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61004/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "73f5efc40f6977e4c3d4efa75f7e1d5aedf6dd9454964b3825868789e2fa96c9",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61004/job.log",
+      "size": 58,
+      "sha256": "f405741d244565107a08995b74119bb350abbeceb776992a103131ff8ad2e436",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61004/job.log.gz",
+      "size": 83,
+      "sha256": "c313564fb24638ae2b73d2c53cbb7291c02bcc05488f943f976312024d9e13e2",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61004/job_manifest.json",
+      "size": 655,
+      "sha256": "43dc3130ce41b92ce5ba1dfd42617719e0b5f8e91a37ac07870f136cb1317e87",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61004/resolved_run_config.json",
+      "size": 804,
+      "sha256": "76dc9b35c348c02dfb7c4b788f11d3a7b5419444840f56600c461e0f1215c077",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61004/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61005/episode_summaries.json",
+      "size": 101712,
+      "sha256": "50e91f31a650257730cd49ca97baa96d52e788bb40433e2b017282e4ad32c4f0",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61005/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61005/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "80407d345ebc6b609fde422abfdd2f40d475b968e912b88c1305473f799c3649",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61005/job.log",
+      "size": 58,
+      "sha256": "5d8d8dc6ff79ce58e58c753ce0032e679b2259835998ed3bc23d30e732152107",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61005/job.log.gz",
+      "size": 83,
+      "sha256": "e305e9533d5a3ef34adabb6677cff76c2d2702fb016bbb11de3054339afe6c92",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61005/job_manifest.json",
+      "size": 655,
+      "sha256": "a5f9e72e04c16361aae44888e574ff7fd7516df4dc5352dc5667202c29cc4185",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61005/resolved_run_config.json",
+      "size": 804,
+      "sha256": "1a64c23e8466a394dabc6931289743ee19d5f43ae74598db47642b31134ec63a",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61005/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61006/episode_summaries.json",
+      "size": 105939,
+      "sha256": "fa9dfeefa425b1b112c5d71552278f889de06a5263df3228851171e11ce93ab3",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61006/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61006/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "a1ac896e3e797ddb805b9fe299bc0f6358898c01f312d54803c1ae1252716832",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61006/job.log",
+      "size": 58,
+      "sha256": "96dade48b7a854e6231bd133e0c9636da9ad9a83f034a8856753228dd9a48cec",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61006/job.log.gz",
+      "size": 83,
+      "sha256": "cca63ba02074c49b32ff7197561690d61560816216dc9e6c6ff836066f1237ec",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61006/job_manifest.json",
+      "size": 655,
+      "sha256": "c027924e6c497e60c25e760ccd804aa6e35bc96ebbe544ae5069eb7181ca7e49",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61006/resolved_run_config.json",
+      "size": 804,
+      "sha256": "52a17e6cafc9b0dca04ca5fc120aaf148703a540117563c780a3e2ee53a7f599",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61006/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61007/episode_summaries.json",
+      "size": 115157,
+      "sha256": "175f68813ba0952abf080a632682ee9ac4a31a700c0bd943617b66e0334d06a8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61007/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61007/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "0c1e77f38615a6dc231fae237b60e1e9fd534f217b072cffdc7d68ba96e8be22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61007/job.log",
+      "size": 58,
+      "sha256": "9e76fbb8e0a9fbda7885aafa822e9273882ef48c8e21b99467e7489a890a5e67",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61007/job.log.gz",
+      "size": 83,
+      "sha256": "f26228623436e61a95ad2658ca449513ea7bdf58be1aa5db9f5cb15a6d4636fc",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61007/job_manifest.json",
+      "size": 655,
+      "sha256": "5dd730059326cfd400e25aef1d1afdf189c812bb2451a48571656808c86edff5",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61007/resolved_run_config.json",
+      "size": 804,
+      "sha256": "a2e772aee7679fa80edd548df3bf9f3f59acb0446fd900671984d1d4ac4a723e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61007/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61008/episode_summaries.json",
+      "size": 100474,
+      "sha256": "87d44f462014cf56cb577364f01dc32fe7bd44f7f5585eb67d927a010faaec23",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61008/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61008/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "deaed96a8895c76df104cdcb262a95ce4aab3e6b3057031d2c18249f90b0b8b0",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61008/job.log",
+      "size": 58,
+      "sha256": "340cf3d9fcb76c1f1dc6719b5b61bb223aeb5633ab09466cde7755f0d31cb544",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61008/job.log.gz",
+      "size": 83,
+      "sha256": "613520f71c33bcde5865e7571a011e4f47772f67c9c8d847c8e4a9a86cbfde32",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61008/job_manifest.json",
+      "size": 655,
+      "sha256": "1b912b6315385cbb376b71b4765f87f541b49449b9dbbea4c360b3c144afb03f",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61008/resolved_run_config.json",
+      "size": 804,
+      "sha256": "7f1d7d1a9f515f610ddb4c3000520366e2bc60450991688eccfac9af60a4c01a",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61008/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61009/episode_summaries.json",
+      "size": 118612,
+      "sha256": "2268a1486dce466d765edaee05d63a64b90326689d1b5df8a09e423f5b9fb097",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61009/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61009/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "f93b72283e36027477472024279c518981a3ff4d96a9ea4fdc24899c28a479d0",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61009/job.log",
+      "size": 58,
+      "sha256": "240c59c280af956e3d89949c84d360536f2f570becb2c6c52d3edb12790160c4",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61009/job.log.gz",
+      "size": 82,
+      "sha256": "3f5769bc3822ac533005581dc77a3a7a4382eca98fedcf81a4e2a6ff1fdc6fac",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61009/job_manifest.json",
+      "size": 655,
+      "sha256": "88e6fa144cf82659ee8a4c31353f884c7f7f7766117386761f0a8bbb39275087",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61009/resolved_run_config.json",
+      "size": 804,
+      "sha256": "2b78833fb50bf90e327c231091c2a385d6c39d09f41308d029a80a0648a8c691",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61009/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61010/episode_summaries.json",
+      "size": 116302,
+      "sha256": "e4a69ef1155986d4a8d4a59dbbdbd07e4cd21dc5ad535ddef49ed570c8054921",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61010/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61010/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "41d59fe47acf2b8dd107deca6692637b6bc1b8cd2a50a7902f38a46c617094c2",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61010/job.log",
+      "size": 58,
+      "sha256": "e22daf3c20232afe8a2bbd836ca86c224f33d50d30918dd6347cb6439e470c11",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61010/job.log.gz",
+      "size": 83,
+      "sha256": "72bb44bf96a5eb4fa9290b2f10200e496d0945c33840193f6b044e2ec9382c52",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61010/job_manifest.json",
+      "size": 655,
+      "sha256": "f72704db4a5e64fa45c4fdd7af440b0c69ac46478809ab2fcf8cb55d9ca1d2c6",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61010/resolved_run_config.json",
+      "size": 804,
+      "sha256": "18d18f8943cc002cf2edb79816ca0fc97bcc13e821a3e50710e2e434c47d8a95",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/mean_pbrs__61010/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61001/episode_summaries.json",
+      "size": 108190,
+      "sha256": "ca3094e6021ffe3e9a7045592712d37986ee2d88731187faff8e0bac9819f232",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61001/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61001/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "36343762ebb0501833d0ab277137787858cfde7e67b39382ed2d1edf311b033e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61001/job.log",
+      "size": 58,
+      "sha256": "2d9d8dc27b2b526b7000ff55b8a26f3b25516e59377bd75984940e128bf114a7",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61001/job.log.gz",
+      "size": 83,
+      "sha256": "80ccd0a070a333da136fb39a32d9e714f1da1175801a0c6d508be88927266128",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61001/job_manifest.json",
+      "size": 654,
+      "sha256": "95e473912170a19622a740383a20067ede2038e99edba0b7e01d24b7e884830d",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61001/resolved_run_config.json",
+      "size": 802,
+      "sha256": "2a0ac619b58394e30f56fe68f9d4a0952fdf5ae5f2c8ba7ad7beaa57dd024b85",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61001/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61002/episode_summaries.json",
+      "size": 105568,
+      "sha256": "1c7be37cb8ab31b7c1a8a078424a346251ca70e30f5bdcbb60f2cd07e04c1130",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61002/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61002/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "9cb0e1a573bd831e291b764aa65c91e2476e382fd82f25c0f2784251a1c12594",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61002/job.log",
+      "size": 58,
+      "sha256": "bf2f093abfadde4b839f2847d3ca6574eac8dcb341923f948b8574d8d3de50b8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61002/job.log.gz",
+      "size": 83,
+      "sha256": "d94b1f49bbc8736fc56b52bd2ba1c8859bd6d018ee81a24088d033ab745b8f1d",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61002/job_manifest.json",
+      "size": 654,
+      "sha256": "f01c039116d297158212dc326131702962d24af711a6c1d04294bd911394e2c5",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61002/resolved_run_config.json",
+      "size": 802,
+      "sha256": "ba114c0724a157271cb79e01376b723a64ed056f45d17ccf219e7df21e596c04",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61002/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61003/episode_summaries.json",
+      "size": 222630,
+      "sha256": "c0030dcb4d742e5190de02ac084e240f9f4ca0313ce37d59e3236fe661c46259",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61003/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61003/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "8902b5ffa5081ae406f12a3158c1b7dfb56d7be491d8166e5d82210a08f90dec",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61003/job.log",
+      "size": 58,
+      "sha256": "ea5d11d552f7fb78deb5f3d79b9d06e8365224aa5fb5beeb641ad51516db532c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61003/job.log.gz",
+      "size": 83,
+      "sha256": "1e4708c1791ef5358317f33dcbfe7b04c4960e15d53faa55747747d880fb40b3",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61003/job_manifest.json",
+      "size": 654,
+      "sha256": "9a7709e14910c166379fb305883a08bd5d01342c40b83df3639b280ded32accc",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61003/resolved_run_config.json",
+      "size": 802,
+      "sha256": "78e058831ac4d6d19291de814c054a2cce7d0ee801aebd38ef83815050db6417",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61003/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61004/episode_summaries.json",
+      "size": 108924,
+      "sha256": "57bd1a4555319cc15fbd52ea608d6b58424b8a51b5dfa1927658e1dbec6aa69a",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61004/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61004/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "4a8cd9e26513e0293a08fd90d4c6860568194da139aafeec0d5d61ddd63b0704",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61004/job.log",
+      "size": 58,
+      "sha256": "94f497cde12764fe0f4b0939fc28cf58d7b78c02fea78072e87ca791f21702a6",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61004/job.log.gz",
+      "size": 83,
+      "sha256": "6c70b1339c98542fe174ec656121e4101b3236df4ecc485cc8c4812ea13c6687",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61004/job_manifest.json",
+      "size": 654,
+      "sha256": "8a6f5574f57334a3d056bec6c78be014bb7236bdfa305ea38f41a57c88449aa7",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61004/resolved_run_config.json",
+      "size": 802,
+      "sha256": "d42be82c7c6e72ee4a786005f1c32bd1da70fea8255e2dc950503a65482ab880",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61004/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61005/episode_summaries.json",
+      "size": 119945,
+      "sha256": "19637797dfa3cf7b4159a46325c1083d805aa598a56c39c152f2eddb0b7b8e89",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61005/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61005/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "11d4b07c37b15723bf89dc46c329f2b75a879306cc0b23bf5ad75cd0bf7fda53",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61005/job.log",
+      "size": 58,
+      "sha256": "f44d813d024b3b2cc2050e15a1d1a5b80af8696b6de897e59c40c45ecee59b9e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61005/job.log.gz",
+      "size": 83,
+      "sha256": "5918ca5f8dfe8dec5715e1ab7e5fc1c31d54cedd76c99dd6d80e15b26531808c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61005/job_manifest.json",
+      "size": 654,
+      "sha256": "6aa7317700aa4e010a291433e8c6b308335466b158443d2cfbbd06b61a59e89f",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61005/resolved_run_config.json",
+      "size": 802,
+      "sha256": "c5fc4d77d1b456f149247236f481f3d66929041c5a82bb3d9436ab6f3e55beb3",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61005/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61006/episode_summaries.json",
+      "size": 114467,
+      "sha256": "6f93011555d48dcd54a0e9db03cbf922480231a0357551fb92ff97eccae14411",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61006/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61006/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "b14dee85fb2d6eeed5d8c9ce0cd52708044e55252fe9b63b741cc7da916974cd",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61006/job.log",
+      "size": 58,
+      "sha256": "58667bb216cbdbf090b4dc9c4fda257ea369dbeb8af28382ab0adb46e7e4dd38",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61006/job.log.gz",
+      "size": 83,
+      "sha256": "e4c7c568f65a0d65d14b0b2e1a84e9cbe4ec3e83c7eaedbecfa7a75290c1b1b8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61006/job_manifest.json",
+      "size": 654,
+      "sha256": "b90ff6e3b80f9cbdffac54d461b768f43b09cbe92090a2e1ac144307b22516c8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61006/resolved_run_config.json",
+      "size": 802,
+      "sha256": "6d229f8ffee2eb6ee6d079b2639c623a5c67a07d50993d1f0fa84939960f7b08",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61006/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61007/episode_summaries.json",
+      "size": 152496,
+      "sha256": "c329098542eb5e15bb2823adf6b2cf1f4974fd7737167e11ba1beb01cee94a30",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61007/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61007/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "54c119a37f9e8f31c6c8a8431cef7594207ce31567c49c35a2d4472a6b496a51",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61007/job.log",
+      "size": 58,
+      "sha256": "2f7985d8a8292a1331f1c964f2a05f518fc7ce4ef7cc1f44f98ef6de0dcff5a2",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61007/job.log.gz",
+      "size": 83,
+      "sha256": "505deca4db3375054814378ccb29b539708136873d7a29bb2332423aff42c9f3",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61007/job_manifest.json",
+      "size": 654,
+      "sha256": "caf8983842f849463b71a71f35b5d1ff551e77714092e02d6875372457e8f2a8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61007/resolved_run_config.json",
+      "size": 802,
+      "sha256": "486a255aaf7605fb6597d07310ca96fd6b7b56804e09bfb01ae1c0ca41892da3",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61007/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61008/episode_summaries.json",
+      "size": 199181,
+      "sha256": "a0a215a2b5bde1aa15ea2b4d0d74cea727eb24bebf819e16c10d2e512d4bfd13",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61008/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61008/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "6c3b0c8417c4b285ca0f6fb25a22571dfa3dbe97ec3815573937b42a6fb2df4d",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61008/job.log",
+      "size": 58,
+      "sha256": "2251e8ac8f12816f5d1d1863117d9a3ffc56c019b901851fe147fb7990cf51ad",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61008/job.log.gz",
+      "size": 83,
+      "sha256": "fe8ebc11683383c325051c4c879d0e9ff5160e4108661995c016d57143320ea3",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61008/job_manifest.json",
+      "size": 654,
+      "sha256": "0568a2011a7f7314fc58afe08af8e174e5921f6993c894696ff77de702bf92ab",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61008/resolved_run_config.json",
+      "size": 802,
+      "sha256": "3f95d843e5998f113fc66df3289fdfe3b14c628a39c0d75dc4ee77f860321222",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61008/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61009/episode_summaries.json",
+      "size": 109457,
+      "sha256": "d868cd83d67512a77a77583662a247b75971e2717c170631cc7ff3c6cf488361",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61009/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61009/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "b57c597e70dccb00450acb492699cee40cfed384b7bb294235efac48bec64769",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61009/job.log",
+      "size": 58,
+      "sha256": "8d2e195ce57e8dd68a0ca30014463873a22aa4e7512ca8beabb829a2f87fbaa8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61009/job.log.gz",
+      "size": 83,
+      "sha256": "6f0ef3fde44f8ab5fd523d1c19fac05cf8f848bf472f38f7b596d59da0769c98",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61009/job_manifest.json",
+      "size": 654,
+      "sha256": "bcfc66a37fa5df8822ccc0326d1ebeacf205e8cd8dba3240258c7b4beecd614c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61009/resolved_run_config.json",
+      "size": 802,
+      "sha256": "c4d0aac6fddfcb1fcc5ec7585b922a247213358c6eb2f4fbe06c1a5e3ec1d608",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61009/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61010/episode_summaries.json",
+      "size": 106909,
+      "sha256": "eb23afbeaec9f3d06007cbcce805ac76045709435461fbe564612fe25a2f8569",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61010/evaluation_trace.json",
+      "size": 654,
+      "sha256": "9c61d4fbab83b4b3a55b6b8ce0679da2dfa7a9b35c342069940203567c915541",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61010/final_online_target_weights.pt",
+      "size": 106765,
+      "sha256": "0d0dceafa6011ffb2d3ea8568787a37d4ae78dd6c9ebab8bf3b1a998bf8415be",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61010/job.log",
+      "size": 58,
+      "sha256": "a16cb26d366b88f7d5ec4cb86ebd9b1eaa73823399a530ffe489c7f9944e3279",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61010/job.log.gz",
+      "size": 83,
+      "sha256": "6a46325ff32c6bd5a35d897137406d642b0d88e94d34d992ef8ada6652e47de8",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61010/job_manifest.json",
+      "size": 654,
+      "sha256": "5645cc5db200872996622a5fcdbec288cfb1b127678aa450dba9460b9677e86e",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61010/resolved_run_config.json",
+      "size": 802,
+      "sha256": "b08e09c06dcacecaedb0c8b7cdd86e4d7dfff47ea10f5320338d058e97c9ce0c",
+      "source_job": "matrix"
+    },
+    {
+      "relative_path": "jobs/min_pbrs__61010/status.json",
+      "size": 45,
+      "sha256": "20b0b45fd77640d290f4ef2addf91e3e32f55f8f9cd32cb8aedd3833f14eca22",
+      "source_job": "matrix"
+    }
+  ],
+  "n_files": 265,
+  "formal_execution_id": "stage6a_20260730T094829Z_a89256db_44d5e647",
+  "completed_jobs": 30,
+  "failed_jobs": 0,
+  "overall": "COMPLETE",
+  "self_excluded": true
+}
