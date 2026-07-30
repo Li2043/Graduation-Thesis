@@ -1,0 +1,7 @@
+controller_id,batch_size,obs_shape,q_shape,loss,online_param_changed,target_unchanged_without_sync,target_network_forward_calls,target_network_forward_calls_reported,n_bootstrap_rows,n_terminal_rows,max_abs_q,max_abs_target,finite_loss,finite_q,isolated_optimizer_updates_only,sustained_training_invoked,policy_training_started,reward_condition
+A,3,"[3, 27]","[3, 3]",0.09477255493402481,True,True,1,1,2,1,0.1204424649477005,0.6009230769230759,True,True,True,False,False,baseline
+B,3,"[3, 27]","[3, 3]",0.2821181118488312,True,True,1,1,2,1,0.23594829440116882,0.6009230769230759,True,True,True,False,False,baseline
+A,3,"[3, 27]","[3, 3]",0.09445497393608093,True,True,1,1,2,1,0.1204424649477005,0.6000606958928676,True,True,True,False,False,mean_pbrs
+B,3,"[3, 27]","[3, 3]",0.28134685754776,True,True,1,1,2,1,0.23594827950000763,0.6000606958928676,True,True,True,False,False,mean_pbrs
+A,3,"[3, 27]","[3, 3]",0.09461858123540878,True,True,1,1,2,1,0.1204424649477005,0.6003735528022428,True,True,True,False,False,min_pbrs
+B,3,"[3, 27]","[3, 3]",0.2827787399291992,True,True,1,1,2,1,0.23594829440116882,0.6003735528022428,True,True,True,False,False,min_pbrs

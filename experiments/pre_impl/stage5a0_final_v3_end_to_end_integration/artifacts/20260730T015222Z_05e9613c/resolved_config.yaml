@@ -1,0 +1,84 @@
+run_id: 20260730T015222Z_05e9613c
+config_sha256: 24c50649599eb6f3493312b1bd7abd4a256e932bc463cbea199f484267680ead
+config:
+  stage: stage5a0_final_v3_end_to_end_integration
+  description: "Final V3 reward\u2013PBRS\u2013DQN end-to-end integration regression.\
+    \ Isolated optimiser updates only. No pilot / sustained training.\n"
+  authoritative_locks:
+    environment_lock_path: experiments/pre_impl/stage4a_r1_final_environment_reselection/artifacts/20260730T003122Z_aee2d425/final_environment_lock.yaml
+    environment_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+    comfort_lock_path: experiments/pre_impl/stage3b_r1_final_environment_comfort_calibration/artifacts/20260730T005639Z_c6992dd4/final_comfort_parameters.yaml
+    comfort_lock_sha256: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+    candidate_id: G1-I1
+    observation_dimension: 27
+    a_comfort: 1.5
+    a_hard: 3.5
+    eta_H: 0.015
+  integration_pbrs:
+    lambda_mean: 0.2
+    lambda_min: 0.2
+    integration_test_only: true
+    pbrs_parameters_final: false
+  flags:
+    environment_parameters_final: true
+    comfort_parameters_final: true
+    pbrs_parameters_final: false
+    policy_training_started: false
+    pilot_training_started: false
+    sustained_training_invoked: false
+    isolated_optimizer_updates_only: true
+    integration_test_architecture: true
+  algorithm: vanilla_dqn_masked_target_max
+  environment_class: MergeEnvCandidateV3
+  pytest_targets:
+  - tests/integration/test_final_v3_lock_loading.py
+  - tests/integration/test_final_v3_reward_conditions.py
+  - tests/integration/test_final_v3_pbrs_semantics.py
+  - tests/integration/test_final_v3_replay_semantics.py
+  - tests/integration/test_final_v3_dqn_update.py
+  - tests/integration/test_final_v3_condition_invariance.py
+  - tests/integration/test_stage5a0_pipeline.py
+  - tests/agents/test_action_masking.py
+  - tests/agents/test_replay_buffer_v2.py
+  - tests/agents/test_dqn_targets.py
+  - tests/agents/test_stage2b2_r1_hardening.py
+  - tests/agents/test_stage2b2_r1_h1_ingress.py
+  - tests/agents/test_stage2b2_r1_h1_1_target_guard.py
+  - tests/integration/test_stage2b2_r1_terminal_pipeline.py
+  - tests/envs/test_merge_env_candidate_v3.py
+  - tests/envs/test_final_route_geometry.py
+  - tests/envs/test_final_observation.py
+  - tests/integration/test_stage4a0r2_geometry_pipeline.py
+  - tests/calibration/test_policy_acceleration.py
+  - tests/integration/test_stage3b_r1_final_environment_pipeline.py
+  - tests/rewards/test_base_reward_v2.py
+  - tests/rewards/test_pbrs_v2.py
+  forbidden:
+    pilot_training: true
+    sustained_env_training_loop: true
+    modify_environment_lock: true
+    modify_comfort_lock: true
+    write_final_pbrs_lock: true
+    write_final_training_lock: true
+source_hashes:
+  src/thesis/training/final_lock_loader.py: 4cd5247abdf9cd2096968beee04d9af3517c5f620cbb94593000637da11861d1
+  src/thesis/training/final_reward_conditions.py: 4b607a16de03ca1b49819ee27925fd0322fe7f005373b1e52444dd3870ce12fd
+  src/thesis/training/final_v3_pipeline.py: 23609c093dc51d6bc39b42f5a9e6050f922511f37dd415d263d06c8b82e80a71
+  src/thesis/training/final_experiment_runtime.py: 0fc20d158e75d310c5a642c3dcef3d787145a0d02f0eba9b0a5b15c543d172e2
+  src/thesis/agents/action_masking.py: fe9b5e727337d9fe95622ad5673fecc56015bf8b2ff5653c2d763aeae4e230e8
+  src/thesis/agents/dqn_targets.py: bd194470875fc3bf18fda92794481870c289fad0d589691c94e083c109f8e6f1
+  src/thesis/agents/replay_buffer_v2.py: 25945f13ed3b558e87c46adf0136f07b1f382139f1ce066b6c7af38958e543ec
+  src/thesis/agents/independent_dqn_v2.py: 3123de2a85eb387283c36c72c9699f289f77768f20ded2564030538cd31c9605
+  src/thesis/envs/merge_env_candidate_v3.py: ee5024de5c06448ccbe95f917d339f450d40c833de093ff0aea4b8c4e3350030
+  src/thesis/rewards/pbrs_v2.py: 5c93c25782ebdaf41476150a09480e2e3de0e1b936767ea6aec0764adda0ff81
+  src/thesis/rewards/base_reward_v2.py: e7f8a3249291a0ea1cfb138c1c70d8f3c09c6ade9a2b83dd469401ff35bda678
+git_commit: 05e9613cfe99731e0abb6550926f82cb58694f85
+git_dirty: false
+environment_lock_sha256_before: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+comfort_lock_sha256_before: 1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061
+policy_training_started: false
+pilot_training_started: false
+sustained_training_invoked: false
+isolated_optimizer_updates_only: true
+pbrs_parameters_final: false
+integration_test_only: true

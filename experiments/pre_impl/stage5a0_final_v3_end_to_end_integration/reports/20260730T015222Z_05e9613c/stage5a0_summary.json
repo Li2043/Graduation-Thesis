@@ -1,0 +1,91 @@
+{
+  "run_id": "20260730T015222Z_05e9613c",
+  "overall": "PASS",
+  "exact_command": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\.venv_stage2b1\\Scripts\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage5a0_final_v3_end_to_end_integration\\scripts\\run_stage5a0_tests.py",
+  "git_commit": "05e9613cfe99731e0abb6550926f82cb58694f85",
+  "git_dirty": false,
+  "tests": {
+    "passed": 206,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "environment_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage4a_r1_final_environment_reselection\\artifacts\\20260730T003122Z_aee2d425\\final_environment_lock.yaml",
+  "environment_lock_sha256_before": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "environment_lock_sha256_after": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "comfort_lock_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage3b_r1_final_environment_comfort_calibration\\artifacts\\20260730T005639Z_c6992dd4\\final_comfort_parameters.yaml",
+  "comfort_lock_sha256_before": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "comfort_lock_sha256_after": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "final_environment_class": "MergeEnvCandidateV3",
+  "observation_dimension": 27,
+  "dqn_algorithm": "vanilla_dqn_masked_target_max",
+  "integration_test_architecture": true,
+  "reward_conditions": [
+    "baseline",
+    "mean_pbrs",
+    "min_pbrs"
+  ],
+  "integration_lambda_mean": 0.2,
+  "integration_lambda_min": 0.2,
+  "pbrs_parameters_final": false,
+  "integration_test_only": true,
+  "n_physical_transitions": 20,
+  "replay_rows_by_controller_condition": {
+    "A:baseline": 20,
+    "B:baseline": 20
+  },
+  "ongoing_row_count": 230,
+  "terminal_row_count": 8,
+  "truncation_row_count": 2,
+  "early_exit_continuation_cases": 1,
+  "max_reward_decomposition_error": 0.0,
+  "max_physical_trace_diff": 0.0,
+  "mean_telescoping_error": 6.505213034913027e-17,
+  "min_telescoping_error": 4.440892098500626e-16,
+  "isolated_update_counts": 6,
+  "max_loss": 0.2827787399291992,
+  "max_abs_q": 0.23594829440116882,
+  "target_network_forward_counts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "determinism_errors": 0,
+  "integrity": {
+    "lock_hash_mismatch": 0,
+    "physical_invariance_errors": 0,
+    "decomposition_errors": 0,
+    "telescoping_errors": 0,
+    "determinism_errors": 0,
+    "nan_inf_errors": 0,
+    "v2_import_errors": 0
+  },
+  "environment_parameters_final": true,
+  "comfort_parameters_final": true,
+  "policy_training_started": false,
+  "pilot_training_started": false,
+  "sustained_training_invoked": false,
+  "isolated_optimizer_updates_only": true,
+  "source_hashes": {
+    "src/thesis/training/final_lock_loader.py": "4cd5247abdf9cd2096968beee04d9af3517c5f620cbb94593000637da11861d1",
+    "src/thesis/training/final_reward_conditions.py": "4b607a16de03ca1b49819ee27925fd0322fe7f005373b1e52444dd3870ce12fd",
+    "src/thesis/training/final_v3_pipeline.py": "23609c093dc51d6bc39b42f5a9e6050f922511f37dd415d263d06c8b82e80a71",
+    "src/thesis/training/final_experiment_runtime.py": "0fc20d158e75d310c5a642c3dcef3d787145a0d02f0eba9b0a5b15c543d172e2",
+    "src/thesis/agents/action_masking.py": "fe9b5e727337d9fe95622ad5673fecc56015bf8b2ff5653c2d763aeae4e230e8",
+    "src/thesis/agents/dqn_targets.py": "bd194470875fc3bf18fda92794481870c289fad0d589691c94e083c109f8e6f1",
+    "src/thesis/agents/replay_buffer_v2.py": "25945f13ed3b558e87c46adf0136f07b1f382139f1ce066b6c7af38958e543ec",
+    "src/thesis/agents/independent_dqn_v2.py": "3123de2a85eb387283c36c72c9699f289f77768f20ded2564030538cd31c9605",
+    "src/thesis/envs/merge_env_candidate_v3.py": "ee5024de5c06448ccbe95f917d339f450d40c833de093ff0aea4b8c4e3350030",
+    "src/thesis/rewards/pbrs_v2.py": "5c93c25782ebdaf41476150a09480e2e3de0e1b936767ea6aec0764adda0ff81",
+    "src/thesis/rewards/base_reward_v2.py": "e7f8a3249291a0ea1cfb138c1c70d8f3c09c6ade9a2b83dd469401ff35bda678"
+  },
+  "unresolved_limitations": [
+    "PBRS lambda values are integration-test-only (0.2); not final.",
+    "Network [32,32] is integration_test_architecture only.",
+    "No final training-protocol or PBRS lock written in this stage."
+  ]
+}
