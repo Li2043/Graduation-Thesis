@@ -1,0 +1,52 @@
+stage: stage3b_r1_final_environment_comfort_calibration
+description: >
+  Joint comfort calibration (a_comfort, a_hard, eta_H) on the locked Stage 4A-R1
+  G1-I1 environment. Development Stage 3B failed (threshold-first, no feasible eta).
+
+development_stage3b:
+  run_id: 20260729T225046Z_8624f03a
+  status: FAIL
+  reason: >
+    threshold candidates existed; no eta in the original coarse grid was feasible;
+    thresholds selected before eta; comfort and eta were not jointly selected.
+
+source_environment:
+  stage: stage4a_r1_final_environment_reselection
+  run_id: 20260730T003122Z_aee2d425
+  lock_path: experiments/pre_impl/stage4a_r1_final_environment_reselection/artifacts/20260730T003122Z_aee2d425/final_environment_lock.yaml
+  expected_candidate_id: G1-I1
+  expected_lock_sha256: d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12
+
+grids:
+  a_comfort: [1.5, 2.0, 2.5]
+  a_hard: [3.0, 3.5, 4.0, 5.0, 6.0]
+  eta_H: [0.0050, 0.0075, 0.0100, 0.0125, 0.0150, 0.0175, 0.0200, 0.0225, 0.0250, 0.0275, 0.0300, 0.0325, 0.0350, 0.0375, 0.0400, 0.0425, 0.0450, 0.0475, 0.0500]
+  min_hard_minus_comfort: 1.0
+
+selection_rule:
+  - smallest_eta_H
+  - largest_hard_minus_nominal_mean_H_separation
+  - lowest_median_nominal_safe_braking_share
+  - highest_a_comfort
+  - highest_a_hard
+
+hard_braking_window:
+  commanded_action: DECELERATE
+  min_braking_magnitude: 2.5
+  min_calibration_blocks: 10
+  min_total_transitions: 20
+
+gamma: 0.995
+
+pytest_targets:
+  - tests/calibration/test_policy_acceleration.py
+  - tests/calibration/test_joint_comfort_calibration.py
+  - tests/calibration/test_comfort_validation.py
+  - tests/integration/test_stage3b_r1_final_environment_pipeline.py
+  - tests/integration/test_stage3b_r1_confirmatory_rerun.py
+
+forbidden:
+  dqn_training: true
+  pbrs_lambda_calibration: true
+  modify_environment_lock: true
+  overwrite_original_stage3b: true

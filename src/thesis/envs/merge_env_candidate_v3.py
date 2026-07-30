@@ -34,7 +34,7 @@ from thesis.envs.vehicle_dynamics import (
     oriented_rectangles_collide,
     time_to_collision,
 )
-from thesis.rewards.base_reward_v2 import LEARNING_CONTROLLERS, STAKEHOLDER_SET
+from thesis.rewards.base_reward_v2 import LEARNING_CONTROLLERS, STAKEHOLDER_SET, BaseRewardConfig, compute_hard_braking_cost
 
 
 class HighLevelAction(IntEnum):
@@ -69,6 +69,8 @@ class MergeEnvCandidateV3Config:
     dynamics: LearningDynamics = field(default_factory=LearningDynamics)
     max_policy_steps: int = 400
     discontinuity_threshold: float = 0.5
+    # Optional Stage 3B-R1 comfort integration (None = core reward only)
+    comfort: BaseRewardConfig | None = None
 
     def geometry_model(self) -> FinalRouteGeometry:
         return build_final_route_geometry(self.candidate.geometry)
@@ -436,6 +438,7 @@ class MergeEnvCandidateV3(gym.Env):
         # Core reward for learners (exit only if emitted this transition)
         rewards: dict[str, float] = {}
         components: dict[str, dict[str, float]] = {}
+        comfort = self.config.comfort
         for aid in LEARNING_CONTROLLERS:
             exit_s = self._geom.exit_route(self._vehicles[aid].role)  # type: ignore[arg-type]
             rho_t = min(max(snap_t[aid].route_position / max(exit_s, 1e-9), 0.0), 1.0)
@@ -447,12 +450,30 @@ class MergeEnvCandidateV3(gym.Env):
             exit_c = 0.6 * exit_event[aid]
             coll_c = -1.0 * stakeholder_collision
             core = progress + exit_c + coll_c
-            rewards[aid] = float(core)
+            hard_c = 0.0
+            h_cost = 0.0
+            a_policy = 0.0
+            if comfort is not None and bool(snap_t[aid].active_on_road):
+                sub_accels = [
+                    float(rec["vehicles"][aid]["realised_acceleration"])
+                    for rec in sub_records
+                ]
+                a_policy = float(min(sub_accels)) if sub_accels else 0.0
+                h_cost = compute_hard_braking_cost(
+                    a_policy, comfort.a_comfort, comfort.a_hard
+                )
+                hard_c = float(-comfort.eta_hard_brake * h_cost)
+            total = core + hard_c
+            rewards[aid] = float(total)
             components[aid] = {
                 "progress_component": float(progress),
                 "exit_component": float(exit_c),
                 "collision_component": float(coll_c),
+                "hard_braking_component": float(hard_c),
+                "hard_braking_cost": float(h_cost),
+                "policy_level_acceleration": float(a_policy),
                 "core_reward": float(core),
+                "total_base_reward": float(total),
                 "rho_t": float(rho_t),
                 "rho_t1": float(rho_t1),
                 "delta_rho": float(rho_t1 - rho_t),
