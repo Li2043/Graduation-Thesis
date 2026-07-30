@@ -17,9 +17,19 @@ Field semantics
 
 ``learner_completed``
     This learner has completed (exited) as of / on this transition.
+    Implies ``controller_terminal``.
 
-Controller-terminal rows may omit ``next_observation`` / ``next_action_mask``
-(``None``). Non-terminal rows require both and strict mask validation.
+Consistency rules
+-----------------
+- ``terminated=True`` requires ``controller_terminal=True``.
+- ``learner_completed=True`` requires ``controller_terminal=True``.
+- ``truncated=True`` with ``controller_terminal=True`` and
+  ``learner_completed=False`` is rejected when ``terminated=False``
+  (truncation alone is not controller-terminal).
+
+Controller-terminal rows canonicalize ``next_observation`` /
+``next_action_mask`` to ``None`` without validating any supplied next-state
+payload. Non-terminal rows require both and strict mask validation.
 """
 
 from __future__ import annotations
@@ -62,10 +72,29 @@ class ReplayTransition:
     traffic_role: str = ""
 
     def validate(self, *, n_actions: int, obs_dim: int) -> None:
-        if bool(self.terminated) and bool(self.truncated):
+        terminated = bool(self.terminated)
+        truncated = bool(self.truncated)
+        cterm = bool(self.controller_terminal)
+        completed = bool(self.learner_completed)
+
+        if terminated and truncated:
             raise ValueError(
                 "invalid transition: terminated=True and truncated=True simultaneously"
             )
+        if terminated and not cterm:
+            raise ValueError(
+                "terminated=True requires controller_terminal=True"
+            )
+        if completed and not cterm:
+            raise ValueError(
+                "learner_completed=True requires controller_terminal=True"
+            )
+        if truncated and cterm and (not completed) and (not terminated):
+            raise ValueError(
+                "truncated-only controller_terminal=True with "
+                "learner_completed=False is invalid"
+            )
+
         obs = np.asarray(self.observation, dtype=np.float64)
         if obs.shape != (obs_dim,):
             raise ValueError(
@@ -89,23 +118,10 @@ class ReplayTransition:
             )
         self.action_mask = mask
 
-        cterm = bool(self.controller_terminal)
         if cterm:
-            # Next-state optional; do not coerce missing data to zeros.
-            if self.next_observation is not None:
-                nobs = np.asarray(self.next_observation, dtype=np.float64)
-                if nobs.shape != (obs_dim,):
-                    raise ValueError(
-                        f"next_observation dim {nobs.shape} inconsistent with "
-                        f"network input {(obs_dim,)}"
-                    )
-                _finite_array("next_observation", nobs)
-                self.next_observation = nobs
-            if self.next_action_mask is not None:
-                # If provided, still must be strictly valid (callers may attach it).
-                self.next_action_mask = validate_action_mask(
-                    self.next_action_mask, n_actions
-                )
+            # Canonicalise: ignore any supplied next-state data without validating it.
+            self.next_observation = None
+            self.next_action_mask = None
             return
 
         # Non-terminal / bootstrap row
@@ -127,8 +143,6 @@ class ReplayTransition:
         next_mask = validate_action_mask(self.next_action_mask, n_actions)
         self.next_observation = nobs
         self.next_action_mask = next_mask
-        if self.truncated and self.next_observation is None:
-            raise ValueError("truncated transition missing next_observation")
 
     def to_dict(self) -> dict[str, Any]:
         return {

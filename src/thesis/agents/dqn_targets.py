@@ -79,6 +79,8 @@ def compute_dqn_target(
         raise ValueError(
             "invalid flags: terminated=True and truncated=True simultaneously"
         )
+    if bool(terminated) and not bool(controller_terminal):
+        raise ValueError("terminated=True requires controller_terminal=True")
     r = float(reward)
     if not math.isfinite(r):
         raise ValueError(f"reward must be finite, got {r}")
@@ -161,9 +163,36 @@ def compute_dqn_targets_batch(
     if trunc.shape[0] != n or cterm.shape[0] != n or term_arr.shape[0] != n:
         raise ValueError("batch dimension mismatch in compute_dqn_targets_batch")
 
+    bad = np.flatnonzero(term_arr & ~cterm)
+    if bad.size:
+        raise ValueError(
+            "terminated=True requires controller_terminal=True; "
+            f"offending row indices: {bad.tolist()}"
+        )
+
     out: list[TargetBreakdown] = []
     if bootstrap_indices is not None:
-        boot = list(bootstrap_indices)
+        try:
+            boot = [int(i) for i in bootstrap_indices]
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f"bootstrap_indices must be a sequence of integers: {exc}"
+            ) from exc
+        expected = [int(i) for i in np.flatnonzero(~cterm).tolist()]
+        if len(boot) != len(set(boot)):
+            raise ValueError(
+                f"bootstrap_indices must be unique, got {boot}"
+            )
+        for idx in boot:
+            if idx < 0 or idx >= n:
+                raise ValueError(
+                    f"bootstrap_indices out of range: {idx} not in [0, {n})"
+                )
+        if set(boot) != set(expected):
+            raise ValueError(
+                "bootstrap_indices must equal all and only non-terminal indices; "
+                f"got {sorted(boot)}, expected {expected}"
+            )
         if next_q_values is None or next_action_masks is None:
             if boot:
                 raise ValueError("bootstrap rows require next_q_values and masks")
@@ -182,7 +211,11 @@ def compute_dqn_targets_batch(
                     )
                 )
             else:
-                j = boot_pos[i]
+                j = boot_pos.get(i)
+                if j is None:
+                    raise ValueError(
+                        f"bootstrap_indices mapping missing non-terminal index {i}"
+                    )
                 out.append(
                     compute_dqn_target(
                         float(r[i]),

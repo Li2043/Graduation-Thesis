@@ -17,7 +17,7 @@ from typing import Any, Literal
 
 import numpy as np
 
-from thesis.agents.action_masking import role_action_mask
+from thesis.agents.action_masking import role_action_mask, validate_action_mask
 from thesis.agents.independent_dqn_v2 import (
     DQNConfig,
     IndependentDQNLearner,
@@ -62,21 +62,26 @@ def build_transition_for_controller(
     learner_completed = bool(
         exit_now or info["completion"].get(controller_id, False)
     )
+    # Strict mask ingress — never coerce via np.asarray(..., dtype=bool).
+    n_actions = 3
+    canonical_mask = validate_action_mask(action_mask, n_actions)
+    if controller_terminal:
+        canonical_next_obs = None
+        canonical_next_mask = None
+    else:
+        canonical_next_obs = np.asarray(next_obs, dtype=np.float64)
+        canonical_next_mask = validate_action_mask(next_action_mask, n_actions)
     return ReplayTransition(
         observation=np.asarray(obs, dtype=np.float64),
         action=int(action),
         shaped_reward=learner_r,
-        next_observation=None
-        if controller_terminal
-        else np.asarray(next_obs, dtype=np.float64),
+        next_observation=canonical_next_obs,
         terminated=bool(terminated),
         truncated=bool(truncated),
         controller_terminal=controller_terminal,
         learner_completed=learner_completed,
-        action_mask=np.asarray(action_mask, dtype=bool),
-        next_action_mask=None
-        if controller_terminal
-        else np.asarray(next_action_mask, dtype=bool),
+        action_mask=canonical_mask,
+        next_action_mask=canonical_next_mask,
         base_reward=base,
         shaping_component=shaping,
         reward_condition=reward_condition,
