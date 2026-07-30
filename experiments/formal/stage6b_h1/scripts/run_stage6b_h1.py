@@ -1,4 +1,4 @@
-﻿"""Stage 6B-H1 鈥?Utility Endpoint Correction and Analysis Reissue runner."""
+﻿"""Stage 6B-H1 — Utility Endpoint Correction and Analysis Reissue runner."""
 
 from __future__ import annotations
 
@@ -703,10 +703,8 @@ def main() -> int:
         )
         # overwrite with header only (no data rows)
         path = out / "diagnostics" / "nonutility_mismatches.csv"
-        path.write_text(
-            "condition,master_seed,block_id,assignment,field,old,new\n",
-            encoding="utf-8",
-        )
+        # Deterministic LF-only header row (no CRLF translation).
+        path.write_bytes(b"condition,master_seed,block_id,assignment,field,old,new\n")
     else:
         _write_csv(out / "diagnostics" / "nonutility_mismatches.csv", mismatches)
     log(f"nonutility_mismatches={len(mismatches)}")
@@ -1034,7 +1032,7 @@ def main() -> int:
     manifest = {
         "analysis_id": ANALYSIS_ID,
         "analysis_amendment": "H1.1",
-        "analysis_name": "Stage 6B-H1 鈥?Utility Endpoint Correction and Analysis Reissue",
+        "analysis_name": "Stage 6B-H1 — Utility Endpoint Correction and Analysis Reissue",
         "supersedes_analysis_id": OLD_ANALYSIS_ID,
         "reason": (
             "The previous Stage 6B computed episode utility from final-state experience "

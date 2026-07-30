@@ -104,3 +104,38 @@ def test_paper_files_unchanged() -> None:
     man = json.loads((OUT / "manifests/analysis_manifest.json").read_text(encoding="utf-8"))
     assert man["paper_integrity"]["changed_file_count"] == 0
     assert man["paper_integrity"]["verified_unchanged"] is True
+
+
+def test_reference_tolerance_is_one_e_minus_six_or_stricter() -> None:
+    acc_path = OUT / "manifests/acceptance_checks.json"
+    if not acc_path.is_file():
+        pytest.skip("acceptance missing")
+    acc = json.loads(acc_path.read_text(encoding="utf-8"))
+    assert float(acc["reference_tolerance"]) <= 1e-6
+    assert float(acc["maximum_absolute_reference_error"]) <= 1e-6
+
+
+def test_release_archive_contains_ignored_output() -> None:
+    repo = H1.parents[2]
+    releases = repo / "releases"
+    archives = sorted(releases.glob("stage6b_h1_1_release_*.zip")) if releases.is_dir() else []
+    if not archives:
+        pytest.skip("release archive not built yet")
+    import zipfile
+
+    with zipfile.ZipFile(archives[-1], "r") as zf:
+        names = zf.namelist()
+    assert any(n.endswith("output/data/evaluation_episodes_h1.csv") for n in names)
+    assert any(n.endswith("output/manifests/analysis_manifest.json") for n in names)
+
+
+def test_release_archive_manifest_verifies_after_extraction() -> None:
+    val = H1 / "reports/release_archive_validation.json"
+    alt = H1.parents[2] / "releases/release_archive_validation.json"
+    path = val if val.is_file() else alt
+    if not path.is_file():
+        pytest.skip("archive validation missing")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    assert payload["extracted_manifest_valid"] is True
+    assert payload["missing_required_files"] == []
+    assert payload["unexpected_validation_errors"] == []

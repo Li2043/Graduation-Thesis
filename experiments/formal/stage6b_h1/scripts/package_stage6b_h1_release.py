@@ -88,11 +88,13 @@ def main() -> int:
             "missing_required_files": missing,
             "unexpected_validation_errors": errors,
         }
-        out_val = h1 / "output" / "manifests" / "release_archive_validation.json"
-        # Also write under releases for discoverability
-        (releases / "release_archive_validation.json").write_text(
-            json.dumps(validation, indent=2, sort_keys=True), encoding="utf-8"
-        )
+        # Post-manifest artifact: do not register in analysis_manifest output_hashes.
+        for dest in (
+            releases / "release_archive_validation.json",
+            h1 / "reports" / "release_archive_validation.json",
+        ):
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_text(json.dumps(validation, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         print(json.dumps(validation, indent=2))
         return 0 if valid and not missing and not errors else 1
 
