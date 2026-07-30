@@ -1,0 +1,8 @@
+controller_A_role,controller_B_role,primary_failure_label,n
+mainline,ramp,downstream_completion_failure,1
+mainline,ramp,mutual_yielding,4
+mainline,ramp,other_unresolved,1
+mainline,ramp,unilateral_stall,39
+ramp,mainline,downstream_completion_failure,4
+ramp,mainline,mutual_yielding,13
+ramp,mainline,unilateral_stall,35

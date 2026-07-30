@@ -1,0 +1,12 @@
+joint_action_category,n
+accelerate-accelerate,1534
+accelerate-decelerate,1172
+accelerate-maintain,1168
+active-inactive,29148
+decelerate-accelerate,2572
+decelerate-decelerate,6412
+decelerate-maintain,5880
+inactive-active,26674
+maintain-accelerate,1450
+maintain-decelerate,7400
+maintain-maintain,5834

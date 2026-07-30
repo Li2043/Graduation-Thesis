@@ -1,0 +1,2 @@
+checkpoint_step,success_rate,collision_rate,truncation_rate,n_episodes,n_seeds
+100000,0.35,0.04375,0.60625,160,10

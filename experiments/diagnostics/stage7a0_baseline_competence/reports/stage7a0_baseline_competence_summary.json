@@ -1,0 +1,35 @@
+{
+  "diagnostic_pipeline_status": "PARTIAL",
+  "baseline_competence_status": "NOT PASSED",
+  "continuation_probe_status": "BLOCKED",
+  "success_100k": 0.35,
+  "collision_100k": 0.04375,
+  "truncation_100k": 0.60625,
+  "top_failure_categories": {
+    "unilateral_stall": 74,
+    "mutual_yielding": 17,
+    "downstream_completion_failure": 5,
+    "other_unresolved": 1
+  },
+  "high_seeds": [
+    61004,
+    61007
+  ],
+  "intermediate_seeds": [
+    61003,
+    61005,
+    61006
+  ],
+  "low_seeds": [
+    61001,
+    61002,
+    61008,
+    61009,
+    61010
+  ],
+  "nondiagnostic_mismatch_count": 0,
+  "paper_files_changed": 0,
+  "formal_checkpoints_changed": 0,
+  "weak_reward_separation": false,
+  "recommended_next": "recover_or_retrain_baseline_budget_pilot_with_new_seeds_OR_base_reward_deadlock_pilot"
+}

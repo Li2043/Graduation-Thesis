@@ -1,0 +1,7 @@
+checkpoint_step,status,reason
+0,unavailable,no verified initial checkpoint / step-zero reference reconstruction
+10000,unavailable,ckpt_step_*.pt local_only and missing from published results worktree
+25000,unavailable,ckpt_step_*.pt local_only and missing from published results worktree
+50000,unavailable,ckpt_step_*.pt local_only and missing from published results worktree
+75000,unavailable,ckpt_step_*.pt local_only and missing from published results worktree
+100000,available_final_weights,final_online_target_weights.pt published

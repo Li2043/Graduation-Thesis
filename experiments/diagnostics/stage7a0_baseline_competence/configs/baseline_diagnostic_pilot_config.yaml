@@ -1,0 +1,12 @@
+stage: Stage 7A-0
+name: Baseline Competence Diagnostic Pilot
+condition: baseline
+formal_seeds: [61001, 61002, 61003, 61004, 61005, 61006, 61007, 61008, 61009, 61010]
+episode_time_limit_policy_steps: 400
+policy_interval_seconds: 0.2
+analysis_status: exploratory_diagnostic
+allow_mean_pbrs: false
+allow_min_pbrs: false
+allow_reward_modification: false
+allow_algorithm_modification: false
+continuation_requires_resumable_checkpoints: true

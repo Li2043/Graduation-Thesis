@@ -1,0 +1,26 @@
+﻿git status --short
+?? experiments/formal/stage6b_h1/logs/h1_1_package.txt
+?? experiments/formal/stage6b_h1/logs/h1_1_pytest.txt
+?? experiments/formal/stage6b_h1/logs/h1_1_pytest_after_package.txt
+?? experiments/formal/stage6b_h1/output.zip
+?? experiments/formal/stage6b_h1/reports/_diff_names.txt
+?? experiments/formal/stage6b_h1/reports/_diff_stat.txt
+?? releases/
+
+git branch --show-current
+formal/analysis-100k-utility-corrected
+
+git rev-parse HEAD
+b78e334233b5579d193dfc8e7ad8391918bb1710
+
+git log -10 --oneline
+b78e334 chore(stage6b): refresh H1.1 archive validation checksum
+804643f chore(stage6b): record final H1.1 release commit and archive checksum
+eebd4f8 chore(stage6b): package reproducible H1.1 release
+46e436e fix(stage6b): stabilize H1.1 mismatch CSV and report metadata
+1a6e361 fix(stage6b): repair H1 release manifest provenance
+ce6a27b fix(stage6b): Stage 6B-H1 trajectory utility correction and reissue
+c54905e feat(figures): Stage 6C publication-quality formal 100K result figures
+9c58675 chore(analysis): drop incomplete Stage 6B partial run and record analysis commit
+7bbd146 feat(analysis): Stage 6B formal 100K multi-seed result verification and analysis
+38d28bd chore(formal): record verified runner_release.json

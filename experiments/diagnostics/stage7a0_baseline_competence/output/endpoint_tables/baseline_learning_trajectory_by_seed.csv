@@ -1,0 +1,11 @@
+master_seed,classification,success_10k,success_25k,success_50k,success_75k,success_100k
+61001,insufficient_checkpoints,,,,,0.0
+61002,insufficient_checkpoints,,,,,0.0
+61003,insufficient_checkpoints,,,,,0.625
+61004,insufficient_checkpoints,,,,,0.9375
+61005,insufficient_checkpoints,,,,,0.375
+61006,insufficient_checkpoints,,,,,0.5625
+61007,insufficient_checkpoints,,,,,1.0
+61008,insufficient_checkpoints,,,,,0.0
+61009,insufficient_checkpoints,,,,,0.0
+61010,insufficient_checkpoints,,,,,0.0

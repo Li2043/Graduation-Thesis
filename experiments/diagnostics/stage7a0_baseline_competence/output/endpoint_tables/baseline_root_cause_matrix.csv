@@ -1,0 +1,11 @@
+hypothesis,status,supporting_metrics,contradicting_metrics,affected_seed_count,affected_episode_count,confidence,recommended_next_test
+insufficient_100K_budget,NOT IDENTIFIABLE,continuation=BLOCKED; intermediate ckpts missing,cannot test 100K→200K without resumable checkpoints,10,0,low,recover full ckpts or retrain Baseline-only budget pilot with new seeds
+stable_learning_plateau,NOT IDENTIFIABLE,no intermediate greedy reconstructions available,10K-75K weights unpublished,0,0,low,publish or recover intermediate weight exports
+mutual_yielding,SUPPORTED,primary_count=17,,6,17,moderate,base-task deadlock resolution pilot if dominant
+unilateral_stall,SUPPORTED,primary_count=74,,9,74,moderate,inspect role-conditioned stall
+post_exit_survivor_stall,NOT SUPPORTED,primary_count=0,,0,0,moderate,single-controller completion curriculum
+action_oscillation,NOT SUPPORTED,primary_count=0,,0,0,moderate,Q-margin / Double-DQN sensitivity if co-occurs with low margin
+seed_bifurcation,SUPPORTED,"high=2, low=5, intermediate=3",,10,0,high,increase independent training seeds before treatment comparison
+base_reward_weak_separation,NOT SUPPORTED,"{'audit_csv': 'experiments/diagnostics/stage7a0_baseline_competence/output/reward_audit/baseline_scripted_reward_audit.csv', 'separability_csv': 'experiments/diagnostics/stage7a0_baseline_competence/output/reward_audit/baseline_reward_separability.csv', 'weak_reward_separation_any': False, 'weak_fraction': 0.0, 'mean_R_separation_stall': 1.2856773194720112}",,0,0,low,base-task incentive redesign with new experiment version
+environment_or_exit_anomaly,NOT SUPPORTED,primary_count=0,,0,0,moderate,stop new training and fix environment if any anomalies
+evaluation_reconstruction_error,NOT SUPPORTED,h1_mismatch_count=0,,0,0,high,none if zero mismatches

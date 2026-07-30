@@ -1,0 +1,4 @@
+python==3.14.6
+numpy==2.3.2
+pandas==2.3.3
+torch==2.13.0+cpu

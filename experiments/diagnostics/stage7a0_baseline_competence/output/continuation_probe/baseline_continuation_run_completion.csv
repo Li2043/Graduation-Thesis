@@ -1,0 +1,2 @@
+status,reason,required_full_checkpoints,available_resumable_100k_checkpoints,published_final_weights_only,executed,resume_equivalence
+BLOCKED,Published Stage 6A retains only final_online_target_weights.pt. Full ckpt_step_*.pt files were local_only_intermediate_or_replay_checkpoint and are absent from this results worktree; resume/continuation is impossible.,10,0,True,False,not_run
