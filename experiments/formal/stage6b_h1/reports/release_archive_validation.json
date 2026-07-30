@@ -1,7 +1,7 @@
 {
-  "archive_path": "releases/stage6b_h1_1_release_46e436e1_20260730T172700Z.zip",
-  "archive_sha256": "92f6335ac0207203f346823608a765dc4ea851821b7fb8a17e13c3ec75ccd8b9",
-  "archive_size_bytes": 588248,
+  "archive_path": "releases/stage6b_h1_1_release_eebd4f82_20260730T172955Z.zip",
+  "archive_sha256": "92b1053021d3b2c2f23064ac9b2b9e2fe500cd6a1aaab25f74a9687be69ffc5b",
+  "archive_size_bytes": 588680,
   "extracted_manifest_valid": true,
   "missing_required_files": [],
   "unexpected_validation_errors": []

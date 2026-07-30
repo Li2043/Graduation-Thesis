@@ -33,12 +33,11 @@ H1.1 evaluation execution commit:
   1a6e361a4f31f30fd74edc4b0bf8b7ebfae556d3
 
 H1.1 release commit:
-  46e436e15ce993a91e33eeff54a8678a9459b87e
+  eebd4f8299929002f172be29a0741148cf11c0bd
 ```
 
 `execution_commit` is the code version that produced the 480-episode results.
-`release_commit` is the commit containing the H1.1 release metadata / packaging
-fixes used for the published archive.
+`release_commit` is the commit containing the H1.1 packaging validation artifacts.
 
 ## 19.4 Manifest fixes
 
