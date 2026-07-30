@@ -1,0 +1,25 @@
+﻿{
+    "branch":  "formal/runner-100k",
+    "tag":  "formal-runner-100k-ready",
+    "commit":  "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+    "remote_branch_sha":  "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+    "remote_tag_commit":  "a89256db879f04d1e02782ff8dc1af00ff1d75b9",
+    "protocol_hashes":  {
+                            "training_protocol_sha256":  "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
+                            "pbrs_parameters_sha256":  "032080d29a34e47fb15c79d46a1575276a7b944eaafad0886193c3a8b6b183f2"
+                        },
+    "test_summary":  {
+                         "status":  "PASS",
+                         "note":  "executed_in_push_script"
+                     },
+    "utc_timestamp":  "2026-07-30T09:09:13.9036554Z",
+    "remote_verification":  {
+                                "force_push":  false,
+                                "branch_match":  true,
+                                "tag_match":  true,
+                                "gh_api_commit_ok":  false
+                            },
+    "git_user_name":  "Li2043",
+    "git_user_email":  "shenli2021summer@163.com",
+    "formal_training_started":  false
+}
