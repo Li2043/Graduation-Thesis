@@ -28,12 +28,13 @@
       "min_pbrs": 0.28795988545832085
     },
     "episode_count_is_480": true,
+    "maximum_absolute_reference_error": 4.3466281879345203e-07,
     "mean_utility_changed_episode_count": 480,
     "minimum_utility_changed_episode_count": 477,
     "nonutility_mismatch_count": 0,
     "reference_checks_passed": true,
     "reference_max_abs_error": 4.3466281879345203e-07,
-    "reference_tolerance": 0.001,
+    "reference_tolerance": 1e-06,
     "success_rate": {
       "baseline": 0.35,
       "mean_pbrs": 0.16875,

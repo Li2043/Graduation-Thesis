@@ -1,10 +1,10 @@
-[2026-07-30T16:51:56.354478+00:00] start stage6b_h1_utility_endpoint_correction
-[2026-07-30T16:51:56.395013+00:00] git_branch=formal/analysis-100k-utility-corrected
-[2026-07-30T16:51:56.425384+00:00] git_commit=c54905ece91ffb5c8f5ec4634b65c457a102e0d5
-[2026-07-30T16:51:56.425438+00:00] results_root=C:\Users\HP\Desktop\毕业项目\thesis\final_new_results_100k\formal_results\100k\stage6a_20260730T094829Z_a89256db_44d5e647
-[2026-07-30T16:51:56.425465+00:00] old_stage6b=C:\Users\HP\Desktop\毕业项目\thesis\final_new_analysis_100k\experiments\formal\stage6b_analysis_100k
-[2026-07-30T16:51:56.425475+00:00] output_root=C:\Users\HP\Desktop\毕业项目\thesis\final_new\experiments\formal\stage6b_h1\output
-[2026-07-30T16:53:21.761744+00:00] reconstructed_episodes=480 elapsed_s=83.7
-[2026-07-30T16:53:21.793409+00:00] checkpoint_hashes_unchanged=True
-[2026-07-30T16:53:21.990170+00:00] nonutility_mismatches=0
-[2026-07-30T16:53:29.237676+00:00] acceptance=True mean_changed=480 min_changed=477 worst_changed=116
+[2026-07-30T17:12:53.350392+00:00] start stage6b_h1_utility_endpoint_correction
+[2026-07-30T17:12:53.407119+00:00] git_branch=formal/analysis-100k-utility-corrected
+[2026-07-30T17:12:53.452946+00:00] git_commit=1a6e361a4f31f30fd74edc4b0bf8b7ebfae556d3
+[2026-07-30T17:12:53.453011+00:00] results_root=<STAGE6A_ROOT>
+[2026-07-30T17:12:53.453047+00:00] old_stage6b=<OLD_STAGE6B_ROOT>
+[2026-07-30T17:12:53.453057+00:00] output_root=<H1_OUTPUT_ROOT>
+[2026-07-30T17:15:14.134521+00:00] reconstructed_episodes=480 elapsed_s=138.1
+[2026-07-30T17:15:14.153562+00:00] checkpoint_hashes_unchanged=True
+[2026-07-30T17:15:14.310160+00:00] nonutility_mismatches=0
+[2026-07-30T17:15:19.971455+00:00] acceptance=True mean_changed=480 min_changed=477 worst_changed=116

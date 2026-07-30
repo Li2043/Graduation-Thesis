@@ -2,7 +2,7 @@
   "checkpoint_count": 30,
   "checkpoint_files": [
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61001\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61001/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61001,
       "mtime_ns": 1785419264457407400,
@@ -10,7 +10,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61002\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61002/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61002,
       "mtime_ns": 1785419264480113400,
@@ -18,7 +18,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61003\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61003/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61003,
       "mtime_ns": 1785419264496823500,
@@ -26,7 +26,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61004\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61004/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61004,
       "mtime_ns": 1785419264514824700,
@@ -34,7 +34,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61005\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61005/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61005,
       "mtime_ns": 1785419264532856800,
@@ -42,7 +42,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61006\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61006/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61006,
       "mtime_ns": 1785419264565838400,
@@ -50,7 +50,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61007\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61007/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61007,
       "mtime_ns": 1785419264590840100,
@@ -58,7 +58,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61008\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61008/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61008,
       "mtime_ns": 1785419264618834500,
@@ -66,7 +66,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61009\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61009/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61009,
       "mtime_ns": 1785419264648708600,
@@ -74,7 +74,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\baseline__61010\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/baseline__61010/final_online_target_weights.pt",
       "condition": "baseline",
       "master_seed": 61010,
       "mtime_ns": 1785419264674630500,
@@ -82,7 +82,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61001\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61001/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61001,
       "mtime_ns": 1785419264697661700,
@@ -90,7 +90,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61002\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61002/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61002,
       "mtime_ns": 1785419264720670800,
@@ -98,7 +98,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61003\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61003/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61003,
       "mtime_ns": 1785419264749427600,
@@ -106,7 +106,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61004\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61004/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61004,
       "mtime_ns": 1785419264772448500,
@@ -114,7 +114,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61005\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61005/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61005,
       "mtime_ns": 1785419264798143300,
@@ -122,7 +122,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61006\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61006/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61006,
       "mtime_ns": 1785419264822200100,
@@ -130,7 +130,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61007\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61007/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61007,
       "mtime_ns": 1785419264848901700,
@@ -138,7 +138,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61008\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61008/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61008,
       "mtime_ns": 1785419264867896300,
@@ -146,7 +146,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61009\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61009/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61009,
       "mtime_ns": 1785419264888948100,
@@ -154,7 +154,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\mean_pbrs__61010\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/mean_pbrs__61010/final_online_target_weights.pt",
       "condition": "mean_pbrs",
       "master_seed": 61010,
       "mtime_ns": 1785419264915385300,
@@ -162,7 +162,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61001\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61001/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61001,
       "mtime_ns": 1785419264939244100,
@@ -170,7 +170,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61002\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61002/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61002,
       "mtime_ns": 1785419265000361500,
@@ -178,7 +178,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61003\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61003/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61003,
       "mtime_ns": 1785419265028785400,
@@ -186,7 +186,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61004\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61004/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61004,
       "mtime_ns": 1785419265053334300,
@@ -194,7 +194,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61005\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61005/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61005,
       "mtime_ns": 1785419265069330400,
@@ -202,7 +202,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61006\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61006/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61006,
       "mtime_ns": 1785419265085350300,
@@ -210,7 +210,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61007\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61007/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61007,
       "mtime_ns": 1785419265110754300,
@@ -218,7 +218,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61008\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61008/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61008,
       "mtime_ns": 1785419265133141600,
@@ -226,7 +226,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61009\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61009/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61009,
       "mtime_ns": 1785419265153122500,
@@ -234,7 +234,7 @@
       "size_bytes": 106765
     },
     {
-      "checkpoint_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\jobs\\min_pbrs__61010\\final_online_target_weights.pt",
+      "checkpoint_path": "jobs/min_pbrs__61010/final_online_target_weights.pt",
       "condition": "min_pbrs",
       "master_seed": 61010,
       "mtime_ns": 1785419265174048600,
@@ -250,11 +250,20 @@
   "evaluation_episodes_per_checkpoint": 16,
   "evaluation_seed_source": "job_manifest.json seeds.evaluation_seed + evaluation_episode_seed()",
   "expected_total_evaluation_episodes": 480,
-  "experiment_lock_file": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\locks\\formal_experiment_manifest.json",
+  "experiment_lock_file": "locks/formal_experiment_manifest.json",
   "experiment_lock_sha256": "85895d33c7bb9a254fdbc9680804d12a3d035e38e767babf8f2a3377ea9e8518",
   "master_seed_count_per_condition": 10,
-  "old_stage6b_result_root": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_analysis_100k\\experiments\\formal\\stage6b_analysis_100k",
-  "protocol_file": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647\\locks\\final_training_protocol.yaml",
+  "old_stage6b_source": {
+    "analysis_id": "stage6b_20260730T140035Z_c7584593",
+    "analysis_tag": "formal-analysis-100k-complete",
+    "local_path_included": false
+  },
+  "protocol_file": "locks/final_training_protocol.yaml",
   "protocol_sha256": "44d5e647cf97bf9c6ce6e863320b669e8e69e1200871155e12929b60682dddc2",
-  "stage6a_result_root": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_results_100k\\formal_results\\100k\\stage6a_20260730T094829Z_a89256db_44d5e647"
+  "stage6a_source": {
+    "formal_execution_id": "stage6a_20260730T094829Z_a89256db_44d5e647",
+    "local_path_included": false,
+    "result_commit": "c75845935a7fe9179b691298b2329208853773a6",
+    "result_tag": "formal-results-100k-complete"
+  }
 }

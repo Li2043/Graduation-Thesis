@@ -20,8 +20,8 @@ changes later committed as `ce6a27ba`. See
 `reports/execution_vs_release_commit_diff.md` and
 `output/manifests/h1_1_release_decision.json`.
 
-Therefore H1.1 re-ran all 480 evaluation episodes under the committed H1.1 code
-SHA before packaging.
+Therefore H1.1 re-ran all 480 evaluation episodes under committed SHA
+`1a6e361a4f31f30fd74edc4b0bf8b7ebfae556d3` before packaging.
 
 ## 19.3 Commit provenance
 
@@ -33,8 +33,12 @@ H1.1 evaluation execution commit:
   1a6e361a4f31f30fd74edc4b0bf8b7ebfae556d3
 
 H1.1 release commit:
-  <filled after packaging commit>
+  46e436e15ce993a91e33eeff54a8678a9459b87e
 ```
+
+`execution_commit` is the code version that produced the 480-episode results.
+`release_commit` is the commit containing the H1.1 release metadata / packaging
+fixes used for the published archive.
 
 ## 19.4 Manifest fixes
 
@@ -48,11 +52,22 @@ H1.1 release commit:
 
 ## 19.5 Archive
 
+Authoritative archive checksums are recorded in the post-manifest validation file
+(not registered in `analysis_manifest.json` `output_hashes`):
+
 ```text
-archive path: <filled after packaging>
-archive SHA-256: <filled after packaging>
-archive size: <filled after packaging>
-extracted validation: <filled after packaging>
+reports/release_archive_validation.json
+releases/release_archive_validation.json
+```
+
+Expected fields after packaging:
+
+```text
+archive_path
+archive_sha256
+archive_size_bytes
+extracted_manifest_valid == true
+missing_required_files == []
 ```
 
 ## 19.6 Experiment result preservation

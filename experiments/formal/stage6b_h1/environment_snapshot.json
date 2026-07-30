@@ -1,8 +1,8 @@
 {
   "cpu": "Intel64 Family 6 Model 186 Stepping 3, GenuineIntel",
   "cuda_available": false,
+  "execution_commit": "1a6e361a4f31f30fd74edc4b0bf8b7ebfae556d3",
   "git_branch": "formal/analysis-100k-utility-corrected",
-  "git_commit": "c54905ece91ffb5c8f5ec4634b65c457a102e0d5",
   "matplotlib": "3.11.1",
   "numpy": "2.3.2",
   "os": "nt",
