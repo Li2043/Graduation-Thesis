@@ -1,0 +1,9 @@
+case,bootstraps
+controller_terminal_equals_reward,False
+terminal_next_obs_none,False
+terminal_next_mask_none,False
+terminal_skips_target_forward,False
+truncation_bootstraps,True
+ongoing_requires_next,True
+mixed_batch_bootstrap_only_forward,partial
+vanilla_dqn_masked_max,True

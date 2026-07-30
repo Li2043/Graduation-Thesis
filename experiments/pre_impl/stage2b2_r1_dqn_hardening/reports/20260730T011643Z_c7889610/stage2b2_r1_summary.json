@@ -1,0 +1,62 @@
+{
+  "run_id": "20260730T011643Z_c7889610",
+  "overall": "PASS",
+  "exact_command": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\.venv_stage2b1\\Scripts\\python.exe C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new\\experiments\\pre_impl\\stage2b2_r1_dqn_hardening\\scripts\\run_stage2b2_r1_tests.py",
+  "git_commit": "c7889610b4fd7b7e2aa80ecca4c0207315eb2d5a",
+  "git_dirty": false,
+  "modified_source_files": [
+    "src/thesis/agents/action_masking.py",
+    "src/thesis/agents/dqn_targets.py",
+    "src/thesis/agents/replay_buffer_v2.py",
+    "src/thesis/agents/independent_dqn_v2.py",
+    "src/thesis/agents/dqn_pipeline.py"
+  ],
+  "source_hashes": {
+    "src/thesis/agents/action_masking.py": "fe9b5e727337d9fe95622ad5673fecc56015bf8b2ff5653c2d763aeae4e230e8",
+    "src/thesis/agents/dqn_targets.py": "f3162aea0bdc902639dff70bde886186b2ec9294ecad8a2e8865fd8ba5b25b64",
+    "src/thesis/agents/replay_buffer_v2.py": "6dd07c694435130416e1f83d3c808271cc4003f13245837e444b3bbe9657451e",
+    "src/thesis/agents/independent_dqn_v2.py": "3123de2a85eb387283c36c72c9699f289f77768f20ded2564030538cd31c9605",
+    "src/thesis/agents/dqn_pipeline.py": "38d9dcf1e44e4657b3b5c904a96fad6e327df3f71eb73dc73610017bd5e8e6d7"
+  },
+  "tests": {
+    "passed": 60,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "status": "PASS"
+  },
+  "accepted_mask_cases": [
+    "bool_mask",
+    "integer_0_1_mask"
+  ],
+  "rejected_mask_cases": [
+    "float_0_1_mask",
+    "float_0_5_mask",
+    "integer_2",
+    "negative",
+    "nan_float",
+    "wrong_length",
+    "multidimensional",
+    "all_false"
+  ],
+  "terminal_target_cases": [
+    "controller_terminal_equals_reward",
+    "terminal_next_obs_none",
+    "terminal_next_mask_none",
+    "terminal_skips_target_forward"
+  ],
+  "truncation_target_cases": [
+    "truncation_bootstraps"
+  ],
+  "mixed_batch_cases": [
+    "mixed_batch_bootstrap_only_forward"
+  ],
+  "target_network_call_policy": "bootstrap_rows_only",
+  "environment_lock_sha256_before": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "environment_lock_sha256_after": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "comfort_lock_sha256_before": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "comfort_lock_sha256_after": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "policy_training_started": false,
+  "sustained_training_invoked": false,
+  "algorithm": "vanilla_dqn_masked_target_max"
+}

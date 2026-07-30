@@ -1,0 +1,11 @@
+case,accepted
+bool_mask,True
+integer_0_1_mask,True
+float_0_1_mask,False
+float_0_5_mask,False
+integer_2,False
+negative,False
+nan_float,False
+wrong_length,False
+multidimensional,False
+all_false,False
