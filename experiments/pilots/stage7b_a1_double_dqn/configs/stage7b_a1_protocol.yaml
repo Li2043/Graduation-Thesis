@@ -1,0 +1,166 @@
+stage: stage7b_a1
+name: Paired Vanilla DQN vs Double DQN Stability Pilot
+analysis_status: exploratory_algorithm_pilot
+experiment_version: "Experiment Version 2 algorithm pilot"
+description: >
+  Baseline-only paired-seed single-factor algorithm pilot comparing
+  Vanilla Independent DQN vs Double Independent DQN under the unchanged
+  Stage 6 environment, base reward, exploration, replay, and 300K budget.
+  The only experimental factor is Bellman target action selection.
+
+conditions:
+  - vanilla_dqn
+  - double_dqn
+
+base_reward_version: unchanged_stage6_base_reward
+reward_shaping_enabled: false
+shaping_coefficient: 0.0
+lambda: 0.0
+allow_mean_pbrs: false
+allow_min_pbrs: false
+reward_condition: baseline
+
+master_seeds:
+  - 63001
+  - 63002
+  - 63003
+  - 63004
+  - 63005
+  - 63006
+  - 63007
+  - 63008
+  - 63009
+  - 63010
+  - 63011
+  - 63012
+  - 63013
+  - 63014
+  - 63015
+  - 63016
+  - 63017
+  - 63018
+  - 63019
+  - 63020
+
+forbidden_seed_blocks:
+  formal_stage6:
+    - 61001
+    - 61002
+    - 61003
+    - 61004
+    - 61005
+    - 61006
+    - 61007
+    - 61008
+    - 61009
+    - 61010
+  stage7a1_baseline_budget:
+    - 62001
+    - 62002
+    - 62003
+    - 62004
+    - 62005
+    - 62006
+    - 62007
+    - 62008
+    - 62009
+    - 62010
+    - 62011
+    - 62012
+    - 62013
+    - 62014
+    - 62015
+    - 62016
+    - 62017
+    - 62018
+    - 62019
+    - 62020
+
+maximum_training_steps: 300000
+
+checkpoint_steps:
+  - 0
+  - 10000
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+  - 150000
+  - 200000
+  - 250000
+  - 300000
+
+primary_stability_checkpoints:
+  - 100000
+  - 150000
+  - 200000
+  - 250000
+  - 300000
+
+evaluation_episodes_per_checkpoint: 16
+validation_blocks: 8
+assignments_per_block: 2
+
+training_run_count: 40
+expected_evaluation_episode_count: 6400
+statistical_unit: paired_training_seed
+
+early_stopping: false
+best_checkpoint_selection: false
+
+# Unchanged vs Stage 6 formal protocol
+epsilon_start: 1.0
+epsilon_end: 0.10
+epsilon_decay_environment_steps: 50000
+epsilon_after_decay: 0.10
+evaluation_epsilon: 0.0
+gamma: 0.995
+learning_rate: 0.0005
+batch_size: 64
+replay_capacity_per_controller: 20000
+replay_warmup_per_controller: 512
+target_sync_interval_updates: 250
+hidden_sizes: [64, 64]
+observation_dimension: 27
+action_count: 3
+max_policy_steps: 400
+policy_interval_seconds: 0.2
+num_parallel_training_envs_per_run: 1
+vectorized_training: false
+device: cpu
+
+algorithm_difference: >
+  Vanilla uses max over target-network Q-values.
+  Double uses online-network argmax for action selection and
+  target-network Q for evaluation of the selected action.
+  Action masks apply to both selection and evaluation.
+
+competence_gate:
+  status: provisional_pilot_competence_gate
+  note: PROVISIONAL — NOT YET PREREGISTERED CONFIRMATORY GATE
+  seeds_required_at_or_above_0_75: 16
+  total_seeds: 20
+  mean_success_minimum: 0.75
+  collision_maximum: 0.05
+  truncation_maximum: 0.15
+  strict_swap_eligibility_minimum: 0.75
+
+late_collapse:
+  prior_checkpoint_success_minimum: 0.75
+  final_checkpoint_success_maximum: 0.50
+  prior_checkpoints:
+    - 200000
+    - 250000
+  final_checkpoint: 300000
+
+locks:
+  reuse_stage6_environment_lock: true
+  reuse_stage6_comfort_lock: true
+  reuse_stage6_base_reward: true
+  reuse_stage6_training_blocks: true
+  reuse_stage6_validation_blocks: true
+
+checkpoint_policy:
+  store_in_git: false
+  require_external_checkpoint_root: true
+  full_resumable_required: true
