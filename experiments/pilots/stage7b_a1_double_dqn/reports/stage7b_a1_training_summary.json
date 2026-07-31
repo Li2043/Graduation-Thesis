@@ -3,6 +3,8 @@
   "status": "PASS",
   "frozen_tag": "stage7b-a1-protocol-v1",
   "frozen_commit": "3a190d6763120e7f4b60a1f9e2412c0c3c31954c",
+  "results_branch": "results/stage7b-a1-double-dqn",
+  "results_commit": "649498fee720347a38ab91206136fe3fab847e2e",
   "protocol_hash": "32f5707e2e9f1ccefcdc48f712e94ff4bd96ae12ea1d1558b68b2c0d3b3afea4",
   "environment_lock_hash": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
   "comfort_lock_hash": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",

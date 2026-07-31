@@ -95,4 +95,6 @@ These are descriptive only. Final paired statistical inference is reserved for t
 
 ## Results branch
 
-Branch to publish: `results/stage7b-a1-double-dqn` (created from `stage7b-a1-protocol-v1`).
+- Branch: `results/stage7b-a1-double-dqn` (from `stage7b-a1-protocol-v1`)
+- Results commit: `649498fee720347a38ab91206136fe3fab847e2e`
+- Remote: pushed to `origin/results/stage7b-a1-double-dqn`
