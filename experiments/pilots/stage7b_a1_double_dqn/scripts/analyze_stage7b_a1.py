@@ -114,7 +114,11 @@ def _desc(arr: np.ndarray, *, boot: bool = True) -> dict[str, Any]:
 
 
 def validate(out_dir: Path) -> dict[str, Any]:
-    results_commit = _git("rev-parse", "HEAD")
+    # Prefer the frozen results-branch tip when analyzing from an analysis branch tip.
+    try:
+        results_commit = _git("rev-parse", "origin/results/stage7b-a1-double-dqn")
+    except Exception:
+        results_commit = _git("rev-parse", "HEAD")
     tag_commit = _git("rev-parse", f"{FROZEN_TAG}^{{commit}}")
     protocol_path = PILOT / "configs" / "stage7b_a1_protocol.yaml"
     protocol_hash = _sha256_file(protocol_path)
