@@ -1,0 +1,22 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10",
+  "cpu_model": "13th Gen Intel(R) Core(TM) i9-13980HX",
+  "physical_cores": 24,
+  "logical_cores": 32,
+  "ram_total_gb": 68.32,
+  "ram_available_gb": 55.25,
+  "disk_free_gb": 1225.79,
+  "torch": "2.13.0+cpu",
+  "numpy": "2.3.2",
+  "gymnasium": "1.2.0",
+  "git_commit": "3a190d6763120e7f4b60a1f9e2412c0c3c31954c",
+  "tag": "stage7b-a1-protocol-v1",
+  "protocol_path": "experiments/pilots/stage7b_a1_double_dqn/configs/stage7b_a1_protocol.yaml",
+  "protocol_hash": "32f5707e2e9f1ccefcdc48f712e94ff4bd96ae12ea1d1558b68b2c0d3b3afea4",
+  "environment_lock_hash": "d2d82ac02feb5bb2f5217f8e399972b91bd56cce343f60861954f66d7f70bf12",
+  "comfort_lock_hash": "1d9439c211955f9a8a177e455b6b5ff34aa98f85f3ff0677bbd62abd6d29b061",
+  "reward_lock_note": "unchanged_stage6_base_reward_baseline_only",
+  "checkpoint_root": "C:\\thesis_checkpoints\\stage7b_a1_double_dqn",
+  "checkpoint_root_outside_git": true
+}

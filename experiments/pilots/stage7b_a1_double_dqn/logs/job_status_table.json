@@ -1,0 +1,322 @@
+{
+  "vanilla_dqn__63005": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63005,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63005",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63005"
+  },
+  "vanilla_dqn__63001": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63001,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63001",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63001"
+  },
+  "vanilla_dqn__63006": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63006,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63006",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63006"
+  },
+  "vanilla_dqn__63007": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63007,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63007",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63007"
+  },
+  "vanilla_dqn__63003": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63003,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63003",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63003"
+  },
+  "vanilla_dqn__63010": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63010,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63010",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63010"
+  },
+  "vanilla_dqn__63011": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63011,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63011",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63011"
+  },
+  "vanilla_dqn__63002": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63002,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63002",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63002"
+  },
+  "vanilla_dqn__63012": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63012,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63012",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63012"
+  },
+  "vanilla_dqn__63009": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63009,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63009",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63009"
+  },
+  "vanilla_dqn__63004": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63004,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63004",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63004"
+  },
+  "vanilla_dqn__63008": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63008,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63008",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63008"
+  },
+  "vanilla_dqn__63013": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63013,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63013",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63013"
+  },
+  "vanilla_dqn__63014": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63014,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63014",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63014"
+  },
+  "vanilla_dqn__63015": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63015,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63015",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63015"
+  },
+  "vanilla_dqn__63016": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63016,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63016",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63016"
+  },
+  "vanilla_dqn__63017": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63017,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63017",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63017"
+  },
+  "vanilla_dqn__63018": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63018,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63018",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63018"
+  },
+  "vanilla_dqn__63019": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63019,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63019",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63019"
+  },
+  "vanilla_dqn__63020": {
+    "status": "complete",
+    "condition": "vanilla_dqn",
+    "seed": 63020,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/vanilla_dqn/seed_63020",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/vanilla_dqn/seed_63020"
+  },
+  "double_dqn__63001": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63001,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63001",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63001"
+  },
+  "double_dqn__63002": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63002,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63002",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63002"
+  },
+  "double_dqn__63003": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63003,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63003",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63003"
+  },
+  "double_dqn__63004": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63004,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63004",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63004"
+  },
+  "double_dqn__63005": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63005,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63005",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63005"
+  },
+  "double_dqn__63006": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63006,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63006",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63006"
+  },
+  "double_dqn__63007": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63007,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63007",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63007"
+  },
+  "double_dqn__63008": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63008,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63008",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63008"
+  },
+  "double_dqn__63009": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63009,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63009",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63009"
+  },
+  "double_dqn__63010": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63010,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63010",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63010"
+  },
+  "double_dqn__63011": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63011,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63011",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63011"
+  },
+  "double_dqn__63012": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63012,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63012",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63012"
+  },
+  "double_dqn__63013": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63013,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63013",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63013"
+  },
+  "double_dqn__63014": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63014,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63014",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63014"
+  },
+  "double_dqn__63015": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63015,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63015",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63015"
+  },
+  "double_dqn__63016": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63016,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63016",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63016"
+  },
+  "double_dqn__63017": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63017,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63017",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63017"
+  },
+  "double_dqn__63018": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63018,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63018",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63018"
+  },
+  "double_dqn__63019": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63019,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63019",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63019"
+  },
+  "double_dqn__63020": {
+    "status": "complete",
+    "condition": "double_dqn",
+    "seed": 63020,
+    "returncode": 0,
+    "output_dir": "experiments/pilots/stage7b_a1_double_dqn/output/runs/double_dqn/seed_63020",
+    "checkpoint_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/double_dqn/seed_63020"
+  }
+}

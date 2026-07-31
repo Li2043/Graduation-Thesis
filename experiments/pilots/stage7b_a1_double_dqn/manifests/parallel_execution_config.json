@@ -1,0 +1,18 @@
+{
+  "max_workers": 12,
+  "threads_per_worker": 1,
+  "checkpoint_write_slots": 12,
+  "effective_concurrency": 12,
+  "probe_wall_sec": 39.09643793106079,
+  "probe_peak_ram_used_pct": 20.539984960680368,
+  "probe_jobs": "2 vanilla + 2 double smoke seeds to 10K",
+  "decision_reason": "RAM peak ~20.5% would allow 16, but selected protocol default 12 workers for conservative disk/IO headroom. Frozen launcher acquires write-slot for entire job lifetime, so checkpoint_write_slots equals max_workers to realize selected concurrency.",
+  "protocol_default_workers": 12,
+  "protocol_default_slots": 2,
+  "slots_override_rationale": "Without raising slots to match workers, frozen semaphore would cap concurrency at 2.",
+  "vectorized_training": false,
+  "num_parallel_training_envs_per_run": 1,
+  "device": "cpu",
+  "frozen_at": "2026-07-31T09:46:00Z",
+  "omp_mkl_openblas_numexpr_veclib_torch_threads": 1
+}

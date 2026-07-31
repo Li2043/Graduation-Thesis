@@ -1,0 +1,18 @@
+{
+  "expected_episodes": 6400,
+  "actual_episodes": 6400,
+  "duplicate_keys": 0,
+  "isolation_violations": 0,
+  "eval_job_failures": [],
+  "n_inventory_rows": 1200,
+  "n_full_checkpoints": 400,
+  "n_weights": 400,
+  "late_collapses_vanilla": 2,
+  "late_collapses_double": 4,
+  "vanilla_dqn_300k_success": 0.6125,
+  "vanilla_dqn_300k_collision": 0.06875,
+  "vanilla_dqn_300k_truncation": 0.31875,
+  "double_dqn_300k_success": 0.75625,
+  "double_dqn_300k_collision": 0.08125,
+  "double_dqn_300k_truncation": 0.1625
+}

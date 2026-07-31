@@ -1,0 +1,10 @@
+{
+  "checkpoint_root": "C:\\thesis_checkpoints\\stage7b_a1_double_dqn",
+  "outside_git_repository": true,
+  "n_full_checkpoints": 399,
+  "n_weights": 399,
+  "n_metadata": 399,
+  "checkpoint_backup_redundancy": "not available",
+  "github_checkpoint_uploads": 0,
+  "generated_at": "2026-07-31T11:56:49.702505+00:00"
+}

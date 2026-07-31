@@ -1,0 +1,19 @@
+{
+  "condition": "double_dqn",
+  "seed_logic": 63001,
+  "interruption_step": 25000,
+  "comparison_step": 50000,
+  "work_dir": "C:/thesis_checkpoints/stage7b_a1_double_dqn/resume_equivalence",
+  "passed": true,
+  "parameter_mismatch": 0.0,
+  "network_parameter_max_abs_diff": 0.0,
+  "optimizer_mismatch": 0,
+  "replay_mismatch": 0,
+  "RNG_mismatch": 0,
+  "schedule_mismatch": 0,
+  "evaluation_mismatch": 0,
+  "env_steps_a": 50000,
+  "env_steps_b": 50000,
+  "checkpoint_sha256_interrupt": "dee84e0faf7f01d1e0b695fa71f085d923db8927d279da52e1f7aca732986f43",
+  "note": "Isolated under resume_equivalence/; formal seed_63001 must restart from 0"
+}
