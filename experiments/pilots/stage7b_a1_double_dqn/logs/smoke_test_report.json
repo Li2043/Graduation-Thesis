@@ -1,0 +1,15 @@
+{
+  "smoke": "PASS",
+  "seed": 63999,
+  "max_steps": 1000,
+  "results": {
+    "vanilla_dqn": {
+      "success": true,
+      "final_step": 1000
+    },
+    "double_dqn": {
+      "success": true,
+      "final_step": 1000
+    }
+  }
+}

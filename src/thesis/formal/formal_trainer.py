@@ -12,6 +12,7 @@ import numpy as np
 import torch
 
 from thesis.agents.action_masking import role_action_mask, validate_action_mask
+from thesis.agents.dqn_bootstrap import DQNTargetMode
 from thesis.agents.independent_dqn_v2 import DQNConfig, IndependentDQNLearner
 from thesis.agents.replay_buffer_v2 import ReplayTransition
 from thesis.envs.final_observation import OBSERVATION_DIM
@@ -67,6 +68,8 @@ class FormalTrainer:
         config: FormalConfig,
         checkpoint_dir: Path | None = None,
         protocol_hash: str = "",
+        target_mode: str | DQNTargetMode = DQNTargetMode.VANILLA,
+        algorithm_condition: str | None = None,
     ):
         config.validate()
         self.bundle = bundle
@@ -76,6 +79,13 @@ class FormalTrainer:
         self.config = config
         self.checkpoint_dir = Path(checkpoint_dir) if checkpoint_dir else None
         self.protocol_hash = protocol_hash
+        self.target_mode = DQNTargetMode(target_mode)
+        # Algorithm label for pilots (vanilla_dqn / double_dqn); reward condition stays separate
+        self.algorithm_condition = (
+            str(algorithm_condition)
+            if algorithm_condition is not None
+            else self.target_mode.value
+        )
 
         required = (
             "environment_seed",
@@ -107,6 +117,7 @@ class FormalTrainer:
                     batch_size=dqn.batch_size,
                     device=dqn.device,
                     reward_condition=self.condition,
+                    target_mode=self.target_mode,
                 ),
                 seed=self.seeds["learner_A_seed"],
                 replay_seed=self.seeds["replay_A_seed"],
@@ -123,6 +134,7 @@ class FormalTrainer:
                     batch_size=dqn.batch_size,
                     device=dqn.device,
                     reward_condition=self.condition,
+                    target_mode=self.target_mode,
                 ),
                 seed=self.seeds["learner_B_seed"],
                 replay_seed=self.seeds["replay_B_seed"],
@@ -438,6 +450,9 @@ class FormalTrainer:
             }
         return {
             "condition": self.condition,
+            "algorithm_condition": self.algorithm_condition,
+            "algorithm_mode": self.target_mode.value,
+            "target_mode": self.target_mode.value,
             "master_seed": self.master_seed,
             "seeds": dict(self.seeds),
             "replay_seeds_actual": {
@@ -470,8 +485,30 @@ class FormalTrainer:
     def import_checkpoint(self, payload: dict[str, Any]) -> None:
         if payload["condition"] != self.condition:
             raise FormalEngineeringError("condition mismatch on resume")
+        payload_mode = payload.get("algorithm_mode") or payload.get("target_mode")
+        if payload_mode is not None and str(payload_mode) != self.target_mode.value:
+            raise FormalEngineeringError(
+                f"algorithm mode mismatch on resume: "
+                f"checkpoint={payload_mode!r} trainer={self.target_mode.value!r}"
+            )
+        payload_algo = payload.get("algorithm_condition")
+        if payload_algo is not None and str(payload_algo) != self.algorithm_condition:
+            raise FormalEngineeringError(
+                f"algorithm condition mismatch on resume: "
+                f"checkpoint={payload_algo!r} trainer={self.algorithm_condition!r}"
+            )
         if int(payload["master_seed"]) != self.master_seed:
             raise FormalEngineeringError("master_seed mismatch on resume")
+        required_learner_keys = ("optimiser", "replay", "learner_rng", "online", "target")
+        for aid in ("A", "B"):
+            la = payload.get("learners", {}).get(aid, {})
+            for k in required_learner_keys:
+                if k not in la:
+                    raise FormalEngineeringError(
+                        f"checkpoint missing resumable field learners[{aid}].{k}"
+                    )
+        if "ic_schedule" not in payload or "global_rng" not in payload:
+            raise FormalEngineeringError("checkpoint missing schedule/RNG state")
         self.learners["A"].import_state(payload["learners"]["A"])
         self.learners["B"].import_state(payload["learners"]["B"])
         if int(self.learners["A"].replay.seed) != self.seeds["replay_A_seed"]:

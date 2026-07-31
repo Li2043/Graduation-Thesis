@@ -14,6 +14,17 @@ experiments/pilots/stage7a1_baseline_budget/release/
 **/*_full.pt
 **/weights_step_*.pt
 
+# Stage 7B large artifacts
+**/stage7b_a1_double_dqn/**/checkpoints/
+**/stage7b_a1_double_dqn/**/weights/
+**/stage7b_a1_double_dqn/**/trajectories/*.csv
+**/stage7b_a1_double_dqn/**/trajectories/*.parquet
+**/stage7b_a1_double_dqn/**/replay_dumps/
+**/stage7b_a1_double_dqn/**/temporary/
+*.pt
+*.pth
+*.ckpt
+
 # Full replay / intermediate checkpoint payloads
 **/ckpt_step_*.pt
 **/*_emergency.pt

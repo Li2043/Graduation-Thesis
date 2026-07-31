@@ -21,6 +21,7 @@ from thesis.agents.action_masking import (
     role_action_mask,
     validate_action_mask,
 )
+from thesis.agents.dqn_bootstrap import DQNTargetMode, compute_bootstrap_values
 from thesis.agents.dqn_targets import TargetBreakdown, compute_dqn_target
 from thesis.agents.replay_buffer_v2 import ReplayBuffer, ReplayBatch, ReplayTransition
 
@@ -29,7 +30,7 @@ RewardCondition = Literal["baseline", "mean_pbrs", "min_pbrs"]
 
 @dataclass
 class DQNConfig:
-    """TEST-ONLY Independent DQN configuration for Stage 2B-2."""
+    """Independent DQN configuration (Stage 2B-2 defaults; Stage 6 overrides)."""
 
     obs_dim: int = 4
     n_actions: int = 3
@@ -41,6 +42,7 @@ class DQNConfig:
     batch_size: int = 32
     device: str = "cpu"
     reward_condition: RewardCondition = "baseline"
+    target_mode: DQNTargetMode | str = DQNTargetMode.VANILLA
 
     def validate(self) -> None:
         if self.obs_dim <= 0:
@@ -53,6 +55,7 @@ class DQNConfig:
             raise ValueError("learning_rate must be > 0")
         if self.reward_condition not in {"baseline", "mean_pbrs", "min_pbrs"}:
             raise ValueError(f"unknown reward_condition {self.reward_condition!r}")
+        self.target_mode = DQNTargetMode(self.target_mode)
 
 
 class QNetwork(nn.Module):
@@ -218,7 +221,8 @@ class IndependentDQNLearner:
         """One deterministic optimiser step on a batch (or sample from replay).
 
         Vanilla DQN: target network supplies masked max Q for bootstrap rows only.
-        Controller-terminal rows set target = reward and never forward the target net.
+        Double DQN: online network selects action; target network evaluates it.
+        Controller-terminal rows set target = reward and never forward successor nets.
         """
         if batch is None:
             batch = self.replay.sample(self.config.batch_size)
@@ -228,6 +232,7 @@ class IndependentDQNLearner:
         n = len(batch.actions)
         targets_arr = np.asarray(batch.shaped_rewards, dtype=np.float64).copy()
         target_forward_calls = 0
+        mode = DQNTargetMode(self.config.target_mode)
 
         with torch.no_grad():
             boot_idx = [int(i) for i in batch.bootstrap_indices.tolist()]
@@ -242,23 +247,32 @@ class IndependentDQNLearner:
                             f"bootstrap row {i} missing next_observation/next_action_mask"
                         )
                     next_obs_list.append(nobs)
-                    next_masks.append(nmask)
+                    next_masks.append(np.asarray(nmask, dtype=bool))
                 next_obs_t = torch.as_tensor(
                     np.stack(next_obs_list), dtype=torch.float32, device=self.device
                 )
-                next_q = self.target(next_obs_t).cpu().numpy()
+                next_mask_t = torch.as_tensor(
+                    np.stack(next_masks), dtype=torch.bool, device=self.device
+                )
+                next_values = compute_bootstrap_values(
+                    online_network=self.online,
+                    target_network=self.target,
+                    next_observations=next_obs_t,
+                    next_action_masks=next_mask_t,
+                    mode=mode,
+                )
                 target_forward_calls = 1
+                gamma = float(self.config.gamma)
                 for j, i in enumerate(boot_idx):
-                    bd = compute_dqn_target(
-                        float(batch.shaped_rewards[i]),
-                        controller_terminal=False,
-                        truncated=bool(batch.truncated[i]),
-                        gamma=self.config.gamma,
-                        next_q_values=next_q[j],
-                        next_action_mask=next_masks[j],
-                        terminated=bool(batch.terminated[i]),
-                    )
-                    targets_arr[i] = bd.target
+                    # Truncation / non-terminal bootstrap; true terminals excluded
+                    if bool(batch.controller_terminal[i]):
+                        raise ValueError(
+                            f"bootstrap index {i} marked controller_terminal"
+                        )
+                    nv = float(next_values[j].item())
+                    if not math.isfinite(nv):
+                        raise ValueError(f"non-finite bootstrap value at row {i}: {nv}")
+                    targets_arr[i] = float(batch.shaped_rewards[i]) + gamma * nv
             # Terminal rows already hold reward in targets_arr
             for i in range(n):
                 if bool(batch.controller_terminal[i]):
@@ -316,6 +330,7 @@ class IndependentDQNLearner:
             "target_network_forward_calls": int(target_forward_calls),
             "n_bootstrap_rows": int(len(boot_idx)),
             "n_terminal_rows": int(n - len(boot_idx)),
+            "target_mode": DQNTargetMode(self.config.target_mode).value,
         }
 
     def parameter_vector(self, *, network: str = "online") -> np.ndarray:
@@ -338,7 +353,9 @@ class IndependentDQNLearner:
                 "batch_size": self.config.batch_size,
                 "device": self.config.device,
                 "reward_condition": self.config.reward_condition,
+                "target_mode": DQNTargetMode(self.config.target_mode).value,
             },
+            "algorithm_mode": DQNTargetMode(self.config.target_mode).value,
             "online": {k: v.detach().cpu() for k, v in self.online.state_dict().items()},
             "target": {k: v.detach().cpu() for k, v in self.target.state_dict().items()},
             "optimiser": self.optimiser.state_dict(),
@@ -350,6 +367,15 @@ class IndependentDQNLearner:
     def import_state(self, payload: dict[str, Any]) -> None:
         if payload.get("controller_id") != self.controller_id:
             raise ValueError("controller_id mismatch in learner checkpoint")
+        expected_mode = DQNTargetMode(self.config.target_mode).value
+        payload_mode = payload.get("algorithm_mode") or payload.get("config", {}).get(
+            "target_mode"
+        )
+        if payload_mode is not None and str(payload_mode) != expected_mode:
+            raise ValueError(
+                f"algorithm mode mismatch: checkpoint={payload_mode!r} "
+                f"learner={expected_mode!r}"
+            )
         self.online.load_state_dict(payload["online"])
         self.target.load_state_dict(payload["target"])
         self.optimiser.load_state_dict(payload["optimiser"])
