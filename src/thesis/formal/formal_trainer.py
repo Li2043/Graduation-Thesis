@@ -70,6 +70,7 @@ class FormalTrainer:
         protocol_hash: str = "",
         target_mode: str | DQNTargetMode = DQNTargetMode.VANILLA,
         algorithm_condition: str | None = None,
+        active_time_cost_per_step: float = 0.0,
     ):
         config.validate()
         self.bundle = bundle
@@ -86,6 +87,9 @@ class FormalTrainer:
             if algorithm_condition is not None
             else self.target_mode.value
         )
+        self.active_time_cost_per_step = float(active_time_cost_per_step)
+        if self.active_time_cost_per_step < 0.0:
+            raise FormalEngineeringError("active_time_cost_per_step must be >= 0")
 
         required = (
             "environment_seed",
@@ -183,7 +187,10 @@ class FormalTrainer:
         self._current_block_id = block_id
         self._current_assignment = assignment
         self._env = build_env_for_block(
-            self.bundle, block, max_policy_steps=self.config.duration.max_policy_steps
+            self.bundle,
+            block,
+            max_policy_steps=self.config.duration.max_policy_steps,
+            active_time_cost_per_step=self.active_time_cost_per_step,
         )
         if type(self._env).__name__ != ENVIRONMENT_CLASS:
             raise FormalEngineeringError("must use MergeEnvCandidateV3")
@@ -315,6 +322,7 @@ class FormalTrainer:
                 + float(comp["exit_component"])
                 + float(comp["collision_component"])
                 + float(comp["hard_braking_component"])
+                + float(comp.get("active_time_component", 0.0))
             )
             decomp_err = abs(recon - base)
             self.diag.max_decomp_error = max(self.diag.max_decomp_error, decomp_err)
@@ -530,7 +538,10 @@ class FormalTrainer:
                 self._current_block_id, self._current_assignment
             )
             self._env = build_env_for_block(
-                self.bundle, block, max_policy_steps=self.config.duration.max_policy_steps
+                self.bundle,
+                block,
+                max_policy_steps=self.config.duration.max_policy_steps,
+                active_time_cost_per_step=self.active_time_cost_per_step,
             )
             self._env.reset(seed=int(block.seed))
             restore_vehicles(self._env, env_state)

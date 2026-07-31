@@ -103,14 +103,23 @@ def build_env_for_block(
     block: InitialConditionBlock,
     *,
     max_policy_steps: int = 400,
+    active_time_cost_per_step: float = 0.0,
 ) -> MergeEnvCandidateV3:
+    from dataclasses import replace
+
+    comfort = bundle.comfort.to_base_reward_config()
+    if float(active_time_cost_per_step) != 0.0:
+        comfort = replace(
+            comfort, active_time_cost_per_step=float(active_time_cost_per_step)
+        )
+        comfort.validate()
     cfg = MergeEnvCandidateV3Config(
         candidate=bundle.environment.candidate,
         block=block,
         timing=bundle.timing_from_lock(),
         vehicle=bundle.vehicle_from_lock(),
         dynamics=bundle.dynamics_from_lock(),
-        comfort=bundle.comfort.to_base_reward_config(),
+        comfort=comfort,
         max_policy_steps=int(max_policy_steps),
     )
     return MergeEnvCandidateV3(cfg)

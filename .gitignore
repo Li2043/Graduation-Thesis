@@ -21,6 +21,15 @@ experiments/pilots/stage7a1_baseline_budget/release/
 **/stage7b_a1_double_dqn/**/trajectories/*.parquet
 **/stage7b_a1_double_dqn/**/replay_dumps/
 **/stage7b_a1_double_dqn/**/temporary/
+
+# Stage 7C-Q1 large / temporary artifacts
+**/stage7c_q1_baseline_competence/**/checkpoints/
+**/stage7c_q1_baseline_competence/**/weights/
+**/stage7c_q1_baseline_competence/**/trajectories/*.csv
+**/stage7c_q1_baseline_competence/**/trajectories/*.parquet
+**/stage7c_q1_baseline_competence/**/replay_dumps/
+**/stage7c_q1_baseline_competence/**/temporary/
+**/stage7c_q1_baseline_competence/output/runs/
 *.pt
 *.pth
 *.ckpt

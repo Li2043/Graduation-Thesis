@@ -453,6 +453,12 @@ class MergeEnvCandidateV3(gym.Env):
             hard_c = 0.0
             h_cost = 0.0
             a_policy = 0.0
+            # I_active(s_t): still on-road / controlled at transition start.
+            active_indicator = 1.0 if bool(snap_t[aid].active_on_road) else 0.0
+            active_time_cost = (
+                float(comfort.active_time_cost_per_step) if comfort is not None else 0.0
+            )
+            active_time_c = float(-active_time_cost * active_indicator)
             if comfort is not None and bool(snap_t[aid].active_on_road):
                 sub_accels = [
                     float(rec["vehicles"][aid]["realised_acceleration"])
@@ -463,17 +469,25 @@ class MergeEnvCandidateV3(gym.Env):
                     a_policy, comfort.a_comfort, comfort.a_hard
                 )
                 hard_c = float(-comfort.eta_hard_brake * h_cost)
-            total = core + hard_c
+            total = core + hard_c + active_time_c
             rewards[aid] = float(total)
             components[aid] = {
                 "progress_component": float(progress),
                 "exit_component": float(exit_c),
                 "collision_component": float(coll_c),
                 "hard_braking_component": float(hard_c),
+                "active_time_component": float(active_time_c),
+                "active_indicator": float(active_indicator),
                 "hard_braking_cost": float(h_cost),
                 "policy_level_acceleration": float(a_policy),
                 "core_reward": float(core),
                 "total_base_reward": float(total),
+                "reward_progress": float(progress),
+                "reward_exit": float(exit_c),
+                "reward_collision": float(coll_c),
+                "reward_hard_braking": float(hard_c),
+                "reward_active_time": float(active_time_c),
+                "reward_total": float(total),
                 "rho_t": float(rho_t),
                 "rho_t1": float(rho_t1),
                 "delta_rho": float(rho_t1 - rho_t),

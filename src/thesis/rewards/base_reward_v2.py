@@ -8,6 +8,15 @@ It implements the frozen Stage-1 formula for learning controllers A and B:
         + 0.6 * safe_exit_event[i,t+1]
         - 1.0 * stakeholder_collision_event[t+1]
         - eta_hard_brake * hard_braking_cost[i,t+1]
+        - active_time_cost_per_step * I_active(s_t)
+
+When ``active_time_cost_per_step == 0`` (default), this matches the historical
+Stage-1..Stage-7B base reward (protocol alias: Base Reward V1).
+When ``active_time_cost_per_step == 0.0005``, this is Stage 7C-Q1 Base Reward V2.
+
+``I_active(s_t) = 1`` iff the learner is still on-road / controlled at the
+*start* of the transition (``already_exited`` is False). Safe-exit and
+collision transitions that begin active therefore charge one final time cost.
 
 Route progress uses distance along the assigned route, not raw world-x.
 Negative progress is preserved (not clipped to zero).
@@ -56,12 +65,17 @@ class BaseRewardConfig:
     a_comfort: float = 2.0  # TEST-ONLY placeholder (m/s^2, magnitude)
     a_hard: float = 6.0  # TEST-ONLY placeholder (m/s^2, magnitude)
     discontinuity_report_threshold: float = DISCONTINUITY_REPORT_THRESHOLD
+    # Stage 7C-Q1: 0.0005 per active policy step (= 0.0025 / s × 0.20 s). Default 0 keeps V1.
+    active_time_cost_per_step: float = 0.0
 
     def validate(self) -> None:
         _require_finite("progress_weight", self.progress_weight)
         _require_finite("exit_weight", self.exit_weight)
         _require_finite("collision_penalty", self.collision_penalty)
         _require_finite("eta_hard_brake", self.eta_hard_brake)
+        atc = _require_finite("active_time_cost_per_step", self.active_time_cost_per_step)
+        if atc < 0.0:
+            raise ValueError(f"active_time_cost_per_step must be >= 0, got {atc}")
         a_c = _require_finite("a_comfort", self.a_comfort)
         a_h = _require_finite("a_hard", self.a_hard)
         if not (a_c > 0.0):
@@ -113,7 +127,20 @@ class BaseRewardBreakdown:
     hard_braking_cost: float
     rho_t: float
     rho_t1: float
+    active_time_component: float = 0.0
+    active_indicator: float = 0.0
     warnings: list[str] = field(default_factory=list)
+
+    def as_log_components(self) -> dict[str, float]:
+        """Protocol logging names for Stage 7C-Q1."""
+        return {
+            "reward_progress": float(self.progress_component),
+            "reward_exit": float(self.exit_component),
+            "reward_collision": float(self.collision_component),
+            "reward_hard_braking": float(self.hard_braking_component),
+            "reward_active_time": float(self.active_time_component),
+            "reward_total": float(self.total_reward),
+        }
 
 
 def to_si_longitudinal_acceleration(
@@ -294,11 +321,15 @@ def compute_base_reward_for_agents(
         exit_component = float(cfg.exit_weight * exit_ev)
         collision_component = float(-cfg.collision_penalty * collision_event)
         hard_braking_component = float(-cfg.eta_hard_brake * h_cost)
+        # I_active(s_t): charged when learner has not already safely exited before this transition.
+        active_indicator = 0.0 if bool(st.already_exited) else 1.0
+        active_time_component = float(-cfg.active_time_cost_per_step * active_indicator)
         total = (
             progress_component
             + exit_component
             + collision_component
             + hard_braking_component
+            + active_time_component
         )
         if not math.isfinite(total):
             raise ValueError(f"non-finite total_reward for agent {aid}: {total}")
@@ -315,6 +346,8 @@ def compute_base_reward_for_agents(
             hard_braking_cost=h_cost,
             rho_t=rho_t,
             rho_t1=rho_t1,
+            active_time_component=active_time_component,
+            active_indicator=active_indicator,
             warnings=warnings,
         )
     return results

@@ -1,0 +1,11 @@
+{
+  "smoke": "PASS",
+  "seed": 64999,
+  "max_steps": 2000,
+  "scripted_audit_passed": true,
+  "training_success": true,
+  "role_swap_eval_episodes": 2,
+  "reward_components_present": true,
+  "output_root_separated": true,
+  "note": "Temporary smoke outputs are not formal results; checkpoints remain outside git."
+}

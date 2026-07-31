@@ -1,0 +1,128 @@
+stage: stage7c_q1
+purpose: baseline_competence_qualification
+protocol_tag: stage7c-q1-protocol-v1
+analysis_status: qualification_pilot
+experiment_version: "Experiment Version 2 qualification"
+
+description: >
+  Single-condition Baseline competence qualification pilot using Double DQN
+  and Base Reward V2 (active-time cost). Not a V1-vs-V2 ablation and not a
+  Mean-PBRS / Min-PBRS experiment. Stage 7B outcomes are historical motivation only.
+
+algorithm: double_dqn
+condition: baseline
+base_reward_version: v2_active_time
+active_time_cost_per_step: 0.0005
+active_time_cost_per_second: 0.0025
+policy_interval_seconds: 0.20
+
+reward_shaping_enabled: false
+shaping_coefficient: 0.0
+lambda: 0.0
+allow_mean_pbrs: false
+allow_min_pbrs: false
+allow_vanilla_dqn: false
+
+master_seeds:
+  start: 64001
+  end: 64020
+  count: 20
+  list: [64001, 64002, 64003, 64004, 64005, 64006, 64007, 64008, 64009, 64010,
+         64011, 64012, 64013, 64014, 64015, 64016, 64017, 64018, 64019, 64020]
+
+forbidden_seed_blocks:
+  formal_stage6: [61001, 61002, 61003, 61004, 61005, 61006, 61007, 61008, 61009, 61010]
+  stage7a1_baseline_budget: [62001, 62002, 62003, 62004, 62005, 62006, 62007, 62008, 62009, 62010,
+                              62011, 62012, 62013, 62014, 62015, 62016, 62017, 62018, 62019, 62020]
+  stage7b_a1_double_dqn: [63001, 63002, 63003, 63004, 63005, 63006, 63007, 63008, 63009, 63010,
+                           63011, 63012, 63013, 63014, 63015, 63016, 63017, 63018, 63019, 63020]
+
+max_joint_environment_steps: 400000
+timestep_definition: one_joint_environment_transition
+
+checkpoints:
+  - 0
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+  - 125000
+  - 150000
+  - 175000
+  - 200000
+  - 225000
+  - 250000
+  - 275000
+  - 300000
+  - 325000
+  - 350000
+  - 375000
+  - 400000
+
+gate_checkpoints: [350000, 375000, 400000]
+learning_curve_checkpoints: [200000, 225000, 250000, 275000, 300000, 325000, 350000, 375000, 400000]
+
+evaluation:
+  policy: greedy
+  epsilon: 0.0
+  seed_algorithm: sha256_stable
+  early_checkpoints_max: 175000
+  early_scenario_blocks: 8
+  late_checkpoints_min: 200000
+  late_scenario_blocks: 32
+  assignments_per_block: 2
+  early_episodes_per_seed_checkpoint: 16
+  late_episodes_per_seed_checkpoint: 64
+  standard_subset_blocks: [0, 1, 2, 3, 4, 5, 6, 7]
+
+# Unchanged vs Stage 6 / Stage 7B training hypers (except reward and budget)
+epsilon_start: 1.0
+epsilon_end: 0.10
+epsilon_decay_environment_steps: 50000
+epsilon_after_decay: 0.10
+evaluation_epsilon: 0.0
+gamma: 0.995
+learning_rate: 0.0005
+batch_size: 64
+replay_capacity_per_controller: 20000
+replay_warmup_per_controller: 512
+target_sync_interval_updates: 250
+hidden_sizes: [64, 64]
+observation_dimension: 27
+action_count: 3
+max_policy_steps: 400
+num_parallel_training_envs_per_run: 1
+vectorized_training: false
+device: cpu
+early_stopping: false
+best_checkpoint_selection: false
+
+algorithm_difference: >
+  Double DQN only. Online network selects a* = argmax Q_online(s', a);
+  target network evaluates y = r + gamma Q_target(s', a*). Vanilla DQN forbidden.
+
+locks:
+  reuse_stage6_environment_lock: true
+  reuse_stage6_comfort_lock: true
+  reuse_stage6_training_blocks: true
+  reuse_stage6_validation_blocks: true
+
+checkpoint_policy:
+  store_in_git: false
+  require_external_checkpoint_root: true
+  full_resumable_required: true
+  github_transfers: [code, csv, json, manifests, reports, figures]
+
+competence_gate:
+  status: frozen_qualification_gate
+  mean_success_minimum: 0.95
+  collision_maximum: 0.02
+  truncation_maximum: 0.03
+  strict_swap_eligibility_minimum: 0.75
+  seed_success_minimum: 0.953125
+  min_qualified_seeds_intersection: 16
+  adjacent_success_drop_maximum: 0.03
+  material_regression_drop: 0.20
+  max_material_regression_seeds: 1
+  max_late_collapse_seeds: 1
+  outcomes: [PASS, FAIL, INVALID]
