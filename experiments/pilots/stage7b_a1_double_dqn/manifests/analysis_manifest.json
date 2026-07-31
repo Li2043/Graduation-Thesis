@@ -1,0 +1,32 @@
+{
+  "stage": "Stage 7B-A1 Phase 3",
+  "results_commit": "b47d6fd4c7c8c6832fdc9ae25a4daa5d27ce59b7",
+  "frozen_tag": "stage7b-a1-protocol-v1",
+  "frozen_protocol_commit": "3a190d6763120e7f4b60a1f9e2412c0c3c31954c",
+  "analysis_status": "OK",
+  "decision_code": "B",
+  "output_hashes": {
+    "manifests/local_result_validation.json": "6a29da4c9976bc16f6c49c3bef27e0b9f3492eb70dcdbd9d7533bfc03dc74c6e",
+    "output/analysis/stage7b_a1_seed_checkpoint_endpoints.csv": "d80fd924d2076c50547ff577f1e6fbdef2264073c302a09fad6192956f1d7145",
+    "output/analysis/stage7b_a1_descriptives.csv": "4307bc24a7730d9bcbb6f3709c039d9f157b50e1f2e4304fecbde864c281c902",
+    "output/analysis/stage7b_a1_paired_contrasts.csv": "abcc9e83e29cb7a8901867933643816eb1ce323a29f242ff8051d9365fd40913",
+    "output/analysis/stage7b_a1_late_collapse_by_seed.csv": "82203e834a0b4f8d5760ee3a667f98c0f055e7e5c1c0bd0dd45f7bd9a7bf5b9c",
+    "output/analysis/stage7b_a1_competence_gate.csv": "e9fa707197dcde513c9b70c47dcc5a22688d3d478246b176ddeaa10960538c29",
+    "output/analysis/stage7b_a1_q_td_interpretation.json": "8d283a594ab8a0cdbd89a02c14f6dc003d5896b6f19b74473896bb3bc5671d52",
+    "reports/stage7b_a1_final_summary.json": "1ac73474326c45248eeaa8ba5fb6a4c32c2090c536a3e72ab0c71d9538e4dc82",
+    "reports/stage7b_a1_final_analysis.md": "465035d9b022860e15938d28a7461011958c3568ea3a13abd49ba67840242563",
+    "reports/stage7b_a1_recommendation.md": "58e59783c9d1e17dcfc9bab2d989d3857a8f93c4be2585d72fedacc723fd26e2",
+    "reports/PAPER_CHANGES_REQUIRED_LATER.md": "4830b46594ca78478e9291a500fb178cbf62704e3c7da918951f7b022ee8b9c4",
+    "output/figures/fig_success_by_algorithm_checkpoint.png": "13baa36da73ba110a67f9127dffa523b6430f07f9d9d6ae78ebc6f386eca0103",
+    "output/figures/fig_success_paired_300k.png": "4f10524d75233102ca3318eb337c51a9d362f38b4df6a05f50ea1bac3ae3558d",
+    "output/figures/fig_truncation_by_algorithm_checkpoint.png": "105432a01336b748d928f842202aa1b5cca1918fc5e2dc858aa46d318bb7e12d",
+    "output/figures/fig_collision_by_algorithm_checkpoint.png": "b8bf460d9abae9090857d4ed66cada86aeeebff9fd7e186cf6ca9cc5525f89db",
+    "output/figures/fig_unilateral_stall_comparison.png": "ae4fdf94aac67e60c9b041eb5044945f332db71583d42e2ba71caaa101bad746",
+    "output/figures/fig_q_margin_comparison.png": "3bf3574c4d3b12fb555aa82045520335538c6f18d166cd7b15f196ea38407647",
+    "output/figures/fig_seed_trajectory_vanilla.png": "7605e21105e80e51dca0090bca7487605c20799a7e6f65650b8e4c2ca96848c1",
+    "output/figures/fig_seed_trajectory_double.png": "87e0c0e616f0c279228eb71913776269597e3d109d23997f03f5a288b4fd0251",
+    "output/figures/fig_late_collapse_comparison.png": "3165784b8c18f3fa4a8919d3076887e0de883dbb00d3ee132bf6ac1fbdba5128",
+    "output/figures/fig_seed_success_distribution_300k.png": "55f8e75aa8fbd31aa76b58b9a48f5b921631492b42c022d7f673a901a927465c",
+    "output/figures/fig_competence_gate_components.png": "c715b86c3d132ea53580e90b0ee8fb6175e616e4d763901d4b8f01484fd16f92"
+  }
+}

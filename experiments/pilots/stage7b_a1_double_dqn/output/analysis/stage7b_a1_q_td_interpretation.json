@@ -1,0 +1,33 @@
+{
+  "q_margin_300k_vanilla": 0.0150117388447502,
+  "q_margin_300k_double": 0.0235471888512213,
+  "abs_q_300k_vanilla": 0.8535791251350513,
+  "abs_q_300k_double": 0.7034234594376991,
+  "td_p95_300k_vanilla": 0.04204533714801066,
+  "td_p95_300k_double": 0.04351670630276197,
+  "replay_terminal_frac_vanilla": 0.009168836805555556,
+  "replay_terminal_frac_double": 0.014529079861111112,
+  "vanilla_collapse_seeds": [
+    63001,
+    63020
+  ],
+  "double_collapse_seeds": [
+    63007,
+    63009,
+    63010,
+    63017
+  ],
+  "seeds_ge_075_v": 10,
+  "seeds_lt_050_v": 6,
+  "seeds_ge_075_d": 13,
+  "seeds_lt_050_d": 3,
+  "judgments": {
+    "Vanilla_overestimation_unstable_bootstrap": "NOT IDENTIFIABLE",
+    "Double_reduces_late_collapse": "NOT SUPPORTED",
+    "Double_improves_action_separation": "PARTIALLY SUPPORTED",
+    "Double_merely_increases_aggressiveness": "PARTIALLY SUPPORTED",
+    "Double_converts_truncation_into_collision": "PARTIALLY SUPPORTED",
+    "seed_bifurcation_remains": "SUPPORTED",
+    "reward_related_stall_remains": "SUPPORTED"
+  }
+}

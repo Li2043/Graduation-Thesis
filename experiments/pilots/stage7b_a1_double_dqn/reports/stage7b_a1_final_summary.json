@@ -1,0 +1,91 @@
+{
+  "stage": "Stage 7B-A1 Phase 3",
+  "status": "PASS",
+  "results_commit": "b47d6fd4c7c8c6832fdc9ae25a4daa5d27ce59b7",
+  "frozen_protocol_commit": "3a190d6763120e7f4b60a1f9e2412c0c3c31954c",
+  "frozen_tag": "stage7b-a1-protocol-v1",
+  "integrity": {
+    "runs": 40,
+    "seeds": 20,
+    "evaluation_episodes": 6400,
+    "duplicate_keys": 0,
+    "missing_pairs": 0,
+    "checkpoint_inventory_sha256_complete": true,
+    "checkpoints_downloaded_locally": false,
+    "thesis_files_changed": 0
+  },
+  "outcomes_300k": {
+    "vanilla_success": 0.6125,
+    "double_success": 0.75625,
+    "success_paired_diff": 0.14375,
+    "success_ci": [
+      -0.065625,
+      0.3375
+    ],
+    "success_holm_p": 0.6104827028071959,
+    "success_cohen_dz": 0.30225174452701453,
+    "vanilla_truncation": 0.31875,
+    "double_truncation": 0.1625,
+    "truncation_paired_diff": -0.15625,
+    "vanilla_collision": 0.06875,
+    "double_collision": 0.08125,
+    "collision_paired_diff": 0.0125
+  },
+  "stability": {
+    "vanilla_late_collapses": 2,
+    "double_late_collapses": 4,
+    "seed_bifurcation_reduced": true,
+    "unilateral_stall_reduced": true,
+    "seeds_ge_075_vanilla": 10,
+    "seeds_ge_075_double": 13,
+    "seeds_lt_050_vanilla": 6,
+    "seeds_lt_050_double": 3
+  },
+  "competence_gate": {
+    "vanilla_passed": false,
+    "double_passed": false,
+    "consecutive_checkpoint_confirmation": false,
+    "stable_sufficient_budget": ""
+  },
+  "scientific_conclusion": {
+    "decision_code": "B",
+    "decision_text": "algorithm stabilisation was beneficial but insufficient",
+    "double_dqn_support": {
+      "Vanilla_overestimation_unstable_bootstrap": "NOT IDENTIFIABLE",
+      "Double_reduces_late_collapse": "NOT SUPPORTED",
+      "Double_improves_action_separation": "PARTIALLY SUPPORTED",
+      "Double_merely_increases_aggressiveness": "PARTIALLY SUPPORTED",
+      "Double_converts_truncation_into_collision": "PARTIALLY SUPPORTED",
+      "seed_bifurcation_remains": "SUPPORTED",
+      "reward_related_stall_remains": "SUPPORTED"
+    },
+    "safety_tradeoff": "competence improvement accompanied by safety degradation"
+  },
+  "recommendation": {
+    "use_double_dqn_for_next_pilot": true,
+    "modify_reward_next": true,
+    "extend_budget": false,
+    "required_new_seeds": true
+  },
+  "outputs": {
+    "seed_endpoints": "output/analysis/stage7b_a1_seed_checkpoint_endpoints.csv",
+    "descriptives": "output/analysis/stage7b_a1_descriptives.csv",
+    "paired_contrasts": "output/analysis/stage7b_a1_paired_contrasts.csv",
+    "late_collapse": "output/analysis/stage7b_a1_late_collapse_by_seed.csv",
+    "competence_gate": "output/analysis/stage7b_a1_competence_gate.csv",
+    "local_validation": "manifests/local_result_validation.json"
+  },
+  "figures": [
+    "output/figures/fig_success_by_algorithm_checkpoint.png",
+    "output/figures/fig_success_paired_300k.png",
+    "output/figures/fig_truncation_by_algorithm_checkpoint.png",
+    "output/figures/fig_collision_by_algorithm_checkpoint.png",
+    "output/figures/fig_unilateral_stall_comparison.png",
+    "output/figures/fig_q_margin_comparison.png",
+    "output/figures/fig_seed_trajectory_vanilla.png",
+    "output/figures/fig_seed_trajectory_double.png",
+    "output/figures/fig_late_collapse_comparison.png",
+    "output/figures/fig_seed_success_distribution_300k.png",
+    "output/figures/fig_competence_gate_components.png"
+  ]
+}
