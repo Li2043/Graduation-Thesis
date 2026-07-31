@@ -1,0 +1,13 @@
+﻿{
+  "protocol_tag": "stage7c-q1-protocol-v1",
+  "protocol_commit_sha": "c8c75207c06c6a0511cac5fb24b644a61def8d14",
+  "tag_sha": "2b10297094984564e3936af124393994b21ffe01",
+  "config_sha256": "df64cc71c3c221e22b1abdb714ff6a45850ae32162e1b8ac8672cf23dc20e248",
+  "protocol_document_sha256": "df5fbd476726046758ca9eb1b0c93af730a90f264132cac83127b26a8cc54d6c",
+  "python_version": "3.14.6",
+  "pytorch_version": "2.13.0+cpu",
+  "environment_package_versions": "gymnasium==1.2.0; numpy==2.3.2; pandas==2.3.3; pytest==8.4.1; PyYAML==6.0.2; torch==2.13.0+cpu",
+  "test_summary": "505 passed, 15 skipped, 1 failed (pre-existing test_stage4a0r_physics_pipeline::test_stopping_and_route_errors_bounded AttributeError ramp_straight_length; unrelated to Stage 7C-Q1)",
+  "smoke_test_summary": "PASS: seed=64999, max_steps=2000, checkpoint0 saved/restored, role-swap eval 2 episodes, reward components present, external ckpt root",
+  "scripted_audit_summary": "PASS: safe>stall/collision; order gap=0; post-exit no time cost; coefficient frozen at 0.0005"
+}
