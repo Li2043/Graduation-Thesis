@@ -1,0 +1,12 @@
+﻿{
+    "protocol_default_workers":  8,
+    "slots_override_rationale":  "Frozen launcher holds write-slot semaphore for entire job lifetime; slots raised to match workers so concurrency equals 8.",
+    "checkpoint_write_slots":  8,
+    "effective_concurrency":  8,
+    "frozen_at":  "2026-08-01T05:33:05.2561904Z",
+    "max_workers":  8,
+    "omp_mkl_openblas_numexpr_torch_threads":  1,
+    "device":  "cpu",
+    "threads_per_worker":  1,
+    "protocol_default_slots":  2
+}

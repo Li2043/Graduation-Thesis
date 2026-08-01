@@ -1,0 +1,69 @@
+{
+  "planned": 20,
+  "failed": [],
+  "elapsed_sec": 9205.853266000748,
+  "status": {
+    "64005": {
+      "returncode": 0
+    },
+    "64001": {
+      "returncode": 0
+    },
+    "64006": {
+      "returncode": 0
+    },
+    "64003": {
+      "returncode": 0
+    },
+    "64007": {
+      "returncode": 0
+    },
+    "64004": {
+      "returncode": 0
+    },
+    "64002": {
+      "returncode": 0
+    },
+    "64008": {
+      "returncode": 0
+    },
+    "64010": {
+      "returncode": 0
+    },
+    "64012": {
+      "returncode": 0
+    },
+    "64013": {
+      "returncode": 0
+    },
+    "64011": {
+      "returncode": 0
+    },
+    "64009": {
+      "returncode": 0
+    },
+    "64015": {
+      "returncode": 0
+    },
+    "64014": {
+      "returncode": 0
+    },
+    "64016": {
+      "returncode": 0
+    },
+    "64018": {
+      "returncode": 0
+    },
+    "64017": {
+      "returncode": 0
+    },
+    "64019": {
+      "returncode": 0
+    },
+    "64020": {
+      "returncode": 0
+    }
+  },
+  "output_root": "C:\\Users\\SamChui\\graduation_thesis_runs\\stage7c_q1_v1",
+  "checkpoint_root": "C:\\Users\\SamChui\\graduation_thesis_runs\\stage7c_q1_v1_checkpoints"
+}

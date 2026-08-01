@@ -1,0 +1,11 @@
+{
+  "protocol_tag": "stage7c-q1-protocol-v1",
+  "code_commit": "c8c75207c06c6a0511cac5fb24b644a61def8d14",
+  "protocol_sha256": "df64cc71c3c221e22b1abdb714ff6a45850ae32162e1b8ac8672cf23dc20e248",
+  "algorithm": "double_dqn",
+  "condition": "baseline",
+  "base_reward_version": "v2_active_time",
+  "active_time_cost_per_step": 0.0005,
+  "max_steps": 400000,
+  "generated_at": "2026-08-01T08:14:18.671434+00:00"
+}

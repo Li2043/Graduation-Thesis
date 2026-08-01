@@ -1,0 +1,15 @@
+{
+  "expected_seed_checkpoints": 340,
+  "actual_full_checkpoints": 340,
+  "expected_episodes": 14080,
+  "actual_episodes": 14080,
+  "duplicate_episode_keys": 0,
+  "conflict_rows": 0,
+  "cross_seed_eval_overlap_ok": true,
+  "cross_seed_eval_overlap_error": "",
+  "incomplete_seeds": [],
+  "eval_job_failures": [],
+  "protocol_tag": "stage7c-q1-protocol-v1",
+  "code_commit": "c8c75207c06c6a0511cac5fb24b644a61def8d14",
+  "status": "COMPLETE"
+}

@@ -1,0 +1,13 @@
+{
+  "stage": "stage7c_q1",
+  "protocol_tag": "stage7c-q1-protocol-v1",
+  "code_commit": "c8c75207c06c6a0511cac5fb24b644a61def8d14",
+  "output_root": "C:\\Users\\SamChui\\graduation_thesis_runs\\stage7c_q1_v1",
+  "checkpoint_root": "C:\\Users\\SamChui\\graduation_thesis_runs\\stage7c_q1_v1_checkpoints",
+  "workers": 8,
+  "checkpoint_write_slots": 8,
+  "validator_status": "COMPLETE",
+  "n_episodes": 14080,
+  "n_full_checkpoints": 340,
+  "generated_at": "2026-08-01T08:14:18.686236+00:00"
+}

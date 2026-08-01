@@ -1,0 +1,10 @@
+{
+  "planned_seeds": 20,
+  "completed_seeds": 20,
+  "failed_or_incomplete_seeds": [],
+  "max_steps_required": 400000,
+  "logical_checkpoints_per_seed": 17,
+  "logical_seed_checkpoints_expected": 340,
+  "logical_seed_checkpoints_actual": 340,
+  "status": "COMPLETE"
+}
