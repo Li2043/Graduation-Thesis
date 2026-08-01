@@ -1,0 +1,148 @@
+{
+  "status": "VALID",
+  "integrity_ok": true,
+  "n_checks": 27,
+  "n_failed": 0,
+  "errors": [],
+  "checks": [
+    {
+      "check": "protocol_tag_git",
+      "ok": true,
+      "detail": "tag_object=2b10297094984564e3936af124393994b21ffe01 tagged_commit=c8c75207c06c6a0511cac5fb24b644a61def8d14"
+    },
+    {
+      "check": "protocol_tag_commit",
+      "ok": true,
+      "detail": "expected=c8c75207c06c6a0511cac5fb24b644a61def8d14 got=c8c75207c06c6a0511cac5fb24b644a61def8d14"
+    },
+    {
+      "check": "protocol_tag_in_episodes",
+      "ok": true,
+      "detail": "unique=['stage7c-q1-protocol-v1']"
+    },
+    {
+      "check": "single_code_commit",
+      "ok": true,
+      "detail": "commits=['c8c75207c06c6a0511cac5fb24b644a61def8d14']"
+    },
+    {
+      "check": "config_sha256",
+      "ok": true,
+      "detail": "{\"C:\\\\Users\\\\HP\\\\Desktop\\\\\\u6bd5\\u4e1a\\u9879\\u76ee\\\\thesis\\\\final_new_stage7c_q1\\\\configs\\\\stage7c_q1.yaml\": \"df64cc71c3c221e22b1abdb714ff6a45850ae32162e1b8ac8672cf23dc20e248\", \"C:\\\\Users\\\\HP\\\\Desktop\\\\\\u6bd5\\u4e1a\\u9879\\u76ee\\\\thesis\\\\final_new_stage7c_q1\\\\experiments\\\\pilots\\\\stage7c_q1_baseline_competence\\\\configs\\\\stage7c_q1_protocol.yaml\": \"df64cc71c3c221e22b1abdb714ff6a45850ae32162e1b8ac8672cf23dc20e248\"}"
+    },
+    {
+      "check": "inventory_config_sha256",
+      "ok": true,
+      "detail": "unique=['df64cc71c3c221e22b1abdb714ff6a45850ae32162e1b8ac8672cf23dc20e248']"
+    },
+    {
+      "check": "seeds_exact_64001_64020",
+      "ok": true,
+      "detail": "seeds=[64001, 64002, 64003, 64004, 64005, 64006, 64007, 64008, 64009, 64010, 64011, 64012, 64013, 64014, 64015, 64016, 64017, 64018, 64019, 64020]"
+    },
+    {
+      "check": "no_foreign_formal_seeds",
+      "ok": true,
+      "detail": "foreign=[]"
+    },
+    {
+      "check": "algorithm_double_dqn",
+      "ok": true,
+      "detail": "double_dqn"
+    },
+    {
+      "check": "condition_baseline",
+      "ok": true,
+      "detail": "baseline"
+    },
+    {
+      "check": "base_reward_v2",
+      "ok": true,
+      "detail": "v2_active_time"
+    },
+    {
+      "check": "active_time_cost_0_0005",
+      "ok": true,
+      "detail": "0.0005"
+    },
+    {
+      "check": "max_steps_400000",
+      "ok": true,
+      "detail": "400000"
+    },
+    {
+      "check": "checkpoint_schedule_17",
+      "ok": true,
+      "detail": "ckpts=[0, 25000, 50000, 75000, 100000, 125000, 150000, 175000, 200000, 225000, 250000, 275000, 300000, 325000, 350000, 375000, 400000]"
+    },
+    {
+      "check": "training_complete_20_seeds",
+      "ok": true,
+      "detail": "{\"planned_seeds\": 20, \"completed_seeds\": 20, \"failed_or_incomplete_seeds\": [], \"max_steps_required\": 400000, \"logical_checkpoints_per_seed\": 17, \"logical_seed_checkpoints_expected\": 340, \"logical_seed_checkpoints_actual\": 340, \"status\": \"COMPLETE\"}"
+    },
+    {
+      "check": "logical_seed_checkpoints_340",
+      "ok": true,
+      "detail": "n_pairs=340"
+    },
+    {
+      "check": "episode_count_14080",
+      "ok": true,
+      "detail": "n=14080"
+    },
+    {
+      "check": "no_duplicate_episode_keys",
+      "ok": true,
+      "detail": "duplicate_rows=0"
+    },
+    {
+      "check": "no_same_key_conflicts",
+      "ok": true,
+      "detail": "conflict_groups=0"
+    },
+    {
+      "check": "no_cross_seed_eval_overlap",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "role_swap_pairs_complete",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "reward_decomposition_sum",
+      "ok": true,
+      "detail": "bad_A=0 bad_B=0"
+    },
+    {
+      "check": "checkpoint_inventory_hash_format",
+      "ok": true,
+      "detail": "sha_lines=680 full_ckpt_rows=340"
+    },
+    {
+      "check": "inventory_340_full_checkpoints",
+      "ok": true,
+      "detail": "n=340"
+    },
+    {
+      "check": "git_results_no_weight_or_replay",
+      "ok": true,
+      "detail": "bad=[]"
+    },
+    {
+      "check": "episodes_per_seed_checkpoint",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "machine_integrity_complete",
+      "ok": true,
+      "detail": "{\"status\": \"COMPLETE\", \"actual_episodes\": 14080, \"duplicate_episode_keys\": 0, \"cross_seed_eval_overlap_ok\": true}"
+    }
+  ],
+  "protocol_tag": "stage7c-q1-protocol-v1",
+  "expected_code_commit": "c8c75207c06c6a0511cac5fb24b644a61def8d14",
+  "expected_config_sha256": "df64cc71c3c221e22b1abdb714ff6a45850ae32162e1b8ac8672cf23dc20e248",
+  "analysis_commit_placeholder": null
+}

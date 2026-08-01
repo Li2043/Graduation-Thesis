@@ -1,0 +1,3 @@
+source,checkpoint_step,success,collision,truncation,note
+stage7b_double_dqn_historical,300000,0.75625,0.08125,0.1625,"Historical, non-paired comparison. Different master seeds and evaluation protocol. Not a causal estimate of the active-time reward effect."
+stage7c_q1_extended,300000,0.803125,0.025,0.171875,"Historical, non-paired comparison. Different master seeds and evaluation protocol. Not a causal estimate of the active-time reward effect."

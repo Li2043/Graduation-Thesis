@@ -1,0 +1,5 @@
+checkpoint_step,mean_success,collision,truncation,swap_eligibility,mean_success_value,mean_collision_value,mean_truncation_value,mean_swap_value,seeds_ge_threshold,status,intersection_count,intersection_seeds,learning_curve_ok,max_adjacent_drop,material_regression_seeds,late_collapse_seeds
+350000,False,False,False,False,0.8375,0.04375,0.11875,0.35625,6.0,,,,,,,
+375000,False,False,False,False,0.84375,0.040625,0.115625,0.30625,6.0,,,,,,,
+400000,False,False,False,False,0.7625,0.09375,0.14375,0.31875,9.0,,,,,,,
+summary,,,,,,,,,,FAIL,1.0,[64002],False,0.08125000000000004,"[64001, 64003, 64004, 64008, 64009, 64013, 64019]",[64009]

@@ -1,0 +1,63 @@
+{
+  "status": "FAIL",
+  "reason": "one_or_more_qualification_criteria_failed",
+  "components": {
+    "350000": {
+      "mean_success": false,
+      "collision": false,
+      "truncation": false,
+      "swap_eligibility": false,
+      "mean_success_value": 0.8375,
+      "mean_collision_value": 0.04375,
+      "mean_truncation_value": 0.11875,
+      "mean_swap_value": 0.35625,
+      "seeds_ge_threshold": 6
+    },
+    "375000": {
+      "mean_success": false,
+      "collision": false,
+      "truncation": false,
+      "swap_eligibility": false,
+      "mean_success_value": 0.84375,
+      "mean_collision_value": 0.040625,
+      "mean_truncation_value": 0.115625,
+      "mean_swap_value": 0.30625,
+      "seeds_ge_threshold": 6
+    },
+    "400000": {
+      "mean_success": false,
+      "collision": false,
+      "truncation": false,
+      "swap_eligibility": false,
+      "mean_success_value": 0.7625,
+      "mean_collision_value": 0.09375,
+      "mean_truncation_value": 0.14375,
+      "mean_swap_value": 0.31875,
+      "seeds_ge_threshold": 9
+    },
+    "qualified_seed_intersection": [
+      64002
+    ],
+    "qualified_seed_intersection_count": 1,
+    "learning_curve_ok": false,
+    "learning_curve_violations": [
+      "275000->300000 drop=0.0312",
+      "325000->350000 drop=0.0344",
+      "375000->400000 drop=0.0813"
+    ],
+    "material_regression_seeds": [
+      64001,
+      64003,
+      64004,
+      64008,
+      64009,
+      64013,
+      64019
+    ],
+    "late_collapse_seeds": [
+      64009
+    ],
+    "intersection_ok": false,
+    "gate_checkpoint_means_ok": false
+  }
+}
