@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "checks": {
+    "safe_mainline_gt_stall": true,
+    "safe_ramp_gt_stall": true,
+    "safe_mainline_gt_collision": true,
+    "safe_ramp_gt_collision": true,
+    "short_yield_gt_stall": true,
+    "safe_mainline_gt_mutual_yield": true,
+    "trajectories_covered": true,
+    "median_normalized_order_gap_le_0_05": true,
+    "maximum_normalized_order_gap_le_0_10": true,
+    "post_exit_no_time_cost": true
+  },
+  "returns": {
+    "safe_mainline_first": {
+      "A": 0.27149999999999985,
+      "B": 0.9635
+    },
+    "safe_ramp_first": {
+      "A": 0.9635,
+      "B": 0.27149999999999985
+    },
+    "stall": {
+      "A": -0.04000000000000003,
+      "B": -0.04000000000000003
+    },
+    "collision": {
+      "A": -0.9804999999999999,
+      "B": -0.9804999999999999
+    },
+    "short_safe_yielding": {
+      "A": 1.4508888888888887,
+      "B": 2.058
+    },
+    "mutual_yielding": {
+      "A": -0.030000000000000023,
+      "B": -0.030000000000000023
+    },
+    "joint": {
+      "mainline": 0.6174999999999999,
+      "ramp": 0.6174999999999999,
+      "stall": -0.04000000000000003,
+      "collision": -0.9804999999999999,
+      "short_yield": 1.7544444444444443,
+      "mutual_yield": -0.030000000000000023
+    },
+    "normalized_order_gap": 0.0
+  },
+  "active_time_cost_per_step": 0.0005,
+  "note": "Synthetic scripted audit over BaseRewardV2; coefficient search forbidden."
+}

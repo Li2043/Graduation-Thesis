@@ -17,7 +17,7 @@ from thesis.agents.independent_dqn_v2 import DQNConfig, IndependentDQNLearner
 from thesis.agents.replay_buffer_v2 import ReplayTransition
 from thesis.envs.final_observation import OBSERVATION_DIM
 from thesis.envs.merge_env_candidate_v3 import HighLevelAction
-from thesis.formal.formal_config import FormalConfig, assert_condition, epsilon_at_step
+from thesis.formal.formal_config import FormalConfig, assert_condition, epsilon_at_step, lr_at_step
 from thesis.formal.formal_evaluation import run_formal_isolated_evaluation
 from thesis.formal.formal_schedule import FormalICSchedule
 from thesis.rewards.pbrs_v2 import PBRSConfig, apply_pbrs_to_base_rewards
@@ -367,11 +367,15 @@ class FormalTrainer:
             warm = self.config.dqn.replay_warmup_per_controller
             upd_stats = None
             if len(self.learners[aid].replay) >= warm:
+                self.learners[aid].set_learning_rate(lr_at_step(self.env_steps, self.config.dqn))
                 batch = self.learners[aid].replay.sample(self.config.dqn.batch_size)
                 upd_stats = self.learners[aid].update(batch)
                 loss = self._require_finite(f"{aid}.loss", upd_stats["loss"])
                 self.diag.max_abs_loss = max(self.diag.max_abs_loss, abs(loss))
-                if (
+                if self.config.dqn.target_update_mode == "soft":
+                    self.learners[aid].soft_sync_target(self.config.dqn.target_soft_tau)
+                    self.diag.target_syncs[aid] += 1
+                elif (
                     self.learners[aid]._update_count
                     % self.config.dqn.target_sync_interval_updates
                     == 0

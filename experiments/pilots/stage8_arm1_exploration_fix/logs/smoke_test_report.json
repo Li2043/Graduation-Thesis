@@ -1,0 +1,17 @@
+{
+  "smoke": "PASS",
+  "seed": 65998,
+  "max_steps": 2000,
+  "epsilon_decay_environment_steps_confirmed": 75000,
+  "scripted_audit_passed": true,
+  "training_success": true,
+  "checkpoint0": "C:\\Users\\HP\\AppData\\Local\\Temp\\stage8_arm1_smoke_kt2m0y1o\\checkpoints_external\\baseline\\seed_65998\\ckpt_step_0_full.pt",
+  "role_swap_eval_episodes": 2,
+  "trajectory_step_rows": 180,
+  "front_gap_populated": true,
+  "minimum_ttc_populated": false,
+  "reward_components_present": true,
+  "trajectory_logging_verified": true,
+  "output_root_separated": true,
+  "final_step": 2000
+}

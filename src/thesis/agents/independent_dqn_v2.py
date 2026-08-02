@@ -149,6 +149,28 @@ class IndependentDQNLearner:
     def hard_sync_target(self) -> None:
         self.target.load_state_dict(self.online.state_dict())
 
+    @torch.no_grad()
+    def soft_sync_target(self, tau: float) -> None:
+        """Polyak-averaged target update: target <- tau*online + (1-tau)*target.
+
+        Stage 8 arm2a only -- called every update when
+        `config.target_update_mode == "soft"`, replacing hard_sync_target's
+        periodic full copy.
+        """
+        if not (0.0 < tau <= 1.0):
+            raise ValueError(f"tau must be in (0, 1], got {tau}")
+        for target_param, online_param in zip(self.target.parameters(), self.online.parameters()):
+            target_param.data.mul_(1.0 - tau).add_(online_param.data, alpha=tau)
+
+    def set_learning_rate(self, lr: float) -> None:
+        """Stage 8 arm2b only -- overwrites the optimiser's current LR.
+
+        Safe to call every step even when LR is constant (arm0/arm1/arm2a):
+        this just re-assigns the same value the optimiser already has.
+        """
+        for group in self.optimiser.param_groups:
+            group["lr"] = float(lr)
+
     def action_mask_for_role(self, role: str) -> np.ndarray:
         return role_action_mask(role, n_actions=self.config.n_actions)
 

@@ -1,0 +1,138 @@
+stage: stage8_arm2a
+purpose: training_stability_fix_soft_target_update
+protocol_tag: stage8-arm2a-protocol-v1
+analysis_status: diagnostic_pilot_no_gate
+experiment_version: "Stage 8 arm2a soft target-update fix"
+
+description: >
+  Single-variable training-stability fix relative to Stage 8 arm0: soft
+  (Polyak) target-network updates (tau=0.005, applied every learner update)
+  replacing arm0's hard periodic copy (full copy every 250 updates).
+  Motivated by the large, non-monotonic seed-to-seed swings observed in both
+  arm0 (seed 65001: 56%->12.5%->37.5%->100% success across checkpoints) and
+  arm1 (seed 65004: 18.75%->6.25%->18.75%->68.75%), consistent with the
+  classic "hard target-copy causes late-training instability" mechanism
+  already flagged in STAGE1_TO_STAGE7_EXPERIMENT_FREEZE.md SS10.3. Reward,
+  algorithm, epsilon schedule, and checkpoint/evaluation protocol are all
+  identical to arm0. NOT a competence gate, NOT a reward change. Run as a
+  separate single-variable arm from arm2b (learning-rate decay) rather than
+  bundled, so the thesis's experimental-design chapter can attribute any
+  effect to a single mechanism.
+
+algorithm: double_dqn
+condition: baseline
+base_reward_version: v2_active_time
+active_time_cost_per_step: 0.0005
+active_time_cost_per_second: 0.0025
+policy_interval_seconds: 0.20
+
+reward_shaping_enabled: false
+shaping_coefficient: 0.0
+lambda: 0.0
+allow_mean_pbrs: false
+allow_min_pbrs: false
+allow_vanilla_dqn: false
+
+master_seeds:
+  start: 65005
+  end: 65006
+  count: 2
+  list: [65005, 65006]
+
+forbidden_seed_blocks:
+  formal_stage6: [61001, 61002, 61003, 61004, 61005, 61006, 61007, 61008, 61009, 61010]
+  stage7a1_baseline_budget: [62001, 62002, 62003, 62004, 62005, 62006, 62007, 62008, 62009, 62010,
+                              62011, 62012, 62013, 62014, 62015, 62016, 62017, 62018, 62019, 62020]
+  stage7b_a1_double_dqn: [63001, 63002, 63003, 63004, 63005, 63006, 63007, 63008, 63009, 63010,
+                           63011, 63012, 63013, 63014, 63015, 63016, 63017, 63018, 63019, 63020]
+  stage7c_q1_baseline_competence: [64001, 64002, 64003, 64004, 64005, 64006, 64007, 64008, 64009, 64010,
+                                    64011, 64012, 64013, 64014, 64015, 64016, 64017, 64018, 64019, 64020]
+  stage8_arm0: [65001, 65002]
+  stage8_arm1: [65003, 65004]
+
+stage8_future_arms_reserved: [65007, 65008, 65009, 65010,
+                               65011, 65012, 65013, 65014, 65015, 65016,
+                               65017, 65018, 65019, 65020]
+
+max_joint_environment_steps: 100000
+timestep_definition: one_joint_environment_transition
+
+checkpoints:
+  - 0
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+
+# No gate_checkpoints / learning_curve_checkpoints / competence_gate: arm2a
+# makes no PASS/FAIL claim -- same diagnostic-pilot status as arm0/arm1.
+
+evaluation:
+  policy: greedy
+  epsilon: 0.0
+  seed_algorithm: sha256_stable
+  early_checkpoints_max: 175000
+  early_scenario_blocks: 8
+  assignments_per_block: 2
+  early_episodes_per_seed_checkpoint: 16
+  standard_subset_blocks: [0, 1, 2, 3, 4, 5, 6, 7]
+  per_step_logging_enabled: true
+  per_step_logging_checkpoints: [0, 25000, 50000, 75000, 100000]
+
+# Unchanged vs arm0 -- arm2a does not touch the exploration schedule.
+epsilon_start: 1.0
+epsilon_end: 0.10
+epsilon_decay_environment_steps: 50000
+epsilon_after_decay: 0.10
+evaluation_epsilon: 0.0
+gamma: 0.995
+learning_rate: 0.0005
+batch_size: 64
+replay_capacity_per_controller: 20000
+replay_warmup_per_controller: 512
+hidden_sizes: [64, 64]
+observation_dimension: 27
+action_count: 3
+max_policy_steps: 400
+num_parallel_training_envs_per_run: 1
+vectorized_training: false
+device: cpu
+early_stopping: false
+best_checkpoint_selection: false
+
+# The single variable changed vs Stage 7C-Q1 / arm0 / arm1: target update
+# mode. target_sync_interval_updates (250) is retained in the frozen config
+# schema for provenance but is unused when target_update_mode == "soft".
+target_sync_interval_updates: 250
+target_update_mode: soft
+target_soft_tau: 0.005
+
+algorithm_difference: >
+  Double DQN only. Online network selects a* = argmax Q_online(s', a);
+  target network evaluates y = r + gamma Q_target(s', a*). Vanilla DQN forbidden.
+  Identical to Stage 7C-Q1 / arm0 / arm1 -- not varied in arm2a.
+
+locks:
+  reuse_stage6_environment_lock: true
+  reuse_stage6_comfort_lock: true
+  reuse_stage6_training_blocks: true
+  reuse_stage6_validation_blocks: true
+
+checkpoint_policy:
+  store_in_git: false
+  require_external_checkpoint_root: true
+  full_resumable_required: true
+  github_transfers: [code, csv, json, manifests, reports, figures]
+
+diagnostic_scope:
+  no_pass_fail_claim: true
+  no_reward_or_algorithm_change: true
+  single_variable_change: target_update_mode
+  purpose: mechanism_confirmation_or_refutation
+  hypothesis: >
+    Replacing the hard periodic target-network copy (every 250 updates) with
+    a Polyak-averaged soft update (tau=0.005, applied every update) reduces
+    the large, non-monotonic seed-to-seed swings in downstream_failure /
+    success_rate observed across checkpoints in both arm0 and arm1, which are
+    consistent with target-network-induced training instability rather than
+    a reward or exploration-coverage problem.

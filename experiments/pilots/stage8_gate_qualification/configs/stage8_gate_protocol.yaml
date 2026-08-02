@@ -1,0 +1,173 @@
+stage: stage8_gate
+purpose: formal_qualification_gate_lr_decay_fix
+protocol_tag: stage8-gate-protocol-v1
+analysis_status: formal_competence_gate
+experiment_version: "Stage 8 formal qualification gate"
+
+description: >
+  Stage 8's re-run of the Stage 7C-Q1 competence gate
+  (STAGE1_TO_STAGE7_EXPERIMENT_FREEZE.md SS10.4.9, FAIL), at the SAME scale
+  (20 seeds x 400,000 joint environment steps) and with the SAME gate
+  threshold structure, training under the configuration selected by the
+  Stage 8 pilot chain (arm0 -> arm1 -> arm2a -> arm2b): Double DQN, Base
+  Reward V2 (unchanged), epsilon_decay_environment_steps=50000 (arm0's
+  value), hard target-network copy every 250 updates (arm0's value, NOT
+  arm2a's soft update -- arm2a showed a systematic late-stage collapse in
+  pilot), and linear learning-rate decay 0.0005 -> 0.0001 (arm2b's fix,
+  the only pilot arm with a clear improvement: 91.4% mean success at the
+  100K pilot checkpoint across 8 seeds vs 84.4%/81.2%/50.0% for
+  arm0/arm1/arm2a). The LR-decay window is extended from arm2b's pilot
+  value (100,000) to span the full 400,000-step gate budget -- this
+  specific decay shape was NOT pilot-validated (see
+  paper/STAGE8_PLAN_DRAFT.md SS5.1). Unlike every prior Stage 8 arm
+  (diagnostic pilots only), this stage makes a PASS/FAIL/INVALID
+  competence-gate claim.
+
+algorithm: double_dqn
+condition: baseline
+base_reward_version: v2_active_time
+active_time_cost_per_step: 0.0005
+active_time_cost_per_second: 0.0025
+policy_interval_seconds: 0.20
+
+reward_shaping_enabled: false
+shaping_coefficient: 0.0
+lambda: 0.0
+allow_mean_pbrs: false
+allow_min_pbrs: false
+allow_vanilla_dqn: false
+
+master_seeds:
+  start: 65021
+  end: 65040
+  count: 20
+  list: [65021, 65022, 65023, 65024, 65025, 65026, 65027, 65028, 65029, 65030,
+         65031, 65032, 65033, 65034, 65035, 65036, 65037, 65038, 65039, 65040]
+
+forbidden_seed_blocks:
+  formal_stage6: [61001, 61002, 61003, 61004, 61005, 61006, 61007, 61008, 61009, 61010]
+  stage7a1_baseline_budget: [62001, 62002, 62003, 62004, 62005, 62006, 62007, 62008, 62009, 62010,
+                              62011, 62012, 62013, 62014, 62015, 62016, 62017, 62018, 62019, 62020]
+  stage7b_a1_double_dqn: [63001, 63002, 63003, 63004, 63005, 63006, 63007, 63008, 63009, 63010,
+                           63011, 63012, 63013, 63014, 63015, 63016, 63017, 63018, 63019, 63020]
+  stage7c_q1_baseline_competence: [64001, 64002, 64003, 64004, 64005, 64006, 64007, 64008, 64009, 64010,
+                                    64011, 64012, 64013, 64014, 64015, 64016, 64017, 64018, 64019, 64020]
+  stage8_pilots_arm0_arm1_arm2a_arm2b: [65001, 65002, 65003, 65004, 65005, 65006, 65007, 65008,
+                                          65009, 65010, 65011, 65012, 65013, 65014, 65015, 65016,
+                                          65017, 65018, 65019, 65020]
+
+max_joint_environment_steps: 400000
+timestep_definition: one_joint_environment_transition
+
+checkpoints:
+  - 0
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+  - 125000
+  - 150000
+  - 175000
+  - 200000
+  - 225000
+  - 250000
+  - 275000
+  - 300000
+  - 325000
+  - 350000
+  - 375000
+  - 400000
+
+gate_checkpoints: [350000, 375000, 400000]
+learning_curve_checkpoints: [200000, 225000, 250000, 275000, 300000, 325000, 350000, 375000, 400000]
+
+# Confirmed with the user 2026-08-02: only these 4 checkpoints get full
+# per-step diagnostic logging (Q-values, front_gap, minimum_TTC, action
+# sequence); the other 13 use the lightweight episode-level-only evaluator.
+# This keeps data volume tractable at 20 seeds x 400K steps.
+rich_log_checkpoints: [0, 350000, 375000, 400000]
+
+competence_gate:
+  mean_success_min: 0.95
+  collision_max: 0.02
+  truncation_max: 0.03
+  swap_eligibility_min: 0.75
+  seed_success_min: 0.953125  # 61/64
+  min_qualified_seeds: 16
+  adjacent_success_drop_max: 0.03
+  material_regression: 0.20
+  max_material_regression_seeds: 1
+  max_late_collapse_seeds: 1
+  # All thresholds copied verbatim from Stage 7C-Q1 -- not re-derived.
+  # Reused via thesis.pilots.stage7c_q1_gate.evaluate_competence_gate
+  # unchanged, called with this stage's own seed list.
+
+evaluation:
+  policy: greedy
+  epsilon: 0.0
+  seed_algorithm: sha256_stable
+  early_checkpoints_max: 175000
+  early_scenario_blocks: 8
+  late_checkpoints_min: 200000
+  late_scenario_blocks: 32
+  assignments_per_block: 2
+  standard_subset_blocks: [0, 1, 2, 3, 4, 5, 6, 7]
+
+# The single variable changed vs Stage 7C-Q1: learning-rate schedule.
+# epsilon schedule and target-update mode are Stage 7C-Q1's / arm0's
+# defaults, unchanged.
+epsilon_start: 1.0
+epsilon_end: 0.10
+epsilon_decay_environment_steps: 50000
+epsilon_after_decay: 0.10
+evaluation_epsilon: 0.0
+gamma: 0.995
+learning_rate: 0.0005
+learning_rate_end: 0.0001
+learning_rate_decay_environment_steps: 400000
+batch_size: 64
+replay_capacity_per_controller: 20000
+replay_warmup_per_controller: 512
+target_sync_interval_updates: 250
+target_update_mode: hard
+hidden_sizes: [64, 64]
+observation_dimension: 27
+action_count: 3
+max_policy_steps: 400
+num_parallel_training_envs_per_run: 1
+vectorized_training: false
+device: cpu
+early_stopping: false
+best_checkpoint_selection: false
+
+algorithm_difference: >
+  Double DQN only. Online network selects a* = argmax Q_online(s', a);
+  target network evaluates y = r + gamma Q_target(s', a*). Vanilla DQN forbidden.
+  Identical to Stage 7C-Q1 -- not varied in this gate.
+
+locks:
+  reuse_stage6_environment_lock: true
+  reuse_stage6_comfort_lock: true
+  reuse_stage6_training_blocks: true
+  reuse_stage6_validation_blocks: true
+
+checkpoint_policy:
+  store_in_git: false
+  require_external_checkpoint_root: true
+  full_resumable_required: true
+  github_transfers: [code, csv, json, manifests, reports, figures]
+
+decision_rule: >
+  Result status is PASS / FAIL / INVALID only, per
+  STAGE1_TO_STAGE7_EXPERIMENT_FREEZE.md SS10.4. FAIL means the Stage 8 fix
+  did not resolve competence at formal scale; report reverts to
+  competence-limited. PASS is required before proceeding to the final
+  three-condition (baseline/mean_pbrs/min_pbrs) confirmatory experiment
+  (paper/STAGE8_PLAN_DRAFT.md SS6).
+
+pre_registered_risk_note: >
+  Based on arm2b's 8-seed pilot (tail-risk regression rate ~12.5%, 1/8
+  seeds), if that rate holds at n=20 there is a ~73.3% probability the
+  max_material_regression_seeds<=1 criterion alone still fails
+  (binomial P(X>1 | n=20, p=0.125)). This is a pre-registered expectation
+  written before training, not a post-hoc rationalization if it occurs.

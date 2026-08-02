@@ -35,6 +35,15 @@ class FormalDQNConfig:
     replay_warmup_per_controller: int = 512
     target_sync_interval_updates: int = 250
     device: str = "cpu"
+    # Stage 8 arm2a: soft (Polyak) target update instead of periodic hard copy.
+    # Default "hard" preserves exact prior behaviour (Stage 6/7/8-arm0/8-arm1) --
+    # target_sync_interval_updates keeps being used whenever mode == "hard".
+    target_update_mode: str = "hard"  # "hard" | "soft"
+    target_soft_tau: float = 0.0  # only meaningful when target_update_mode == "soft"
+    # Stage 8 arm2b: linear learning-rate decay. None means constant `learning_rate`
+    # for the whole run -- the default, preserving prior behaviour exactly.
+    learning_rate_end: float | None = None
+    learning_rate_decay_environment_steps: int | None = None
 
 
 @dataclass(frozen=True)
@@ -93,6 +102,17 @@ class FormalConfig:
             raise ValueError("observation_dimension must be 27")
         if self.dqn.hidden_sizes != (64, 64):
             raise ValueError("hidden_sizes must be [64, 64]")
+        if self.dqn.target_update_mode not in ("hard", "soft"):
+            raise ValueError("target_update_mode must be 'hard' or 'soft'")
+        if self.dqn.target_update_mode == "soft" and not (0.0 < self.dqn.target_soft_tau <= 1.0):
+            raise ValueError("target_soft_tau must be in (0, 1] when target_update_mode == 'soft'")
+        if self.dqn.target_update_mode == "hard" and self.dqn.target_soft_tau != 0.0:
+            raise ValueError("target_soft_tau must be 0 when target_update_mode == 'hard'")
+        if self.dqn.learning_rate_end is not None:
+            if not (0.0 < self.dqn.learning_rate_end <= self.dqn.learning_rate):
+                raise ValueError("learning_rate_end must be in (0, learning_rate]")
+            if not self.dqn.learning_rate_decay_environment_steps or self.dqn.learning_rate_decay_environment_steps <= 0:
+                raise ValueError("learning_rate_decay_environment_steps must be positive when learning_rate_end is set")
         n = len(self.conditions) * len(self.master_seeds)
         if n != 30:
             raise ValueError("expected 30 formal run slots")
@@ -140,6 +160,24 @@ def epsilon_at_step(step: int, cfg: FormalExplorationConfig) -> float:
     return float(cfg.epsilon_start + frac * (cfg.epsilon_end - cfg.epsilon_start))
 
 
+def lr_at_step(step: int, cfg: FormalDQNConfig) -> float:
+    """Linear learning-rate decay, mirroring epsilon_at_step's shape.
+
+    Returns the constant `cfg.learning_rate` whenever `learning_rate_end` is
+    None (the default for every stage prior to Stage 8 arm2b) -- callers may
+    invoke this unconditionally every step without changing behaviour for
+    runs that do not opt into LR decay.
+    """
+    if cfg.learning_rate_end is None:
+        return float(cfg.learning_rate)
+    t = max(0, int(step))
+    decay = int(cfg.learning_rate_decay_environment_steps)
+    if t >= decay:
+        return float(cfg.learning_rate_end)
+    frac = t / float(decay)
+    return float(cfg.learning_rate + frac * (cfg.learning_rate_end - cfg.learning_rate))
+
+
 def assert_condition(name: str) -> RewardConditionName:
     if name not in FORMAL_CONDITIONS:
         raise ValueError(f"unknown formal condition {name!r}")
@@ -154,5 +192,6 @@ __all__ = [
     "FormalPBRSConfig",
     "assert_condition",
     "derive_formal_job_seeds",
+    "lr_at_step",
     "epsilon_at_step",
 ]

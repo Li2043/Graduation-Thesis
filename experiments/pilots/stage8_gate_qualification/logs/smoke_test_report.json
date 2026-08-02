@@ -1,0 +1,26 @@
+{
+  "smoke": "PASS",
+  "seed": 65994,
+  "max_steps": 2000,
+  "target_update_mode_confirmed": "hard",
+  "learning_rate_end_confirmed": 0.0001,
+  "learning_rate_decay_environment_steps_confirmed": 400000,
+  "rich_early_episodes": 16,
+  "rich_late_episodes": 64,
+  "light_early_episodes": 16,
+  "light_late_episodes": 64,
+  "late_plan_template_coverage": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "gate_decision_smoke_status": "PASS",
+  "scripted_audit_passed": true,
+  "training_success": true,
+  "final_step": 2000
+}

@@ -1,0 +1,126 @@
+stage: stage8_arm0
+purpose: diagnostic_reproduction_downstream_failure_mechanism
+protocol_tag: stage8-arm0-protocol-v1
+analysis_status: diagnostic_pilot_no_gate
+experiment_version: "Stage 8 arm0 diagnostic reproduction"
+
+description: >
+  Exact reproduction of the Stage 7C-Q1 baseline training configuration
+  (Double DQN, Base Reward V2 active-time cost 0.0005, condition=baseline)
+  at reduced scale (2 seeds x 100,000 joint environment steps instead of
+  20 x 400,000), with per-step trajectory logging enabled from checkpoint 0
+  onward. This is NOT a competence gate, NOT a reward or algorithm change,
+  and NOT a PBRS/ablation test. Its single purpose is to confirm or refute,
+  via per-step evidence (front_gap, minimum_TTC, action sequence), whether
+  the downstream_failure residual failure mode observed in Stage 7C-Q1 is
+  caused by the post-peer-exit survivor getting stuck in a prolonged
+  brake/accelerate oscillation near a background vehicle.
+
+algorithm: double_dqn
+condition: baseline
+base_reward_version: v2_active_time
+active_time_cost_per_step: 0.0005
+active_time_cost_per_second: 0.0025
+policy_interval_seconds: 0.20
+
+reward_shaping_enabled: false
+shaping_coefficient: 0.0
+lambda: 0.0
+allow_mean_pbrs: false
+allow_min_pbrs: false
+allow_vanilla_dqn: false
+
+master_seeds:
+  start: 65001
+  end: 65002
+  count: 2
+  list: [65001, 65002]
+
+forbidden_seed_blocks:
+  formal_stage6: [61001, 61002, 61003, 61004, 61005, 61006, 61007, 61008, 61009, 61010]
+  stage7a1_baseline_budget: [62001, 62002, 62003, 62004, 62005, 62006, 62007, 62008, 62009, 62010,
+                              62011, 62012, 62013, 62014, 62015, 62016, 62017, 62018, 62019, 62020]
+  stage7b_a1_double_dqn: [63001, 63002, 63003, 63004, 63005, 63006, 63007, 63008, 63009, 63010,
+                           63011, 63012, 63013, 63014, 63015, 63016, 63017, 63018, 63019, 63020]
+  stage7c_q1_baseline_competence: [64001, 64002, 64003, 64004, 64005, 64006, 64007, 64008, 64009, 64010,
+                                    64011, 64012, 64013, 64014, 64015, 64016, 64017, 64018, 64019, 64020]
+
+# Documentation-only reservation, not enforced in code: leaves room for future
+# Stage 8 arms (e.g. a structural fix pilot) without colliding with arm0.
+stage8_future_arms_reserved: [65003, 65004, 65005, 65006, 65007, 65008, 65009, 65010,
+                               65011, 65012, 65013, 65014, 65015, 65016, 65017, 65018,
+                               65019, 65020]
+
+max_joint_environment_steps: 100000
+timestep_definition: one_joint_environment_transition
+
+checkpoints:
+  - 0
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+
+# No gate_checkpoints / learning_curve_checkpoints / competence_gate: arm0
+# makes no PASS/FAIL claim.
+
+evaluation:
+  policy: greedy
+  epsilon: 0.0
+  seed_algorithm: sha256_stable
+  early_checkpoints_max: 175000
+  early_scenario_blocks: 8
+  assignments_per_block: 2
+  early_episodes_per_seed_checkpoint: 16
+  standard_subset_blocks: [0, 1, 2, 3, 4, 5, 6, 7]
+  per_step_logging_enabled: true
+  per_step_logging_checkpoints: [0, 25000, 50000, 75000, 100000]
+
+# Unchanged vs Stage 7C-Q1 training hyperparameters -- this is the point of
+# an exact reproduction.
+epsilon_start: 1.0
+epsilon_end: 0.10
+epsilon_decay_environment_steps: 50000
+epsilon_after_decay: 0.10
+evaluation_epsilon: 0.0
+gamma: 0.995
+learning_rate: 0.0005
+batch_size: 64
+replay_capacity_per_controller: 20000
+replay_warmup_per_controller: 512
+target_sync_interval_updates: 250
+hidden_sizes: [64, 64]
+observation_dimension: 27
+action_count: 3
+max_policy_steps: 400
+num_parallel_training_envs_per_run: 1
+vectorized_training: false
+device: cpu
+early_stopping: false
+best_checkpoint_selection: false
+
+algorithm_difference: >
+  Double DQN only. Online network selects a* = argmax Q_online(s', a);
+  target network evaluates y = r + gamma Q_target(s', a*). Vanilla DQN forbidden.
+  Identical to Stage 7C-Q1 -- not varied in arm0.
+
+locks:
+  reuse_stage6_environment_lock: true
+  reuse_stage6_comfort_lock: true
+  reuse_stage6_training_blocks: true
+  reuse_stage6_validation_blocks: true
+
+checkpoint_policy:
+  store_in_git: false
+  require_external_checkpoint_root: true
+  full_resumable_required: true
+  github_transfers: [code, csv, json, manifests, reports, figures]
+
+diagnostic_scope:
+  no_pass_fail_claim: true
+  no_reward_or_algorithm_change: true
+  purpose: mechanism_confirmation_only
+  hypothesis: >
+    Post-peer-exit survivor gets stuck in a prolonged brake/accelerate
+    oscillation near a background vehicle (B_front / B_rear), rather than
+    running out of time budget or failing in a scenario-specific way.

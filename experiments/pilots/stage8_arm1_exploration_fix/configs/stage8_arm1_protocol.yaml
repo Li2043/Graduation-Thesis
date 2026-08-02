@@ -1,0 +1,135 @@
+stage: stage8_arm1
+purpose: exploration_coverage_fix_frozen_stall
+protocol_tag: stage8-arm1-protocol-v1
+analysis_status: diagnostic_pilot_no_gate
+experiment_version: "Stage 8 arm1 exploration-schedule fix"
+
+description: >
+  Single-variable exploration-schedule fix relative to Stage 8 arm0, targeting
+  the frozen_stall mechanism confirmed by arm0's per-step trajectory evidence:
+  69% of arm0's downstream_failure episodes involved the survivor already at
+  speed=0 before the peer exited, then never resuming for the remainder of
+  the episode -- a self-reinforcing absorbing state, not a brake/accelerate
+  oscillation (front_gap/minimum_TTC were never populated for any of these
+  episodes, ruling out "stuck near a background vehicle"). The only change
+  relative to arm0 is epsilon_decay_environment_steps: 50000 -> 75000,
+  spreading epsilon-greedy exploration further into training instead of
+  hitting the 0.10 floor at the halfway point. Reward, algorithm, checkpoint
+  density, and evaluation protocol are all identical to arm0. NOT a
+  competence gate, NOT a reward change.
+
+algorithm: double_dqn
+condition: baseline
+base_reward_version: v2_active_time
+active_time_cost_per_step: 0.0005
+active_time_cost_per_second: 0.0025
+policy_interval_seconds: 0.20
+
+reward_shaping_enabled: false
+shaping_coefficient: 0.0
+lambda: 0.0
+allow_mean_pbrs: false
+allow_min_pbrs: false
+allow_vanilla_dqn: false
+
+master_seeds:
+  start: 65003
+  end: 65004
+  count: 2
+  list: [65003, 65004]
+
+forbidden_seed_blocks:
+  formal_stage6: [61001, 61002, 61003, 61004, 61005, 61006, 61007, 61008, 61009, 61010]
+  stage7a1_baseline_budget: [62001, 62002, 62003, 62004, 62005, 62006, 62007, 62008, 62009, 62010,
+                              62011, 62012, 62013, 62014, 62015, 62016, 62017, 62018, 62019, 62020]
+  stage7b_a1_double_dqn: [63001, 63002, 63003, 63004, 63005, 63006, 63007, 63008, 63009, 63010,
+                           63011, 63012, 63013, 63014, 63015, 63016, 63017, 63018, 63019, 63020]
+  stage7c_q1_baseline_competence: [64001, 64002, 64003, 64004, 64005, 64006, 64007, 64008, 64009, 64010,
+                                    64011, 64012, 64013, 64014, 64015, 64016, 64017, 64018, 64019, 64020]
+  stage8_arm0: [65001, 65002]
+
+# Documentation-only reservation, not enforced in code: leaves room for a
+# future arm2 (training-stability bundle) without colliding with arm0/arm1.
+stage8_future_arms_reserved: [65005, 65006, 65007, 65008, 65009, 65010,
+                               65011, 65012, 65013, 65014, 65015, 65016,
+                               65017, 65018, 65019, 65020]
+
+max_joint_environment_steps: 100000
+timestep_definition: one_joint_environment_transition
+
+checkpoints:
+  - 0
+  - 25000
+  - 50000
+  - 75000
+  - 100000
+
+# No gate_checkpoints / learning_curve_checkpoints / competence_gate: arm1
+# makes no PASS/FAIL claim -- same diagnostic-pilot status as arm0.
+
+evaluation:
+  policy: greedy
+  epsilon: 0.0
+  seed_algorithm: sha256_stable
+  early_checkpoints_max: 175000
+  early_scenario_blocks: 8
+  assignments_per_block: 2
+  early_episodes_per_seed_checkpoint: 16
+  standard_subset_blocks: [0, 1, 2, 3, 4, 5, 6, 7]
+  per_step_logging_enabled: true
+  per_step_logging_checkpoints: [0, 25000, 50000, 75000, 100000]
+
+# The single variable changed vs Stage 7C-Q1 / arm0: epsilon_decay_environment_steps
+# 50000 -> 75000. epsilon_start/epsilon_end/epsilon_after_decay unchanged (arm0's
+# epsilon already floored at 0.10, never decayed to 0 -- confirmed by reading
+# formal_config.py::FormalExplorationConfig before freezing this arm).
+epsilon_start: 1.0
+epsilon_end: 0.10
+epsilon_decay_environment_steps: 75000
+epsilon_after_decay: 0.10
+evaluation_epsilon: 0.0
+gamma: 0.995
+learning_rate: 0.0005
+batch_size: 64
+replay_capacity_per_controller: 20000
+replay_warmup_per_controller: 512
+target_sync_interval_updates: 250
+hidden_sizes: [64, 64]
+observation_dimension: 27
+action_count: 3
+max_policy_steps: 400
+num_parallel_training_envs_per_run: 1
+vectorized_training: false
+device: cpu
+early_stopping: false
+best_checkpoint_selection: false
+
+algorithm_difference: >
+  Double DQN only. Online network selects a* = argmax Q_online(s', a);
+  target network evaluates y = r + gamma Q_target(s', a*). Vanilla DQN forbidden.
+  Identical to Stage 7C-Q1 / arm0 -- not varied in arm1.
+
+locks:
+  reuse_stage6_environment_lock: true
+  reuse_stage6_comfort_lock: true
+  reuse_stage6_training_blocks: true
+  reuse_stage6_validation_blocks: true
+
+checkpoint_policy:
+  store_in_git: false
+  require_external_checkpoint_root: true
+  full_resumable_required: true
+  github_transfers: [code, csv, json, manifests, reports, figures]
+
+diagnostic_scope:
+  no_pass_fail_claim: true
+  no_reward_or_algorithm_change: true
+  single_variable_change: epsilon_decay_environment_steps
+  purpose: mechanism_confirmation_or_refutation
+  hypothesis: >
+    Extending epsilon_decay_environment_steps from 50000 to 75000 increases
+    training-time exploration coverage of the "isolated survivor after peer
+    exit, needs to resume from a stop" state region enough to reduce the
+    frozen_stall failure rate observed in arm0 (34/49 downstream_failure
+    episodes, concentrated at seed 65002 which still had 2 frozen_stall
+    episodes at its final 100K checkpoint).
