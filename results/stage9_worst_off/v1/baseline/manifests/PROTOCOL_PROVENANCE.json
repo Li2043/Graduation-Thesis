@@ -1,0 +1,38 @@
+{
+  "stage": "stage9_worst_off_extension",
+  "condition": "baseline",
+  "protocol_tag": "stage8-gate-protocol-v1",
+  "code_commit": "88139f9b4d723e33023678f937d26c7f0b34c80b",
+  "checkpoint_root": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_experiment\\stage8_gate_checkpoints",
+  "seeds": [
+    65021,
+    65022,
+    65023,
+    65024,
+    65025,
+    65026,
+    65027,
+    65028,
+    65029,
+    65030,
+    65031,
+    65032,
+    65033,
+    65034,
+    65035,
+    65036,
+    65037,
+    65038,
+    65039,
+    65040
+  ],
+  "checkpoints": [
+    0,
+    350000,
+    375000,
+    400000
+  ],
+  "total_episodes": 4160,
+  "total_step_rows": 1458680,
+  "note": "Re-evaluation of already-trained checkpoints with B_front/B_rear per-step logging added to stage8_gate_eval.py, for the RQ3 worst-off-stakeholder extension (compute_worst_off_mobility). No retraining."
+}

@@ -1,0 +1,87 @@
+{
+  "protocol_tag": "stage9-worst-off-extension-v1",
+  "gate_checkpoints": [
+    350000,
+    375000,
+    400000
+  ],
+  "conditions_status": {
+    "baseline": "OK",
+    "mean_pbrs": "OK",
+    "min_pbrs": "OK"
+  },
+  "status": "COMPLETE",
+  "descriptive_by_condition": {
+    "baseline": {
+      "mean_U_worst": 0.609333335180838,
+      "sd_U_worst": 0.20701081909596405,
+      "n_episodes": 3840,
+      "n_incomplete_episodes": 0,
+      "controllers_present": [
+        "A",
+        "B",
+        "B_front",
+        "B_rear"
+      ]
+    },
+    "mean_pbrs": {
+      "mean_U_worst": 0.6348754369380791,
+      "sd_U_worst": 0.17068122402748853,
+      "n_episodes": 3840,
+      "n_incomplete_episodes": 0,
+      "controllers_present": [
+        "A",
+        "B",
+        "B_front",
+        "B_rear"
+      ]
+    },
+    "min_pbrs": {
+      "mean_U_worst": 0.607513737442282,
+      "sd_U_worst": 0.20193649057914095,
+      "n_episodes": 3840,
+      "n_incomplete_episodes": 0,
+      "controllers_present": [
+        "A",
+        "B",
+        "B_front",
+        "B_rear"
+      ]
+    }
+  },
+  "rq3_improvement": {
+    "mean_pbrs_vs_baseline": {
+      "mean_treatment": 0.6348754369380792,
+      "mean_control": 0.609333335180838,
+      "diff_treatment_minus_control": 0.025542101757241253,
+      "n_treatment": 20,
+      "n_control": 20,
+      "t_stat": 0.9515814587172426,
+      "p_value_one_sided": 0.17458232592935705,
+      "significant_at_0.05": false,
+      "superior": false
+    },
+    "min_pbrs_vs_baseline": {
+      "mean_treatment": 0.6075137374422819,
+      "mean_control": 0.609333335180838,
+      "diff_treatment_minus_control": -0.0018195977385561113,
+      "n_treatment": 20,
+      "n_control": 20,
+      "t_stat": -0.0600202981823055,
+      "p_value_one_sided": 0.5237654351662009,
+      "significant_at_0.05": false,
+      "superior": false
+    },
+    "min_pbrs_vs_mean_pbrs": {
+      "mean_treatment": 0.6075137374422819,
+      "mean_control": 0.6348754369380792,
+      "diff_treatment_minus_control": -0.027361699495797365,
+      "n_treatment": 20,
+      "n_control": 20,
+      "t_stat": -1.2014222507659063,
+      "p_value_one_sided": 0.8809483977138193,
+      "significant_at_0.05": false,
+      "superior": false
+    }
+  }
+}

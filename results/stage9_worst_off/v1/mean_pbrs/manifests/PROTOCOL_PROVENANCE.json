@@ -1,0 +1,38 @@
+{
+  "stage": "stage9_worst_off_extension",
+  "condition": "mean_pbrs",
+  "protocol_tag": "stage9-confirmatory-v1",
+  "code_commit": "88139f9b4d723e33023678f937d26c7f0b34c80b",
+  "checkpoint_root": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_experiment\\stage9_checkpoints",
+  "seeds": [
+    66001,
+    66002,
+    66003,
+    66004,
+    66005,
+    66006,
+    66007,
+    66008,
+    66009,
+    66010,
+    66011,
+    66012,
+    66013,
+    66014,
+    66015,
+    66016,
+    66017,
+    66018,
+    66019,
+    66020
+  ],
+  "checkpoints": [
+    0,
+    350000,
+    375000,
+    400000
+  ],
+  "total_episodes": 4160,
+  "total_step_rows": 1320936,
+  "note": "Re-evaluation of already-trained checkpoints with B_front/B_rear per-step logging added to stage8_gate_eval.py, for the RQ3 worst-off-stakeholder extension (compute_worst_off_mobility). No retraining."
+}
