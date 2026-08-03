@@ -1,0 +1,22 @@
+{
+  "conditions": {
+    "mean_pbrs": {
+      "seed": 66994,
+      "training_success": true,
+      "rich_early_episodes": 16,
+      "light_early_episodes": 16,
+      "lambda_mean_confirmed": 0.2,
+      "lambda_min_confirmed": 0.2
+    },
+    "min_pbrs": {
+      "seed": 67994,
+      "training_success": true,
+      "rich_early_episodes": 16,
+      "light_early_episodes": 16,
+      "lambda_mean_confirmed": 0.2,
+      "lambda_min_confirmed": 0.2
+    }
+  },
+  "smoke": "PASS",
+  "baseline_reuse_source_found": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_stage8\\results\\stage8_gate\\v1\\raw\\seed_checkpoint_summary.csv"
+}
