@@ -115,17 +115,21 @@ TRAINING_RUN_COUNT = len(MEAN_PBRS_SEEDS) + len(MIN_PBRS_SEEDS)  # 40 new traini
 # once, not re-derived from the comparison data itself.
 MARGIN_COLLISION_RATE_ABS = 0.03
 MARGIN_MEAN_MOBILITY_RELATIVE = 0.10
-# Originally frozen at 0.05 (2026-08-03); CORRECTED same day after
-# `run_stage9_decision.py`'s self-test (baseline compared against a copy of
-# itself) surfaced that 0.05 is not achievable at n=20 -- q's real per-seed
-# SD (pooled across the 3 gate checkpoints, computed from the Stage 8 gate's
-# own 20 baseline seeds) is 0.163, giving a one-sided CI half-width of
-# ~0.101, roughly double the original margin. A margin narrower than the
-# achievable precision would return "non_inferior: false" close to by
-# construction, even for a true difference of exactly zero. Widened to 0.12
-# (slack above the ~0.101 half-width) so the test is actually resolvable at
-# this design's fixed n=20, not merely arithmetically well-defined.
-MARGIN_RESOLUTION_Q_ABS = 0.12
+# FROZEN AT 0.05 (2026-08-03), NOT widened despite a same-day self-test
+# finding that 0.05 is not cleanly resolvable at n=20 (q's real per-seed SD,
+# certified states, pooled over the 3 gate checkpoints, is 0.163 -> one-sided
+# CI half-width ~=0.101). An earlier version of this file widened the margin
+# to 0.12 to make the test "resolvable" -- reverted the same day: choosing a
+# margin based on what a fixed sample size can detect, rather than a
+# substantive judgement of tolerable loss, is backwards (this is a
+# documented anti-pattern in non-inferiority design, e.g. ICH E9 guidance
+# against power-driven margin selection). The margin stays at its originally
+# reasoned value; `non_inferiority_test()` instead gained a third outcome,
+# "inconclusive" (distinct from "non_inferior" and "inferior"), for exactly
+# this situation -- see stage9_analysis.py. The expectation that q's RQ3
+# claim likely lands "inconclusive" at this n is pre-registered here, before
+# mean_pbrs/min_pbrs training finishes, not discovered after the fact.
+MARGIN_RESOLUTION_Q_ABS = 0.05
 
 # Baseline anchor for the mobility margin, computed 2026-08-03 from the
 # Stage 8 gate's own rich trajectories (A/B learners only -- see protocol

@@ -277,10 +277,28 @@ def non_inferiority_test(
     higher_is_better: bool,
     alpha: float = 0.05,
 ) -> dict[str, Any]:
-    """One-sided (1-2*alpha) CI on (treatment - control); non-inferior if the
-    CI excludes a loss larger than `margin` in the unfavourable direction.
+    """One-sided (1-alpha) CI on (treatment - control), classified into
+    THREE outcomes, not two:
+
+      "non_inferior" -- the CI excludes a loss larger than `margin` (the
+                         classic non-inferiority criterion: even the
+                         unfavourable bound is within the tolerable loss).
+      "inferior"      -- the POINT ESTIMATE itself already shows a loss
+                         larger than `margin` (positive evidence of harm,
+                         not just insufficient precision to rule it out).
+      "inconclusive"  -- neither: the point estimate does not show a loss
+                         beyond the margin, but the CI is wide enough that a
+                         loss beyond the margin cannot be excluded either.
+                         This is the honest outcome when a fixed sample size
+                         cannot resolve the pre-registered margin -- it must
+                         be reported as such, not collapsed into "non_inferior:
+                         false" (which reads as evidence of harm when it may
+                         only be evidence of imprecision) nor covered up by
+                         loosening the margin after the fact.
+
     `higher_is_better=True` for metrics like mobility/q (loss = decrease);
-    `False` for collision rate (loss = increase)."""
+    `False` for collision rate (loss = increase).
+    """
     from scipy import stats
 
     t = np.asarray(treatment, dtype=float)
@@ -288,19 +306,27 @@ def non_inferiority_test(
     diff = float(t.mean() - c.mean())
     n_t, n_c = len(t), len(c)
     se = float(np.sqrt(t.var(ddof=1) / n_t + c.var(ddof=1) / n_c))
-    # Welch-Satterthwaite df
     df = (t.var(ddof=1) / n_t + c.var(ddof=1) / n_c) ** 2 / (
         (t.var(ddof=1) / n_t) ** 2 / (n_t - 1) + (c.var(ddof=1) / n_c) ** 2 / (n_c - 1)
     )
     t_crit = float(stats.t.ppf(1 - alpha, df))  # one-sided
+
     if higher_is_better:
-        lower_bound = diff - t_crit * se
-        non_inferior = bool(lower_bound >= -margin)
-        bound_used = lower_bound
+        bound = diff - t_crit * se  # unfavourable (lower) bound
+        point_shows_harm = diff < -margin
+        bound_within_margin = bound >= -margin
     else:
-        upper_bound = diff + t_crit * se
-        non_inferior = bool(upper_bound <= margin)
-        bound_used = upper_bound
+        bound = diff + t_crit * se  # unfavourable (upper) bound
+        point_shows_harm = diff > margin
+        bound_within_margin = bound <= margin
+
+    if bound_within_margin:
+        outcome = "non_inferior"
+    elif point_shows_harm:
+        outcome = "inferior"
+    else:
+        outcome = "inconclusive"
+
     return {
         "mean_treatment": float(t.mean()),
         "mean_control": float(c.mean()),
@@ -309,8 +335,9 @@ def non_inferiority_test(
         "n_control": n_c,
         "margin": margin,
         "higher_is_better": higher_is_better,
-        "one_sided_bound": float(bound_used),
-        "non_inferior": non_inferior,
+        "one_sided_bound": float(bound),
+        "outcome": outcome,
+        "non_inferior": outcome == "non_inferior",  # kept for backward-compat callers
     }
 
 
