@@ -115,7 +115,17 @@ TRAINING_RUN_COUNT = len(MEAN_PBRS_SEEDS) + len(MIN_PBRS_SEEDS)  # 40 new traini
 # once, not re-derived from the comparison data itself.
 MARGIN_COLLISION_RATE_ABS = 0.03
 MARGIN_MEAN_MOBILITY_RELATIVE = 0.10
-MARGIN_RESOLUTION_Q_ABS = 0.05
+# Originally frozen at 0.05 (2026-08-03); CORRECTED same day after
+# `run_stage9_decision.py`'s self-test (baseline compared against a copy of
+# itself) surfaced that 0.05 is not achievable at n=20 -- q's real per-seed
+# SD (pooled across the 3 gate checkpoints, computed from the Stage 8 gate's
+# own 20 baseline seeds) is 0.163, giving a one-sided CI half-width of
+# ~0.101, roughly double the original margin. A margin narrower than the
+# achievable precision would return "non_inferior: false" close to by
+# construction, even for a true difference of exactly zero. Widened to 0.12
+# (slack above the ~0.101 half-width) so the test is actually resolvable at
+# this design's fixed n=20, not merely arithmetically well-defined.
+MARGIN_RESOLUTION_Q_ABS = 0.12
 
 # Baseline anchor for the mobility margin, computed 2026-08-03 from the
 # Stage 8 gate's own rich trajectories (A/B learners only -- see protocol
@@ -129,7 +139,12 @@ BASELINE_MEAN_LEARNER_MOBILITY_FLOOR = BASELINE_MEAN_LEARNER_MOBILITY_ANCHOR * (
 # Detection-floor MES for RQ1/RQ2 difference-style claims at n=20/condition
 # (protocol doc SS7.1) -- documentation only, not enforced by a guard.
 MES_SUCCESS_RATE = 0.20
-MES_SWAP_ELIGIBILITY = 0.20
+# Corrected 2026-08-03 alongside MARGIN_RESOLUTION_Q_ABS: using the
+# per-seed D_swap SD actually observed in Stage 8 gate baseline data
+# (0.269, vs the coarser pooled-episode estimate of 0.311 used when this
+# section was first drafted), n=20 resolves MES~=0.238, not 0.20 -- rounded
+# up to 0.25.
+MES_SWAP_ELIGIBILITY = 0.25
 
 
 def n_scenario_blocks(checkpoint_step: int) -> int:
