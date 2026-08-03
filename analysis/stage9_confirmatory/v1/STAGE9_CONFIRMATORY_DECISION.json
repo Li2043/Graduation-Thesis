@@ -1,0 +1,134 @@
+{
+  "protocol_tag": "stage9-confirmatory-v1",
+  "gate_checkpoints": [
+    350000,
+    375000,
+    400000
+  ],
+  "conditions_status": {
+    "baseline": "OK",
+    "mean_pbrs": "OK",
+    "min_pbrs": "OK"
+  },
+  "status": "COMPLETE",
+  "rq1_by_condition": {
+    "baseline": {
+      "q_safe_resolution_rate": 0.8976190476190476,
+      "p_MF_mainline_first_given_resolved": 0.4482758620689655,
+      "D_swap_complementary_order_rate": 0.4017094017094017,
+      "n_certified_episodes": 3360,
+      "mean_learner_mobility_U": 0.8968275803848795
+    },
+    "mean_pbrs": {
+      "q_safe_resolution_rate": 0.9452380952380952,
+      "p_MF_mainline_first_given_resolved": 0.3916876574307305,
+      "D_swap_complementary_order_rate": 0.35543766578249336,
+      "n_certified_episodes": 3360,
+      "mean_learner_mobility_U": 0.927680783372716
+    },
+    "min_pbrs": {
+      "q_safe_resolution_rate": 0.9142857142857143,
+      "p_MF_mainline_first_given_resolved": 0.4557291666666667,
+      "D_swap_complementary_order_rate": 0.23098591549295774,
+      "n_certified_episodes": 3360,
+      "mean_learner_mobility_U": 0.9003852271478798
+    }
+  },
+  "rq2": {
+    "mean_pbrs_vs_baseline": {
+      "q": {
+        "mean_a": 0.9452380952380951,
+        "mean_b": 0.8976190476190474,
+        "diff_a_minus_b": 0.04761904761904767,
+        "n_a": 20,
+        "n_b": 20,
+        "t_stat": 1.2052383118616867,
+        "p_value": 0.23923023324280565,
+        "significant_at_0.05": false,
+        "mes": 0.2,
+        "abs_diff_ge_mes": false,
+        "interpretable_as_detected_difference": false
+      },
+      "D_swap": {
+        "mean_a": 0.35118421052631577,
+        "mean_b": 0.39676992254391635,
+        "diff_a_minus_b": -0.04558571201760059,
+        "n_a": 20,
+        "n_b": 20,
+        "t_stat": -0.5656945732057619,
+        "p_value": 0.5749690691408348,
+        "significant_at_0.05": false,
+        "mes": 0.25,
+        "abs_diff_ge_mes": false,
+        "interpretable_as_detected_difference": false
+      }
+    },
+    "min_pbrs_vs_mean_pbrs": {
+      "q": {
+        "mean_a": 0.9142857142857143,
+        "mean_b": 0.9452380952380951,
+        "diff_a_minus_b": -0.030952380952380842,
+        "n_a": 20,
+        "n_b": 20,
+        "t_stat": -1.079591238098616,
+        "p_value": 0.28843732393874627,
+        "significant_at_0.05": false,
+        "mes": 0.2,
+        "abs_diff_ge_mes": false,
+        "interpretable_as_detected_difference": false
+      },
+      "D_swap": {
+        "mean_a": 0.23779213304755098,
+        "mean_b": 0.35118421052631577,
+        "diff_a_minus_b": -0.11339207747876479,
+        "n_a": 20,
+        "n_b": 20,
+        "t_stat": -1.511998732346216,
+        "p_value": 0.1388116405713918,
+        "significant_at_0.05": false,
+        "mes": 0.25,
+        "abs_diff_ge_mes": false,
+        "interpretable_as_detected_difference": false
+      }
+    }
+  },
+  "rq3_min_pbrs_vs_baseline": {
+    "status": "OK",
+    "collision_rate": {
+      "mean_treatment": 0.04047619047619047,
+      "mean_control": 0.047619047619047616,
+      "diff_treatment_minus_control": -0.007142857142857145,
+      "n_treatment": 20,
+      "n_control": 20,
+      "margin": 0.03,
+      "higher_is_better": false,
+      "one_sided_bound": 0.01689741295815849,
+      "outcome": "non_inferior",
+      "non_inferior": true
+    },
+    "mean_learner_mobility": {
+      "mean_treatment": 0.9003852271478797,
+      "mean_control": 0.8968275803848795,
+      "diff_treatment_minus_control": 0.0035576467630001885,
+      "n_treatment": 20,
+      "n_control": 20,
+      "margin": 0.08968275803848796,
+      "higher_is_better": true,
+      "one_sided_bound": -0.03948110427404409,
+      "outcome": "non_inferior",
+      "non_inferior": true
+    },
+    "q": {
+      "mean_treatment": 0.9142857142857143,
+      "mean_control": 0.8976190476190474,
+      "diff_treatment_minus_control": 0.01666666666666683,
+      "n_treatment": 20,
+      "n_control": 20,
+      "margin": 0.05,
+      "higher_is_better": true,
+      "one_sided_bound": -0.05753894523168808,
+      "outcome": "inconclusive",
+      "non_inferior": false
+    }
+  }
+}
