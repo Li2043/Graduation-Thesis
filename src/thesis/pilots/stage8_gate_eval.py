@@ -243,6 +243,29 @@ def run_greedy_episode_diagnostic(
             if ttc is not None and math.isfinite(float(ttc)):
                 row["minimum_TTC"] = float(ttc)
 
+        # Scripted (IDM) background mainline vehicles -- never "completed" (no
+        # exit/active gating, see merge_env_v2._registry.completed which only
+        # tracks "A"/"B"), so no active-on-road flag is meaningful for them;
+        # logged post-transition (unlike A/B's pre-transition row above) since
+        # they carry no action/Q-value fields tied to this policy_step's
+        # decision. Added solely to let downstream mobility analysis compute
+        # the true 4-stakeholder worst-off quantity instead of the 2-controller
+        # (A/B only) proxy -- see stage9_analysis.compute_learner_mobility's
+        # docstring note on scope.
+        for bg_id in ("B_front", "B_rear"):
+            bg_veh = env._vehicles[bg_id]  # noqa: SLF001
+            step_rows.append(
+                {
+                    "policy_step": steps - 1,
+                    "simulation_time": float((steps - 1) * 0.2),
+                    "controller": bg_id,
+                    "controller_role": "background_mainline",
+                    "active": True,
+                    "route_progress": _progress(bg_veh),
+                    "speed": float(bg_veh.speed),
+                }
+            )
+
         if terminated or truncated:
             break
 
