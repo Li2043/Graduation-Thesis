@@ -380,6 +380,96 @@ def compute_worst_off_mobility(
     }
 
 
+def compute_mean_stakeholder_utility(
+    ep: pd.DataFrame,
+    traj_dir: Path,
+    *,
+    checkpoint_steps: tuple[int, ...],
+    target_speed: float = TARGET_SPEED,
+) -> dict[str, Any]:
+    """U-bar(episode) = mean_i U_i(episode) over all four stakeholders --
+    Chapter 3 SS3.5.3/SS3.10.1's `mean stakeholder episode utility` primary
+    endpoint (Eq. 3.14, 3.48, 3.50), computed here from the same per-episode
+    detail table as `compute_worst_off_mobility` (Eq. 3.15/3.49/3.51's
+    U^min), so U-bar and U^min in any report using both are guaranteed
+    consistent (same episodes, same U_i values, different aggregation).
+    Only episodes with all 4 controllers logged are used, matching
+    `compute_worst_off_mobility`'s completeness rule.
+    """
+    detail = compute_stakeholder_mobility(
+        ep, traj_dir, checkpoint_steps=checkpoint_steps, target_speed=target_speed
+    )
+    if detail.empty:
+        return {"status": "NO_DATA", "n_rows": 0}
+    episode_keys = [
+        "master_seed",
+        "checkpoint_step",
+        "validation_block_id",
+        "assignment",
+        "scenario_block",
+        "episode_index",
+    ]
+    valid = detail.dropna(subset=["U_i"])
+    counts = valid.groupby(episode_keys)["controller"].nunique()
+    n_expected = len(ALL_STAKEHOLDER_CONTROLLERS)
+    complete_keys = counts[counts == n_expected].index
+    n_incomplete = int((counts != n_expected).sum())
+    per_episode_all = valid.groupby(episode_keys)["U_i"].mean().rename("U_bar").reset_index()
+    per_episode = (
+        per_episode_all.set_index(episode_keys).loc[complete_keys].reset_index()
+        if len(complete_keys)
+        else per_episode_all.iloc[0:0]
+    )
+    if per_episode.empty:
+        return {"status": "NO_DATA", "n_rows": 0, "n_incomplete_episodes": n_incomplete}
+    per_seed = per_episode.groupby("master_seed")["U_bar"].mean()
+    return {
+        "status": "OK",
+        "n_episodes": int(len(per_episode)),
+        "n_incomplete_episodes": n_incomplete,
+        "mean_U_bar": float(per_episode["U_bar"].mean()),
+        "sd_U_bar": float(per_episode["U_bar"].std(ddof=1)),
+        "per_seed_mean_U_bar": {int(k): float(v) for k, v in per_seed.items()},
+    }
+
+
+def compute_convention_consistency_per_seed(
+    ep: pd.DataFrame, *, checkpoint_steps: tuple[int, ...]
+) -> pd.DataFrame:
+    """Seed-level convention consistency kappa, Chapter 3 SS3.9.3 (Eq.
+    3.41-3.45) -- the proportion of a seed's successful evaluation episodes
+    that follow its own modal non-simultaneous passing order. Reuses
+    `thesis.analysis.endpoints.convention_consistency` verbatim (the same
+    pure function the eval driver's own `passing_order` column was produced
+    with, via `classify_convention`) rather than re-deriving it; missing
+    (NaN), not zero, when no unique non-simultaneous mode exists for a seed
+    (Eq. 3.44's tie case, or no successful episodes).
+
+    Unlike D_swap (stage9_analysis's own RQ1/RQ2 metric, restricted to
+    certified choice states and defined via the swap-pair design of Chapter
+    2 SS2.8), kappa is computed over ALL evaluation episodes at the given
+    checkpoints, unrestricted -- Chapter 3's original definition, kept
+    intact here for direct comparison against the numbers Chapter 3
+    pre-registers.
+    """
+    from thesis.analysis.endpoints import convention_consistency
+
+    sub = ep[ep["checkpoint_step"].isin(checkpoint_steps)]
+    rows = []
+    for seed, g in sub.groupby("master_seed"):
+        conventions = [c if isinstance(c, str) else None for c in g["passing_order"].tolist()]
+        kappa = convention_consistency(conventions)
+        rows.append(
+            {
+                "master_seed": int(seed),
+                "kappa": kappa,
+                "n_episodes": int(len(g)),
+                "n_successful": int(sum(1 for c in conventions if c is not None)),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def one_sided_superiority_test(
     treatment: np.ndarray, control: np.ndarray, *, alpha: float = 0.05
 ) -> dict[str, Any]:
@@ -519,7 +609,9 @@ __all__ = [
     "CERTIFIED_TEMPLATE_INDICES",
     "TARGET_SPEED",
     "UNCERTIFIED_TEMPLATE_INDICES",
+    "compute_convention_consistency_per_seed",
     "compute_learner_mobility",
+    "compute_mean_stakeholder_utility",
     "compute_rq1_metrics",
     "compute_rq1_metrics_per_seed",
     "compute_stakeholder_mobility",
