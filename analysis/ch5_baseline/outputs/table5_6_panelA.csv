@@ -1,0 +1,5 @@
+metric,mean,median,ci_low,ci_high
+C_mean,0.0378,0.0092,0.0078,0.0766
+C_max,0.0952,0.0293,0.0268,0.18
+burden_range,0.0925,0.0293,0.0268,0.1748
+zero_burden_episode_share,0.7129,0.8008,0.5205,0.8757

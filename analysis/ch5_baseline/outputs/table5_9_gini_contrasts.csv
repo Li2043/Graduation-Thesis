@@ -1,0 +1,4 @@
+contrast,delta_gini,ci_low,ci_high
+Mean - Baseline,-0.0092,-0.069,0.0654
+GGI - Baseline,-0.0076,-0.0463,0.0246
+Maximin - Baseline,0.0004,-0.033,0.0339

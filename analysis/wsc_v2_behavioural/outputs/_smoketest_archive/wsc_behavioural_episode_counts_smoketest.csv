@@ -1,0 +1,9 @@
+seed,condition,regime,n_episodes,n_completion,n_collision
+900101,baseline,original,256,255,1
+900101,baseline,wsc,256,220,36
+900101,mean,original,256,254,2
+900101,mean,wsc,256,248,8
+900101,ggi,original,256,256,0
+900101,ggi,wsc,256,248,8
+900101,maximin,original,256,253,3
+900101,maximin,wsc,256,231,25

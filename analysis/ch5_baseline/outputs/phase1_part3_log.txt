@@ -1,0 +1,50 @@
+==============================================================================
+5.7.1 -- robustness table (per-seed deltas)
+==============================================================================
+seed 900101: delta_umin_mean=-0.004 delta_gini_mean=+0.002 delta_umin_ggi=-0.004 delta_gini_ggi=-0.001 delta_umin_maximin=-0.008 delta_gini_maximin=+0.004
+seed 900102: delta_umin_mean=+0.017 delta_gini_mean=-0.009 delta_umin_ggi=+0.035 delta_gini_ggi=-0.014 delta_umin_maximin=-0.091 delta_gini_maximin=+0.048
+seed 900103: delta_umin_mean=+0.074 delta_gini_mean=-0.037 delta_umin_ggi=+0.026 delta_gini_ggi=-0.013 delta_umin_maximin=+0.078 delta_gini_maximin=-0.045
+seed 900104: delta_umin_mean=-0.028 delta_gini_mean=+0.015 delta_umin_ggi=-0.102 delta_gini_ggi=+0.052 delta_umin_maximin=-0.220 delta_gini_maximin=+0.088
+seed 910101: delta_umin_mean=-0.011 delta_gini_mean=+0.006 delta_umin_ggi=-0.017 delta_gini_ggi=+0.008 delta_umin_maximin=-0.043 delta_gini_maximin=+0.021
+seed 910102: delta_umin_mean=-0.678 delta_gini_mean=+0.340 delta_umin_ggi=-0.165 delta_gini_ggi=+0.060 delta_umin_maximin=-0.123 delta_gini_maximin=+0.044
+seed 920101: delta_umin_mean=+0.111 delta_gini_mean=-0.053 delta_umin_ggi=+0.097 delta_gini_ggi=-0.046 delta_umin_maximin=+0.092 delta_gini_maximin=-0.044
+seed 920102: delta_umin_mean=+0.036 delta_gini_mean=-0.015 delta_umin_ggi=-0.054 delta_gini_ggi=+0.030 delta_umin_maximin=+0.088 delta_gini_maximin=-0.040
+seed 920103: delta_umin_mean=+0.012 delta_gini_mean=-0.002 delta_umin_ggi=+0.000 delta_gini_ggi=+0.004 delta_umin_maximin=+0.011 delta_gini_maximin=-0.002
+seed 920104: delta_umin_mean=+0.347 delta_gini_mean=-0.175 delta_umin_ggi=+0.132 delta_gini_ggi=-0.068 delta_umin_maximin=+0.096 delta_gini_maximin=-0.050
+seed 920105: delta_umin_mean=+0.316 delta_gini_mean=-0.157 delta_umin_ggi=+0.344 delta_gini_ggi=-0.171 delta_umin_maximin=+0.218 delta_gini_maximin=-0.114
+seed 920106: delta_umin_mean=+0.049 delta_gini_mean=-0.025 delta_umin_ggi=-0.132 delta_gini_ggi=+0.068 delta_umin_maximin=-0.190 delta_gini_maximin=+0.096
+
+Batch sensitivity (original 6 vs new 6), U_min delta vs Baseline:
+  mean    : original-6 mean delta=-0.1050  new-6 mean delta=+0.1451
+  ggi     : original-6 mean delta=-0.0377  new-6 mean delta=+0.0646
+  maximin : original-6 mean delta=-0.0678  new-6 mean delta=+0.0524
+
+==============================================================================
+5.7.2 -- Table 5.12: outcome decomposition of C_mean
+==============================================================================
+baseline: overall=0.0378  success_contrib=0.0219  collision_contrib=0.0159  timeout_contrib=0.0000  check_sum=0.0378
+mean    : overall=0.0135  success_contrib=0.0131  collision_contrib=0.0005  timeout_contrib=0.0000  check_sum=0.0135
+ggi     : overall=0.2264  success_contrib=0.0079  collision_contrib=0.0160  timeout_contrib=0.2026  check_sum=0.2264
+maximin : overall=0.4259  success_contrib=0.0689  collision_contrib=0.0396  timeout_contrib=0.3174  check_sum=0.4259
+wrote fig5_14_outcome_decomposition
+
+==============================================================================
+5.7.4 -- Mean-policy quality vs welfare-objective response
+==============================================================================
+ggi     : r(Mean completion, delta completion)=-0.8966   r(Mean U_min, delta U_min)=-0.9016
+maximin : r(Mean completion, delta completion)=-0.8744   r(Mean U_min, delta U_min)=-0.8814
+wrote fig5_16_mean_policy_quality_response
+
+==============================================================================
+5.3.2 -- training-window trajectories, 48 branches
+==============================================================================
+
+Seeds/conditions with a clear late-training instability signature (final timeout>=0.10 or completion drop>=0.30 from peak):
+  ('baseline', 920105, 0.593, 0.399, 0.008)
+  ('mean', 910102, 0.518, 0.482, 0.0)
+  ('ggi', 910101, 0.637, 0.224, 0.139)
+  ('maximin', 900101, 0.481, 0.452, 0.067)
+  ('maximin', 900102, 0.693, 0.3, 0.007)
+  ('maximin', 900104, 0.646, 0.26, 0.094)
+  ('maximin', 910102, 0.515, 0.466, 0.019)
+wrote fig5_2_formal_training_trajectories

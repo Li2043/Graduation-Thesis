@@ -1,0 +1,7 @@
+outcome,condition,n12_mean,n12_CI_low,n12_CI_high,n11_mean,n11_CI_low,n11_CI_high,point_estimate_change,qualitative_direction_n12,qualitative_direction_n11,direction_changed
+U_min,mean,-0.048836,-0.236055,0.175424,-0.137238,-0.278448,-0.005639,-0.088402,negative,negative,False
+U_min,ggi,0.073534,-0.037448,0.209031,0.021181,-0.061024,0.105693,-0.052353,positive,positive,False
+U_min,maximin,-0.018421,-0.151516,0.096533,-0.006836,-0.153674,0.11441,0.011585,negative,negative,False
+Gini,mean,0.023435,-0.089272,0.117801,0.067791,0.001545,0.13956,0.044356,positive,positive,False
+Gini,ggi,-0.037938,-0.101481,0.015588,-0.013906,-0.05576,0.027183,0.024031,negative,negative,False
+Gini,maximin,0.012593,-0.044317,0.07856,0.005548,-0.053482,0.077541,-0.007045,positive,positive,False

@@ -1,0 +1,3 @@
+contrast,outcome,point_estimate,CI_low,CI_high,raw_p_bootstrap,holm_adjusted_p,significant_before_holm_alpha05,significant_after_holm_alpha05
+GGI - Mean,U_min,-0.006633,-0.086718,0.103371,0.8172,1.0,False,False
+MAXIMIN - Mean,U_min,-0.027724,-0.123345,0.099209,0.5976,1.0,False,False

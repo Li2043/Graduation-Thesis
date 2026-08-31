@@ -1,0 +1,60 @@
+==============================================================================
+5.5.4 -- Table 5.6: burden, Baseline H1
+==============================================================================
+C_mean        : mean=0.0378 median=0.0092 CI=[0.0078,0.0766]
+C_max         : mean=0.0952 median=0.0293 CI=[0.0268,0.1800]
+burden_range  : mean=0.0925 median=0.0293 CI=[0.0268,0.1748]
+zero_burden_share: mean=0.7129 CI=[0.5205,0.8757]
+burden Ramp-Fast       : 0.0556 CI=[0.0104,0.1186]
+burden Ramp-Slow       : 0.0170 CI=[0.0024,0.0340]
+burden Mainline-Fast   : 0.0618 CI=[0.0114,0.1272]
+burden Mainline-Slow   : 0.0167 CI=[0.0026,0.0323]
+Fast-Slow burden    : delta=+0.0418 CI=[+0.0041,+0.0925]
+Ramp-Mainline burden: delta=-0.0030 CI=[-0.0100,+0.0037]
+wrote fig5_7_baseline_burden_by_class
+
+Burden Gini defined for 10/12 seeds (nonzero-burden episodes only):
+  seed 900102: mean burden Gini=0.4746 (n=84/256 nonzero-burden episodes)
+  seed 900104: mean burden Gini=0.7025 (n=74/256 nonzero-burden episodes)
+  seed 910101: mean burden Gini=0.6049 (n=8/256 nonzero-burden episodes)
+  seed 910102: mean burden Gini=0.5700 (n=55/256 nonzero-burden episodes)
+  seed 920101: mean burden Gini=0.7016 (n=208/256 nonzero-burden episodes)
+  seed 920102: mean burden Gini=0.7500 (n=14/256 nonzero-burden episodes)
+  seed 920103: mean burden Gini=0.7427 (n=249/256 nonzero-burden episodes)
+  seed 920104: mean burden Gini=0.6834 (n=47/256 nonzero-burden episodes)
+  seed 920105: mean burden Gini=0.6865 (n=128/256 nonzero-burden episodes)
+  seed 920106: mean burden Gini=0.7417 (n=15/256 nonzero-burden episodes)
+
+==============================================================================
+5.6.1 -- Table 5.8: U_min contrasts vs Baseline
+==============================================================================
+mean     - Baseline, U_min: delta=+0.0200 median=+0.0269 pos=8/12 CI=[-0.1287,+0.1390]
+ggi      - Baseline, U_min: delta=+0.0134 median=-0.0016 pos=6/12 CI=[-0.0537,+0.0927]
+maximin  - Baseline, U_min: delta=-0.0077 median=+0.0012 pos=6/12 CI=[-0.0785,+0.0616]
+wrote fig5_9_rq2_umin_by_seed
+
+==============================================================================
+5.6.2 -- Table 5.9: Gini/U_mean/range, 4 conditions
+==============================================================================
+baseline: U_min=0.8816 Gini=0.0580 U_mean=0.9412 range=0.1179
+mean    : U_min=0.9016 Gini=0.0487 U_mean=0.9508 range=0.0982
+ggi     : U_min=0.8950 Gini=0.0504 U_mean=0.9441 range=0.0997
+maximin : U_min=0.8739 Gini=0.0584 U_mean=0.9384 range=0.1249
+
+Gini contrasts vs Baseline:
+mean     - Baseline, Gini: delta=-0.0092 CI=[-0.0690,+0.0654]
+ggi      - Baseline, Gini: delta=-0.0076 CI=[-0.0463,+0.0246]
+maximin  - Baseline, Gini: delta=+0.0004 CI=[-0.0330,+0.0339]
+
+==============================================================================
+5.6.6 -- Table 5.11: non-inferiority margins vs Baseline
+==============================================================================
+mean     completion delta=+0.0186 CI=[-0.1305,+0.1380] NI=False
+mean     collision  delta=-0.0186 CI=[-0.1380,+0.1305] NI=False
+mean     timeout    delta=+0.0000 CI=[+0.0000,+0.0000]
+ggi      completion delta=+0.0107 CI=[-0.0570,+0.0908] NI=False
+ggi      collision  delta=-0.0173 CI=[-0.0934,+0.0456] NI=False
+ggi      timeout    delta=+0.0065 CI=[+0.0000,+0.0195]
+maximin  completion delta=-0.0127 CI=[-0.0960,+0.0635] NI=False
+maximin  collision  delta=-0.0072 CI=[-0.0706,+0.0540] NI=False
+maximin  timeout    delta=+0.0199 CI=[+0.0000,+0.0589]

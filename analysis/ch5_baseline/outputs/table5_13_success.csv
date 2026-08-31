@@ -1,0 +1,6 @@
+measure,zero_mobility_burden,nonzero_mobility_burden
+>=1 hard-brake event (share),0.5328,1.0
+median hard-brake count,1.0,6.0
+mean hard-brake count,1.8664,8.3422
+95th pct hard-brake count,7.0,26.65
+mean braking burden C_brake,0.1289,0.3018

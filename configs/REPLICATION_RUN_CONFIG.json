@@ -1,0 +1,54 @@
+{
+  "note": "Operational config for protocol/new_protocol.md independent-seed replication. Does not change any frozen scientific hyperparameter. Seed IDs, stage budgets, and checkpoint intervals are copied from new_protocol.md §6/§11 and configs/FROZEN_EXPERIMENT_CONFIG.json curriculum_r50.",
+  "protocol": "protocol/new_protocol.md",
+  "protocol_version": 1,
+  "seeds": [920101, 920102, 920103, 920104, 920105, 920106],
+  "smoke_seed": 929999,
+  "keep_all_seeds": true,
+  "performance_based_extension": false,
+  "output_root": "checkpoints/seed_replication_v1",
+  "run_state_dir": "outputs/replication_run_state",
+  "curriculum_stages": [
+    {
+      "name": "M6_R50_audited",
+      "start_step": 0,
+      "end_step": 400000,
+      "scenario_bank": "Q.json",
+      "scenario_ids": ["Q_00000"],
+      "checkpoint_every": 25000
+    },
+    {
+      "name": "C4_R50",
+      "start_step": 400000,
+      "end_step": 700000,
+      "scenario_bank": "C4.json",
+      "scenario_ids": "from_bank",
+      "checkpoint_every": 50000,
+      "note": "new_protocol.md §11 freezes C4 at 300k stage steps (cumulative 700k) with no C4_R50ext decision."
+    },
+    {
+      "name": "C16_R50",
+      "start_step": 700000,
+      "end_step": 950000,
+      "scenario_bank": "C16.json",
+      "scenario_ids": "from_bank",
+      "checkpoint_every": 50000
+    },
+    {
+      "name": "C64_R50",
+      "start_step": 950000,
+      "end_step": 1200000,
+      "scenario_bank": "Q.json",
+      "scenario_ids": "from_bank",
+      "checkpoint_every": 50000
+    }
+  ],
+  "welfare_finetune": {
+    "start_step": 1200000,
+    "end_step": 2000000,
+    "additional_steps": 800000,
+    "lambda_W": 0.5,
+    "conditions": ["mean", "ggi", "maximin"],
+    "checkpoint_every": 50000
+  }
+}

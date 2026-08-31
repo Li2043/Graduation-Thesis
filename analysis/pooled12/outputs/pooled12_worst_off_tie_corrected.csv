@@ -1,0 +1,13 @@
+condition,role_speed_class,fractional_count,n_nondegenerate_episodes,percent
+mean,ramp-fast,261.0,771,33.8521
+mean,ramp-slow,127.0,771,16.4721
+mean,mainline-fast,299.5,771,38.8457
+mean,mainline-slow,83.5,771,10.8301
+ggi,ramp-fast,344.0,972,35.3909
+ggi,ramp-slow,152.6667,972,15.7064
+ggi,mainline-fast,290.6667,972,29.904
+ggi,mainline-slow,184.6667,972,18.9986
+maximin,ramp-fast,537.0,1512,35.5159
+maximin,ramp-slow,197.5,1512,13.0622
+maximin,mainline-fast,563.0,1512,37.2354
+maximin,mainline-slow,214.5,1512,14.1865

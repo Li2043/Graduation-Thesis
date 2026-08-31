@@ -1,0 +1,66 @@
+{
+  "status": "FROZEN BEFORE ANY BEHAVIOURAL RESULT WAS INSPECTED",
+  "note": "All thresholds below are either (a) pre-existing environment/analysis constants copied unchanged from the repository, or (b) new operational definitions built exclusively from those pre-existing constants, documented here before any WSC-vs-Original behavioural comparison was computed. None were chosen based on which value produces the largest WSC effect.",
+  "reused_unchanged_constants": {
+    "X_CONVERGE_START": {"value": 220.0, "source": "study_b/envs/highwayenv_merge.py:before_merge_length"},
+    "X_PARALLEL_START": {"value": 300.0, "source": "before_merge_length + converge_merge_length (220.0 + 80.0)"},
+    "X_MERGE_END": {"value": 380.0, "source": "+ parallel_merge_length (300.0 + 80.0); == WINDOW_END in evaluate_behavioral_window.py / illustrative_episode.py"},
+    "R_OBS_DEFAULT_sensing_range_m": {"value": 50.0, "source": "study_b/local_observation.py:R_OBS_DEFAULT, and local_sensing_range_m=50.0 passed in every eval script surveyed"},
+    "HARD_BRAKE_THRESH_mps2": {"value": -3.0, "source": "evaluate_behavioral_window.py / conflict_exposure_diagnostic_eval.py (frozen, reused unchanged in both); NOTE: utility.py's EpisodeVehicleTrace.hard_brake_count default is -3.5 -- a pre-existing repo inconsistency, not introduced here. -3.0 is used because it is the value actually used by this project's own analysis scripts, and is explicitly commented there as 'existing frozen definition, reused unchanged'."},
+    "DECELERATE_action_index": {"value": 2, "source": "thesis.envs.stage10_symmetric_merge_env.HighLevelAction.DECELERATE (MAINTAIN=0, ACCELERATE=1, DECELERATE=2); referred to as 'BRAKE' colloquially in conflict_exposure_diagnostic_eval.py's any_BRAKE_action column"},
+    "dt_seconds": {"value": 0.2, "source": "5 Hz control step, DT constant used throughout evaluate_behavioral_window.py / conflict_exposure_diagnostic_eval.py"},
+    "merge_order_definition": {"description": "discrete policy-step index at which a vehicle's world-x first reaches X_MERGE_END=380.0, vehicles sorted ascending by that step, DNF if never reached", "source": "evaluate_behavioral_window.py / illustrative_episode.py, reused unchanged; NOTE: no fractional tie-breaking is used for merge order itself in the existing repo (that exists only for worst-off vehicle identity, item below)"},
+    "worst_off_tie_tolerance": {"value": 1e-9, "fractional_weight_rule": "1/n_tied, excluding 4-way degenerate ties (all four vehicles tied, i.e. all at U=1.0)", "source": "pooled12/merge_and_audit.py Task 5, reused unchanged"},
+    "role_speed_class_group_label": {"format": "{role}-{speed_class}", "values": ["ramp-fast", "ramp-slow", "mainline-fast", "mainline-slow"], "source": "pooled12/merge_and_audit.py CLASS_ORDER (hyphen separator convention adopted here for consistency with the project's formal reporting; note study_b/analysis/behaviour.py uses an underscore variant elsewhere -- hyphen chosen here to match the formal thesis reporting convention)"},
+    "welfare_state_definition": {"function": "thesis.study_b.utility.running_active_attainment(trace)", "description": "mean of already-realised ACTIVE target_speed_attainment samples so far in the episode; neutral=1.0 if no active samples yet; reused unchanged, computed identically for Original and WSC regimes for ANALYSIS purposes regardless of whether the policy itself observes it (see provenance: policy-observed vs analyst-computed distinction)"}
+  },
+  "new_operational_definitions": {
+    "yielding_opportunity": {
+      "definition": "At step t, a directed pair (i, j) is a valid yielding opportunity if: (1) both i and j are active; (2) i has not yet exited the merge zone (i's world-x < X_MERGE_END); (3) |delta_d_ij| <= R_OBS_DEFAULT (50.0 m), i.e. j is within i's local sensing range using the SAME road-relative distance-to-merge coordinate the policy's own neighbour selection uses (study_b/local_observation.py's build_neighbour_observations). This directly reuses the project's own decentralization/visibility definition -- 'i has an opportunity toward j' means 'j is a neighbour i can actually perceive', not a newly invented geometric predicate.",
+      "rationale": "Chosen because it reuses an existing, frozen, policy-relevant constant (R_OBS_DEFAULT) rather than defining a new interaction radius, and because it directly answers 'could i's policy have conditioned on j at this step' -- the mechanistic question this analysis exists to answer.",
+      "pre_specified": true
+    },
+    "yield_action": {
+      "definition": "At step t, vehicle i is coded as performing a yield action if its selected discrete action == DECELERATE (2), AND i has at least one valid yielding-opportunity partner j at that step (see above). This reuses the existing discrete-action vocabulary (HighLevelAction) and the existing 'BRAKE action' terminology from conflict_exposure_diagnostic_eval.py's any_BRAKE_action column -- no new action-space concept is introduced.",
+      "pre_specified": true
+    },
+    "welfare_gap": {
+      "definition": "welfare_gap_ij(t) = M_i(t) - M_j(t), using the offline-computed running_active_attainment for both i and j at step t (pre-decision, i.e. computed from each vehicle's trace as accumulated strictly before step t's action, matching the WSC feature's own causal-safety property). Positive means i currently has higher welfare than j (i is currently better off).",
+      "pre_specified": true
+    },
+    "welfare_gap_bins": {
+      "definition": "Three fixed bins for descriptive (non-primary) stratification, chosen from the [0,1] range of M without inspecting any WSC effect: near-equal (|gap| < 0.05), moderate (0.05 <= |gap| < 0.20), large (|gap| >= 0.20).",
+      "pre_specified": true,
+      "status": "descriptive/secondary only, per task instruction -- not used in any primary inferential test"
+    },
+    "merge_priority_pair": {
+      "definition": "For a directed pair (i, j) that shares at least one yielding-opportunity step, 'i receives priority over j' if i's merge-order exit step (first x>=380) is strictly earlier than j's. 'Currently worse-off at encounter' = the vehicle with lower M at the FIRST step the pair became a valid opportunity (i.e. welfare state at the moment they first could interact, not at exit).",
+      "pre_specified": true
+    },
+    "cooperative_costly_action": {
+      "definition": "Reuses the existing, frozen hard-brake definition: vehicle i takes a cooperative costly action at step t if its realised acceleration <= HARD_BRAKE_THRESH (-3.0 m/s^2), counted as contiguous events (consecutive qualifying steps count as ONE event), matching evaluate_behavioral_window.py's existing convention. No new 'gap creation' metric is defined (NOT FOUND anywhere in the repository as a canonical concept, and inventing a new geometric gap-creation predicate was judged out of scope for a pre-registered, non-post-hoc analysis); hard-braking is used as the single primary costly-cooperation proxy, consistent with it being explicitly listed as a candidate behaviour in the task and already being the project's own established burden/behavioural marker.",
+      "pre_specified": true
+    },
+    "worst_off_identity": {
+      "definition": "w(t) = argmin_i M_i(t) among currently ACTIVE vehicles at step t, using the same 1e-9 tie tolerance and fractional-weighting convention as the existing worst-off tie-corrected analysis (pooled12 Task 5) when ties occur.",
+      "pre_specified": true
+    },
+    "worst_off_recovery_horizons": {
+      "definition": "Three fixed horizons k in {10, 25, 50} steps (2.0s / 5.0s / 10.0s at dt=0.2s), chosen because the parallel merge sub-zone (300->380, 80m) takes roughly 80m / ~20 m/s ~= 4s ~= 20 steps to traverse at typical target speed, and the full merge negotiation window (220->380, 160m) takes roughly 8s ~= 40 steps -- so 10/25/50 steps span 'short' (half the parallel zone), 'medium' (~one full merge-window traversal), and 'long' (~2.5x a full traversal) relative to the environment's own geometry, without reference to any observed WSC effect.",
+      "pre_specified": true
+    },
+    "recovery_metric": {
+      "definition": "Recovery_k(t) = M_w(t+k) - M_w(t) for the vehicle w identified as worst-off at t, valid only if w remains active (or has just completed) through t+k. GapClosure_k(t) = [mean_{i != w} M_i(t) - M_w(t)] - [mean_{i != w} M_i(t+k) - M_w(t+k)]; positive means the worst-off vehicle closes the gap to its peers.",
+      "pre_specified": true
+    }
+  },
+  "sample_points_for_dynamic_metrics": {
+    "description": "Worst-off identity and recovery windows are evaluated at every step t where at least 2 vehicles are active and the merge-relevant window condition below holds, to keep the analysis tractable and to focus on merge-negotiation-relevant moments rather than free-flow driving far from any conflict.",
+    "window_condition": "at least one active vehicle has world-x in [X_CONVERGE_START, X_MERGE_END) = [220, 380)"
+  },
+  "scope_limitations_declared_in_advance": [
+    "No 'gap creation' (physical space-yielding) metric is computed -- no canonical definition exists in the repository and none is introduced; hard-braking is the sole primary costly-cooperation proxy.",
+    "Yielding is measured as a discrete-action event (DECELERATE), not as a continuous deceleration magnitude, to keep the primary yielding metric binary and directly interpretable as 'the policy chose the yield-coded action'.",
+    "M_i/M_j are computed identically for Original and WSC regimes for ANALYSIS purposes only; Original policies never receive these values as input (verified: include_welfare_state=False for all Original evaluation runs)."
+  ]
+}

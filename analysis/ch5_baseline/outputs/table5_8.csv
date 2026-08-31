@@ -1,0 +1,4 @@
+contrast,mean_delta,median_delta,positive_seeds,ci_low,ci_high
+Mean - Baseline,0.02,0.0269,8/12,-0.1287,0.139
+GGI - Baseline,0.0134,-0.0016,6/12,-0.0537,0.0927
+Maximin - Baseline,-0.0077,0.0012,6/12,-0.0785,0.0616

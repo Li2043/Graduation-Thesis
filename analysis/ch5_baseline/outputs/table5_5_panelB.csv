@@ -1,0 +1,5 @@
+class,mean_seed_share,ci_low,ci_high
+Ramp-Fast,0.3834,0.2457,0.5417
+Ramp-Slow,0.1578,0.0846,0.2354
+Mainline-Fast,0.3141,0.2241,0.4004
+Mainline-Slow,0.1447,0.0743,0.2196

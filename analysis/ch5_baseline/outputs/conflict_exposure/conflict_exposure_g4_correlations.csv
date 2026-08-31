@@ -1,0 +1,10 @@
+x,y,n_seeds,median_rho,min_rho,max_rho
+overlap duration (s),Utility Gini,12,0.3406,0.0105,0.8063
+overlap duration (s),U_min,12,-0.3408,-0.808,-0.0164
+overlap duration (s),utility range,12,0.3408,0.0123,0.8062
+min crossing-time gap @x380 (s),Utility Gini,12,-0.1928,-0.5349,0.5063
+min crossing-time gap @x380 (s),U_min,12,0.1919,-0.5065,0.5317
+min crossing-time gap @x380 (s),utility range,12,-0.1919,-0.527,0.5053
+min cross-road separation (m),Utility Gini,12,-0.2483,-0.7692,0.3649
+min cross-road separation (m),U_min,12,0.2515,-0.3564,0.7361
+min cross-road separation (m),utility range,12,-0.253,-0.7361,0.3564

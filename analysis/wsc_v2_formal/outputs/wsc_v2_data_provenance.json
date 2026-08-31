@@ -1,0 +1,82 @@
+{
+  "analysis_script": "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_formal\\wsc_v2_formal_analysis.py",
+  "inputs": {
+    "original_baseline_csv": {
+      "path": "F:\\\u6b63\u5f0f\u8bad\u7ec3\\outputs\\welfare_analysis\\taskonly_evaluation_merged.csv",
+      "sha256": "1b3694738421381f8b71816d96f3f2d39dd25b775cbd962eefa8436556ae9964"
+    },
+    "original_welfare_csv": {
+      "path": "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\pooled12\\outputs\\pooled12_welfare_evaluation_merged.csv",
+      "sha256": "a4ade875e243c7e593db6eb1b2786ad3b8145acf60d3efbd1585aa73e56b4187"
+    },
+    "wsc_v2_evaluation_csv": {
+      "path": "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\ch5_baseline\\outputs\\wsc_interim_v2\\wsc_interim_v2_evaluation_all12.csv",
+      "sha256": "057d2d8d7a8a67f87cc5ba1e197c5fec0f8c679a9d8db92e2d277fe58f8bd34c"
+    },
+    "wsc_v2_registry": {
+      "path": "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\validation_artifacts\\wsc_formal_launch_v2\\wsc_formal_run_registry_v2.csv",
+      "sha256": "30cc24b86e0de04547f3ce0a7aaec23dade085d295f6a2f130075725e5fec156"
+    },
+    "v1_invalid_registry": {
+      "path": "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\validation_artifacts\\wsc_formal_launch\\wsc_formal_run_registry.csv",
+      "sha256": "9a566ce032cb86ebbb4dc738a9175c81898039d0f2bcf4c66484ebdb478d5d0b"
+    },
+    "freeze_manifest_v2": {
+      "path": "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\validation_artifacts\\wsc_formal_launch_v2\\wsc_scientific_freeze_manifest_v2.json",
+      "sha256": "ded7d5ae68d96644b96a7bfb1904f86403e058ff9a5f0ccbb208bd8e660273bc"
+    }
+  },
+  "wsc_v2_run_audit": {
+    "n_v2_registry_rows": 48,
+    "n_v2_checked_ok": 48,
+    "n_v2_problems": 0,
+    "problems": [],
+    "n_v1_invalid_registry_rows": 48,
+    "n_v1_marked_invalid": 48,
+    "v1_isolation_ok": true
+  },
+  "seeds_12": [
+    900101,
+    900102,
+    900103,
+    900104,
+    910101,
+    910102,
+    920101,
+    920102,
+    920103,
+    920104,
+    920105,
+    920106
+  ],
+  "sensitivity_excluded_seed": 910102,
+  "bank": "H1",
+  "n_episodes_per_seed_condition": 256,
+  "ensemble_window": [
+    1850000,
+    1900000,
+    1950000,
+    2000000
+  ],
+  "bootstrap": {
+    "n_boot": 10000,
+    "rng_seed": 0,
+    "ci": "percentile [2.5, 97.5]",
+    "p_value": "two-sided, min(1, 2*min(P(boot<=0), P(boot>=0)))",
+    "resampling_unit": "seed (paired bootstrap over seed-level interaction/contrast values)",
+    "source_of_protocol": "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\pooled12\\merge_and_audit.py"
+  },
+  "holm_family_definition": {
+    "U_min_interaction_family": [
+      "mean",
+      "ggi",
+      "maximin"
+    ],
+    "Gini_interaction_family": [
+      "mean",
+      "ggi",
+      "maximin"
+    ],
+    "note": "two independent m=3 families, one per outcome; NOT pooled into one m=6 family; safety (completion/collision) comparisons are descriptive, not Holm-corrected (no established formal family for this exact comparison existed in the project's prior protocol)."
+  }
+}

@@ -1,0 +1,94 @@
+Loaded 3072 episodes across 12 seeds.
+Validated: 12 seeds x 256 H1 episodes each, all outcomes retained (success/collision/timeout).
+Outcome mix (all 3072 episodes): {'success': 2717, 'collision': 355}
+
+==============================================================================
+G1 -- conflict exposure prevalence
+==============================================================================
+P(any cross-road overlap): seed-level mean=1.0000  median=1.0000  range=[1.0000,1.0000]  95% CI=[1.0000,1.0000]
+Overlap duration (s), per-seed mean: cross-seed mean=6.883  median=6.782  95% CI=[6.691,7.088]
+Pooled overlap-duration IQR (descriptive, all overlap episodes): {0.25: 6.4, 0.5: 6.6, 0.75: 7.2}
+Pooled distribution of max_simultaneous_merge_vehicles (descriptive): {4: 1.0}
+max_simultaneous_merge_vehicles, per-seed mean: cross-seed mean=4.000  95% CI=[4.000,4.000]
+
+Minimum Ramp-Mainline crossing-time gap at x=380 (merge-zone end): 36/3072 episodes have no valid pair (e.g. collision before either boundary).
+  per-seed median gap: cross-seed median-of-medians=0.2364s  range=[0.1509,0.7672]
+  proportion with gap <= 0.5s: cross-seed mean=0.8041  95% CI=[0.6234,0.9420]  (descriptive sensitivity threshold)
+  proportion with gap <= 1.0s: cross-seed mean=0.9984  95% CI=[0.9951,1.0000]  (descriptive sensitivity threshold)
+  proportion with gap <= 1.5s: cross-seed mean=1.0000  95% CI=[1.0000,1.0000]  (descriptive sensitivity threshold)
+
+Minimum Ramp-Mainline crossing-time gap at x=300 (parallel-merge start): 2/3072 episodes have no valid pair (e.g. collision before either boundary).
+  per-seed median gap: cross-seed median-of-medians=0.2249s  range=[0.1215,0.7538]
+  proportion with gap <= 0.5s: cross-seed mean=0.8241  95% CI=[0.6473,0.9585]  (descriptive sensitivity threshold)
+  proportion with gap <= 1.0s: cross-seed mean=0.9993  95% CI=[0.9980,1.0000]  (descriptive sensitivity threshold)
+  proportion with gap <= 1.5s: cross-seed mean=1.0000  95% CI=[1.0000,1.0000]  (descriptive sensitivity threshold)
+
+Minimum cross-road longitudinal separation (m), per-seed mean: cross-seed mean=3.761  95% CI=[2.053,5.679]
+Pooled distribution (descriptive): {0.05: 0.0234, 0.25: 0.214275, 0.5: 1.83655, 0.75: 5.8816500000000005, 0.95: 12.83563}
+
+Seeds with zero no-overlap episodes: [900101, 900102, 900103, 900104, 910101, 910102, 920101, 920102, 920103, 920104, 920105, 920106]
+Seeds with zero overlap episodes: []
+
+==============================================================================
+G2 -- behavioural response, overlap vs no-overlap
+==============================================================================
+  [P(any BRAKE)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 256, 0), (900102, 256, 0), (900103, 256, 0), (900104, 256, 0), (910101, 256, 0), (910102, 256, 0), (920101, 256, 0), (920102, 256, 0), (920103, 256, 0), (920104, 256, 0), (920105, 256, 0), (920106, 256, 0)]
+  [P(any BRAKE)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [P(any hard brake)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 256, 0), (900102, 256, 0), (900103, 256, 0), (900104, 256, 0), (910101, 256, 0), (910102, 256, 0), (920101, 256, 0), (920102, 256, 0), (920103, 256, 0), (920104, 256, 0), (920105, 256, 0), (920106, 256, 0)]
+  [P(any hard brake)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [P(any below-target burden)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 256, 0), (900102, 256, 0), (900103, 256, 0), (900104, 256, 0), (910101, 256, 0), (910102, 256, 0), (920101, 256, 0), (920102, 256, 0), (920103, 256, 0), (920104, 256, 0), (920105, 256, 0), (920106, 256, 0)]
+  [P(any below-target burden)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [mean acceleration-based braking burden] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 256, 0), (900102, 256, 0), (900103, 256, 0), (900104, 256, 0), (910101, 256, 0), (910102, 256, 0), (920101, 256, 0), (920102, 256, 0), (920103, 256, 0), (920104, 256, 0), (920105, 256, 0), (920106, 256, 0)]
+  [mean acceleration-based braking burden] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [mean below-target burden] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 256, 0), (900102, 256, 0), (900103, 256, 0), (900104, 256, 0), (910101, 256, 0), (910102, 256, 0), (920101, 256, 0), (920102, 256, 0), (920103, 256, 0), (920104, 256, 0), (920105, 256, 0), (920106, 256, 0)]
+  [mean below-target burden] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+
+==============================================================================
+G3 -- fairness outcomes, overlap vs no-overlap
+==============================================================================
+  [Delta Gini_conflict (overlap - no_overlap)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 256, 0), (900102, 256, 0), (900103, 256, 0), (900104, 256, 0), (910101, 256, 0), (910102, 256, 0), (920101, 256, 0), (920102, 256, 0), (920103, 256, 0), (920104, 256, 0), (920105, 256, 0), (920106, 256, 0)]
+  [Delta Gini_conflict (overlap - no_overlap)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [Delta Umin_conflict (overlap - no_overlap)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 256, 0), (900102, 256, 0), (900103, 256, 0), (900104, 256, 0), (910101, 256, 0), (910102, 256, 0), (920101, 256, 0), (920102, 256, 0), (920103, 256, 0), (920104, 256, 0), (920105, 256, 0), (920106, 256, 0)]
+  [Delta Umin_conflict (overlap - no_overlap)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [Delta Range_conflict (overlap - no_overlap)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 256, 0), (900102, 256, 0), (900103, 256, 0), (900104, 256, 0), (910101, 256, 0), (910102, 256, 0), (920101, 256, 0), (920102, 256, 0), (920103, 256, 0), (920104, 256, 0), (920105, 256, 0), (920106, 256, 0)]
+  [Delta Range_conflict (overlap - no_overlap)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+
+==============================================================================
+G4 -- conflict intensity vs inequality (per-seed Spearman)
+==============================================================================
+[overlap duration (s) vs Utility Gini] n_seeds=12  median rho=+0.341  range=[+0.011,+0.806]
+[overlap duration (s) vs U_min] n_seeds=12  median rho=-0.341  range=[-0.808,-0.016]
+[overlap duration (s) vs utility range] n_seeds=12  median rho=+0.341  range=[+0.012,+0.806]
+[min crossing-time gap @x380 (s) vs Utility Gini] n_seeds=12  median rho=-0.193  range=[-0.535,+0.506]
+[min crossing-time gap @x380 (s) vs U_min] n_seeds=12  median rho=+0.192  range=[-0.507,+0.532]
+[min crossing-time gap @x380 (s) vs utility range] n_seeds=12  median rho=-0.192  range=[-0.527,+0.505]
+[min cross-road separation (m) vs Utility Gini] n_seeds=12  median rho=-0.248  range=[-0.769,+0.365]
+[min cross-road separation (m) vs U_min] n_seeds=12  median rho=+0.251  range=[-0.356,+0.736]
+[min cross-road separation (m) vs utility range] n_seeds=12  median rho=-0.253  range=[-0.736,+0.356]
+
+==============================================================================
+H -- SECONDARY: success-only sensitivity
+==============================================================================
+Success-only subsample: 2717 / 3072 episodes (88.4%).
+  [Delta Gini (success-only)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 255, 0), (900102, 250, 0), (900103, 231, 0), (900104, 255, 0), (910101, 256, 0), (910102, 183, 0), (920101, 230, 0), (920102, 228, 0), (920103, 256, 0), (920104, 166, 0), (920105, 169, 0), (920106, 238, 0)]
+  [Delta Gini (success-only)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [Delta Umin (success-only)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 255, 0), (900102, 250, 0), (900103, 231, 0), (900104, 255, 0), (910101, 256, 0), (910102, 183, 0), (920101, 230, 0), (920102, 228, 0), (920103, 256, 0), (920104, 166, 0), (920105, 169, 0), (920106, 238, 0)]
+  [Delta Umin (success-only)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [Delta Range (success-only)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 255, 0), (900102, 250, 0), (900103, 231, 0), (900104, 255, 0), (910101, 256, 0), (910102, 183, 0), (920101, 230, 0), (920102, 228, 0), (920103, 256, 0), (920104, 166, 0), (920105, 169, 0), (920106, 238, 0)]
+  [Delta Range (success-only)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+  [P(any BRAKE) (success-only)] excluded 12 seed(s) with an empty group (seed, n_overlap, n_no_overlap): [(900101, 255, 0), (900102, 250, 0), (900103, 231, 0), (900104, 255, 0), (910101, 256, 0), (910102, 183, 0), (920101, 230, 0), (920102, 228, 0), (920103, 256, 0), (920104, 166, 0), (920105, 169, 0), (920106, 238, 0)]
+  [P(any BRAKE) (success-only)] fewer than 2 seeds with both groups present -- cannot bootstrap. Raw per-seed values: overlap={}, no_overlap={}
+
+==============================================================================
+I -- exposure/behaviour/welfare-sacrifice decomposition
+==============================================================================
+  no_overlap                      : cross-seed mean proportion=0.0000  95% CI=[0.0000,0.0000]
+  overlap_no_brake                : cross-seed mean proportion=0.4492  95% CI=[0.2572,0.6514]
+  overlap_brake_zero_burden       : cross-seed mean proportion=0.3610  95% CI=[0.1901,0.5485]
+  overlap_brake_positive_burden   : cross-seed mean proportion=0.1898  95% CI=[0.0703,0.3584]
+  pooled (descriptive) proportions: {'overlap_no_brake': 0.44921875, 'overlap_brake_zero_burden': 0.3610026041666667, 'overlap_brake_positive_burden': 0.18977864583333334}
+
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\ch5_baseline\outputs\conflict_exposure\conflict_exposure_seed_summary.csv
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\ch5_baseline\outputs\conflict_exposure\conflict_exposure_g4_correlations.csv
+
+wrote figures A-F to D:\obsidian\research\2. 论文写作\final thesis\figures

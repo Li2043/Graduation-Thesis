@@ -1,0 +1,4 @@
+contrast,completion_delta,completion_ci,completion_NI,collision_delta,collision_ci,collision_NI,timeout_delta
+Mean - Baseline,0.0186,"[-0.1305,+0.1380]",No,-0.0186,"[-0.1380,+0.1305]",No,0.0
+GGI - Baseline,0.0107,"[-0.0570,+0.0908]",No,-0.0173,"[-0.0934,+0.0456]",No,0.0065
+Maximin - Baseline,-0.0127,"[-0.0960,+0.0635]",No,-0.0072,"[-0.0706,+0.0540]",No,0.0199

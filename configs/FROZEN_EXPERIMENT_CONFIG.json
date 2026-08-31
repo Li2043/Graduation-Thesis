@@ -1,0 +1,239 @@
+{
+  "snapshot_date": "2026-08-18",
+  "authority_note": "This file is a machine-readable convenience mirror. The real authority is experiment_records/RUNBOOK.md + GATE_RESULTS.json + AUTONOMOUS_EXPERIMENT_STATE.json + AUTONOMOUS_EXPERIMENT_LOG.md. If they disagree with this file, they win.",
+  "environment": {
+    "backend": "highwayenv",
+    "highwayenv_version": "1.12.0",
+    "gymnasium_version": "1.2.0",
+    "road_geometry": {
+      "before_merge_length_m": 220.0,
+      "converge_merge_length_m": 80.0,
+      "parallel_merge_length_m": 80.0,
+      "after_merge_length_m": 120.0,
+      "route_exit_margin_m": 90.0,
+      "route_exit_x_m": 470.0,
+      "route_total_x_m": 500.0,
+      "lanes_count": 2,
+      "lane_width_m": 4.0
+    },
+    "vehicle": {
+      "length_m": 5.0,
+      "width_m": 2.0,
+      "collidable": false,
+      "collision_distance_longitudinal_m": 4.0,
+      "collision_lateral_threshold_m": 1.5
+    },
+    "action_representation": "meta_speed",
+    "acceleration_bounds_mps2": [
+      -3.0,
+      2.0
+    ],
+    "n_vehicles": 4,
+    "roles": [
+      "ramp",
+      "ramp",
+      "mainline",
+      "mainline"
+    ],
+    "target_speeds_mps": [
+      18,
+      22
+    ],
+    "episode_max_steps": 200
+  },
+  "observation": {
+    "local_obs_dim": 18,
+    "self_obs_dim": 6,
+    "self_fields": [
+      "role",
+      "speed",
+      "target_speed",
+      "acceleration",
+      "dist_to_merge",
+      "prev_action"
+    ],
+    "neighbour_slots": 3,
+    "neighbour_obs_dim": 4,
+    "neighbour_fields": [
+      "presence",
+      "delta_d_norm",
+      "delta_v_norm",
+      "lane_relation"
+    ],
+    "local_sensing_range_m": 50.0,
+    "local_sensing_range_frozen_date": "2026-08-17",
+    "local_sensing_range_note": "distinct concept from r_obs (a delta_d_norm clip divisor, same numeric value 50.0 coincidentally); boundary inclusive (<=R visible); road-relative |delta_d| distance metric, not Euclidean; excluded vehicles get presence=0, no farther-vehicle fallback",
+    "r_obs": 50.0,
+    "v_scale": 10.0
+  },
+  "dqn": {
+    "hidden_sizes": [
+      64,
+      64
+    ],
+    "obs_dim": 18,
+    "n_actions": 3,
+    "optimizer": "Adam",
+    "lr_start": 0.0005,
+    "lr_end": 0.0001,
+    "lr_decay_steps_absolute": 800000,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.1,
+    "eps_decay_steps_absolute": 640000,
+    "per_used": false,
+    "n_step": 1,
+    "replay_capacity": 100000,
+    "batch_size": 64,
+    "gamma": 0.995,
+    "target_sync_interval_updates": 250,
+    "target_mode": "DOUBLE",
+    "do_not_reopen": [
+      "PER",
+      "n-step",
+      "batch_size",
+      "architecture",
+      "lr_schedule",
+      "epsilon_schedule",
+      "gamma"
+    ]
+  },
+  "welfare": {
+    "lambda_W": 0.5,
+    "lambda_W_frozen": true,
+    "formula": "R_c^W = lambda_W * (W_c(U) - 1), applied once at episode terminal",
+    "mean_definition": "mean_i(U_i)",
+    "ggi_weights_ascending": [
+      0.4,
+      0.3,
+      0.2,
+      0.1
+    ],
+    "maximin_definition": "min_i(U_i)"
+  },
+  "curriculum_r50": {
+    "stages": [
+      {
+        "name": "M6_R50_audited",
+        "start_step": 0,
+        "end_step": 400000,
+        "scenario_bank": "Q.json",
+        "scenario_ids": [
+          "Q_00000"
+        ],
+        "gate": "four_tier"
+      },
+      {
+        "name": "C4_R50",
+        "start_step": 400000,
+        "end_step": 600000,
+        "scenario_bank": "C4.json",
+        "extension_stage_name": "C4_R50ext",
+        "extension_end_step": 700000,
+        "gate": "per_lineage_then_ensemble"
+      },
+      {
+        "name": "C16_R50",
+        "start_step": 700000,
+        "end_step": 950000,
+        "scenario_bank": "C16.json",
+        "gate": "checkpoint_q_ensemble_3of4"
+      },
+      {
+        "name": "C64_R50",
+        "start_step": 950000,
+        "end_step": 1200000,
+        "scenario_bank": "Q.json",
+        "gate": "checkpoint_q_ensemble_3of4"
+      }
+    ],
+    "checkpoint_every": 50000,
+    "checkpoint_every_M6": 25000,
+    "ensemble_window_formula": "K(S) = {S-150000, S-100000, S-50000, S}",
+    "ensemble_gate_epsilon": 0.0,
+    "gate_bands": {
+      "PASS": ">=0.90",
+      "SOFT_PASS": "0.75-0.90",
+      "FAIL": "<0.75"
+    }
+  },
+  "mean_qualification_r50": {
+    "seeds": [
+      900101,
+      900102
+    ],
+    "start_step": 1200000,
+    "initial_budget": 800000,
+    "max_step": 2000000,
+    "extension_max_step": 2200000,
+    "extension_condition": "clearly improving near 800K mark, honest standard (non-monotonic oscillation does not count)",
+    "strict_pass_required": 2,
+    "strict_pass_total": 2,
+    "result": {
+      "900101": {
+        "completion": 1.0,
+        "collision": 0.0
+      },
+      "900102": {
+        "completion": 1.0,
+        "collision": 0.0
+      }
+    },
+    "status": "QUALIFIED"
+  },
+  "formal_seed_block": {
+    "seeds": [
+      900101,
+      900102,
+      900103,
+      900104,
+      910101,
+      910102
+    ],
+    "same_block_for_all_conditions": true,
+    "conditions": [
+      "mean",
+      "ggi",
+      "maximin"
+    ],
+    "total_runs": 18,
+    "decided_before_outcome": true,
+    "decision_date": "2026-08-18",
+    "init_policy": {
+      "900101": "checkpoints/formal_init/900101/C64_R50/seed_900101_C64_R50/ckpt_step_1200000.pt",
+      "900102": "checkpoints/formal_init/900102/C64_R50/seed_900102_C64_R50/ckpt_step_1200000.pt",
+      "900103": "checkpoints/formal_init/900103/C64_R50/seed_900103_C64_R50/ckpt_step_1200000.pt",
+      "900104": "checkpoints/formal_init/900104/C64_R50/seed_900104_C64_R50/ckpt_step_1200000.pt",
+      "910101": "REQUIRES fresh curriculum build to C64_R50 before use -- in progress, see checkpoints/curriculum_910101_910102/",
+      "910102": "REQUIRES fresh curriculum build to C64_R50 before use -- in progress, see checkpoints/curriculum_910101_910102/"
+    },
+    "keep_all_seeds_rule": "900103 retained despite C64_R50 FAIL (0.453 completion, 0.547 collision); no seed selection/exclusion based on any outcome, ever",
+    "formal_budget": {
+      "start_step": 1200000,
+      "initial_max_step": 2000000,
+      "extension_max_step": 2200000,
+      "extension_condition": "same as Mean qualification, clearly-improving-near-800K standard"
+    }
+  },
+  "held_out_banks": {
+    "H0": {
+      "file": "scenario_banks/H0.json",
+      "n_scenarios": 256,
+      "type": "homogeneous"
+    },
+    "H1": {
+      "file": "scenario_banks/H1.json",
+      "n_scenarios": 256,
+      "type": "heterogeneous"
+    },
+    "must_not_regenerate": true
+  },
+  "formal_fairness_started": true,
+  "dense_reward_study_reserved": {
+    "_provenance": "DENSE-REWARD COPY (2026-08-26), task spec Section 13: schema fields reserved only, NOT enabled. This block is purely additive to the copied FROZEN_EXPERIMENT_CONFIG.json mirror -- every field above this key is untouched. When dense_welfare_shaping is false (the only value in force during this environment-setup task), program behaviour must be and is identical to current Study B: no code path in this copy reads these fields yet. Values (0.2/0.4/continuous scale/etc.) are explicitly NOT decided here -- that happens only after a separate protocol freeze for the Dense Reward Study.",
+    "dense_welfare_shaping": false,
+    "dense_shaping_mode": "discrete",
+    "dense_shaping_magnitude": null,
+    "dense_shaping_epsilon": null,
+    "dense_welfare_objective": null
+  }
+}

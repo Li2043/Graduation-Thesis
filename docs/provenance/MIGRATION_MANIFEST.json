@@ -1,0 +1,70 @@
+{
+  "bundle_creation_timestamp": "2026-08-18T10:20:00",
+  "bundle_creation_timezone": "system local (source machine)",
+  "original_project_path": "C:\\Users\\HP\\Desktop\\\u6bd5\u4e1a\u9879\u76ee\\thesis\\final_new_experiment\\E34_study_b_highwayenv_migration",
+  "git_commit": null,
+  "git_note": "confirmed NOT a git repository on the source machine (git status/rev-parse both fail with 'not a git repository'); provenance is tracked via CHECKSUMS.sha256 + the experiment_records/ tracking files instead of a commit hash",
+  "python_version": "3.14.6",
+  "python_platform": "Windows-11-10.0.26200-SP0",
+  "pytorch_version_cpu": "2.13.0+cpu",
+  "pytorch_cuda_build_available_in_wheelhouse": "2.13.0+cu126 (wheelhouse/gpu/, verified: no separate nvidia-*-cu12 runtime deps, self-contained wheel)",
+  "cuda_verified_on_source_machine": false,
+  "package_lock_hash_sha256": "9c9fe9b1b5e386255e8eb6548fb7cda292a1c968b1bf663f12265bf9a8f6bae2",
+  "package_lock_file": "environment/requirements-lock.txt",
+  "source_snapshot_representative_hash_sha256": "974fd2e6dc238f4661d9e474144d80b9cced191ca6fef504ff1f6ae422efa3ed",
+  "source_snapshot_representative_file": "project/src/thesis/study_b/local_observation.py",
+  "source_snapshot_note": "full per-file source hashes for every .py file under project/src and the study_b_fairness_mappo scripts directory are in CHECKSUMS.sha256, not duplicated here",
+  "frozen_experiment_config_hash_sha256": "45bd1d7a509e53ea03cba8b817196b989ed8422c52bed093d5536bc5cae48995",
+  "frozen_experiment_config_file": "configs/FROZEN_EXPERIMENT_CONFIG.json",
+  "formal_seed_list": [900101, 900102, 900103, 900104, 910101, 910102],
+  "formal_seed_list_decided_before_outcome": true,
+  "formal_seed_list_decision_date": "2026-08-18",
+  "starting_checkpoints": {
+    "900101": {"path": "checkpoints/formal_init/900101/C64_R50/seed_900101_C64_R50/ckpt_step_1200000.pt", "step": 1200000, "stage": "C64_R50", "status": "QUALIFIED (ensemble gate PASS 0.984)"},
+    "900102": {"path": "checkpoints/formal_init/900102/C64_R50/seed_900102_C64_R50/ckpt_step_1200000.pt", "step": 1200000, "stage": "C64_R50", "status": "QUALIFIED (ensemble gate PASS 1.000)"},
+    "900103": {"path": "checkpoints/formal_init/900103/C64_R50/seed_900103_C64_R50/ckpt_step_1200000.pt", "step": 1200000, "stage": "C64_R50", "status": "ensemble gate FAIL 0.453 -- RETAINED per keep-all-seeds rule, not dropped"},
+    "900104": {"path": "checkpoints/formal_init/900104/C64_R50/seed_900104_C64_R50/ckpt_step_1200000.pt", "step": 1200000, "stage": "C64_R50", "status": "QUALIFIED (ensemble gate PASS 1.000)"},
+    "910101": {"path": "NOT YET AVAILABLE -- requires curriculum completion via scripts/resume_curriculum.py", "step": null, "stage": null, "status": "curriculum in progress at bundle-build time, see curriculum_in_progress below"},
+    "910102": {"path": "NOT YET AVAILABLE -- requires curriculum completion via scripts/resume_curriculum.py", "step": null, "stage": null, "status": "curriculum in progress at bundle-build time, see curriculum_in_progress below"}
+  },
+  "curriculum_in_progress": {
+    "910101": {
+      "snapshotted_stage": "M6_R50_audited",
+      "snapshotted_latest_complete_checkpoint_step": 400000,
+      "snapshotted_checkpoint_path": "checkpoints/curriculum_910101_910102/910101/M6_R50_audited/seed_910101_M6_R50_audited/ckpt_step_400000.pt",
+      "snapshotted_checkpoint_sha256": "8fef82db8e56b2249875233415d617a6398b53949e80b007e172242de4b5b28e",
+      "m6_final_training_window_completion": 0.612,
+      "note": "M6_R50_audited (400K, the first of four curriculum stages) completed on the source machine mid-bundle-build and was re-synced into this bundle before finalizing -- this snapshot is fully up to date as of bundle completion, not stale. This seed's final M6 training-window completion (0.612) is above the 0.60 floor but on the lower end; scripts/resume_curriculum.py will still stop and write NEEDS_USER_DECISION.md before proceeding to C4, per its conservative four-tier-classification design -- read that file's guidance before approving continuation for this seed specifically.",
+      "exact_resume_supported": true,
+      "remaining_curriculum_stages": ["C4_R50", "C16_R50", "C64_R50"]
+    },
+    "910102": {
+      "snapshotted_stage": "M6_R50_audited",
+      "snapshotted_latest_complete_checkpoint_step": 400000,
+      "snapshotted_checkpoint_path": "checkpoints/curriculum_910101_910102/910102/M6_R50_audited/seed_910102_M6_R50_audited/ckpt_step_400000.pt",
+      "snapshotted_checkpoint_sha256": "6b880bca560dec3df819bc225334cc829e6f7754898f081f683c2bd0ddfc2fa5",
+      "m6_final_training_window_completion": 0.728,
+      "note": "M6_R50_audited (400K) completed on the source machine mid-bundle-build and was re-synced into this bundle before finalizing -- this snapshot is fully up to date. Completion 0.728 is comfortably in LEARNABLE_WITH_VARIANCE territory (matches 900101-900104's own original M6 spread of 0.716-0.854).",
+      "exact_resume_supported": true,
+      "remaining_curriculum_stages": ["C4_R50", "C16_R50", "C64_R50"]
+    }
+  },
+  "scenario_bank_hashes_sha256": {
+    "Q.json": "1ab085c373acbf03569260cef4a15846e93c962469740689c36e5d036c19d3e2",
+    "M.json": "630d33a470d937426421113856eac3b2f7afed128a14bb8c9dd3512d33f425de",
+    "H1.json": "8345ba0d1141af223ea8629caa627889da50afaf9b5205de63d5cf89ffdcf5c8",
+    "H0.json": "7fbcd44cf181547ef958574b8d2fcae26ab705555837df82a9b0abcaff034171",
+    "OOD_speed.json": "10aa0e5b95f4ced297391e1f99513e8a3019f0c60bb5034e52feb35086202318",
+    "C1.json": "9e078913949ed565d4f5ef785cffde3f9ae1a19f2dfc74cec6a2db3ee9097db6",
+    "C4.json": "739e8f77ad13b5b2acf4b78e4f0a6987486783cb9dad87b1fe4bffc970e69440",
+    "C16.json": "66a49ee765872d0fd8455eb0b6ba29a45e61c3384d20454a694504524eb9a290"
+  },
+  "scenario_bank_source": "already existed on the source machine before this migration (H0/H1 frozen 2026-08-13, Q/M/OOD_speed frozen 2026-08-13, C1/C4/C16 frozen 2026-08-14) -- NOT regenerated for this bundle",
+  "formal_fairness_started": false,
+  "notes": [
+    "This is an engineering migration bundle only -- no scientific configuration was changed while building it.",
+    "The bundle was built and staging-tested (imports, environment reset/step, observation dim=18, Q-network shapes, checkpoint hash+load verification, scenario-bank hash verification, and the full tests/study_b pytest suite) directly from F:\\\u6b63\u5f0f\u8bad\u7ec3 on the source machine before being reported ready.",
+    "18 formal Mean/GGI/Maximin runs were NOT launched on the source machine, per explicit instruction.",
+    "The two currently-running source-machine processes (910101/910102 M6/curriculum training) were NOT killed while building this bundle."
+  ]
+}

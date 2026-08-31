@@ -1,0 +1,99 @@
+DENSE REWARD STUDY — copied-files manifest
+Source: F:\正式训练_seed_replication_v1  (read-only; nothing there was modified)
+Dest:   F:\dense reward
+Method: robocopy /E (dirs) or plain copy (single files), excluding __pycache__ and *.pyc everywhere.
+File counts verified equal (find | wc -l) between source and destination for every directory below.
+
+ADDENDUM (post-setup, 2026-08-26): checkpoints\formal_init\<seed>\C64_R50\seed_<seed>_C64_R50\*.pt for
+all 12 formal seeds (900101-900104, 910101-910102, 920101-920106) -- 18MB total, 6 checkpoint steps per
+seed (950000..1200000). Originally excluded per Section 3's "do not bulk-copy old checkpoints" rule, then
+added back deliberately: the dense reward study's Priority 1/2 conditions MUST start from the exact same
+C64 checkpoint file used by the existing Original/Mean/GGI/Maximin/WSC formal runs (bit-identical, not a
+re-run of the same config) to preserve the matched-seed comparison the whole thesis relies on -- see
+README.md Section "Formal experimental priority". Source paths differed by seed group on the OLD side
+(checkpoints\formal_init\<seed>\... for 900101-900104; checkpoints\curriculum_910101_910102\<seed>\...
+for 910101-910102; checkpoints\seed_replication_v1\curriculum\<seed>\... for 920101-920106) but were
+unified under one consistent checkpoints\formal_init\<seed>\C64_R50\... path here, matching
+configs\FROZEN_EXPERIMENT_CONFIG.json's own init_policy relative-path convention. Verified: old
+environment's mtimes unchanged after this copy (read-only source access).
+
+project\src\                    155 files  -- full thesis package (all modules, not just study_b/, because
+                                              study_b/utility.py etc. import from thesis.pilots.stage11_welfare
+                                              and other sibling packages; minimal-change principle => copy the
+                                              whole src tree rather than hand-picking a subset and risking a
+                                              broken import).
+project\tests\                  186 files  -- full test tree (for later regression use; not required to
+                                              stand up the smoke pipeline but explicitly listed as low-risk to
+                                              keep, mirrors the old bundle's own layout).
+project\experiments\             53 files  -- experiments\pilots\study_b_fairness_mappo\{scripts,configs,
+                                              scenario_banks}\ -- this is the ONLY experiments subtree that
+                                              exists in the old bundle (verified: no other experiments\*
+                                              directory exists), and is where the real training/eval
+                                              entrypoints live (traced via _common.py's SB_SCRIPTS constant).
+project\pytest.ini                          -- pytest config (pythonpath=src, testpaths=tests)
+project\requirements-stage1.txt
+project\requirements-stage2b1.txt
+project\requirements-stage2b2.txt           -- stage-specific dependency lists (kept for reference/parity;
+                                              the actual venv here was built from environment\requirements-
+                                              lock.txt per the task's Section 6 instruction, not these files)
+project\RUNBOOK.md                          -- authoritative narrative doc (referenced by
+                                              FROZEN_EXPERIMENT_CONFIG.json's own "authority_note")
+project\PROJECT_README_ORIGINAL.md
+project\audit.md
+project\LOCALITY_AMENDMENT_ISOLATION_RECORD.md
+
+scripts\                         25 files  -- top-level orchestration scripts (launch_formal.py,
+                                              launch_replication_welfare.py, replication_smoke_test.py,
+                                              evaluate_formal.py, evaluate_replication.py,
+                                              analyze_replication.py, _common.py, replication_common.py,
+                                              preflight.py, detect_hardware.py, verify_cuda.py,
+                                              verify_checkpoints.py, verify_scenario_hashes.py, status.py,
+                                              replication_status.py, monitor_formal.py, resume_curriculum.py,
+                                              resume_interrupted.py, freeze_formal_manifest.py,
+                                              verify_bundle.py, make_replication_figures.py,
+                                              launch_replication_curriculum.py, _loop_curriculum_until_done.py,
+                                              _pipeline_continue.py, _watch_eval_done.py)
+configs\                          3 files  -- FROZEN_EXPERIMENT_CONFIG.{json,md}, REPLICATION_RUN_CONFIG.json
+environment\                      4 files  -- requirements-lock.txt, requirements-orchestration.txt,
+                                              python_version.txt, pip_freeze.txt (all copied verbatim as
+                                              READ-ONLY reference records of the OLD environment; the actual
+                                              new venv's own records are separately written to
+                                              provenance\python_environment.txt / pip_freeze.txt)
+scenario_banks\                   9 files  -- C1.json, C16.json, C4.json, H0.json, H1.json, M.json,
+                                              OOD_speed.json, Q.json, scenario_hashes.txt (top-level copy,
+                                              referenced by scripts\_common.py's SCENARIO_BANKS constant;
+                                              note experiments\pilots\study_b_fairness_mappo\scenario_banks\
+                                              already has its own identical copy of these files, both are
+                                              kept since both are read by different parts of the traced code)
+protocol\                         2 files  -- protocol docs (new_protocol.md and similar)
+experiment_records\               4 files  -- RUNBOOK.md + autonomous_highwayenv\ (reference docs only)
+
+00_SETUP.bat .. 12_EVALUATE_REPLICATION.bat  (13 files) -- all top-level launchers, copied verbatim. They use
+                                              %~dp0-relative paths internally (`cd /d "%~dp0"`,
+                                              `.venv\Scripts\activate.bat`, `python scripts\...`) so they
+                                              work unmodified once copied to a new root -- verified by reading
+                                              every .bat file's contents, not assumed from the filename.
+README.md, START_HERE.md                    -- top-level docs, copied for reference.
+
+NOT copied (per Section 3 of the task spec):
+  checkpoints\   (672MB in the old bundle) -- old formal run checkpoints; not needed to stand up a fresh
+                 environment. F:\dense reward\checkpoints\ is created empty; the dense-reward smoke/repro/
+                 benchmark tests write into a NEW checkpoint tree under it.
+  outputs\       (698MB) -- old run outputs/CSVs. F:\dense reward\outputs\ created empty.
+  logs\          (24MB)  -- old run logs. F:\dense reward\logs\ created empty.
+  validation_artifacts\ (18MB) -- old campaign's ad hoc validation CSVs/registries (WSC matrix dry-runs etc.)
+                 -- historical results, not source code or config templates.
+  verification\  (1.5MB) -- old hardware/cuda/concurrency probe JSON logs from previous runs; this task
+                 generates its own fresh verification artifacts under provenance\/validation\ instead.
+  .venv\         -- confirmed broken on this machine (see provenance\source_environment.md); a brand-new
+                 venv was built at F:\dense reward\.venv instead (Section 6).
+  wheelhouse\    (2.7GB) -- NOT copied; used in place, read-only, from its original location
+                 (F:\正式训练_seed_replication_v1\wheelhouse\cpu\) as the --find-links source for the new
+                 venv's offline pip install. Copying 2.7GB of wheel files was judged unnecessary duplication
+                 for an environment-setup task with no plan to redistribute this bundle further.
+  top-level CSV/manifest files (new_seed_*.csv, pooled12_summary.csv, new6_replication_summary.md,
+                 MIGRATION_MANIFEST.json, FORMAL_EXPERIMENT_FREEZE_MANIFEST.{json,md},
+                 NEEDS_USER_DECISION.md, replication_preflight_audit.md, CHECKSUMS.sha256) -- old campaign's
+                 own results/audit artifacts, not needed to run a fresh copy of Study B.
+  exp01_ma_formal_v1 / early experience_score code -- not present anywhere under project\src\thesis\study_b\
+                 in the source tree in the first place (verified by grep; nothing to exclude).

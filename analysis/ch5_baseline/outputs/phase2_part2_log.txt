@@ -1,0 +1,42 @@
+==============================================================================
+5.6.3 -- Table 5.10: mobility/braking costs, 4 conditions
+==============================================================================
+baseline: C_mean=0.0378 C_max=0.0952 range=0.0925 C_brake=0.2673 brake_rate=0.0805 hb=0.4469
+mean    : C_mean=0.0135 C_max=0.0284 range=0.0266 C_brake=0.2146 brake_rate=0.1178 hb=0.3870
+ggi     : C_mean=0.2264 C_max=0.2633 range=0.0783 C_brake=0.2520 brake_rate=0.1061 hb=0.3407
+maximin : C_mean=0.4259 C_max=0.9522 range=0.9336 C_brake=0.2840 brake_rate=0.0653 hb=0.3575
+
+C_brake paired contrasts vs Baseline:
+  mean     - Baseline, C_brake: delta=-0.0527 CI=[-0.2068,+0.1045]
+  ggi      - Baseline, C_brake: delta=-0.0152 CI=[-0.2051,+0.1769]
+  maximin  - Baseline, C_brake: delta=+0.0167 CI=[-0.1677,+0.2279]
+wrote fig5_10_burden_vs_braking
+
+==============================================================================
+5.6.4 -- behavioural response to welfare shaping, 4 conditions
+==============================================================================
+baseline worst-off share: Ramp-Fast=38.3% Ramp-Slow=15.8% Mainline-Fast=31.4% Mainline-Slow=14.5%
+mean     worst-off share: Ramp-Fast=29.2% Ramp-Slow=20.8% Mainline-Fast=41.7% Mainline-Slow=8.3%  [2 seed(s) excluded: 0 non-degenerate episodes]
+ggi      worst-off share: Ramp-Fast=34.1% Ramp-Slow=16.0% Mainline-Fast=33.4% Mainline-Slow=16.4%
+maximin  worst-off share: Ramp-Fast=36.3% Ramp-Slow=12.6% Mainline-Fast=35.8% Mainline-Slow=15.3%
+wrote fig5_11_worst_off_by_condition
+wrote fig5_12_hardbrake_mergeorder_by_condition
+
+==============================================================================
+5.7.3 -- Table 5.13: zero-burden diagnostic (contiguous, frozen)
+==============================================================================
+merged rows: 12288 (expect 12288)
+
+-- all episodes, Baseline -- n_zero=2190 n_nonzero=882
+  >=1 hard-brake event (share)    : zero-burden=0.5429  nonzero-burden=1.0000
+  median hard-brake count         : zero-burden=1.0000  nonzero-burden=6.0000
+  mean hard-brake count           : zero-burden=2.1584  nonzero-burden=9.6553
+  95th pct hard-brake count       : zero-burden=8.0000  nonzero-burden=36.0000
+  mean braking burden C_brake     : zero-burden=0.1675  nonzero-burden=0.5149
+
+-- successful episodes only, Baseline -- n_zero=1969 n_nonzero=748
+  >=1 hard-brake event (share)    : zero-burden=0.5328  nonzero-burden=1.0000
+  median hard-brake count         : zero-burden=1.0000  nonzero-burden=6.0000
+  mean hard-brake count           : zero-burden=1.8664  nonzero-burden=8.3422
+  95th pct hard-brake count       : zero-burden=7.0000  nonzero-burden=26.6500
+  mean braking burden C_brake     : zero-burden=0.1289  nonzero-burden=0.3018

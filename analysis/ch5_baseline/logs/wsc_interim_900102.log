@@ -1,0 +1,18 @@
+==============================================================================
+INTERIM WSC EVALUATION -- CAVEAT: this covers only the seeds listed below,
+NOT the full 12-seed formal sample. Given this project's own established
+seed-level heterogeneity (see Original experiment's Mean-Baseline Delta_Umin
+ranging from -0.678 to +0.347 across seeds), any pattern seen here may
+reverse once the remaining seeds complete. NOT a formal result.
+Seeds included: [900102]
+==============================================================================
+[evaluate_wsc_formal] baseline_wsc_900102 on H1 ...
+  n=256 completion=0.086 collision=0.914
+[evaluate_wsc_formal] mean_wsc_900102 on H1 ...
+  n=256 completion=0.500 collision=0.500
+[evaluate_wsc_formal] ggi_wsc_900102 on H1 ...
+  n=256 completion=0.480 collision=0.520
+[evaluate_wsc_formal] maximin_wsc_900102 on H1 ...
+  n=256 completion=0.316 collision=0.645
+
+wrote 1024 rows -> F:\ÕıÊ½ÑµÁ·_seed_replication_v1\analysis_scripts\ch5_baseline\outputs\wsc_interim\wsc_interim_evaluation_seed900102.csv

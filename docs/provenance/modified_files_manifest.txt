@@ -1,0 +1,87 @@
+DENSE REWARD STUDY — modified-files manifest
+Every entry: original location (in F:\正式训练_seed_replication_v1, untouched) -> new location (in
+F:\dense reward, modified) -> why -> what changed.
+
+No entry below changes: task reward, terminal reward, collision penalty, completion handling, Mean/GGI/
+Maximin welfare definitions, WSC/running_active_attainment semantics, observation construction, DQN
+hyperparameters, seed handling, or episode-count/step-budget schedules. All changes are either (a) portability
+fixes for stale/hardcoded absolute paths, or (b) purely additive, default-off scaffolding explicitly
+requested by the task spec (Sections 12 and 13).
+
+--------------------------------------------------------------------------------------------------------
+1. project\experiments\pilots\study_b_fairness_mappo\scripts\evaluate_formal_welfare.py
+   Why:    Hardcoded `BUNDLE_ROOT = Path(r"F:\正式训练")` -- already stale even in the source bundle
+           (real bundle root there is F:\正式训练_seed_replication_v1) and would resolve to nothing on
+           any copy. This value feeds PROJECT_ROOT/SB_SCRIPTS (sys.path.insert targets) and CKPT_ROOT/
+           BANK_ROOT/OUT_ROOT (checkpoint read + CSV write locations).
+   Change: Replaced with `BUNDLE_ROOT = Path(__file__).resolve().parents[5]` -- the same parents[]-based
+           self-location pattern the sibling training script (train_curriculum_stage_highwayenv.py) already
+           uses, verified to resolve to F:\dense reward. No other line touched. Behavior when driven via
+           evaluate_replication.py (which already monkey-patches CKPT_ROOT/BANK_ROOT/checkpoint_paths_for)
+           is unaffected by this fix; behavior when run standalone (module's own main(), OUT_ROOT) is now
+           correct instead of silently writing to a nonexistent "F:\正式训练\outputs\welfare_analysis".
+
+2. project\experiments\pilots\study_b_fairness_mappo\scripts\evaluate_formal_behavioral.py
+   Why / Change: identical to #1 (same hardcoded BUNDLE_ROOT pattern, same fix).
+
+3. project\experiments\pilots\study_b_fairness_mappo\scripts\evaluate_high_burden_diagnostic.py
+   Why / Change: identical to #1 (same hardcoded BUNDLE_ROOT pattern, same fix).
+
+--------------------------------------------------------------------------------------------------------
+4. project\experiments\pilots\study_b_fairness_mappo\scripts\launch_wsc_formal_batch.py
+   Why:    Hardcoded PY_EXE / SCENARIO_BANK pointed at the stale "F:\正式训练\..." and, more importantly,
+           MATRIX_CSV / LOGS_DIR / REGISTRY_CSV / COMMANDS_TXT pointed at
+           "F:\正式训练_seed_replication_v1\..." -- i.e. this is a WRITE-path script that, if ever run
+           unmodified from this copy, would have written registry CSVs and run logs into the OLD formal
+           environment, which must never be touched (hard requirement, Section 15).
+   Change: Added `BUNDLE_ROOT = Path(__file__).resolve().parents[5]`; rewrote PY_EXE, SCENARIO_BANK,
+           MATRIX_CSV, LOGS_DIR, REGISTRY_CSV, COMMANDS_TXT relative to it. This script is NOT part of the
+           active dense-reward call chain (11_START_WELFARE.bat invokes launch_replication_welfare.py, not
+           this file) and was not executed as part of this environment setup -- fixed defensively only.
+
+5. project\experiments\pilots\study_b_fairness_mappo\scripts\launch_wsc_formal_batch_v2.py
+   Why / Change: identical to #4 (same hardcoded-write-path pattern into the OLD bundle, same fix). Also not
+           executed as part of this environment setup.
+
+--------------------------------------------------------------------------------------------------------
+6. project\experiments\pilots\study_b_fairness_mappo\scripts\train_curriculum_stage_highwayenv.py
+   Why:    Task spec Section 12 explicitly requires a default-off reward-trace debug capability to be
+           scaffolded in before any dense-shaping math is implemented.
+   Change: PURELY ADDITIVE. Added two new CLI flags: `--debug-reward-trace` (store_true, default False) and
+           `--debug-reward-trace-episodes` (int, default 5). When the flag is not passed (the default, and
+           the only mode used anywhere in this environment-setup task), `reward_trace_file` stays `None` and
+           every new branch is skipped -- the training loop's control flow, reward computation, and
+           observation handling are byte-identical to the original script. When enabled, for the first N
+           episodes only, writes one JSON line per (step, agent_id) to
+           `seed_{seed}_{stage}_reward_trace.jsonl` containing: step, agent_id, base_reward,
+           terminal_component, current M_i (`thesis.study_b.utility.running_active_attainment`, already-
+           existing function, newly imported into this file), welfare_objective_value (the SAME condition's
+           `welfare_fn` -- mean/GGI/min, already-existing, applied to all vehicles' current M_i, not a new
+           formula), done, collision, completion. No dense-shaping term is computed anywhere in this file
+           (Section 5/15 constraint) -- the trace only reads out values the script already computes or that
+           `running_active_attainment`/`condition.welfare_fn` already provide.
+   Verified: `python -m py_compile` succeeds; the flag defaults to False and was left False for every smoke/
+           repro/benchmark run performed during this setup (i.e. the additive code path was never exercised
+           by the validation runs themselves -- see validation\ for what WAS exercised).
+
+--------------------------------------------------------------------------------------------------------
+7. configs\FROZEN_EXPERIMENT_CONFIG.json
+   Why:    Task spec Section 13 requires reserving (not enabling) a dense-reward config schema.
+   Change: PURELY ADDITIVE new top-level key `dense_reward_study_reserved` appended after the existing
+           `formal_fairness_started` key (every prior key/value byte-identical to the source file). Contains
+           exactly the 5 fields specified in the task spec (`dense_welfare_shaping: false`,
+           `dense_shaping_mode: "discrete"`, `dense_shaping_magnitude: null`, `dense_shaping_epsilon: null`,
+           `dense_welfare_objective: null`) plus a `_provenance` string. No numeric shaping value (e.g.
+           0.2/0.4) was chosen -- all left null per the explicit instruction not to decide these before a
+           protocol freeze. File verified to still parse as valid JSON after the edit.
+
+--------------------------------------------------------------------------------------------------------
+Explicitly considered and left UNCHANGED (found, not modified):
+  scripts\_watch_eval_done.py line 10: `r"C:\Users\SamChui\.cursor\projects\d\terminals\88775.txt"` -- a
+    dead personal diagnostic watcher (not imported/invoked by any other script in the traced call chain,
+    already non-functional even in the source bundle since that user account does not exist on this
+    machine). Left as-is: fixing it would not change any reachable behavior, and it does not write into the
+    old formal environment.
+  project\tests\**\*.py path-string literals referencing C:\Users\HP\...\final_new_experiment\... -- these
+    are test FIXTURE STRINGS passed to path-format-checking functions (e.g.
+    `is_absolute_path_string(r"C:\Users\x")`), never resolved/opened as real files. Left as-is.

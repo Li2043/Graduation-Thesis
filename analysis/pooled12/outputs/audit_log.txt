@@ -1,0 +1,157 @@
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_welfare_evaluation_merged.csv  shape=(12288, 36)  seeds=[np.int64(900101), np.int64(900102), np.int64(900103), np.int64(900104), np.int64(910101), np.int64(910102), np.int64(920101), np.int64(920102), np.int64(920103), np.int64(920104), np.int64(920105), np.int64(920106)]
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_behavioral_evaluation_merged.csv  shape=(12288, 26)  seeds=[np.int64(900101), np.int64(900102), np.int64(900103), np.int64(900104), np.int64(910101), np.int64(910102), np.int64(920101), np.int64(920102), np.int64(920103), np.int64(920104), np.int64(920105), np.int64(920106)]
+
+loaded 12288 pooled rows for n=12 audit
+[audit] outcome-flag / term_reason consistency problems: 0
+
+==============================================================================
+TASK PERFORMANCE TABLE -- all 12 seeds x Mean(H0,H1)/GGI(H1)/Maximin(H1)
+==============================================================================
+  900101: mean_H0=0.984/0.016  mean_H1=0.992/0.008  ggi_H1=1.000/0.000/0.000  maximin_H1=0.988/0.012/0.000
+  900102: mean_H0=1.000/0.000  mean_H1=0.996/0.004  ggi_H1=1.000/0.000/0.000  maximin_H1=0.879/0.121/0.000
+  900103: mean_H0=0.594/0.406  mean_H1=0.977/0.023  ggi_H1=0.930/0.070/0.000  maximin_H1=0.969/0.031/0.000
+  900104: mean_H0=0.969/0.031  mean_H1=0.961/0.039  ggi_H1=0.891/0.109/0.000  maximin_H1=0.664/0.102/0.234
+  910101: mean_H0=1.000/0.000  mean_H1=0.988/0.012  ggi_H1=0.984/0.016/0.000  maximin_H1=0.957/0.043/0.000
+  910102: mean_H0=0.047/0.953  mean_H1=0.035/0.965  ggi_H1=0.535/0.387/0.078  maximin_H1=0.656/0.344/0.000
+  920101: mean_H0=1.000/0.000  mean_H1=1.000/0.000  ggi_H1=0.988/0.012/0.000  maximin_H1=0.984/0.016/0.000
+  920102: mean_H0=0.953/0.047  mean_H1=0.934/0.066  ggi_H1=0.844/0.156/0.000  maximin_H1=0.984/0.016/0.000
+  920103: mean_H0=0.996/0.004  mean_H1=1.000/0.000  ggi_H1=0.988/0.012/0.000  maximin_H1=1.000/0.000/0.000
+  920104: mean_H0=1.000/0.000  mean_H1=1.000/0.000  ggi_H1=0.785/0.215/0.000  maximin_H1=0.750/0.250/0.000
+  920105: mean_H0=1.000/0.000  mean_H1=0.973/0.027  ggi_H1=1.000/0.000/0.000  maximin_H1=0.891/0.105/0.004
+  920106: mean_H0=0.996/0.004  mean_H1=0.981/0.019  ggi_H1=0.797/0.203/0.000  maximin_H1=0.738/0.262/0.000
+
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_task_performance.csv
+
+==============================================================================
+TASK 1 (n=12) -- RQ1 burden-inequality analysis (Mean policy, H0 vs H1)
+==============================================================================
+rows: mean/H0=3072  mean/H1=3072  (expect 3072 each = 12 seeds x 256 episodes)
+
+All-zero-burden episode rate per seed (H0/H1):
+  H0: 900101:1.000  900102:0.000  900103:1.000  900104:1.000  910101:1.000  910102:0.852  920101:1.000  920102:0.781  920103:1.000  920104:1.000  920105:1.000  920106:0.004
+  H1: 900101:1.000  900102:0.590  900103:0.895  900104:1.000  910101:0.918  910102:0.918  920101:1.000  920102:0.527  920103:1.000  920104:0.500  920105:0.922  920106:0.699
+
+Seeds with fully-undefined (all-zero) H0 burden Gini: 8/12
+
+RQ1 H0 vs H1 summary table (seed = unit of replication, paired bootstrap, 10000 resamples, seed0=0), n=12:
+Mean utility        : H0(n=12)=[0.9922 0.9989 0.7969 0.9844 1.     0.5224 1.     0.9765 0.998  1.
+ 1.     0.9977]
+                      H1(n=12)=[0.9961 0.9899 0.9882 0.9824 0.9941 0.5174 1.     0.9666 1.     0.9998
+ 0.986  0.989 ]
+                      H1-H0 mean=+0.0119  95% CI=[-0.0068, +0.0457]
+Worst-off utility   : H0(n=12)=[0.9844 0.9962 0.5938 0.9688 1.     0.0428 1.     0.9529 0.9961 1.
+ 1.     0.9948]
+                      H1(n=12)=[0.9922 0.9811 0.9763 0.9648 0.9881 0.0352 1.     0.933  1.     0.999
+ 0.972  0.9777]
+                      H1-H0 mean=+0.0241  95% CI=[-0.0130, +0.0917]
+Utility Gini        : H0(n=12)=[0.0078 0.0008 0.2031 0.0156 0.     0.4773 0.     0.0235 0.002  0.
+ 0.     0.0022]
+                      H1(n=12)=[3.900e-03 5.000e-03 1.180e-02 1.760e-02 5.900e-03 4.825e-01 0.000e+00
+ 3.330e-02 0.000e+00 2.000e-04 1.380e-02 1.040e-02]
+                      H1-H0 mean=-0.0123  95% CI=[-0.0460, +0.0062]
+Mean burden         : H0(n=12)=[0.     0.0147 0.     0.     0.     0.0304 0.     0.001  0.     0.
+ 0.     0.005 ]
+                      H1(n=12)=[0.     0.1305 0.0011 0.     0.0004 0.0015 0.     0.0024 0.     0.0035
+ 0.0051 0.0177]
+                      H1-H0 mean=+0.0093  95% CI=[-0.0047, +0.0308]
+Burden Gini         : UNDEFINED for seed(s) [900101, 900103, 900104, 910101, 920101, 920103, 920104, 920105]; falling back to n=4 subset: [900102, 910102, 920102, 920106]
+Burden Gini         : H0(n=4)=[0.6783 0.599  0.7458 0.7402]
+                      H1(n=4)=[0.5503 0.705  0.7484 0.5446]
+                      H1-H0 mean=-0.0537  95% CI=[-0.1617, +0.0543]
+Burden range        : H0(n=12)=[0.     0.0505 0.     0.     0.     0.0982 0.     0.0038 0.     0.
+ 0.     0.0185]
+                      H1(n=12)=[0.     0.2297 0.0043 0.     0.0017 0.0047 0.     0.0095 0.     0.0141
+ 0.0149 0.04  ]
+                      H1-H0 mean=+0.0123  95% CI=[-0.0177, +0.0493]
+
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_rq1_seed_level_metrics.csv
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_rq1_h0_h1_summary.csv
+
+==============================================================================
+TASK 2 (n=12) -- successful-episodes-only burden sensitivity (H1)
+==============================================================================
+
+Successful-episode counts per seed x condition (n_success/n_total, H1):
+  mean    : 900101:254/256  900102:255/256  900103:250/256  900104:246/256  910101:253/256  910102:9/256  920101:256/256  920102:239/256  920103:256/256  920104:256/256  920105:249/256  920106:251/256
+  ggi     : 900101:256/256  900102:256/256  900103:238/256  900104:228/256  910101:252/256  910102:137/256  920101:253/256  920102:216/256  920103:253/256  920104:201/256  920105:256/256  920106:204/256
+  maximin : 900101:253/256  900102:225/256  900103:248/256  900104:170/256  910101:245/256  910102:168/256  920101:252/256  920102:252/256  920103:256/256  920104:192/256  920105:228/256  920106:189/256
+
+Condition-level (12-seed mean) C_mean: success-only vs unconditional:
+  mean    : success-only mean=0.0131 (n_seeds=12)   unconditional mean=0.0135
+  ggi     : success-only mean=0.0082 (n_seeds=12)   unconditional mean=0.2264
+  maximin : success-only mean=0.0937 (n_seeds=12)   unconditional mean=0.4259
+
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_successful_episode_burden_by_seed.csv
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_successful_episode_burden_by_class.csv
+
+Burden by class, successful-only, pooled 12-seed mean:
+  mean    : ramp-fast=0.023  ramp-slow=0.005  mainline-fast=0.021  mainline-slow=0.004
+  ggi     : ramp-fast=0.011  ramp-slow=0.004  mainline-fast=0.013  mainline-slow=0.004
+  maximin : ramp-fast=0.127  ramp-slow=0.028  mainline-fast=0.198  mainline-slow=0.022
+
+==============================================================================
+TASK 3 (n=12) -- non-inferiority margins (completion -0.05, collision +0.03)
+==============================================================================
+
+GGI - Mean, completion: est=-0.0078 CI=[-0.0869,+0.1003]  cleared=False
+GGI - Mean, collision : est=+0.0013 CI=[-0.1198,+0.0866]  cleared=False
+
+MAXIMIN - Mean, completion: est=-0.0312 CI=[-0.1390,+0.1113]  cleared=False
+MAXIMIN - Mean, collision : est=+0.0114 CI=[-0.1240,+0.1091]  cleared=False
+
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_noninferiority.csv
+
+==============================================================================
+TASK 4 (n=12) -- Holm-corrected U_min comparisons (GGI-Mean, Maximin-Mean)
+==============================================================================
+
+GGI - Mean, U_min: est=-0.0066 CI=[-0.0867,+0.1034]  raw bootstrap p=0.8172
+
+MAXIMIN - Mean, U_min: est=-0.0277 CI=[-0.1233,+0.0992]  raw bootstrap p=0.5976
+
+Holm step-down correction (m=2 primary comparisons), n=12:
+  GGI-Mean: raw_p=0.8172  holm_adjusted_p=1.0000  sig_before=False  sig_after=False
+  MAXIMIN-Mean: raw_p=0.5976  holm_adjusted_p=1.0000  sig_before=False  sig_after=False
+
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_umin_holm.csv
+
+==============================================================================
+TASK 5 (n=12) -- worst-off vehicle tie-corrected identity
+==============================================================================
+
+MEAN (H1, 12 seeds pooled, n_episodes=3072):
+  episodes with ANY tie at the minimum: 2598/3072 (84.6%)
+  4-way degenerate ties: 2301/3072 (74.9%)
+  non-degenerate episodes used: n=771
+    ramp-fast       : pct=33.9%
+    ramp-slow       : pct=16.5%
+    mainline-fast   : pct=38.8%
+    mainline-slow   : pct=10.8%
+
+GGI (H1, 12 seeds pooled, n_episodes=3072):
+  episodes with ANY tie at the minimum: 2405/3072 (78.3%)
+  4-way degenerate ties: 2100/3072 (68.4%)
+  non-degenerate episodes used: n=972
+    ramp-fast       : pct=35.4%
+    ramp-slow       : pct=15.7%
+    mainline-fast   : pct=29.9%
+    mainline-slow   : pct=19.0%
+
+MAXIMIN (H1, 12 seeds pooled, n_episodes=3072):
+  episodes with ANY tie at the minimum: 1905/3072 (62.0%)
+  4-way degenerate ties: 1560/3072 (50.8%)
+  non-degenerate episodes used: n=1512
+    ramp-fast       : pct=35.5%
+    ramp-slow       : pct=13.1%
+    mainline-fast   : pct=37.2%
+    mainline-slow   : pct=14.2%
+
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\pooled12_worst_off_tie_corrected.csv
+
+==============================================================================
+STANDALONE NEW-6 CHECK (920101-920106 only) -- ΔU_min GGI/Maximin vs Mean
+==============================================================================
+GGI - Mean, U_min (new-6 only): est=-0.0806 CI=[-0.1543,-0.0120]  seed values GGI/Max=[0.986 0.843 0.988 0.785 1.    0.797]  Mean=[1.    0.933 1.    0.999 0.972 0.978]
+MAXIMIN - Mean, U_min (new-6 only): est=-0.0927 CI=[-0.1844,-0.0028]  seed values GGI/Max=[0.981 0.984 0.999 0.749 0.874 0.738]  Mean=[1.    0.933 1.    0.999 0.972 0.978]
+
+wrote F:\正式训练_seed_replication_v1\analysis_scripts\pooled12\outputs\new6_standalone_umin_check.csv

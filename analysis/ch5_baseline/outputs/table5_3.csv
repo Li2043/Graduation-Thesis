@@ -1,0 +1,4 @@
+metric,mean,median,ci_low,ci_high
+completion,0.8844,0.916,0.807,0.9512
+collision,0.1156,0.084,0.0488,0.193
+timeout,0.0,0.0,0.0,0.0

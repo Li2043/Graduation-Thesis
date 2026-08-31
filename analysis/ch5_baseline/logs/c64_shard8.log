@@ -1,0 +1,4 @@
+[evaluate_c64_prebranch_h1 shard 8] c64_920103 on H1 ...
+  n=256 completion=0.8867 collision=0.1133 timeout=0.0000
+
+wrote 256 rows -> F:\ÕıÊ½ÑµÁ·_seed_replication_v1\analysis_scripts\ch5_baseline\outputs\c64_prebranch_h1_shard8.csv

@@ -1,0 +1,46 @@
+
+==============================================================================
+5.4.2 -- Table 5.2: four-condition task competence, H1
+==============================================================================
+baseline: completion=0.884 collision=0.116 timeout=0.000 pass=5/12
+mean    : completion=0.903 collision=0.097 timeout=0.000 pass=10/12
+ggi     : completion=0.895 collision=0.098 timeout=0.007 pass=6/12
+maximin : completion=0.872 collision=0.108 timeout=0.020 pass=6/12
+wrote fig5_3_formal_completion_by_seed
+
+==============================================================================
+5.5.1 -- Table 5.3: Baseline H1 competence
+==============================================================================
+completion  : mean=0.884 median=0.916 CI=[0.807,0.951]
+collision   : mean=0.116 median=0.084 CI=[0.049,0.193]
+timeout     : mean=0.000 median=0.000 CI=[0.000,0.000]
+weak Baseline seeds (<0.90 completion): [(910102, 0.71484375), (920101, 0.8984375), (920102, 0.890625), (920104, 0.6484375), (920105, 0.66015625)]
+
+==============================================================================
+5.5.2 -- Table 5.4: within-episode inequality, Baseline H1
+==============================================================================
+U_mean        : mean=0.941 median=0.958 CI=[0.902,0.975]
+U_min         : mean=0.882 median=0.915 CI=[0.805,0.947]
+utility_gini  : mean=0.058 median=0.042 CI=[0.025,0.096]
+utility_range : mean=0.118 median=0.085 CI=[0.052,0.194]
+wrote fig5_4a_baseline_gini_by_seed
+wrote fig5_4b_baseline_umin_by_seed
+
+==============================================================================
+5.5.3 -- Table 5.5: class disadvantage, Baseline H1
+==============================================================================
+Ramp-Fast       : U=0.944 CI=[0.915,0.970]
+Ramp-Slow       : U=0.951 CI=[0.902,0.988]
+Mainline-Fast   : U=0.933 CI=[0.890,0.968]
+Mainline-Slow   : U=0.937 CI=[0.878,0.988]
+Fast-Slow       : delta=-0.0059 CI=[-0.0375,+0.0335]
+Ramp-Mainline   : delta=+0.0128 CI=[-0.0047,+0.0426]
+worst-off Ramp-Fast       : share=0.383 CI=[0.246,0.542]
+worst-off Ramp-Slow       : share=0.158 CI=[0.085,0.235]
+worst-off Mainline-Fast   : share=0.314 CI=[0.224,0.400]
+worst-off Mainline-Slow   : share=0.145 CI=[0.074,0.220]
+Fast combined worst-off share: 0.698 CI=[0.555,0.833] (25% uniform reference x2 classes = 50%)
+Slow combined worst-off share: 0.302 CI=[0.167,0.445]
+total non-degenerate episodes across 12 seeds: 1099
+wrote fig5_5_baseline_utility_by_class
+wrote fig5_6_baseline_worst_off_share

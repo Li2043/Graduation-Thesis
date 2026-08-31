@@ -1,0 +1,7 @@
+class_or_contrast,estimate,ci_low,ci_high
+Ramp-Fast,0.9437,0.9147,0.9699
+Ramp-Slow,0.9514,0.9021,0.9879
+Mainline-Fast,0.9327,0.8897,0.9684
+Mainline-Slow,0.9368,0.8779,0.9877
+Fast-Slow,-0.0059,-0.0375,0.0335
+Ramp-Mainline,0.0128,-0.0047,0.0426

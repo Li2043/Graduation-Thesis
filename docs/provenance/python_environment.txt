@@ -1,0 +1,31 @@
+python_version: 3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]
+python_executable: F:\dense reward\.venv\Scripts\python.exe
+platform: Windows-11-10.0.26200-SP0
+processor: Intel64 Family 6 Model 186 Stepping 3, GenuineIntel
+pip_version: pip 26.1.2 from F:\dense reward\.venv\Lib\site-packages\pip (python 3.14)
+torch_version: 2.13.0+cpu
+cuda_available: False
+cuda_build: None
+cpu_count_logical: 12
+os_cpu_count: 12
+ram_total_gb: 31.70
+ram_available_gb: 12.63 (at time of measurement, 2026-08-26, other processes running)
+
+NOTE ON CPU COUNT DISCREPANCY:
+The task brief (coordinator-supplied context) stated this machine has 32 logical CPUs. Direct
+measurement in this environment disagrees and was cross-checked four independent ways, all
+agreeing on 12:
+  - Python multiprocessing.cpu_count() -> 12
+  - Python os.cpu_count() -> 12
+  - Windows env var %NUMBER_OF_PROCESSORS% -> 12
+  - PowerShell (Get-CimInstance Win32_ComputerSystem).NumberOfLogicalProcessors -> 12
+  - PowerShell (Get-CimInstance Win32_Processor | Measure-Object NumberOfLogicalProcessors -Sum).Sum -> 12
+This is flagged prominently in provenance/parallelism_benchmark.md and in the final report -- the
+Section 9 benchmark below was run against the 12 cores actually visible in this shell/session, not
+32. If the real dense-reward training campaign later runs on a machine that truly exposes 32
+logical CPUs, the worker-count sweep and DEFAULT_MAX_WORKERS recommendation here should be
+re-validated on that machine rather than trusted as-is.
+
+Source-environment comparison (F:\正式训练_seed_replication_v1\environment\python_version.txt):
+  Python 3.14.6, Windows-11-10.0.26200-SP0, CPython 3.14.6 -- IDENTICAL Python patch version and OS
+  build to this new venv (exact match, not just "close enough").

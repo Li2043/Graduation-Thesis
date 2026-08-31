@@ -1,0 +1,7 @@
+class,mean_burden,ci_low,ci_high
+Ramp-Fast,0.0556,0.0104,0.1186
+Ramp-Slow,0.017,0.0024,0.034
+Mainline-Fast,0.0618,0.0114,0.1272
+Mainline-Slow,0.0167,0.0026,0.0323
+Fast-Slow burden,0.0418,0.0041,0.0925
+Ramp-Mainline burden,-0.003,-0.01,0.0037

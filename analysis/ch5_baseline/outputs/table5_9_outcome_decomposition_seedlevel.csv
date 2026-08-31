@@ -1,0 +1,13 @@
+condition,outcome,episode_n,episode_share,seed_level_mean,seed_level_median,CI_low,CI_high,n_seeds_with_data,pooled_contribution_to_unconditional_Cmean
+Baseline,success,2717,0.8844,0.0235,0.0105,0.0077,0.0454,12,0.0219
+Baseline,collision,355,0.1156,0.3335,0.0083,0.0058,0.7589,10,0.0159
+Baseline,timeout,0,0.0,,,,,0,0.0
+Mean,success,2774,0.903,0.0131,0.0008,0.0008,0.0352,12,0.0131
+Mean,collision,298,0.097,0.0605,0.0015,0.002,0.1615,9,0.0005
+Mean,timeout,0,0.0,,,,,0,0.0
+GGI,success,2750,0.8952,0.0082,0.0041,0.0023,0.0178,12,0.0079
+GGI,collision,302,0.0983,0.0856,0.0114,0.0043,0.1945,9,0.016
+GGI,timeout,20,0.0065,31.1143,,,,1,0.2026
+Maximin,success,2678,0.8717,0.0937,0.0123,0.0172,0.2183,12,0.0689
+Maximin,collision,333,0.1084,0.2674,0.1141,0.0713,0.51,11,0.0396
+Maximin,timeout,61,0.0199,24.8522,,,,2,0.3174

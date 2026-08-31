@@ -1,0 +1,9 @@
+metric,condition,n,mean_paired_diff_wsc_minus_orig,median_paired_diff,sd,n_positive,n_negative,n_zero,CI95_low,CI95_high,raw_p_bootstrap_two_sided,note
+completion,baseline,12,-0.027344,-0.039062,0.126522,2,10,0,-0.091797,0.043953,0.4384,descriptive/safety -- not part of a pre-specified Holm-corrected confirmatory family
+completion,mean,12,-0.073893,-0.035156,0.311422,3,9,0,-0.228841,0.107747,0.398,descriptive/safety -- not part of a pre-specified Holm-corrected confirmatory family
+completion,ggi,12,0.053385,0.0,0.152697,6,6,0,-0.021159,0.144206,0.1938,descriptive/safety -- not part of a pre-specified Holm-corrected confirmatory family
+completion,maximin,12,-0.038737,0.023438,0.265408,7,5,0,-0.192708,0.09082,0.6266,descriptive/safety -- not part of a pre-specified Holm-corrected confirmatory family
+collision,baseline,12,0.027344,0.039062,0.126522,10,2,0,-0.043953,0.091797,0.4384,descriptive/safety -- not part of a pre-specified Holm-corrected confirmatory family
+collision,mean,12,0.069661,0.027344,0.30737,9,3,0,-0.110026,0.221362,0.417,descriptive/safety -- not part of a pre-specified Holm-corrected confirmatory family
+collision,ggi,12,-0.047526,0.0,0.134667,6,6,0,-0.125977,0.020508,0.1952,descriptive/safety -- not part of a pre-specified Holm-corrected confirmatory family
+collision,maximin,12,0.058594,-0.021484,0.245594,5,7,0,-0.056966,0.202799,0.394,descriptive/safety -- not part of a pre-specified Holm-corrected confirmatory family

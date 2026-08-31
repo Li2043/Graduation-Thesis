@@ -1,0 +1,20 @@
+measure,class,estimate,ci_low,ci_high
+Pre-merge BRAKE-action rate,Ramp-Fast,0.059,0.0218,0.1116
+Pre-merge BRAKE-action rate,Ramp-Slow,0.1002,0.0472,0.1557
+Pre-merge BRAKE-action rate,Mainline-Fast,0.0668,0.0278,0.1195
+Pre-merge BRAKE-action rate,Mainline-Slow,0.0959,0.0449,0.1486
+Pre-merge BRAKE-action rate,Fast-Slow,-0.0351,-0.0892,0.0189
+Braking burden C_brake,Ramp-Fast,0.1928,0.1058,0.2992
+Braking burden C_brake,Ramp-Slow,0.3519,0.2038,0.507
+Braking burden C_brake,Mainline-Fast,0.1922,0.0974,0.3023
+Braking burden C_brake,Mainline-Slow,0.3322,0.1704,0.5074
+Braking burden C_brake,Fast-Slow,-0.1496,-0.2928,-0.0092
+Hard-brake events (window),Ramp-Fast,0.4417,0.1689,0.7809
+Hard-brake events (window),Ramp-Slow,0.4788,0.1882,0.8206
+Hard-brake events (window),Mainline-Fast,0.3906,0.1338,0.7051
+Hard-brake events (window),Mainline-Slow,0.4766,0.1862,0.8089
+Hard-brake events (window),Fast-Slow,-0.0615,-0.3763,0.2417
+First-to-merge share,Ramp-Fast,0.3997,0.3508,0.436
+First-to-merge share,Ramp-Slow,0.1227,0.0774,0.1777
+First-to-merge share,Mainline-Fast,0.3413,0.2885,0.3831
+First-to-merge share,Mainline-Slow,0.1363,0.0939,0.188

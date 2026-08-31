@@ -1,0 +1,5 @@
+condition,C_mean,C_max,burden_range,C_brake,brake_action_rate,hard_brake_events
+Baseline,0.0378,0.0952,0.0925,0.2673,0.0805,0.4469
+Mean,0.0135,0.0284,0.0266,0.2146,0.1178,0.387
+GGI,0.2264,0.2633,0.0783,0.252,0.1061,0.3407
+Maximin,0.4259,0.9522,0.9336,0.284,0.0653,0.3575

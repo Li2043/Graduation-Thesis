@@ -1,0 +1,5 @@
+condition,overall_C_mean,success_contribution,collision_contribution,timeout_contribution,check_sum
+Baseline,0.0378,0.0219,0.0159,0.0,0.0378
+Mean,0.0135,0.0131,0.0005,0.0,0.0135
+GGI,0.2264,0.0079,0.016,0.2026,0.2264
+Maximin,0.4259,0.0689,0.0396,0.3174,0.4259

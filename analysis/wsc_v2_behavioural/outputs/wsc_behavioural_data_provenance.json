@@ -1,0 +1,545 @@
+{
+  "seeds_12": [
+    900101,
+    900102,
+    900103,
+    900104,
+    910101,
+    910102,
+    920101,
+    920102,
+    920103,
+    920104,
+    920105,
+    920106
+  ],
+  "conditions": [
+    "baseline",
+    "mean",
+    "ggi",
+    "maximin"
+  ],
+  "regimes": [
+    "original",
+    "wsc"
+  ],
+  "primary_metrics": [
+    "RY",
+    "P_priority_worse",
+    "BC",
+    "GapClosure_k25"
+  ],
+  "secondary_metrics": [
+    "GapClosure_k10",
+    "GapClosure_k50",
+    "Recovery_k10",
+    "Recovery_k25",
+    "Recovery_k50"
+  ],
+  "recovery_horizons": [
+    10,
+    25,
+    50
+  ],
+  "primary_recovery_k": 25,
+  "bootstrap": {
+    "n_boot": 10000,
+    "rng_seed": 0,
+    "source": "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\pooled12\\merge_and_audit.py"
+  },
+  "holm_family_definition": "one family per primary metric, across {mean, ggi, maximin} (m=3), NOT pooled across metrics",
+  "event_shards_used": [
+    "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_behavioural\\outputs\\wsc_behavioural_events_shardA.csv",
+    "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_behavioural\\outputs\\wsc_behavioural_events_shardB.csv",
+    "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_behavioural\\outputs\\wsc_behavioural_events_shardC.csv",
+    "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_behavioural\\outputs\\wsc_behavioural_events_shardD.csv"
+  ],
+  "episode_counts_shards_used": [
+    "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_behavioural\\outputs\\wsc_behavioural_episode_counts_shardA.csv",
+    "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_behavioural\\outputs\\wsc_behavioural_episode_counts_shardB.csv",
+    "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_behavioural\\outputs\\wsc_behavioural_episode_counts_shardC.csv",
+    "F:\\\u6b63\u5f0f\u8bad\u7ec3_seed_replication_v1\\analysis_scripts\\wsc_v2_behavioural\\outputs\\wsc_behavioural_episode_counts_shardD.csv"
+  ],
+  "episode_counts_by_combo": {
+    "900101|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 255,
+      "n_collision": 1
+    },
+    "900101|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 220,
+      "n_collision": 36
+    },
+    "900101|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 254,
+      "n_collision": 2
+    },
+    "900101|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 248,
+      "n_collision": 8
+    },
+    "900101|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "900101|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 248,
+      "n_collision": 8
+    },
+    "900101|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 253,
+      "n_collision": 3
+    },
+    "900101|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 231,
+      "n_collision": 25
+    },
+    "900102|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 250,
+      "n_collision": 6
+    },
+    "900102|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 248,
+      "n_collision": 8
+    },
+    "900102|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 255,
+      "n_collision": 1
+    },
+    "900102|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 254,
+      "n_collision": 2
+    },
+    "900102|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "900102|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 252,
+      "n_collision": 4
+    },
+    "900102|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 225,
+      "n_collision": 31
+    },
+    "900102|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 244,
+      "n_collision": 12
+    },
+    "900103|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 231,
+      "n_collision": 25
+    },
+    "900103|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 216,
+      "n_collision": 40
+    },
+    "900103|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 250,
+      "n_collision": 6
+    },
+    "900103|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 103,
+      "n_collision": 146
+    },
+    "900103|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 238,
+      "n_collision": 18
+    },
+    "900103|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 239,
+      "n_collision": 17
+    },
+    "900103|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 248,
+      "n_collision": 8
+    },
+    "900103|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 221,
+      "n_collision": 35
+    },
+    "900104|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 255,
+      "n_collision": 1
+    },
+    "900104|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 254,
+      "n_collision": 2
+    },
+    "900104|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 246,
+      "n_collision": 10
+    },
+    "900104|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 249,
+      "n_collision": 7
+    },
+    "900104|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 228,
+      "n_collision": 28
+    },
+    "900104|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 188,
+      "n_collision": 68
+    },
+    "900104|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 170,
+      "n_collision": 26
+    },
+    "900104|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 248,
+      "n_collision": 8
+    },
+    "910101|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "910101|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 255,
+      "n_collision": 1
+    },
+    "910101|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 253,
+      "n_collision": 3
+    },
+    "910101|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 241,
+      "n_collision": 11
+    },
+    "910101|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 252,
+      "n_collision": 4
+    },
+    "910101|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 241,
+      "n_collision": 13
+    },
+    "910101|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 245,
+      "n_collision": 11
+    },
+    "910101|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 255,
+      "n_collision": 1
+    },
+    "910102|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 183,
+      "n_collision": 73
+    },
+    "910102|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 127,
+      "n_collision": 129
+    },
+    "910102|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 9,
+      "n_collision": 247
+    },
+    "910102|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 192,
+      "n_collision": 64
+    },
+    "910102|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 137,
+      "n_collision": 99
+    },
+    "910102|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 251,
+      "n_collision": 5
+    },
+    "910102|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 168,
+      "n_collision": 88
+    },
+    "910102|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 59,
+      "n_collision": 197
+    },
+    "920101|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 230,
+      "n_collision": 26
+    },
+    "920101|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 205,
+      "n_collision": 51
+    },
+    "920101|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "920101|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 253,
+      "n_collision": 3
+    },
+    "920101|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 253,
+      "n_collision": 3
+    },
+    "920101|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "920101|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 252,
+      "n_collision": 4
+    },
+    "920101|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 254,
+      "n_collision": 2
+    },
+    "920102|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 228,
+      "n_collision": 28
+    },
+    "920102|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 217,
+      "n_collision": 39
+    },
+    "920102|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 239,
+      "n_collision": 17
+    },
+    "920102|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 140,
+      "n_collision": 116
+    },
+    "920102|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 216,
+      "n_collision": 40
+    },
+    "920102|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 251,
+      "n_collision": 5
+    },
+    "920102|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 252,
+      "n_collision": 4
+    },
+    "920102|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 87,
+      "n_collision": 169
+    },
+    "920103|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "920103|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 247,
+      "n_collision": 9
+    },
+    "920103|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "920103|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 237,
+      "n_collision": 19
+    },
+    "920103|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 253,
+      "n_collision": 3
+    },
+    "920103|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 252,
+      "n_collision": 4
+    },
+    "920103|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "920103|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 244,
+      "n_collision": 12
+    },
+    "920104|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 166,
+      "n_collision": 90
+    },
+    "920104|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 223,
+      "n_collision": 33
+    },
+    "920104|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "920104|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 206,
+      "n_collision": 48
+    },
+    "920104|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 201,
+      "n_collision": 55
+    },
+    "920104|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 231,
+      "n_collision": 25
+    },
+    "920104|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 192,
+      "n_collision": 64
+    },
+    "920104|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 232,
+      "n_collision": 24
+    },
+    "920105|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 169,
+      "n_collision": 87
+    },
+    "920105|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 217,
+      "n_collision": 39
+    },
+    "920105|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 249,
+      "n_collision": 7
+    },
+    "920105|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 170,
+      "n_collision": 86
+    },
+    "920105|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 256,
+      "n_collision": 0
+    },
+    "920105|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 255,
+      "n_collision": 1
+    },
+    "920105|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 228,
+      "n_collision": 27
+    },
+    "920105|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 238,
+      "n_collision": 18
+    },
+    "920106|baseline|original": {
+      "n_episodes": 256,
+      "n_completion": 238,
+      "n_collision": 18
+    },
+    "920106|baseline|wsc": {
+      "n_episodes": 256,
+      "n_completion": 204,
+      "n_collision": 52
+    },
+    "920106|mean|original": {
+      "n_episodes": 256,
+      "n_completion": 251,
+      "n_collision": 5
+    },
+    "920106|mean|wsc": {
+      "n_episodes": 256,
+      "n_completion": 254,
+      "n_collision": 2
+    },
+    "920106|ggi|original": {
+      "n_episodes": 256,
+      "n_completion": 204,
+      "n_collision": 52
+    },
+    "920106|ggi|wsc": {
+      "n_episodes": 256,
+      "n_completion": 250,
+      "n_collision": 6
+    },
+    "920106|maximin|original": {
+      "n_episodes": 256,
+      "n_completion": 189,
+      "n_collision": 67
+    },
+    "920106|maximin|wsc": {
+      "n_episodes": 256,
+      "n_completion": 246,
+      "n_collision": 10
+    }
+  }
+}

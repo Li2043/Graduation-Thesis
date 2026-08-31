@@ -1,0 +1,4 @@
+[conflict_exposure shard 9] seed 920104 ...
+  n=256 overlap_rate=1.000
+
+wrote 256 rows -> F:\ÕýÊ½ÑµÁ·_seed_replication_v1\analysis_scripts\ch5_baseline\outputs\conflict_exposure\conflict_exposure_shard9.csv
