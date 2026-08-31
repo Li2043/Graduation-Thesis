@@ -1,0 +1,38 @@
+# Study B frozen environment constants -- reference/documentation only.
+# The actual scripts take these as CLI flags (see README.md); this file
+# is the FREEZE.md-style provenance record new_research_plan.md's
+# "工程冻结" section asks for, not something the scripts parse.
+#
+# Fill in the "Phase 0 final value" column (right of "->") once Phase 0
+# validation (scripts/phase0_validate_env.py) confirms these pilot
+# defaults are geometrically sane; until then these ARE the pilot values
+# actually in effect (the code's own defaults).
+
+n_vehicles: 4
+ramp_agents: 2
+mainline_agents: 2
+reference_target_speed_mps: 20.0
+heterogeneous_slow_speed_mps: 18.0   # -> Phase 0 final:
+heterogeneous_fast_speed_mps: 22.0   # -> Phase 0 final:
+front_nominal_ttc_s: 4.5             # -> Phase 0 final:
+rear_nominal_ttc_s: 6.5              # -> Phase 0 final:
+shared_ttc_jitter_s: [-0.25, 0.25]
+individual_ttc_jitter_s: [-0.05, 0.05]
+same_lane_spawn_min_gap_m: 15.0
+decision_timestep_s: 0.2             # inherited, unchanged from Study A
+episode_max_steps: 200               # -> Phase 0 final:
+observation_radius_m: 50.0           # -> Phase 0 final:
+neighbour_slots: 3
+actions: [accelerate, hold, brake]   # inherited, unchanged from Study A
+hard_brake_comfort_threshold_mps2: 1.5   # inherited
+hard_brake_hard_threshold_mps2: 3.5      # inherited
+hard_brake_reward_coefficient: 0.015     # inherited
+active_time_cost_per_step: 0.0005        # inherited -- new_research_plan.md
+                                          # explicitly keeps this (does NOT
+                                          # remove it the way the discarded
+                                          # first-draft plan wanted to)
+pbrs_lambda: 0.2                         # inherited from Study A (PBRS_LAMBDA_V12)
+discount_gamma: 0.995                    # inherited from Study A -- MUST match
+                                          # the learner's own discount, see
+                                          # pbrs_reward.py's module docstring
+ggi_weights: [0.4, 0.3, 0.2, 0.1]        # evaluation-only, not a training condition

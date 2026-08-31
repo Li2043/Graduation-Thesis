@@ -1,0 +1,3010 @@
+[
+  {
+    "scenario_id": "Q_00000",
+    "episode_seed": 900000,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 62.13954273223567,
+        "nominal_ttc": 6.266384421262015
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 123.00827789278034,
+        "nominal_ttc": 4.277317894845536
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 62.54324707783201,
+        "nominal_ttc": 6.248034223734909
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 123.28087741260593,
+        "nominal_ttc": 4.262173477077448
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00001",
+    "episode_seed": 900001,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.07284731965473,
+        "nominal_ttc": 6.633052394561148
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.44778083096513,
+        "nominal_ttc": 4.6417899538352705
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 97.41360737967386,
+        "nominal_ttc": 4.663017846378461
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.52664588076739,
+        "nominal_ttc": 6.63740856217959
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00002",
+    "episode_seed": 900002,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 103.6327015223202,
+        "nominal_ttc": 4.380331748985445
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 84.99142236807525,
+        "nominal_ttc": 6.3893654239958195
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 59.492708303928794,
+        "nominal_ttc": 6.386695077094146
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 120.36706381734507,
+        "nominal_ttc": 4.424052010147496
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00003",
+    "episode_seed": 900003,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 104.48104546099532,
+        "nominal_ttc": 4.341770660863849
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 85.8365217200607,
+        "nominal_ttc": 6.342415459996627
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 60.286388497324936,
+        "nominal_ttc": 6.350618704667049
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 120.32871090186227,
+        "nominal_ttc": 4.426182727674319
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00004",
+    "episode_seed": 900004,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 52.48330846202796,
+        "nominal_ttc": 6.705304160816911
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 115.70093482130984,
+        "nominal_ttc": 4.68328139881612
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.23763121727951,
+        "nominal_ttc": 4.625562217396386
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.61153123841343,
+        "nominal_ttc": 6.632692708977031
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00005",
+    "episode_seed": 900005,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 97.29697042178678,
+        "nominal_ttc": 4.668319526282419
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 79.36392139398367,
+        "nominal_ttc": 6.702004367000907
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 96.0356472698254,
+        "nominal_ttc": 4.725652396826118
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 79.53516567975501,
+        "nominal_ttc": 6.692490795569166
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00006",
+    "episode_seed": 900006,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.50989531839254,
+        "nominal_ttc": 4.613186576436703
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.91738933555251,
+        "nominal_ttc": 6.615700592469305
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.06857497648217,
+        "nominal_ttc": 4.633246591978083
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.87811724464954,
+        "nominal_ttc": 6.617882375297247
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00007",
+    "episode_seed": 900007,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 53.49202768870725,
+        "nominal_ttc": 6.659453286876944
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.93938951685747,
+        "nominal_ttc": 4.6144783601745845
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.27746472438383,
+        "nominal_ttc": 6.623751603437098
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.59148404369971,
+        "nominal_ttc": 4.578250886461127
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00008",
+    "episode_seed": 900008,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.19713060918583,
+        "nominal_ttc": 4.536494063218826
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 82.41354599945848,
+        "nominal_ttc": 6.532580777807862
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.10364711339763,
+        "nominal_ttc": 4.495288767572835
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 82.687274852225,
+        "nominal_ttc": 6.517373619320833
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00009",
+    "episode_seed": 900009,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 105.23224848732745,
+        "nominal_ttc": 4.307625068757843
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 87.14349767559911,
+        "nominal_ttc": 6.269805684688938
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 105.35547426907577,
+        "nominal_ttc": 4.3020238968601925
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 86.57446285542848,
+        "nominal_ttc": 6.301418730253974
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00010",
+    "episode_seed": 900010,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 102.04156365012753,
+        "nominal_ttc": 4.452656197721476
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 84.24449995005688,
+        "nominal_ttc": 6.4308611138857295
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 102.67885233864554,
+        "nominal_ttc": 4.4236885300615665
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 84.84317912405835,
+        "nominal_ttc": 6.397601159774536
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00011",
+    "episode_seed": 900011,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.86613404247805,
+        "nominal_ttc": 4.506084816250998
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 83.0213716793737,
+        "nominal_ttc": 6.498812684479239
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.92795643611717,
+        "nominal_ttc": 6.503274707449219
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 118.94734883367913,
+        "nominal_ttc": 4.502925064795604
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00012",
+    "episode_seed": 900012,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 99.1789710273197,
+        "nominal_ttc": 4.582774044212741
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.38630817507817,
+        "nominal_ttc": 6.645205101384546
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 53.93935302784294,
+        "nominal_ttc": 6.63912031691623
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.33748789563207,
+        "nominal_ttc": 4.5923617835759964
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00013",
+    "episode_seed": 900013,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 51.307661017575555,
+        "nominal_ttc": 6.758742681019293
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 115.1602848647398,
+        "nominal_ttc": 4.713317507514456
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 50.84056366033195,
+        "nominal_ttc": 6.779974379075821
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 114.60063376718529,
+        "nominal_ttc": 4.744409235156373
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00014",
+    "episode_seed": 900014,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 103.53374861404653,
+        "nominal_ttc": 4.3848296084524305
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 86.30991812638311,
+        "nominal_ttc": 6.316115659645383
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 105.13353310260729,
+        "nominal_ttc": 4.312112131699669
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 85.78895473887017,
+        "nominal_ttc": 6.345058070062768
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00015",
+    "episode_seed": 900015,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.60977941156996,
+        "nominal_ttc": 4.608646390383184
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.49916518556063,
+        "nominal_ttc": 6.638935267468854
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 52.860856856133125,
+        "nominal_ttc": 6.688142870175767
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 115.63750978290382,
+        "nominal_ttc": 4.686805012060899
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00016",
+    "episode_seed": 900016,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 96.38491471651179,
+        "nominal_ttc": 4.709776603794919
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 79.4146933151766,
+        "nominal_ttc": 6.699183704712411
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 96.66041467617558,
+        "nominal_ttc": 4.697253878355656
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 79.1115767419374,
+        "nominal_ttc": 6.716023514336811
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00017",
+    "episode_seed": 900017,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 52.518234264909125,
+        "nominal_ttc": 6.703716624322313
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 115.17983506940107,
+        "nominal_ttc": 4.712231385033274
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 51.768395367143484,
+        "nominal_ttc": 6.737800210584387
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 114.26784657223949,
+        "nominal_ttc": 4.762897412653362
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00018",
+    "episode_seed": 900018,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 57.5285602319571,
+        "nominal_ttc": 6.475974534911041
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 120.70663033729535,
+        "nominal_ttc": 4.4051872034835915
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 58.776069152350686,
+        "nominal_ttc": 6.41926958398406
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.63280597432319,
+        "nominal_ttc": 4.464844112537601
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00019",
+    "episode_seed": 900019,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 61.14980961770169,
+        "nominal_ttc": 6.311372290104469
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 122.27660238001263,
+        "nominal_ttc": 4.317966534443743
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 61.36813634097132,
+        "nominal_ttc": 6.301448348137667
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 122.4681274607967,
+        "nominal_ttc": 4.307326252177962
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00020",
+    "episode_seed": 900020,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 52.5251014574836,
+        "nominal_ttc": 6.7034044792052905
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.23274610662202,
+        "nominal_ttc": 4.653736327409888
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 96.53468911303548,
+        "nominal_ttc": 4.7029686766802055
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 79.78775103362902,
+        "nominal_ttc": 6.678458275909499
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00021",
+    "episode_seed": 900021,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 94.67879763355448,
+        "nominal_ttc": 4.787327380292978
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 77.95271065217642,
+        "nominal_ttc": 6.780404963767976
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 50.75173273628437,
+        "nominal_ttc": 6.784012148350711
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 114.7695280181869,
+        "nominal_ttc": 4.735026221211839
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00022",
+    "episode_seed": 900022,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 58.14119807602637,
+        "nominal_ttc": 6.44812736018062
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.8520585654657,
+        "nominal_ttc": 4.452663413029684
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 57.09034790000908,
+        "nominal_ttc": 6.495893277272314
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 120.3814608989944,
+        "nominal_ttc": 4.423252172278088
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00023",
+    "episode_seed": 900023,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.05957752470479,
+        "nominal_ttc": 6.633655567058873
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.0835992517494,
+        "nominal_ttc": 4.606466708236145
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.22350825433662,
+        "nominal_ttc": 6.626204170257426
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.7233002137266,
+        "nominal_ttc": 4.6264833214596335
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00024",
+    "episode_seed": 900024,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 62.076895545384104,
+        "nominal_ttc": 6.269232020664359
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 122.82979439164704,
+        "nominal_ttc": 4.287233644908498
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 61.34047561003129,
+        "nominal_ttc": 6.302705654089487
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 123.41002372565414,
+        "nominal_ttc": 4.254998681908103
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00025",
+    "episode_seed": 900025,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 55.839034204604246,
+        "nominal_ttc": 6.552771172517989
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.79084352170291,
+        "nominal_ttc": 4.6227309154609495
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.54404464429871,
+        "nominal_ttc": 6.611634334350058
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.82204811102153,
+        "nominal_ttc": 4.620997327165471
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00026",
+    "episode_seed": 900026,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.04112031316785,
+        "nominal_ttc": 4.498130894856007
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 82.21736522414784,
+        "nominal_ttc": 6.5434797097695645
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.05779920165132,
+        "nominal_ttc": 4.542827309015849
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 81.66203840049229,
+        "nominal_ttc": 6.574331199972651
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00027",
+    "episode_seed": 900027,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.401280094504756,
+        "nominal_ttc": 6.527214541158875
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.81746895065086,
+        "nominal_ttc": 4.565696169408286
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.84536585277121,
+        "nominal_ttc": 4.597937915783127
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 81.66283814155614,
+        "nominal_ttc": 6.574286769913548
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00028",
+    "episode_seed": 900028,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.58468054604515,
+        "nominal_ttc": 4.473423611543402
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 82.91439692229756,
+        "nominal_ttc": 6.504755726539025
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 57.80391728984276,
+        "nominal_ttc": 6.463458305007148
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 120.00515518992242,
+        "nominal_ttc": 4.44415804500431
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00029",
+    "episode_seed": 900029,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 105.2711418694787,
+        "nominal_ttc": 4.305857187750968
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 85.8965866983299,
+        "nominal_ttc": 6.33907851675945
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 104.03801167498239,
+        "nominal_ttc": 4.361908560228073
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 86.30069117768073,
+        "nominal_ttc": 6.316628267906626
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00030",
+    "episode_seed": 900030,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 97.14030181937142,
+        "nominal_ttc": 4.675440826392208
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.09342188426923,
+        "nominal_ttc": 6.661476561985043
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 52.936369576870305,
+        "nominal_ttc": 6.6847104737786225
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.21182589096759,
+        "nominal_ttc": 4.654898561612912
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00031",
+    "episode_seed": 900031,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.0193324962101,
+        "nominal_ttc": 6.544575795626814
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 118.38550239723004,
+        "nominal_ttc": 4.534138755709442
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.39809795091344,
+        "nominal_ttc": 6.52735918404939
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.68108854179252,
+        "nominal_ttc": 4.573272858789305
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00032",
+    "episode_seed": 900032,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.750162935344775,
+        "nominal_ttc": 6.511356230211601
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.09097493270599,
+        "nominal_ttc": 4.4949458370718895
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 57.29792773565785,
+        "nominal_ttc": 6.486457830197371
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 120.1012213803951,
+        "nominal_ttc": 4.438821034422494
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00033",
+    "episode_seed": 900033,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 99.57188896180898,
+        "nominal_ttc": 4.564914138099592
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 81.89948441947419,
+        "nominal_ttc": 6.561139754473656
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.34581705054754,
+        "nominal_ttc": 6.529735588611476
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 118.76118007543317,
+        "nominal_ttc": 4.513267773587046
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00034",
+    "episode_seed": 900034,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 57.374935764968455,
+        "nominal_ttc": 6.482957465228706
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 118.93837176708824,
+        "nominal_ttc": 4.50342379071732
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.97166396639618,
+        "nominal_ttc": 4.501288001527446
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 82.80429350063254,
+        "nominal_ttc": 6.510872583298192
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00035",
+    "episode_seed": 900035,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 96.11879852556726,
+        "nominal_ttc": 4.7218727942923975
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 78.11945450906933,
+        "nominal_ttc": 6.771141416162815
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 50.99031235808624,
+        "nominal_ttc": 6.773167620086989
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 114.57364584395901,
+        "nominal_ttc": 4.745908564224499
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00036",
+    "episode_seed": 900036,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 103.65025501800294,
+        "nominal_ttc": 4.3795338628180485
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 84.28985640419644,
+        "nominal_ttc": 6.4283413108779754
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 103.59587089635212,
+        "nominal_ttc": 4.382005868347631
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 85.36497958357359,
+        "nominal_ttc": 6.368612245357023
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00037",
+    "episode_seed": 900037,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 58.661324073101895,
+        "nominal_ttc": 6.424485269404459
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 120.97165961442911,
+        "nominal_ttc": 4.390463354753938
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 59.952403071509735,
+        "nominal_ttc": 6.365799860385921
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 121.35391919222486,
+        "nominal_ttc": 4.369226711543063
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00038",
+    "episode_seed": 900038,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 96.35281588455273,
+        "nominal_ttc": 4.71123564161124
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 78.87841313618819,
+        "nominal_ttc": 6.728977047989545
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 96.04808836033524,
+        "nominal_ttc": 4.725086892712034
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 78.98011186669491,
+        "nominal_ttc": 6.723327118516949
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00039",
+    "episode_seed": 900039,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.9829487525309,
+        "nominal_ttc": 4.500775056703141
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 84.00346267802479,
+        "nominal_ttc": 6.444252073443067
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.63228366229188,
+        "nominal_ttc": 6.516714378986732
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.67364405528373,
+        "nominal_ttc": 4.462575330262015
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00040",
+    "episode_seed": 900040,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.88623269004218,
+        "nominal_ttc": 4.459716695907174
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 83.3467290391793,
+        "nominal_ttc": 6.48073727560115
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.37425335477532,
+        "nominal_ttc": 4.482988483873849
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 82.88273271199328,
+        "nominal_ttc": 6.506514849333707
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00041",
+    "episode_seed": 900041,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.37811146272443,
+        "nominal_ttc": 6.619176751694344
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.6410713433157,
+        "nominal_ttc": 4.631051592038016
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.4689362663953,
+        "nominal_ttc": 4.615048351527486
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 81.44191062940418,
+        "nominal_ttc": 6.586560520588657
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00042",
+    "episode_seed": 900042,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 61.91683744955171,
+        "nominal_ttc": 6.276507388656741
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 122.01039490961331,
+        "nominal_ttc": 4.332755838354816
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 61.06921572363157,
+        "nominal_ttc": 6.3150356489258375
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 121.96137608534148,
+        "nominal_ttc": 4.335479106369918
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00043",
+    "episode_seed": 900043,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 62.127633374087225,
+        "nominal_ttc": 6.2669257557233085
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 122.10137497568692,
+        "nominal_ttc": 4.327701390239615
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 62.421881809198425,
+        "nominal_ttc": 6.253550826854617
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 123.39927449845997,
+        "nominal_ttc": 4.255595861196668
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00044",
+    "episode_seed": 900044,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.5682771128495,
+        "nominal_ttc": 6.51962376759775
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.23098896475257,
+        "nominal_ttc": 4.487167279735968
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 56.69292156548033,
+        "nominal_ttc": 6.513958110659985
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.52911712724783,
+        "nominal_ttc": 4.470604604041787
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00045",
+    "episode_seed": 900045,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 59.57102414697732,
+        "nominal_ttc": 6.3831352660464855
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 121.65613923023422,
+        "nominal_ttc": 4.352436709431433
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 59.56818648538325,
+        "nominal_ttc": 6.383264250664397
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 120.77858345282272,
+        "nominal_ttc": 4.4011898081765155
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00046",
+    "episode_seed": 900046,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 104.53521223560558,
+        "nominal_ttc": 4.339308534745201
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 86.27568476467953,
+        "nominal_ttc": 6.31801751307336
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 60.15486342766215,
+        "nominal_ttc": 6.356597116924448
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 122.3235052603723,
+        "nominal_ttc": 4.315360818868205
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00047",
+    "episode_seed": 900047,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.895753840070455,
+        "nominal_ttc": 6.5956475527240706
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 118.58891832329128,
+        "nominal_ttc": 4.522837870928262
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 55.202017488555725,
+        "nominal_ttc": 6.581726477792921
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.95966120264359,
+        "nominal_ttc": 4.613352155408689
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00048",
+    "episode_seed": 900048,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.46603825982642,
+        "nominal_ttc": 4.524270988189708
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 81.95914114508318,
+        "nominal_ttc": 6.557825491939823
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 99.56031371262313,
+        "nominal_ttc": 4.565440285789858
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 81.5945775887586,
+        "nominal_ttc": 6.578079022846745
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00049",
+    "episode_seed": 900049,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.72949588451802,
+        "nominal_ttc": 4.466841096158272
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 82.99933240299248,
+        "nominal_ttc": 6.50003708872264
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 58.89752414434767,
+        "nominal_ttc": 6.413748902529652
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.5077829783616,
+        "nominal_ttc": 4.471789834535467
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00050",
+    "episode_seed": 900050,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 58.70657728019137,
+        "nominal_ttc": 6.422428305445847
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.81470833705197,
+        "nominal_ttc": 4.454738425719335
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 102.21555570104638,
+        "nominal_ttc": 4.444747468134255
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 83.59644102778738,
+        "nominal_ttc": 6.4668643873451455
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00051",
+    "episode_seed": 900051,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 97.47667637209534,
+        "nominal_ttc": 4.660151073995666
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.61806493173897,
+        "nominal_ttc": 6.632329726014501
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 97.49607743506625,
+        "nominal_ttc": 4.659269207496989
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.76411903401079,
+        "nominal_ttc": 6.624215609221623
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00052",
+    "episode_seed": 900052,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.31471637311385,
+        "nominal_ttc": 4.531149255767552
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 83.33340070360839,
+        "nominal_ttc": 6.481477738688422
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.1150621692705,
+        "nominal_ttc": 4.494769901396795
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 83.07645660460567,
+        "nominal_ttc": 6.495752410855241
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00053",
+    "episode_seed": 900053,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 97.29586090121144,
+        "nominal_ttc": 4.668369959035844
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 79.6269653440085,
+        "nominal_ttc": 6.68739081422175
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.39150350495817,
+        "nominal_ttc": 4.6185680225019015
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.06881475564795,
+        "nominal_ttc": 6.662843624686225
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00054",
+    "episode_seed": 900054,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 99.09808159995639,
+        "nominal_ttc": 4.586450836365619
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.6179943443159,
+        "nominal_ttc": 6.6323336475380055
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.50268095400804,
+        "nominal_ttc": 4.613514502090544
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.89023260423092,
+        "nominal_ttc": 6.617209299764949
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00055",
+    "episode_seed": 900055,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 61.638498968693966,
+        "nominal_ttc": 6.289159137786638
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 123.15447421763203,
+        "nominal_ttc": 4.2691958767982205
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 106.73929086540745,
+        "nominal_ttc": 4.239123142481479
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 87.53711234813164,
+        "nominal_ttc": 6.247938202881575
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00056",
+    "episode_seed": 900056,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 105.82127983203331,
+        "nominal_ttc": 4.2808509167257585
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 85.79131493220203,
+        "nominal_ttc": 6.344926948210999
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 106.17328291465118,
+        "nominal_ttc": 4.264850776606765
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 86.57609474015061,
+        "nominal_ttc": 6.301328069991633
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00057",
+    "episode_seed": 900057,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.88205045702158,
+        "nominal_ttc": 4.45990679740811
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 84.2310356709029,
+        "nominal_ttc": 6.431609129394284
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.84584041911184,
+        "nominal_ttc": 4.5070072536767345
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 84.16466372916308,
+        "nominal_ttc": 6.43529645949094
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00058",
+    "episode_seed": 900058,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 53.63784615292687,
+        "nominal_ttc": 6.65282517486696
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.42897621406782,
+        "nominal_ttc": 4.5872790992184544
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.463569486750316,
+        "nominal_ttc": 6.615292296056803
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.27044976487704,
+        "nominal_ttc": 4.596086124173498
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00059",
+    "episode_seed": 900059,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 98.82886885644973,
+        "nominal_ttc": 4.598687779252285
+      },
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 79.8084523916067,
+        "nominal_ttc": 6.677308200466294
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 54.89021490910747,
+        "nominal_ttc": 6.595899322313296
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.3947914002803,
+        "nominal_ttc": 4.589178255539983
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00060",
+    "episode_seed": 900060,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 57.20251734398718,
+        "nominal_ttc": 6.490794666182401
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 119.16976952901538,
+        "nominal_ttc": 4.490568359499146
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 100.80644473356482,
+        "nominal_ttc": 4.508797966656145
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 83.79911975195354,
+        "nominal_ttc": 6.455604458224803
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00061",
+    "episode_seed": 900061,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 104.25766441824437,
+        "nominal_ttc": 4.351924344625256
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 86.07666842911686,
+        "nominal_ttc": 6.329073976160174
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 103.0064172047089,
+        "nominal_ttc": 4.408799217967777
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 84.83015948103659,
+        "nominal_ttc": 6.398324473275745
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00062",
+    "episode_seed": 900062,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 101.22357451242192,
+        "nominal_ttc": 4.48983752216264
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 82.5735386715827,
+        "nominal_ttc": 6.523692296023183
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 55.823582493315286,
+        "nominal_ttc": 6.553473523031124
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 117.9598093941615,
+        "nominal_ttc": 4.557788366991028
+      }
+    ]
+  },
+  {
+    "scenario_id": "Q_00063",
+    "episode_seed": 900063,
+    "traffic_type": "heterogeneous",
+    "agents": [
+      {
+        "vehicle_id": "V1",
+        "role": "ramp",
+        "speed_class": "fast",
+        "ttc_slot": "front",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 97.2802618922265,
+        "nominal_ttc": 4.669079004898795
+      },
+      {
+        "vehicle_id": "V0",
+        "role": "ramp",
+        "speed_class": "slow",
+        "ttc_slot": "rear",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 80.7233032343139,
+        "nominal_ttc": 6.626483153649228
+      },
+      {
+        "vehicle_id": "V2",
+        "role": "mainline",
+        "speed_class": "fast",
+        "ttc_slot": "rear",
+        "target_speed": 22.0,
+        "spawn_speed": 22.0,
+        "route_position": 52.6304343381575,
+        "nominal_ttc": 6.6986166209928415
+      },
+      {
+        "vehicle_id": "V3",
+        "role": "mainline",
+        "speed_class": "slow",
+        "ttc_slot": "front",
+        "target_speed": 18.0,
+        "spawn_speed": 18.0,
+        "route_position": 116.0804246002705,
+        "nominal_ttc": 4.662198633318305
+      }
+    ]
+  }
+]

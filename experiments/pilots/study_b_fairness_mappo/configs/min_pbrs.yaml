@@ -1,0 +1,5 @@
+# Study B condition: min_pbrs. --condition min_pbrs on train_mappo.py /
+# train_dqn_fallback.py. See baseline.yaml's comment.
+welfare:
+  type: min
+  lambda: 0.2

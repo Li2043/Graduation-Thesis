@@ -1,0 +1,5 @@
+# Study B condition: mean_pbrs. --condition mean_pbrs on train_mappo.py /
+# train_dqn_fallback.py. See baseline.yaml's comment.
+welfare:
+  type: mean
+  lambda: 0.2

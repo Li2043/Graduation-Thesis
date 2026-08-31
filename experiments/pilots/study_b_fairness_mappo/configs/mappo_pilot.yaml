@@ -1,0 +1,23 @@
+# Study B MAPPO pilot starting hyperparameters -- reference/documentation
+# only, matches train_mappo.py's CLI defaults exactly. See README.md for
+# the actual invocation.
+
+policy_sharing: true
+centralized_value: true
+actor_hidden_sizes: [128, 128]
+critic_hidden_sizes: [128, 128]
+recurrent: false                # off for the 4-week scope, see new_research_plan.md
+actor_lr: 5.0e-4
+critic_lr: 5.0e-4
+discount_gamma: 0.995           # MUST match pbrs_lambda's gamma, see env_frozen.yaml
+gae_lambda: 0.95
+ppo_clip_epsilon: 0.10
+ppo_epochs: 5
+minibatches: 1
+entropy_coefficient: 0.01
+value_coefficient: 1.0
+max_grad_norm: 0.5
+value_normalization: true
+orthogonal_init: true
+parallel_envs: 16                # 32 if the experiment machine's core count allows
+rollout_length: 200

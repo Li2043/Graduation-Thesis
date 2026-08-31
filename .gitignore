@@ -2,6 +2,8 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .venv/
+.venv_check/
 *.pt
 *.pth
 *.ckpt
+_pytest_*.txt

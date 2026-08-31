@@ -1,0 +1,8 @@
+# Additional dependency needed for the full tests/study_b/ suite
+# (thesis.study_b.pettingzoo_wrapper / tests/study_b/test_pettingzoo_wrapper.py).
+# Not present in the original stage2b1/stage2b2 requirement files -- discovered
+# missing during this repository's own release-verification pass. Version
+# unpinned upstream; 1.27.0 is what was verified to pass the full suite.
+
+-r requirements-stage2b2.txt
+pettingzoo==1.27.0

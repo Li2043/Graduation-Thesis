@@ -1,0 +1,18 @@
+# Study B shared-local-DQN FALLBACK hyperparameters -- ONLY used if
+# MAPPO's 48-hour integration gate fails. Every value here is inherited
+# verbatim from stage11_dyad_merge_pilot_config.py (Study A's own already-
+# validated v12 DQN configuration) -- reference/documentation only,
+# matches shared_local_dqn.build_study_b_dqn_config()'s actual values.
+
+policy_sharing: true
+observation: local_only          # never joint/concatenated -- see shared_local_dqn.py docstring
+hidden_sizes: [64, 64]
+learning_rate_start: 5.0e-4
+discount_gamma: 0.995
+epsilon_start: 1.0
+epsilon_end: 0.10
+replay_capacity: 100000
+replay_warmup: 512
+batch_size: 64
+target_mode: double_dqn
+pbrs_lambda: 0.2

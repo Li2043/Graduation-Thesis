@@ -34,14 +34,22 @@ python -m venv .venv
 pip install -r requirements-stage1.txt
 pip install -r requirements-stage2b1.txt
 pip install -r requirements-stage2b2.txt   # pulls in torch
+pip install -r requirements-study_b.txt    # adds pettingzoo, needed by tests/study_b/test_pettingzoo_wrapper.py
 ```
 
 Run the test suite from the repo root (`pytest.ini` sets `pythonpath=src`,
 `testpaths=tests`):
 
 ```bash
-python -m pytest
+python -m pytest             # full suite (includes an unrelated pilot lineage's tests -- see docs/KNOWN_TEST_GAPS.md)
+python -m pytest tests/study_b   # just this thesis's own test suite -- 298 passed, 12 skipped, 0 failed
 ```
+
+See [`docs/KNOWN_TEST_GAPS.md`](docs/KNOWN_TEST_GAPS.md) before treating any
+test failure as a repository defect: this codebase's `tests/` directory was
+copied whole (see `docs/PROVENANCE.md`) and includes ~83 tests for a
+completely separate, unrelated pilot-study lineage that share the same `src/`
+tree only because `thesis.study_b` imports sibling packages.
 
 ## Pipeline overview
 
@@ -58,12 +66,20 @@ python -m pytest
    branches (Original+DWS, WSC+DWS) add the step-wise dense welfare
    shaping term on top of the terminal reward.
 
-Entry points: `scripts/launch_formal.py` (original 6-seed campaign),
-`scripts/launch_replication_curriculum.py` + `launch_replication_welfare.py`
-(the 6 replication seeds + WSC), `scripts/launch_dense_priority.py` (DWS).
-Evaluation: `scripts/evaluate_formal.py`, `scripts/evaluate_replication.py`,
+The actual training entry points invoked as subprocesses are under
+`experiments/pilots/study_b_fairness_mappo/scripts/`:
+`train_curriculum_stage_highwayenv.py` (task-only curriculum),
+`train_curriculum_stage_highwayenv_wsc.py` (WSC continuation),
+`train_dqn_direct_welfare.py` (Mean/GGI/Maximin continuation). These are
+orchestrated by the launchers in `scripts/`: `scripts/launch_formal.py`
+(original 6-seed campaign), `scripts/launch_replication_curriculum.py` +
+`launch_replication_welfare.py` (the 6 replication seeds + WSC),
+`scripts/launch_dense_priority.py` (DWS). Evaluation:
+`scripts/evaluate_formal.py`, `scripts/evaluate_replication.py`,
 `scripts/evaluate_dense_interim.py` (all use a deterministic 4-checkpoint
-Q-ensemble on the held-out `H1` scenario bank, `scenario_banks/H1.json`).
+Q-ensemble on the held-out `H1` scenario bank, `scenario_banks/H1.json`,
+which is also mirrored at
+`experiments/pilots/study_b_fairness_mappo/scenario_banks/H1.json`).
 
 **Model checkpoints are intentionally excluded from this repository** (see
 Exclusions below). Regenerate them by rerunning the launch scripts above

@@ -1,0 +1,8 @@
+# Study B condition: baseline. --condition baseline on train_mappo.py /
+# train_dqn_fallback.py. Differs from mean_pbrs.yaml/min_pbrs.yaml ONLY in
+# welfare.type -- everything else (env_frozen.yaml, mappo_pilot.yaml /
+# dqn_fallback_pilot.yaml) is byte-identical across all three conditions,
+# per new_research_plan.md's "只在welfare.type/weights和run label不同" rule.
+welfare:
+  type: baseline
+  lambda: 0.0
